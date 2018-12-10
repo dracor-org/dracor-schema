@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2018-12-10T15:12:59Z. 2018.
+Schema generated from ODD source 2018-12-10T17:17:01Z. 2018.
 TEI Edition: Version 3.3.0. Last updated on
 	31st January 2018, revision f4d8439
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.3.0/
@@ -411,6 +411,7 @@ belongs, but this <sch:name/> element has no textual content.</sch:assert>
    </define>
    <define name="tei_att.global.attributes">
       <ref name="tei_att.global.rendition.attributes"/>
+      <ref name="tei_att.global.linking.attributes"/>
       <ref name="tei_att.global.responsibility.attributes"/>
       <ref name="tei_att.global.source.attributes"/>
       <ref name="tei_att.global.attribute.xmlid"/>
@@ -1037,29 +1038,41 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
    <define name="tei_model.pLike">
       <choice>
          <ref name="tei_p"/>
+         <ref name="tei_ab"/>
       </choice>
    </define>
    <define name="tei_model.pLike_alternation">
       <choice>
          <ref name="tei_p"/>
+         <ref name="tei_ab"/>
       </choice>
    </define>
    <define name="tei_model.pLike_sequence">
       <ref name="tei_p"/>
+      <ref name="tei_ab"/>
    </define>
    <define name="tei_model.pLike_sequenceOptional">
       <optional>
          <ref name="tei_p"/>
+      </optional>
+      <optional>
+         <ref name="tei_ab"/>
       </optional>
    </define>
    <define name="tei_model.pLike_sequenceOptionalRepeatable">
       <zeroOrMore>
          <ref name="tei_p"/>
       </zeroOrMore>
+      <zeroOrMore>
+         <ref name="tei_ab"/>
+      </zeroOrMore>
    </define>
    <define name="tei_model.pLike_sequenceRepeatable">
       <oneOrMore>
          <ref name="tei_p"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="tei_ab"/>
       </oneOrMore>
    </define>
    <define name="tei_model.stageLike">
@@ -1488,12 +1501,29 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
       </report>
             </rule>
          </pattern>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_emph">
       <element name="emph">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(emphasized) marks words or phrases which are stressed or emphasized for linguistic or rhetorical effect. [3.3.2.2. Emphatic Words and Phrases 3.3.2. Emphasis, Foreign Words, and Unusual Language]</a:documentation>
          <ref name="tei_macro.paraContent"/>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
          <optional>
             <attribute name="rend">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(rendition) indicates how the element in question was rendered or presented in the source text.</a:documentation>
@@ -1537,6 +1567,14 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
       <element name="name">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(name, proper noun) contains a proper noun or noun phrase. [3.5.1. Referring Strings]</a:documentation>
          <ref name="tei_macro.phraseSeq"/>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
          <optional>
             <attribute name="type">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
@@ -1560,6 +1598,14 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
                <ref name="tei_model.global"/>
             </choice>
          </zeroOrMore>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
          <attribute name="when">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">use only year here</a:documentation>
          </attribute>
@@ -1613,26 +1659,61 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
                <ref name="tei_model.global"/>
             </choice>
          </zeroOrMore>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_pb">
       <element name="pb">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(page beginning) marks the beginning of a new page in a paginated document. [3.10.3. Milestone
 Elements]</a:documentation>
-         <rng:empty xmlns:rng="http://relaxng.org/ns/structure/1.0"/>
+         <empty/>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_lb">
       <element name="lb">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(line beginning) marks the beginning of a new (typographic) line in some edition or version of a text. [3.10.3. Milestone
 Elements 7.2.5. Speech Contents]</a:documentation>
-         <rng:empty xmlns:rng="http://relaxng.org/ns/structure/1.0"/>
+         <empty/>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_author">
       <element name="author">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">in a bibliographic reference, contains the name(s) of an author, personal or corporate, of a work; for example in the same form as that provided by a recognized bibliographic name authority. [3.11.2.2. Titles, Authors, and Editors 2.2.1. The Title Statement]</a:documentation>
          <ref name="tei_macro.phraseSeq"/>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
          <ref name="tei_att.canonical.attribute.ref"/>
          <attribute name="key">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Identifier of author,e.g., wikidata</a:documentation>
@@ -1647,6 +1728,14 @@ Elements 7.2.5. Speech Contents]</a:documentation>
          <ref name="tei_macro.paraContent"/>
          <ref name="tei_att.global.attribute.xmlid"/>
          <ref name="tei_att.global.attribute.xmllang"/>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
          <ref name="tei_att.canonical.attributes"/>
          <ref name="tei_att.typed.attribute.subtype"/>
          <optional>
@@ -1682,6 +1771,8 @@ Sample values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4] s
       <element name="publisher">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">provides the name of the organization responsible for the publication or distribution of a bibliographic item. [3.11.2.4. Imprint, Size of a Document, and Reprint Information 2.2.4. Publication, Distribution, Licensing, etc.]</a:documentation>
          <ref name="tei_macro.phraseSeq"/>
+         <ref name="tei_att.global.attribute.xmlid"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_bibl">
@@ -1700,6 +1791,14 @@ Sample values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4] s
                <ref name="tei_model.global"/>
             </choice>
          </zeroOrMore>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
          <attribute name="type">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
             <choice>
@@ -1732,6 +1831,14 @@ Sample values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4] s
       </report>
             </rule>
          </pattern>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
          <optional>
             <attribute name="rend">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
@@ -1814,6 +1921,15 @@ Sample values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4] s
       </report>
             </rule>
          </pattern>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_sp">
@@ -1847,6 +1963,14 @@ Sample values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4] s
                </group>
             </oneOrMore>
          </group>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
          <ref name="tei_att.ascribed.attributes"/>
          <empty/>
       </element>
@@ -1855,6 +1979,15 @@ Sample values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4] s
       <element name="speaker">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a specialized form of heading or label, giving the name of one or more speakers in a dramatic text or fragment. [3.12.2. Core Tags for Drama]</a:documentation>
          <ref name="tei_macro.phraseSeq"/>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_stage">
@@ -1863,6 +1996,14 @@ Sample values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4] s
          <ref name="tei_macro.specialPara"/>
          <ref name="tei_att.ascribed.attributes"/>
          <ref name="tei_att.global.attribute.xmlid"/>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
          <optional>
             <attribute name="type">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the kind of stage direction.
@@ -1911,6 +2052,15 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
                <ref name="tei_revisionDesc"/>
             </optional>
          </group>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_fileDesc">
@@ -1925,6 +2075,15 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
                <ref name="tei_sourceDesc"/>
             </oneOrMore>
          </group>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_titleStmt">
@@ -1938,6 +2097,15 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
                <ref name="tei_model.respLike"/>
             </zeroOrMore>
          </group>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_publicationStmt">
@@ -1968,6 +2136,14 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
                <ref name="tei_idno"/>
             </choice>
          </zeroOrMore>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
          <attribute name="type">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Classifies the identifier</a:documentation>
             <choice>
@@ -1991,12 +2167,30 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
                <ref name="tei_model.pLike"/>
             </choice>
          </oneOrMore>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_licence">
       <element name="licence">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains information about a licence or other legal agreement applicable to the text. [2.2.4. Publication, Distribution, Licensing, etc.]</a:documentation>
          <ref name="tei_macro.specialPara"/>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_sourceDesc">
@@ -2042,6 +2236,15 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
                <ref name="tei_term"/>
             </oneOrMore>
          </choice>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_revisionDesc">
@@ -2059,6 +2262,14 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
       <element name="change">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">documents a change or set of changes made during the production of a source document, or during the revision of an electronic file. [2.6. The Revision Description 2.4.1. Creation 11.7. Identifying Changes and Revisions]</a:documentation>
          <ref name="tei_macro.specialPara"/>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
          <optional>
             <attribute name="who">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">points to the person responsible for the change. IDs of editors should be recorded somewhere...</a:documentation>
@@ -2095,6 +2306,15 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
                <ref name="tei_change"/>
             </choice>
          </oneOrMore>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_TEI">
@@ -2115,6 +2335,10 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
          <ns xmlns="http://purl.oclc.org/dsdl/schematron"
              prefix="rng"
              uri="http://relaxng.org/ns/structure/1.0"/>
+         <attribute name="xml:id">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) DraCor-ID</a:documentation>
+         </attribute>
+         <empty/>
       </element>
    </define>
    <define name="tei_text">
@@ -2139,6 +2363,15 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
                <ref name="tei_model.global"/>
             </zeroOrMore>
          </group>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_body">
@@ -2239,6 +2472,15 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
                </group>
             </zeroOrMore>
          </group>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_div">
@@ -2314,6 +2556,14 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
       </report>
             </rule>
          </pattern>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
          <optional>
             <attribute name="n">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Number of act or scene</a:documentation>
@@ -2388,6 +2638,15 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
                </group>
             </optional>
          </group>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_set">
@@ -2451,6 +2710,15 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
                </group>
             </zeroOrMore>
          </group>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_castGroup">
@@ -2479,6 +2747,15 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
                <ref name="tei_model.global"/>
             </zeroOrMore>
          </group>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_castItem">
@@ -2493,6 +2770,15 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
                <ref name="tei_model.global"/>
             </choice>
          </zeroOrMore>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_roleDesc">
@@ -2710,6 +2996,14 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(personal name) contains a proper noun or proper-noun phrase referring to a person, possibly including one or more of the person's forenames, surnames, honorifics, added names, etc. [13.2.1. Personal Names]</a:documentation>
          <ref name="tei_macro.phraseSeq"/>
          <ref name="tei_att.global.attribute.xmllang"/>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
          <optional>
             <attribute name="type">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
@@ -2739,6 +3033,15 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
                <empty/>
             </zeroOrMore>
          </group>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
       </element>
    </define>
    <define name="tei_person">
@@ -2755,6 +3058,14 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
                </choice>
             </zeroOrMore>
          </choice>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
          <attribute name="xml:id">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) provides a unique identifier for the element bearing the attribute.</a:documentation>
             <data type="ID"/>
@@ -2828,6 +3139,127 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
                </choice>
             </oneOrMore>
          </choice>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="tei_att.global.linking.attributes">
+      <ref name="tei_att.global.linking.attribute.corresp"/>
+      <ref name="tei_att.global.linking.attribute.synch"/>
+      <ref name="tei_att.global.linking.attribute.sameAs"/>
+      <ref name="tei_att.global.linking.attribute.copyOf"/>
+      <ref name="tei_att.global.linking.attribute.next"/>
+      <ref name="tei_att.global.linking.attribute.prev"/>
+      <ref name="tei_att.global.linking.attribute.exclude"/>
+      <ref name="tei_att.global.linking.attribute.select"/>
+   </define>
+   <define name="tei_att.global.linking.attribute.corresp">
+      <optional>
+         <attribute name="corresp">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(corresponds) points to elements that correspond to the current element in some way.</a:documentation>
+            <list>
+               <oneOrMore>
+                  <data type="anyURI"/>
+               </oneOrMore>
+            </list>
+         </attribute>
+      </optional>
+   </define>
+   <define name="tei_att.global.linking.attribute.synch">
+      <optional>
+         <attribute name="synch">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(synchronous) points to elements that are synchronous with the current element.</a:documentation>
+            <list>
+               <oneOrMore>
+                  <data type="anyURI"/>
+               </oneOrMore>
+            </list>
+         </attribute>
+      </optional>
+   </define>
+   <define name="tei_att.global.linking.attribute.sameAs">
+      <optional>
+         <attribute name="sameAs">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">points to an element that is the same as the current element.</a:documentation>
+            <data type="anyURI"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="tei_att.global.linking.attribute.copyOf">
+      <optional>
+         <attribute name="copyOf">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">points to an element of which the current element is a copy.</a:documentation>
+            <data type="anyURI"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="tei_att.global.linking.attribute.next">
+      <optional>
+         <attribute name="next">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">points to the next element of a virtual aggregate of which the current element is part.</a:documentation>
+            <data type="anyURI"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="tei_att.global.linking.attribute.prev">
+      <optional>
+         <attribute name="prev">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(previous) points to the previous element of a virtual aggregate of which the current element is part.</a:documentation>
+            <data type="anyURI"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="tei_att.global.linking.attribute.exclude">
+      <optional>
+         <attribute name="exclude">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">points to elements that are in exclusive alternation with the current element.</a:documentation>
+            <list>
+               <oneOrMore>
+                  <data type="anyURI"/>
+               </oneOrMore>
+            </list>
+         </attribute>
+      </optional>
+   </define>
+   <define name="tei_att.global.linking.attribute.select">
+      <optional>
+         <attribute name="select">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">selects one or more alternants; if one alternant is selected, the ambiguity or uncertainty is marked as resolved. If more than one alternant is selected, the degree of ambiguity or uncertainty is marked as reduced by the number of alternants not selected.</a:documentation>
+            <list>
+               <oneOrMore>
+                  <data type="anyURI"/>
+               </oneOrMore>
+            </list>
+         </attribute>
+      </optional>
+   </define>
+   <define name="tei_ab">
+      <element name="ab">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. [16.3. Blocks, Segments, and Anchors]</a:documentation>
+         <ref name="tei_macro.paraContent"/>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="dracor-ab-abstractModel-structure-ab-constraint-report-11">
+            <rule context="tei:ab">
+               <report test="not(ancestor::tei:floatingText) and (ancestor::tei:p or ancestor::tei:ab)          and not(parent::tei:exemplum         |parent::tei:item         |parent::tei:note         |parent::tei:q         |parent::tei:quote         |parent::tei:remarks         |parent::tei:said         |parent::tei:sp         |parent::tei:stage         |parent::tei:cell         |parent::tei:figure)">
+        Abstract model violation: ab may not occur inside paragraphs or other ab elements.
+      </report>
+            </rule>
+         </pattern>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="dracor-ab-abstractModel-structure-l-constraint-report-12">
+            <rule context="tei:ab">
+               <report test="ancestor::tei:l or ancestor::tei:lg">
+        Abstract model violation: Lines may not contain higher-level divisions such as p or ab.
+      </report>
+            </rule>
+         </pattern>
       </element>
    </define>
    <start>
