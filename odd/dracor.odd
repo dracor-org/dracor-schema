@@ -603,6 +603,9 @@ target -->
                         <valItem ident="dedication">
                             <desc>Dedication</desc>
                         </valItem>
+                        <valItem ident="preface">
+                            <desc>Preface</desc>
+                        </valItem>
                     </valList>
                     </attDef>
                     <attDef ident="subtype" mode="delete"/>
@@ -1475,7 +1478,7 @@ target -->
                     <attDef ident="edRef" mode="delete"/>
                     <attDef ident="spanTo" mode="delete"/>
                     <attDef ident="break" mode="delete"/>
-                    <attDef ident="n" mode="delete"/>
+                    <!-- <attDef ident="n" mode="delete"/> -->
                     
                     
                 </attList>
@@ -1513,9 +1516,8 @@ target -->
             
             <elementSpec ident="persName" module="namesdates" mode="change">
                 <attList>
-                    <attDef ident="xml:id" mode="delete"/>
+                    <!-- <attDef ident="xml:id" mode="delete"/> -->
                     <attDef ident="n" mode="delete"/>
-                    
                     <attDef ident="xml:base" mode="delete"/>
                     <attDef ident="xml:space" mode="delete"/>
                     <attDef ident="rend" mode="delete"/>
