@@ -89,6 +89,12 @@
             <!-- author -->
             <elementSpec ident="author" module="core" mode="change">
                 <attList>
+                    <attDef ident="xml:id" mode="delete"/>
+                    <attDef ident="xml:lang" mode="delete"/>
+                    <attDef ident="xml:base" mode="delete"/>
+                    <attDef ident="xml:space" mode="delete"/>
+                    
+                  
                     <attDef ident="n" mode="delete"/>
                     <attDef ident="rend" mode="delete"/>
                     <attDef ident="style" mode="delete"/>
@@ -99,7 +105,7 @@
                     <attDef ident="role" mode="delete"/>
                     <attDef ident="nymRef" mode="delete"/>
                    
-                    <attDef ident="key" mode="replace" usage="rec">
+                    <attDef ident="key" mode="replace" usage="req">
                         <desc>Identifier of author,e.g., wikidata</desc>
                         <datatype>
                             <dataRef key="teidata.pointer"/>
@@ -532,6 +538,7 @@ target -->
            
             <elementSpec ident="div" module="textstructure" mode="change">
                 <attList>
+                    <attDef ident="xml:id" mode="delete"/>
                     <attDef ident="xml:lang" mode="delete"/>
                     <attDef ident="xml:base" mode="delete"/>
                     <attDef ident="xml:space" mode="delete"/>
@@ -643,7 +650,19 @@ target -->
             
             <!-- fileDesc -->
             <elementSpec ident="fileDesc" module="header" mode="change">
-                <!-- won't change anything here -->
+                <attList>
+                    <attDef ident="xml:id" mode="delete"/>
+                    <attDef ident="n" mode="delete"/>
+                    <attDef ident="xml:lang" mode="delete"/>
+                    <attDef ident="xml:base" mode="delete"/>
+                    <attDef ident="xml:space" mode="delete"/>
+                    <attDef ident="rend" mode="delete"/>
+                    <attDef ident="style" mode="delete"/>
+                    <attDef ident="rendition" mode="delete"/>
+                    <attDef ident="cert" mode="delete"/>
+                    <attDef ident="resp" mode="delete"/>
+                    <attDef ident="source" mode="delete"/>
+                </attList>
                 
             </elementSpec>
             
@@ -749,7 +768,7 @@ target -->
                     <attDef ident="xml:id" mode="delete"/>
                     <attDef ident="n" mode="delete"/>
                     <attDef ident="xml:lang" mode="delete"/>
-                    
+                    <attDef ident="xml:base" mode="delete"/>
                     <attDef ident="xml:space" mode="delete"/>
                     <attDef ident="rend" mode="delete"/>
                     <attDef ident="style" mode="delete"/>
@@ -832,6 +851,7 @@ target -->
                     <attDef ident="cert" mode="delete"/>
                     <attDef ident="resp" mode="delete"/>
                     <attDef ident="source" mode="delete"/>
+                    <attDef ident="scheme" mode="delete"/>
 
 
                 </attList>
@@ -887,6 +907,9 @@ target -->
                         </valList>
                         
                     </attDef>
+                    <attDef ident="xml:id" mode="delete"/>
+                    <attDef ident="n" mode="delete"/>
+                    
                     
                     
                 </attList>
@@ -1420,6 +1443,7 @@ target -->
                     <attDef ident="edRef" mode="delete"/>
                     <attDef ident="spanTo" mode="delete"/>
                     <attDef ident="break" mode="delete"/>
+                    <attDef ident="n" mode="delete"/>
                     
                     
                 </attList>
@@ -1912,6 +1936,7 @@ target -->
                     <attDef ident="cert" mode="delete"/>
                     <attDef ident="resp" mode="delete"/>
                     <attDef ident="source" mode="delete"/>
+                    <attDef ident="xml:id" mode="delete"/>
                 </attList>
             </elementSpec>
             
@@ -1929,6 +1954,7 @@ target -->
                     <attDef ident="cert" mode="delete"/>
                     <attDef ident="resp" mode="delete"/>
                     <attDef ident="source" mode="delete"/>
+                    <attDef ident="xml:id" mode="delete"/>
                 </attList>
             </elementSpec>
             
@@ -1996,6 +2022,8 @@ target -->
                     <attDef ident="cert" mode="delete"/>
                     <attDef ident="resp" mode="delete"/>
                     <attDef ident="source" mode="delete"/>
+                    <attDef ident="xml:id" mode="delete"/>
+                    <attDef ident="xml:lang" mode="delete"/>
                 </attList>
             </elementSpec>
             
@@ -2018,6 +2046,8 @@ target -->
                     <attDef ident="type" mode="delete"/>
                     <attDef ident="subtype" mode="delete"/>
                     <attDef ident="hand" mode="delete"/>
+                    <attDef ident="xml:id" mode="delete"/>
+                    <attDef ident="xml:lang" mode="delete"/>
                 </attList>   
             </elementSpec>
             
@@ -2092,6 +2122,21 @@ target -->
             
             
             <!-- titleStmt -->
+                <elementSpec ident="titleStmt" module="header" mode="change">
+                    <attList>
+                        <attDef ident="xml:id" mode="delete"/>
+                        <attDef ident="n" mode="delete"/>
+                        <attDef ident="xml:lang" mode="delete"/>
+                        <attDef ident="xml:base" mode="delete"/>
+                        <attDef ident="xml:space" mode="delete"/>
+                        <attDef ident="rend" mode="delete"/>
+                        <attDef ident="style" mode="delete"/>
+                        <attDef ident="rendition" mode="delete"/>
+                        <attDef ident="cert" mode="delete"/>
+                        <attDef ident="resp" mode="delete"/>
+                        <attDef ident="source" mode="delete"/>
+                    </attList>
+                </elementSpec>
             </div>
             
         </body>
