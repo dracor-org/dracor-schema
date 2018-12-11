@@ -68,7 +68,7 @@
                 <moduleRef key="header"
                     except="abstract appInfo application authority biblFull cRefPattern calendar calendarDesc catDesc catRef category classCode classDecl correction correspAction correspContext correspDesc creation distributor edition editionStmt editorialDecl encodingDesc extent funder geoDecl handNote hyphenation interpretation langUsage language listPrefixDef namespace normalization notesStmt prefixDef principal projectDesc punctuation quotation refState refsDecl rendition samplingDecl schemaRef scriptNote segmentation seriesStmt sponsor stdVals styleDefDecl tagUsage tagsDecl taxonomy xenoData"/>
                 <moduleRef key="textstructure"
-                    except="argument back byline closer dateline div1 div2 div3 div4 div5 div6 div7 docAuthor docDate docEdition docImprint docTitle epigraph floatingText group imprimatur opener postscript salute signed titlePage titlePart trailer"/>
+                    except="argument back byline closer dateline div1 div2 div3 div4 div5 div6 div7 docAuthor docDate docEdition docImprint epigraph floatingText group imprimatur opener postscript salute signed titlePage trailer"/>
                 <moduleRef key="drama"
                     except="actor camera caption epilogue move performance prologue role sound spGrp tech view"/>
                 <moduleRef key="namesdates"
@@ -176,7 +176,13 @@
                     <attDef ident="resp" mode="delete"/>
                     <attDef ident="source" mode="delete"/>
                     <attDef ident="default" mode="delete"/>
-                    <attDef ident="status" mode="delete"/>
+                    <attDef ident="status" mode="change" usage="opt">
+                        <valList mode="replace" type="closed">
+                            <valItem ident="free">
+                                <desc>Public Domain</desc>
+                            </valItem>
+                        </valList>
+                    </attDef>
                 </attList>
                 
                 <exemplum>
@@ -382,12 +388,7 @@
 target -->
                 
                 <attList>
-                    <attDef ident="who" mode="change">
-                        <desc>points to the person responsible for the change. IDs of editors should be recorded somewhere...</desc>
-                        <datatype>
-                            <dataRef key="teidata.pointer"/>
-                        </datatype>
-                    </attDef>
+                    <attDef ident="who" mode="delete"/>
                     <attDef ident="calendar" mode="delete"/>
                     <attDef ident="period" mode="delete"/>
                     <attDef ident="when" mode="change">
@@ -521,7 +522,7 @@ target -->
                             
                         </valList>
                     </attDef>
-                    <attDef ident="when" mode="change" usage="req">
+                    <attDef ident="when" mode="change" usage="opt">
                         <desc>use only year here</desc>
                         <datatype>
                             <dataRef key="gYear"/>
@@ -637,7 +638,35 @@ target -->
             
             
             <!-- docTitle -->
-            <!-- removed, if really needed, put it back in -->
+            <elementSpec ident="docTitle" module="textstructure" mode="change">
+                <attList>
+                   <attDef ident="xml:id" mode="delete"/>
+                    <attDef ident="n" mode="delete"/>
+                    <attDef ident="xml:lang" mode="delete"/>
+                    <attDef ident="xml:base" mode="delete"/>
+                    <attDef ident="xml:space" mode="delete"/>
+                    <attDef ident="rend" mode="delete"/>
+                    <attDef ident="style" mode="delete"/>
+                    <attDef ident="rendition" mode="delete"/>
+                    <attDef ident="corresp" mode="delete"/>
+                    <attDef ident="synch" mode="delete"/>
+                    <attDef ident="sameAs" mode="delete"/>
+                    <attDef ident="copyOf" mode="delete"/>
+                    <attDef ident="next" mode="delete"/>
+                    <attDef ident="prev" mode="delete"/>
+                    <attDef ident="exclude" mode="delete"/>
+                    <attDef ident="select" mode="delete"/>
+                    <attDef ident="ana" mode="delete"/>
+                    <attDef ident="facs" mode="delete"/>
+                    <attDef ident="change" mode="delete"/>
+                    <attDef ident="cert" mode="delete"/>
+                    <attDef ident="resp" mode="delete"/>
+                    <attDef ident="source" mode="delete"/>
+                    <attDef ident="key" mode="delete"/>
+                    <attDef ident="ref" mode="delete"/>
+                </attList>
+            </elementSpec>
+                
             
             <!-- emph -->
             <!-- 
@@ -803,7 +832,11 @@ target -->
                     <attDef ident="xml:id" mode="delete"/>
                     <attDef ident="n" mode="delete"/>
                     <attDef ident="xml:lang" mode="delete"/>
-                    <attDef ident="xml:base" mode="delete"/>
+                    <attDef ident="xml:base" mode="change">
+                        <remarks>
+                            <p>Use this to alway note the base-uri?</p>
+                        </remarks>
+                    </attDef>
                     <attDef ident="xml:space" mode="delete"/>
                     <attDef ident="rend" mode="delete"/>
                     <attDef ident="style" mode="delete"/>
@@ -838,7 +871,7 @@ target -->
                     <attDef ident="type" mode="replace" usage="req">
                         <desc>Classifies the identifier</desc>
                         <valList type="closed">
-                            <valItem ident="DLINA-ID">
+                            <valItem ident="DLINA-ID" validUntil="2018-12-31">
                                 <desc>Identifier in DLINA corpus / GerDraCor</desc>
                             </valItem>
                             <valItem ident="RusDraCor">
@@ -846,7 +879,10 @@ target -->
                             </valItem>
                             <valItem ident="URL">
                                 <desc>URL</desc>
-                            </valItem> 
+                            </valItem>
+                            <valItem ident="wikidata">
+                                <desc>wikidata</desc>
+                            </valItem>
                         </valList>
                     </attDef>
                     <attDef ident="subtype" mode="delete"/>
@@ -1648,7 +1684,7 @@ target -->
                         <valList mode="replace" type="closed">
                             <valItem ident="FEMALE"/>
                             <valItem ident="MALE"/>
-                            <valItem ident="UNKOWN"/>
+                            <valItem ident="UNKNOWN"/>
                         </valList>
                     </attDef>
                 </attList>
@@ -1706,7 +1742,7 @@ target -->
                         <valList mode="replace" type="closed">
                             <valItem ident="FEMALE"/>
                             <valItem ident="MALE"/>
-                            <valItem ident="UNKOWN"/>
+                            <valItem ident="UNKNOWN"/>
                         </valList>
                     </attDef>
                     <attDef ident="age" mode="delete"/>
@@ -2020,7 +2056,7 @@ target -->
                             </datatype>
                         </attDef>
                         <attDef ident="n" mode="delete"/>
-                        <attDef ident="xml:lang" mode="delete"/>
+                        <attDef ident="xml:lang" mode="change" usage="opt"/>
                         <attDef ident="xml:base" mode="delete"/>
                         <attDef ident="xml:space" mode="delete"/>
                         <attDef ident="rend" mode="delete"/>
@@ -2196,6 +2232,38 @@ target -->
             
             
             <!-- titlePart -->
+                <elementSpec ident="titlePart" module="textstructure" mode="change">
+                    <attList>
+                        <attDef ident="xml:id" mode="delete"/>
+                        <attDef ident="n" mode="delete"/>
+                        <attDef ident="xml:lang" mode="delete"/>    
+                        <attDef ident="xml:base" mode="delete"/>
+                        <attDef ident="xml:space" mode="delete"/>
+                        <attDef ident="rend" mode="delete"/>
+                        <attDef ident="style" mode="delete"/>
+                        <attDef ident="rendition" mode="delete"/>
+                        <attDef ident="corresp" mode="delete"/>
+                        <attDef ident="synch" mode="delete"/>
+                        <attDef ident="sameAs" mode="delete"/>
+                        <attDef ident="copyOf" mode="delete"/>
+                        <attDef ident="next" mode="delete"/>
+                        <attDef ident="prev" mode="delete"/>
+                        <attDef ident="exclude" mode="delete"/>
+                        <attDef ident="select" mode="delete"/>
+                        <attDef ident="ana" mode="delete"/>
+                        <attDef ident="facs" mode="delete"/>
+                        <attDef ident="change" mode="delete"/>
+                        <attDef ident="cert" mode="delete"/>
+                        <attDef ident="resp" mode="delete"/>
+                        <attDef ident="source" mode="delete"/>
+                        <attDef ident="type" mode="change">
+                            <valList type="closed">
+                                <valItem ident="main"/>
+                                <valItem ident="sub"/>
+                            </valList>
+                        </attDef>
+                </attList>
+                </elementSpec>
             
             
             <!-- titleStmt -->
