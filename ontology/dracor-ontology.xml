@@ -10,9 +10,9 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
     <owl:Ontology rdf:about="http://dracor.org/ontology#">
-        <dc:creator>Ingo Börner</dc:creator>
         <dc:title>DraCor Ontology</dc:title>
         <rdfs:label xml:lang="en">DraCor Ontology</rdfs:label>
+        <dc:creator>Ingo Börner</dc:creator>
         <rdfs:seeAlso>https://dracor.org</rdfs:seeAlso>
     </owl:Ontology>
     
@@ -77,6 +77,7 @@
         <rdfs:label xml:lang="de">Autor/in</rdfs:label>
         <rdfs:label xml:lang="en">author</rdfs:label>
         <rdfs:label xml:lang="ru">автор</rdfs:label>
+        <!-- <owl:sameAs rdf:resource="http://www.wikidata.org/prop/direct/P50"/> -->
     </owl:ObjectProperty>
     
 
@@ -89,6 +90,7 @@
         <rdfs:label xml:lang="de">Gattung</rdfs:label>
         <rdfs:label xml:lang="en">genre</rdfs:label>
         <rdfs:label xml:lang="ru">жанр</rdfs:label>
+        <!-- <owl:sameAs rdf:resource="http://www.wikidata.org/prop/direct/P136"/> -->
     </owl:ObjectProperty>
     
 
