@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://dracor.org/ontology#"
+     xml:base="http://dracor.org/ontology"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:wd="http://www.wikidata.org/entity/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:wdt="http://www.wikidata.org/prop/direct/"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://dracor.org/ontology#">
+        <dc:creator>Ingo Börner</dc:creator>
+        <dc:title>DraCor Ontology</dc:title>
+        <rdfs:label xml:lang="en">DraCor Ontology</rdfs:label>
+        <rdfs:seeAlso>https://dracor.org</rdfs:seeAlso>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/title -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/title"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#gYear -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#gYear"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://dracor.org/ontology#has_author -->
+
+    <owl:ObjectProperty rdf:about="http://dracor.org/ontology#has_author">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+        <rdfs:comment xml:lang="de">Autor/in eines Stücks. Verweist auf einen externen Normdatensatz.</rdfs:comment>
+        <rdfs:label xml:lang="de">Autor/in</rdfs:label>
+        <rdfs:label xml:lang="en">author</rdfs:label>
+        <rdfs:label xml:lang="ru">автор</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dracor.org/ontology#has_genre -->
+
+    <owl:ObjectProperty rdf:about="http://dracor.org/ontology#has_genre">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+        <rdfs:range rdf:resource="http://dracor.org/ontology#genre"/>
+        <rdfs:label xml:lang="de">Gattung</rdfs:label>
+        <rdfs:label xml:lang="en">genre</rdfs:label>
+        <rdfs:label xml:lang="ru">жанр</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dracor.org/ontology#in_corpus -->
+
+    <owl:ObjectProperty rdf:about="http://dracor.org/ontology#in_corpus">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+        <rdfs:range rdf:resource="http://dracor.org/ontology#corpus"/>
+        <rdfs:comment xml:lang="de">Gibt die Zugehörigkeit eines Stücks zu einem Korpus an.</rdfs:comment>
+        <rdfs:label xml:lang="de">Korpus</rdfs:label>
+        <rdfs:label xml:lang="ru">корпус</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://dracor.org/ontology#averageClustering -->
+
+    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#averageClustering">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dracor.org/ontology#averageDegree -->
+
+    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#averageDegree">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+        <rdfs:label xml:lang="de">Druchschnittlcher Grad</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dracor.org/ontology#averagePathLength -->
+
+    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#averagePathLength">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+        <rdfs:label xml:lang="de">Durchschnittliche Pfadlänge</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dracor.org/ontology#density -->
+
+    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#density">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+        <rdfs:label xml:lang="de">Netzwerkdichte</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dracor.org/ontology#diameter -->
+
+    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#diameter">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+        <rdfs:label xml:lang="de">Netzwerkduchmesser</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dracor.org/ontology#maxDegree -->
+
+    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#maxDegree">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dracor.org/ontology#maxDegreeIds -->
+
+    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#maxDegreeIds">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dracor.org/ontology#normalisedYear -->
+
+    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#normalisedYear">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
+        <rdfs:comment xml:lang="de">Aus allen vorhandenen Datumsangaben (Entstehung, Veröffentlichung, Erstaufführung) wird ein normalisiertes Jahr ausgewählt; entweder das jüngere Datum von Veröffentlichung und Erstaufführung oder das Jahr der Entstehung, wenn die Veröffentlichung mehr als 10 Jahre danach stattgefunden hat.</rdfs:comment>
+        <rdfs:label xml:lang="de">Normalisierte Jahresangabe</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dracor.org/ontology#numOfActs -->
+
+    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#numOfActs">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+        <rdfs:label xml:lang="de">Anzahl Akte</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dracor.org/ontology#numOfSegments -->
+
+    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#numOfSegments">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+        <rdfs:label xml:lang="de">Anzahl Segmente</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dracor.org/ontology#numOfSpeakers -->
+
+    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#numOfSpeakers">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+        <rdfs:label xml:lang="de">Sprecheranzahl</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dracor.org/ontology#premiereYear -->
+
+    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#premiereYear">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
+        <rdfs:label xml:lang="de">Jahr der Erstaufführung</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dracor.org/ontology#printYear -->
+
+    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#printYear">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
+        <rdfs:label xml:lang="de">Jahr der Veröffentlichung</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dracor.org/ontology#size -->
+
+    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#size">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dracor.org/ontology#writtenYear -->
+
+    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#writtenYear">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
+        <rdfs:label xml:lang="de">Jahr der Entstehung</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://dracor.org/ontology#corpus -->
+
+    <owl:Class rdf:about="http://dracor.org/ontology#corpus">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:label xml:lang="de">Korpus</rdfs:label>
+        <rdfs:label xml:lang="en">corpus</rdfs:label>
+        <rdfs:label xml:lang="ru">корпус</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://dracor.org/ontology#genre -->
+
+    <owl:Class rdf:about="http://dracor.org/ontology#genre">
+        <rdfs:label xml:lang="de">Gattung</rdfs:label>
+        <rdfs:label xml:lang="ru">жанр</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://dracor.org/ontology#play -->
+
+    <owl:Class rdf:about="http://dracor.org/ontology#play">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:label xml:lang="de">Stück</rdfs:label>
+        <rdfs:label xml:lang="en">play</rdfs:label>
+        <rdfs:label xml:lang="ru">пьеса</rdfs:label>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.6.2018-09-06T00:27:41Z) https://github.com/owlcs/owlapi -->
+
