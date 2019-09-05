@@ -1295,7 +1295,7 @@ target -->
                 <attList>
                     <attDef ident="xml:id" mode="delete"/>
                     <attDef ident="n" mode="delete"/>
-                    <attDef ident="xml:lang" mode="delete"/>
+                    <!-- <attDef ident="xml:lang" mode="change"/> -->
                     <attDef ident="xml:base" mode="delete"/>
                     <attDef ident="xml:space" mode="delete"/>
                     <attDef ident="rend" mode="delete"/>
