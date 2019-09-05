@@ -79,6 +79,7 @@
                     except="activity channel constitution derivation domain factuality interaction locale preparedness purpose setting settingDesc textDesc"
                 />
                 <moduleRef key="linking" include="ab"/>
+                <moduleRef key="figures" include="figure"/>
             </schemaSpec>
             
             
@@ -591,17 +592,14 @@ target -->
                     <desc>Classifies the segment</desc>
                     <valList type="closed">
                         <valItem ident="act">
-                            <desc>Act</desc>
+                            <desc>Act, also "Aufzug", "Auftritt"</desc>
                         </valItem>
                         <valItem ident="Dramatis_Personae">
                             <!-- normalize spelling of value? -->
                             <desc>Dramatis personae</desc>
                         </valItem>
-                        <valItem ident="front">
-                            <desc>front ?</desc>
-                        </valItem>
                         <valItem ident="scene">
-                            <desc>Scene, also used for "Aufzug"?</desc>
+                            <desc>Scene</desc>
                         </valItem>
                         <valItem ident="dedication">
                             <desc>Dedication</desc>
@@ -610,8 +608,15 @@ target -->
                             <desc>Preface</desc>
                         </valItem>
                         <valItem ident="prologue">
-                            <desc>Prolouge</desc>
+                            <desc>Prologue</desc>
                         </valItem>
+                        <valItem ident="location">
+                            <desc>Location</desc>
+                        </valItem>
+                        <valItem ident="configuration">
+                            <desc>Change of character constellation, which is not marked as scene change</desc>
+                        </valItem>
+                        
                     </valList>
                     </attDef>
                     <attDef ident="subtype" mode="delete"/>
@@ -2459,7 +2464,42 @@ target -->
                         <attDef ident="subtype" mode="delete"/>
                     </attList>
                 </elementSpec>
+                
+                <!-- figure -->
+                <elementSpec ident="figure" module="figures" mode="change">
+                    <attList>
+                        <attDef ident="xml:id" mode="delete"/>
+                        <attDef ident="n" mode="delete"/>
+                        <attDef ident="xml:lang" mode="delete"/>
+                        <attDef ident="xml:base" mode="delete"/>
+                        <attDef ident="xml:space" mode="delete"/>
+                        <attDef ident="rend" mode="delete"/>
+                        <attDef ident="style" mode="delete"/>
+                        <attDef ident="rendition" mode="delete"/>
+                        <attDef ident="corresp" mode="delete"/>
+                        <attDef ident="synch" mode="delete"/>
+                        <attDef ident="sameAs" mode="delete"/>
+                        <attDef ident="copyOf" mode="delete"/>
+                        <attDef ident="next" mode="delete"/>
+                        <attDef ident="prev" mode="delete"/>
+                        <attDef ident="exclude" mode="delete"/>
+                        <attDef ident="select" mode="delete"/>
+                        <attDef ident="ana" mode="delete"/>
+                        <attDef ident="facs" mode="delete"/>
+                        <attDef ident="change" mode="delete"/>
+                        <attDef ident="cert" mode="delete"/>
+                        <attDef ident="resp" mode="delete"/>
+                        <attDef ident="source" mode="delete"/>
+                        <attDef ident="place" mode="delete"/>
+                        <attDef ident="type" mode="delete"/>
+                        <attDef ident="subtype" mode="delete"/>
+                        <attDef ident="hand" mode="delete"/>
+                    </attList>
+                </elementSpec>
+                
             </div>
+            
+            
             
         </body>
        
