@@ -609,6 +609,9 @@ target -->
                         <valItem ident="preface">
                             <desc>Preface</desc>
                         </valItem>
+                        <valItem ident="prologue">
+                            <desc>Prolouge</desc>
+                        </valItem>
                     </valList>
                     </attDef>
                     <attDef ident="subtype" mode="delete"/>
