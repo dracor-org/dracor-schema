@@ -45,7 +45,7 @@
             <titlePage>
                 <titlePart type="main">Drama Corpora | dracor.org</titlePart>
                 <titlePart type="sub">TEI Customization</titlePart>
-                <docDate>2018</docDate>
+                <docDate>2019</docDate>
             </titlePage>
 
             <divGen type="toc"/>
@@ -871,9 +871,6 @@ target -->
                     <attDef ident="type" mode="replace" usage="req">
                         <desc>Classifies the identifier</desc>
                         <valList type="closed">
-                            <valItem ident="DLINA-ID" validUntil="2018-12-31">
-                                <desc>Identifier in DLINA corpus / GerDraCor</desc>
-                            </valItem>
                             <valItem ident="RusDraCor">
                                 <desc>Identifier in RusDraCor</desc>
                             </valItem>
