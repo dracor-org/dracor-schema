@@ -65,7 +65,7 @@
                 <head>Appendix</head>
             <schemaSpec ident="dracor" docLang="en" prefix="tei_" xml:lang="en">
                 <moduleRef key="core"
-                    except="abbr add addrLine address analytic biblScope biblStruct binaryObject cb choice cit citedRange corr del desc distinct divGen editor email expan foreign gap gb gloss graphic headItem headLabel hi imprint index item label list listBibl measure measureGrp media meeting mentioned milestone monogr num orig postBox postCode ptr pubPlace q quote reg relatedItem resp respStmt rs said series sic soCalled street teiCorpus textLang time unclear"/>
+                    except="abbr add addrLine address analytic biblScope biblStruct binaryObject cb choice citedRange corr del desc distinct divGen editor email expan foreign gap gb gloss graphic headItem headLabel hi imprint index item label list listBibl measure measureGrp media meeting mentioned milestone monogr num orig postBox postCode ptr pubPlace q quote reg relatedItem resp respStmt rs said series sic soCalled street teiCorpus textLang time unclear"/>
                 <moduleRef key="tei" except=""/>
                 <moduleRef key="header"
                     except="abstract appInfo application authority biblFull cRefPattern calendar calendarDesc catDesc catRef category classCode classDecl correction correspAction correspContext correspDesc creation distributor edition editionStmt editorialDecl encodingDesc extent funder geoDecl handNote hyphenation interpretation langUsage language listPrefixDef namespace normalization note notesStmt prefixDef principal projectDesc punctuation quotation refState refsDecl rendition samplingDecl schemaRef scriptNote segmentation seriesStmt sponsor stdVals styleDefDecl tagUsage tagsDecl taxonomy xenoData"/>
@@ -2407,7 +2407,7 @@ target -->
                     <attList>
                         <attDef ident="xml:id" mode="delete"/>
                         <attDef ident="n" mode="delete"/>
-                        <attDef ident="xml:lang" mode="delete"/>
+                        <!-- <attDef ident="xml:lang" mode="delete"/> . -->
                         <attDef ident="xml:base" mode="delete"/>
                         <attDef ident="xml:space" mode="delete"/>
                         <attDef ident="rend" mode="delete"/>
@@ -2430,7 +2430,35 @@ target -->
                     </attList>
                 </elementSpec>
                 
-                
+                <!-- cit -->
+                <elementSpec ident="cit" module="core" mode="change">
+                    <attList>
+                        <attDef ident="xml:id" mode="delete"/>
+                        <attDef ident="n" mode="delete"/>
+                        <attDef ident="xml:lang" mode="delete"/>
+                        <attDef ident="xml:base" mode="delete"/>
+                        <attDef ident="xml:space" mode="delete"/>
+                        <attDef ident="rend" mode="delete"/>
+                        <attDef ident="style" mode="delete"/>
+                        <attDef ident="rendition" mode="delete"/>
+                        <attDef ident="corresp" mode="delete"/>
+                        <attDef ident="synch" mode="delete"/>
+                        <attDef ident="sameAs" mode="delete"/>
+                        <attDef ident="copyOf" mode="delete"/>
+                        <attDef ident="next" mode="delete"/>
+                        <attDef ident="prev" mode="delete"/>
+                        <attDef ident="exclude" mode="delete"/>
+                        <attDef ident="select" mode="delete"/>
+                        <attDef ident="ana" mode="delete"/>
+                        <attDef ident="facs" mode="delete"/>
+                        <attDef ident="change" mode="delete"/>
+                        <attDef ident="cert" mode="delete"/>
+                        <attDef ident="resp" mode="delete"/>
+                        <attDef ident="source" mode="delete"/>
+                        <attDef ident="type" mode="delete"/>
+                        <attDef ident="subtype" mode="delete"/>
+                    </attList>
+                </elementSpec>
             </div>
             
         </body>
