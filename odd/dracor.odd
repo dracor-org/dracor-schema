@@ -70,7 +70,7 @@
                 <moduleRef key="header"
                     except="abstract appInfo application authority biblFull cRefPattern calendar calendarDesc catDesc catRef category classCode classDecl correction correspAction correspContext correspDesc creation distributor edition editionStmt editorialDecl encodingDesc extent funder geoDecl handNote hyphenation interpretation langUsage language listPrefixDef namespace normalization note notesStmt prefixDef principal projectDesc punctuation quotation refState refsDecl rendition samplingDecl schemaRef scriptNote segmentation seriesStmt sponsor stdVals styleDefDecl tagUsage tagsDecl taxonomy xenoData"/>
                 <moduleRef key="textstructure"
-                    except="argument back byline closer div1 div2 div3 div4 div5 div6 div7 docAuthor docDate docEdition docImprint epigraph floatingText group imprimatur opener postscript salute titlePage"/>
+                    except="argument back byline closer div1 div2 div3 div4 div5 div6 div7 docAuthor docDate docEdition docImprint floatingText group imprimatur opener postscript salute titlePage"/>
                 <moduleRef key="drama"
                     except="actor camera caption epilogue move performance prologue role sound tech view"/>
                 <moduleRef key="namesdates"
@@ -2401,6 +2401,35 @@ target -->
                         <attDef ident="who" mode="delete"/>
                     </attList>
                 </elementSpec>
+                
+                <!-- epigraph -->
+                <elementSpec ident="epigraph" module="textstructure" mode="change">
+                    <attList>
+                        <attDef ident="xml:id" mode="delete"/>
+                        <attDef ident="n" mode="delete"/>
+                        <attDef ident="xml:lang" mode="delete"/>
+                        <attDef ident="xml:base" mode="delete"/>
+                        <attDef ident="xml:space" mode="delete"/>
+                        <attDef ident="rend" mode="delete"/>
+                        <attDef ident="style" mode="delete"/>
+                        <attDef ident="rendition" mode="delete"/>
+                        <attDef ident="corresp" mode="delete"/>
+                        <attDef ident="synch" mode="delete"/>
+                        <attDef ident="sameAs" mode="delete"/>
+                        <attDef ident="copyOf" mode="delete"/>
+                        <attDef ident="next" mode="delete"/>
+                        <attDef ident="prev" mode="delete"/>
+                        <attDef ident="exclude" mode="delete"/>
+                        <attDef ident="select" mode="delete"/>
+                        <attDef ident="ana" mode="delete"/>
+                        <attDef ident="facs" mode="delete"/>
+                        <attDef ident="change" mode="delete"/>
+                        <attDef ident="cert" mode="delete"/>
+                        <attDef ident="resp" mode="delete"/>
+                        <attDef ident="source" mode="delete"/>
+                    </attList>
+                </elementSpec>
+                
                 
             </div>
             
