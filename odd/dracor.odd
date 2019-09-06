@@ -655,6 +655,10 @@ target -->
                         <valItem ident="variant">
                             <desc>Variant</desc>
                         </valItem>
+                        <valItem ident="front">
+                            <desc>Front [Title, Author,...]</desc>
+                        </valItem>
+                        
                         
                         
                         
