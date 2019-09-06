@@ -570,12 +570,6 @@ target -->
             </elementSpec>
             
             
-            
-            
-            
-            
-            
-            
             <!-- div -->
            
             <elementSpec ident="div" module="textstructure" mode="change">
