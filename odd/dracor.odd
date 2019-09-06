@@ -72,7 +72,7 @@
                 <moduleRef key="textstructure"
                     except="argument back byline closer div1 div2 div3 div4 div5 div6 div7 docAuthor docDate docEdition docImprint floatingText group imprimatur opener postscript salute titlePage"/>
                 <moduleRef key="drama"
-                    except="actor camera caption epilogue move performance prologue role sound tech view"/>
+                    except="actor camera caption epilogue move performance prologue sound tech view"/>
                 <moduleRef key="namesdates"
                     except="addName affiliation age birth bloc climate country death district education event faith floruit forename genName geo geogFeat geogName langKnowledge langKnown listEvent listNym listOrg listPlace listRelation location nameLink nationality nym occupation offset org orgName persona place placeName population region relation residence roleName settlement sex socecStatus state surname terrain trait"/>
                 <moduleRef key="corpus"
@@ -655,7 +655,7 @@ target -->
                         <valItem ident="variant">
                             <desc>Variant</desc>
                         </valItem>
-                        <valItem ident="front">
+                        <valItem ident="front" validUntil="2019-12-31">
                             <desc>Front [Title, Author,...]</desc>
                         </valItem>
                         
@@ -2594,9 +2594,42 @@ target -->
                     </attList>
                 </elementSpec>
                 
+                <!-- role -->
+                <elementSpec ident="role" module="drama" mode="change">
+                    <attList>
+                        <attDef ident="xml:id" mode="delete"/>
+                        <attDef ident="n" mode="delete"/>
+                        <attDef ident="xml:lang" mode="delete"/>
+                        <attDef ident="xml:base" mode="delete"/>
+                        <attDef ident="xml:space" mode="delete"/>
+                        <attDef ident="rend" mode="delete"/>
+                        <attDef ident="style" mode="delete"/>
+                        <attDef ident="rendition" mode="delete"/>
+                        <attDef ident="corresp" mode="delete"/>
+                        <attDef ident="synch" mode="delete"/>
+                        <attDef ident="sameAs" mode="delete"/>
+                        <attDef ident="copyOf" mode="delete"/>
+                        <attDef ident="next" mode="delete"/>
+                        <attDef ident="prev" mode="delete"/>
+                        <attDef ident="exclude" mode="delete"/>
+                        <attDef ident="select" mode="delete"/>
+                        <attDef ident="ana" mode="delete"/>
+                        <attDef ident="facs" mode="delete"/>
+                        <attDef ident="change" mode="delete"/>
+                        <attDef ident="cert" mode="delete"/>
+                        <attDef ident="resp" mode="delete"/>
+                        <attDef ident="source" mode="delete"/>
+                    </attList>
+                </elementSpec>
+                
             </div>
             
+            <!-- role -->
+            <!-- actor -->
+            <!-- docTitle -->
+            <!-- docAuthor -->
             
+            <!-- @rend auf castGroup -->
             
         </body>
        
