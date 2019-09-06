@@ -222,7 +222,7 @@
                     <attDef ident="cert" mode="delete"/>
                     <attDef ident="resp" mode="delete"/>
                     <attDef ident="source" mode="delete"/>
-                    <attDef ident="type" mode="replace" usage="req">
+                    <attDef ident="type" mode="replace" usage="rec">
                         <valList type="closed">
                             <valItem ident="digitalSource">
                                 <desc>Digital Source</desc>
