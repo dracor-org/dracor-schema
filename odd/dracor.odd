@@ -37,9 +37,9 @@
             </projectDesc>
         </encodingDesc>
         <revisionDesc>
-            <change who="#ah #ib" when="2018-04-02">created using ROMA and extended manually in Oxygen</change>
-            <change who="#ib" when="2018-12">finished at the Hackathon in Potsdam</change>
             <change who="#ib" when="2019-09-05">reworked for new encoding of DraCor corpora</change>
+            <change who="#ib" when="2018-12">finished at the Hackathon in Potsdam</change>
+            <change who="#ah #ib" when="2018-04-02">created using ROMA and extended manually in Oxygen</change>
         </revisionDesc>
     </teiHeader>
     <text>
