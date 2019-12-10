@@ -37,6 +37,7 @@
             </projectDesc>
         </encodingDesc>
         <revisionDesc>
+            <change who="#ib" when="2019-12-10">add relations</change>
             <change who="#ib" when="2019-09-05">reworked for new encoding of DraCor corpora</change>
             <change who="#ib" when="2018-12">finished at the Hackathon in Potsdam</change>
             <change who="#ah #ib" when="2018-04-02">created using ROMA and extended manually in Oxygen</change>
@@ -74,7 +75,7 @@
                 <moduleRef key="drama"
                     except="camera caption epilogue move prologue sound tech view"/>
                 <moduleRef key="namesdates"
-                    except="addName affiliation age birth bloc climate country death district education event faith floruit forename genName geo geogFeat geogName langKnowledge langKnown listEvent listNym listOrg listPlace listRelation location nameLink nationality nym occupation offset org orgName persona place placeName population region relation residence roleName settlement sex socecStatus state surname terrain trait"/>
+                    except="addName affiliation age birth bloc climate country death district education event faith floruit forename genName geo geogFeat geogName langKnowledge langKnown listEvent listNym listOrg listPlace location nameLink nationality nym occupation offset org orgName persona place placeName population region residence roleName settlement sex socecStatus state surname terrain trait"/>
                 <moduleRef key="corpus"
                     except="activity channel constitution derivation domain factuality interaction locale preparedness purpose setting settingDesc textDesc"
                 />
@@ -2775,7 +2776,124 @@ target -->
                     </attList>
                 </elementSpec>
                 
+                <!-- listRelation -->
+                <elementSpec ident="listRelation" module="namesdates" mode="change">
+                    <attList>
+                        <attDef ident="xml:id" mode="delete"/>
+                        <attDef ident="n" mode="delete"/>
+                        <attDef ident="xml:lang" mode="delete"/>
+                        <attDef ident="xml:base" mode="delete"/>
+                        <attDef ident="xml:space" mode="delete"/>
+                        <attDef ident="rend" mode="delete"/>
+                        <attDef ident="style" mode="delete"/>
+                        <attDef ident="rendition" mode="delete"/>
+                        <attDef ident="corresp" mode="delete"/>
+                        <attDef ident="synch" mode="delete"/>
+                        <attDef ident="sameAs" mode="delete"/>
+                        <attDef ident="copyOf" mode="delete"/>
+                        <attDef ident="next" mode="delete"/>
+                        <attDef ident="prev" mode="delete"/>
+                        <attDef ident="exclude" mode="delete"/>
+                        <attDef ident="select" mode="delete"/>
+                        <attDef ident="ana" mode="delete"/>
+                        <attDef ident="facs" mode="delete"/>
+                        <attDef ident="change" mode="delete"/>
+                        <attDef ident="cert" mode="delete"/>
+                        <attDef ident="resp" mode="delete"/>
+                        <attDef ident="source" mode="delete"/>
+                        <attDef ident="type" mode="change">
+                            <valList mode="replace" type="closed">
+                                <valItem ident="personal"/>
+                            </valList>
+                        </attDef>
+                        <attDef ident="subtype" mode="delete"/>
+                        <attDef ident="sortKey" mode="delete"/>
+                    </attList>
+                </elementSpec>
+                
+                <elementSpec ident="relation" module="namesdates" mode="change">
+                    <attList>
+                        <attDef ident="xml:id" mode="delete"/>
+                        <attDef ident="n" mode="delete"/>
+                        <attDef ident="xml:lang" mode="delete"/>
+                        <attDef ident="xml:base" mode="delete"/>
+                        <attDef ident="xml:space" mode="delete"/>
+                        <attDef ident="rend" mode="delete"/>
+                        <attDef ident="style" mode="delete"/>
+                        <attDef ident="rendition" mode="delete"/>
+                        <attDef ident="corresp" mode="delete"/>
+                        <attDef ident="synch" mode="delete"/>
+                        <attDef ident="sameAs" mode="delete"/>
+                        <attDef ident="copyOf" mode="delete"/>
+                        <attDef ident="next" mode="delete"/>
+                        <attDef ident="prev" mode="delete"/>
+                        <attDef ident="exclude" mode="delete"/>
+                        <attDef ident="select" mode="delete"/>
+                        <attDef ident="ana" mode="delete"/>
+                        <attDef ident="facs" mode="delete"/>
+                        <attDef ident="change" mode="delete"/>
+                        <attDef ident="cert" mode="delete"/>
+                        <attDef ident="resp" mode="delete"/>
+                        <attDef ident="source" mode="delete"/>
+                        <attDef ident="calendar" mode="delete"/>
+                        <attDef ident="period" mode="delete"/>
+                        <attDef ident="when" mode="delete"/>
+                        <attDef ident="notBefore" mode="delete"/>
+                        <attDef ident="notAfter" mode="delete"/>
+                        <attDef ident="from" mode="delete"/>
+                        <attDef ident="to" mode="delete"/>
+                        <attDef ident="when-iso" mode="delete"/>
+                        <attDef ident="notBefore-iso" mode="delete"/>
+                        <attDef ident="notAfter-iso" mode="delete"/>
+                        <attDef ident="from-iso" mode="delete"/>
+                        <attDef ident="to-iso" mode="delete"/>
+                        <attDef ident="when-custom" mode="delete"/>
+                        <attDef ident="notBefore-custom" mode="delete"/>
+                        <attDef ident="notAfter-custom" mode="delete"/>
+                        <attDef ident="from-custom" mode="delete"/>
+                        <attDef ident="to-custom" mode="delete"/>
+                        <attDef ident="datingPoint" mode="delete"/>
+                        <attDef ident="datingMethod" mode="delete"/>
+                        <attDef ident="evidence" mode="delete"/>
+                        <attDef ident="instant" mode="delete"/>
+                        <attDef ident="key" mode="delete"/>
+                        <attDef ident="ref" mode="delete"/>
+                        <attDef ident="sortKey" mode="delete"/>
+                        <attDef ident="type" mode="delete"/>
+                        <attDef ident="subtype" mode="delete"/>
+                        <attDef ident="name" mode="change">
+                            <valList mode="replace" type="closed">
+                                <valItem ident="parent_of">
+                                    <desc>Parent</desc>
+                                </valItem>
+                                <valItem ident="lover_of"><desc>Lover of</desc></valItem>
+                                <valItem ident="related_with"><desc>Other family relations (e.g. uncles)</desc></valItem>
+                                <valItem ident="associated_with">
+                                    <desc>For clearly associated characters (e.g., butlers)</desc>
+                                </valItem>
+                                <valItem ident="siblings">
+                                    <desc>Characters that have at least one parent in common</desc>
+                                </valItem>
+                                <valItem ident="spouses">
+                                    <desc>Characters in marriage (or engaged)</desc>
+                                </valItem>
+                                <valItem ident="friends">
+                                    <desc>Characters marked as being friends</desc>
+                                </valItem>
+                            </valList>
+                            <remarks>
+                                <p>Values are taken from Quadrama-Project: <ref target="https://github.com/quadrama/Corpus#relations">https://github.com/quadrama/Corpus#relations</ref></p>
+                            </remarks>
+                        </attDef>
+                        <!-- <attDef ident="active" mode="change"/> -->
+                        <!-- <attDef ident="passive" mode="change"/> -->
+                        <!-- <attDef ident="mutual" mode="change"/> -->
+                    </attList>
+                </elementSpec>
+                
             </div>
+            
+           
             
            
             

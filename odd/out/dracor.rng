@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2019-09-07T07:53:41Z. 2019.
+Schema generated from ODD source 2019-12-10T09:20:06Z. 2019.
 TEI Edition: Version 3.3.0. Last updated on
 	31st January 2018, revision f4d8439
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.3.0/
@@ -1055,29 +1055,41 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
    <define name="tei_model.listLike">
       <choice>
          <ref name="tei_listPerson"/>
+         <ref name="tei_listRelation"/>
       </choice>
    </define>
    <define name="tei_model.listLike_alternation">
       <choice>
          <ref name="tei_listPerson"/>
+         <ref name="tei_listRelation"/>
       </choice>
    </define>
    <define name="tei_model.listLike_sequence">
       <ref name="tei_listPerson"/>
+      <ref name="tei_listRelation"/>
    </define>
    <define name="tei_model.listLike_sequenceOptional">
       <optional>
          <ref name="tei_listPerson"/>
+      </optional>
+      <optional>
+         <ref name="tei_listRelation"/>
       </optional>
    </define>
    <define name="tei_model.listLike_sequenceOptionalRepeatable">
       <zeroOrMore>
          <ref name="tei_listPerson"/>
       </zeroOrMore>
+      <zeroOrMore>
+         <ref name="tei_listRelation"/>
+      </zeroOrMore>
    </define>
    <define name="tei_model.listLike_sequenceRepeatable">
       <oneOrMore>
          <ref name="tei_listPerson"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="tei_listRelation"/>
       </oneOrMore>
    </define>
    <define name="tei_model.noteLike">
@@ -1528,6 +1540,7 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
          <ref name="tei_model.imprintPart"/>
          <ref name="tei_bibl"/>
          <ref name="tei_availability"/>
+         <ref name="tei_listRelation"/>
       </choice>
    </define>
    <define name="tei_model.frontPart">
@@ -3475,7 +3488,10 @@ Suggested values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4
                </choice>
             </oneOrMore>
             <zeroOrMore>
-               <empty/>
+               <choice>
+                  <ref name="tei_relation"/>
+                  <ref name="tei_listRelation"/>
+               </choice>
             </zeroOrMore>
          </group>
          <ref name="tei_att.global.linking.attribute.corresp"/>
@@ -3486,6 +3502,35 @@ Suggested values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4
          <ref name="tei_att.global.linking.attribute.prev"/>
          <ref name="tei_att.global.linking.attribute.exclude"/>
          <ref name="tei_att.global.linking.attribute.select"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="tei_listRelation">
+      <element name="listRelation">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">provides information about relationships identified amongst people, places, and organizations, either informally as prose or as formally expressed relation links. [13.3.2.3. Personal Relationships]</a:documentation>
+         <group>
+            <zeroOrMore>
+               <ref name="tei_model.headLike"/>
+            </zeroOrMore>
+            <choice>
+               <ref name="tei_model.pLike"/>
+               <oneOrMore>
+                  <choice>
+                     <ref name="tei_relation"/>
+                     <ref name="tei_listRelation"/>
+                  </choice>
+               </oneOrMore>
+            </choice>
+         </group>
+         <optional>
+            <attribute name="type">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
+               <choice>
+                  <value>personal</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               </choice>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -3563,6 +3608,86 @@ Suggested values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4
                         <value>UNKNOWN</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                      </choice>
+                  </oneOrMore>
+               </list>
+            </attribute>
+         </optional>
+         <empty/>
+      </element>
+   </define>
+   <define name="tei_relation">
+      <element name="relation">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(relationship) describes any kind of relationship or linkage amongst a specified group of places, events, persons, objects or other items. [13.3.2.3. Personal Relationships]</a:documentation>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="dracor-relation-reforkeyorname-constraint-assert-6">
+            <rule context="tei:relation">
+               <assert test="@ref or @key or @name">One of the attributes  'name', 'ref' or 'key' must be supplied</assert>
+            </rule>
+         </pattern>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="dracor-relation-activemutual-constraint-report-11">
+            <rule context="tei:relation">
+               <report test="@active and @mutual">Only one of the attributes
+@active and @mutual may be supplied</report>
+            </rule>
+         </pattern>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="dracor-relation-activepassive-constraint-report-12">
+            <rule context="tei:relation">
+               <report test="@passive and not(@active)">the attribute 'passive'
+	may be supplied only if the attribute 'active' is
+	supplied</report>
+            </rule>
+         </pattern>
+         <choice>
+            <optional>
+               <attribute name="active">
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the active participants in a non-mutual relationship, or all the participants in a mutual one.</a:documentation>
+                  <list>
+                     <oneOrMore>
+                        <data type="anyURI"/>
+                     </oneOrMore>
+                  </list>
+               </attribute>
+            </optional>
+            <optional>
+               <attribute name="mutual">
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies a list of participants amongst all of whom the relationship holds equally.</a:documentation>
+                  <list>
+                     <oneOrMore>
+                        <data type="anyURI"/>
+                     </oneOrMore>
+                  </list>
+               </attribute>
+            </optional>
+         </choice>
+         <optional>
+            <attribute name="name">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies a name for the kind of relationship of which this is an instance.</a:documentation>
+               <choice>
+                  <value>parent_of</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Parent</a:documentation>
+                  <value>lover_of</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Lover of</a:documentation>
+                  <value>related_with</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Other family relations (e.g. uncles)</a:documentation>
+                  <value>associated_with</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">For clearly associated characters (e.g., butlers)</a:documentation>
+                  <value>siblings</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Characters that have at least one parent in common</a:documentation>
+                  <value>spouses</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Characters in marriage (or engaged)</a:documentation>
+                  <value>friends</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Characters marked as being friends</a:documentation>
+               </choice>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute name="passive">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the passive participants in a non-mutual relationship.</a:documentation>
+               <list>
+                  <oneOrMore>
+                     <data type="anyURI"/>
                   </oneOrMore>
                </list>
             </attribute>
@@ -3690,7 +3815,7 @@ Suggested values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. [16.3. Blocks, Segments, and Anchors]</a:documentation>
          <ref name="tei_macro.paraContent"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="dracor-ab-abstractModel-structure-ab-constraint-report-11">
+                  id="dracor-ab-abstractModel-structure-ab-constraint-report-13">
             <rule context="tei:ab">
                <report test="not(ancestor::tei:floatingText) and (ancestor::tei:p or ancestor::tei:ab)          and not(parent::tei:exemplum         |parent::tei:item         |parent::tei:note         |parent::tei:q         |parent::tei:quote         |parent::tei:remarks         |parent::tei:said         |parent::tei:sp         |parent::tei:stage         |parent::tei:cell         |parent::tei:figure)">
         Abstract model violation: ab may not occur inside paragraphs or other ab elements.
@@ -3698,7 +3823,7 @@ Suggested values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="dracor-ab-abstractModel-structure-l-constraint-report-12">
+                  id="dracor-ab-abstractModel-structure-l-constraint-report-14">
             <rule context="tei:ab">
                <report test="ancestor::tei:l or ancestor::tei:lg">
         Abstract model violation: Lines may not contain higher-level divisions such as p or ab.
