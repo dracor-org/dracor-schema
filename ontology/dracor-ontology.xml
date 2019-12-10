@@ -104,6 +104,15 @@
         <rdfs:label xml:lang="ru">корпус</rdfs:label>
     </owl:ObjectProperty>
     
+    <!-- http://dracor.org/ontology#maxDegreeCharacter -->
+    
+    <owl:ObjectProperty rdf:about="http://dracor.org/ontology#hasMaxDegree">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+        <rdfs:range rdf:resource="http://dracor.org/ontology#character"/>
+        <rdfs:label xml:lang="en">Max. Degree Character</rdfs:label>
+        <rdfs:comment xml:lang="de">Figur mit dem höchsten Degree-Wert im Drama.</rdfs:comment>
+    </owl:ObjectProperty>
+    
 
 
     <!-- 
@@ -169,15 +178,6 @@
         <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
     </owl:DatatypeProperty>
     
-
-
-    <!-- http://dracor.org/ontology#maxDegreeId -->
-
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#maxDegreeId">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
-    </owl:DatatypeProperty>
-    
-
 
     <!-- http://dracor.org/ontology#normalisedYear -->
 
@@ -288,8 +288,18 @@
     <!-- http://dracor.org/ontology#genre -->
 
     <owl:Class rdf:about="http://dracor.org/ontology#genre">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
         <rdfs:label xml:lang="de">Gattung</rdfs:label>
         <rdfs:label xml:lang="ru">жанр</rdfs:label>
+    </owl:Class>
+    
+    <!-- http://dracor.org/ontology#character -->
+    
+    <owl:Class rdf:about="http://dracor.org/ontology#character">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:label xml:lang="de">Figur</rdfs:label>
+        <rdfs:label xml:lang="en">character</rdfs:label>
+        
     </owl:Class>
     
 
