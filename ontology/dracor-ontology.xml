@@ -171,9 +171,9 @@
     
 
 
-    <!-- http://dracor.org/ontology#maxDegreeIds -->
+    <!-- http://dracor.org/ontology#maxDegreeId -->
 
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#maxDegreeIds">
+    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#maxDegreeId">
         <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
     </owl:DatatypeProperty>
     
