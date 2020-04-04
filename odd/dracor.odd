@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="en">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xml:lang="en">
     <teiHeader>
         <fileDesc>
             <titleStmt>
@@ -2065,7 +2065,7 @@ target -->
                     </attList>
                 </elementSpec>
 
-            <!-- sp --> 
+            <!-- sp -->
 
             <elementSpec ident="sp" module="core" mode="change">
                 <attList>
@@ -2081,6 +2081,15 @@ target -->
                     <attDef ident="source" mode="delete"/>
                     <attDef ident="xml:id" mode="delete"/>
                 </attList>
+                <constraintSpec ident="who-id-test" scheme="schematron">
+                   <constraint>
+                      <sch:rule context="tei:sp/@who">
+                         <sch:let name="fileName" value="tokenize(document-uri(/), '/')[last()]"/>
+                         <sch:assert test="tokenize(replace(., '#', '')) ! (. = ./root()//tei:particDesc//@xml:id)" role="error">
+              The xml:id «<sch:value-of select="@xml:id"/>» is not found in the tei:particDesc.</sch:assert>
+                      </sch:rule>
+                   </constraint>﻿
+                </constraintSpec>
             </elementSpec>
 
             <!-- speaker -->
