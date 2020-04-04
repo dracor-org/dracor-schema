@@ -58,9 +58,9 @@
             <div>
                 <p>Documentation goes here.</p>
             </div>
-           
-           
-           
+
+
+
            <!-- SCHEMA, ELEMENTS -->
             <div>
                 <head>Appendix</head>
@@ -82,10 +82,10 @@
                 <moduleRef key="linking" include="ab"/>
                 <moduleRef key="figures" include="figure"/>
             </schemaSpec>
-            
-            
+
+
             <!-- Change elements -->
-            
+
             <!-- Elements -->
 
             <!-- ab  -->
@@ -120,8 +120,8 @@
                         <attDef ident="hand" mode="delete"/>
                     </attList>
                 </elementSpec>
-            
-            
+
+
             <!-- author -->
             <elementSpec ident="author" module="core" mode="change">
                 <attList>
@@ -129,8 +129,8 @@
                     <attDef ident="xml:lang" mode="delete"/>
                     <attDef ident="xml:base" mode="delete"/>
                     <attDef ident="xml:space" mode="delete"/>
-                    
-                  
+
+
                     <attDef ident="n" mode="delete"/>
                     <attDef ident="rend" mode="delete"/>
                     <attDef ident="style" mode="delete"/>
@@ -140,7 +140,7 @@
                     <attDef ident="source" mode="delete"/>
                     <attDef ident="role" mode="delete"/>
                     <attDef ident="nymRef" mode="delete"/>
-                   
+
                     <attDef ident="key" mode="replace" usage="req">
                         <desc>Identifier of author,e.g., wikidata</desc>
                         <datatype>
@@ -161,13 +161,13 @@
                     </egXML>
                 </exemplum>
             </elementSpec>
-            
-            
-            
+
+
+
             <!-- availability -->
             <elementSpec ident="availability" module="core" mode="change">
                 <attList>
-                    
+
                     <attDef ident="n" mode="delete"/>
                     <attDef ident="xml:id" mode="delete"/>
                     <attDef ident="xml:lang" mode="delete"/>
@@ -188,7 +188,7 @@
                         </valList>
                     </attDef>
                 </attList>
-                
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <availability>
@@ -199,18 +199,18 @@
                             </licence>
                         </availability>
                     </egXML>
-                    
+
                 </exemplum>
-                
+
             </elementSpec>
-            
+
             <!-- back -->
             <!--  removed it, not in use -->
-            
+
             <!-- bibl -->
             <elementSpec ident="bibl" module="core" mode="change">
-                <attList> 
-                    
+                <attList>
+
 
                     <attDef ident="xml:id" mode="delete"/>
                     <attDef ident="n" mode="delete"/>
@@ -237,9 +237,9 @@
                     <attDef ident="default" mode="delete"/>
                     <attDef ident="sortKey" mode="delete"/>
                     <attDef ident="status" mode="delete"/>
-                    
+
                 </attList>
-                
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <bibl type="digitalSource">
@@ -261,13 +261,13 @@
                             </bibl>
                         </bibl>
                     </egXML>
-                    
+
                 </exemplum>
-                
+
             </elementSpec>
-            
+
             <!-- body -->
-            
+
             <elementSpec ident="body" module="textstructure" mode="change">
                 <attList>
                     <attDef ident="xml:id" mode="delete"/>
@@ -283,17 +283,17 @@
                     <attDef ident="source" mode="delete"/>
                     <attDef ident="decls" mode="delete"/>
                 </attList>
-                
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples"></egXML>
-                    
+
                 </exemplum>
-                
+
             </elementSpec>
-            
-            
+
+
             <!-- castGroup -->
-            
+
             <elementSpec ident="castGroup" module="drama" mode="change">
 
                 <attList>
@@ -315,14 +315,14 @@
                     <attDef ident="resp" mode="delete"/>
                     <attDef ident="source" mode="delete"/>
                 </attList>
-                
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples"></egXML>
-                    
+
                 </exemplum>
-                
+
             </elementSpec>
-            
+
             <!-- castItem -->
             <elementSpec ident="castItem" module="drama" mode="change">
                 <attList>
@@ -339,15 +339,15 @@
                     <attDef ident="source" mode="delete"/>
                     <attDef ident="type" mode="delete"/>
                 </attList>
-                
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples"></egXML>
-                    
+
                 </exemplum>
-                
+
             </elementSpec>
-            
-            
+
+
             <!-- castList -->
             <elementSpec ident="castList" module="drama" mode="change">
                 <attList>
@@ -364,7 +364,7 @@
                     <attDef ident="source" mode="delete"/>
                     <attDef ident="type" mode="delete"/>
                 </attList>
-                
+
                 <exemplum>
                     <p>Probably not the best example...</p>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -386,17 +386,17 @@
                             <!-- ... -->
                         </castList>
                     </egXML>
-                    
+
                 </exemplum>
-                
+
             </elementSpec>
-            
-            
+
+
             <!-- change -->
             <elementSpec ident="change" module="header" mode="change">
                 <!--    (att.global.responsibility (@cert, @resp)) (att.global.source (@source)) att.typed (@type, @subtype)
 target -->
-                
+
                 <attList>
                     <attDef ident="who" mode="delete"/>
                     <attDef ident="calendar" mode="delete"/>
@@ -425,9 +425,9 @@ target -->
                     <attDef ident="to-custom" mode="delete"/>
                     <attDef ident="datingPoint" mode="delete"/>
                     <attDef ident="datingMethod" mode="delete"/>
-                    
+
                     <attDef ident="status" mode="delete"/>
-                    
+
                     <attDef ident="xml:id" mode="delete"/>
                     <attDef ident="n" mode="delete"/>
                     <attDef ident="xml:lang" mode="delete"/>
@@ -443,7 +443,7 @@ target -->
                     <attDef ident="subtype" mode="delete"/>
                     <attDef ident="target" mode="delete"/>
                 </attList>
-                
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <revisionDesc>
@@ -455,15 +455,15 @@ target -->
                             </listChange>
                         </revisionDesc>
                     </egXML>
-                    
+
                 </exemplum>
-                
+
             </elementSpec>
-            
+
             <!-- date -->
-            
+
             <elementSpec ident="date" module="core" mode="change">
-                <!-- 
+                <!--
                  ) att.datable (@calendar, @period) att.datable.w3c (when, @notBefore, @notAfter, @from, @to) att.datable.iso (@when-iso, @notBefore-iso, @notAfter-iso, @from-iso, @to-iso) att.datable.custom (@when-custom, @notBefore-custom, @notAfter-custom, @from-custom, @to-custom, @datingPoint, @datingMethod) att.typed (type, @subtype)
                 -->
                 <attList>
@@ -479,12 +479,12 @@ target -->
                     <attDef ident="min" mode="delete"/>
                     <attDef ident="max" mode="delete"/>
                     <attDef ident="confidence" mode="delete"/>
-                    
-                    
+
+
                     <attDef ident="calendar" mode="delete"/>
                     <attDef ident="period" mode="delete"/>
-                   
-                   
+
+
                     <attDef ident="notBefore" mode="delete"/>
                     <attDef ident="notAfter" mode="delete"/>
                     <attDef ident="from" mode="delete"/>
@@ -512,10 +512,10 @@ target -->
                     <attDef ident="cert" mode="delete"/>
                     <attDef ident="resp" mode="delete"/>
                     <attDef ident="source" mode="delete"/>
-                    
- 
+
+
                     <attDef ident="subtype" mode="delete"/>
-                    
+
                     <attDef ident="type" mode="change">
                         <desc>classifies date, select from the following values</desc>
                         <valList type="closed">
@@ -529,7 +529,7 @@ target -->
                                 <!-- don't really understand this, IB -->
                                 <desc>Date of writing</desc>
                             </valItem>
-                            
+
                         </valList>
                     </attDef>
                     <attDef ident="when" mode="change" usage="opt">
@@ -538,10 +538,10 @@ target -->
                             <dataRef key="gYear"/>
                         </datatype>
                     </attDef>
-                    
-                    
+
+
                 </attList>
-                
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <bibl type="originalSource">
@@ -552,7 +552,7 @@ target -->
                             <date type="written" when="1840">1840</date>
                         </bibl>
                     </egXML>
-                    
+
                 </exemplum>
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -565,14 +565,14 @@ target -->
                             <date type="written" when="1870">"1870" (Wikipedia)</date>
                         </bibl>
                     </egXML>
-                    
+
                 </exemplum>
-                
+
             </elementSpec>
-            
-            
+
+
             <!-- div -->
-           
+
             <elementSpec ident="div" module="textstructure" mode="change">
                 <attList>
                     <attDef ident="xml:id" mode="delete"/>
@@ -588,15 +588,15 @@ target -->
                     <attDef ident="org" mode="delete"/>
                     <attDef ident="sample" mode="delete"/>
                     <attDef ident="part" mode="delete"/>
-                    
+
                     <attDef ident="type" mode="replace" usage="req">
                     <desc>Classifies the segment</desc>
                     <valList type="closed">
-                        
+
                         <!--
                         intermission
                         -->
-                        
+
                         <valItem ident="act">
                             <desc>Act, also "Aufzug", "Auftritt"</desc>
                         </valItem>
@@ -619,7 +619,7 @@ target -->
                         <valItem ident="postface">
                             <desc>Postface</desc>
                         </valItem>
-                        
+
                         <valItem ident="prologue">
                             <desc>Prologue</desc>
                         </valItem>
@@ -659,11 +659,11 @@ target -->
                         <valItem ident="front" validUntil="2019-12-31">
                             <desc>Front [Title, Author,...]</desc>
                         </valItem>
-                        
-                        
-                        
-                        
-                        
+
+
+
+
+
                         <!-- Sonderformen aus Nestroy-Stücken-->
                         <valItem ident="unten" validUntil="2020-12-31">
                             <desc>"unten"</desc>
@@ -682,13 +682,13 @@ target -->
                         </valItem>
                         <valItem ident="sanguinisch" validUntil="2020-12-31">
                             <desc>"sanguinisch"</desc>
-                        </valItem>   
+                        </valItem>
                     </valList>
                     </attDef>
                     <attDef ident="subtype" mode="delete"/>
                     <attDef ident="decls" mode="delete"/>
                     <attDef ident="hand" mode="delete"/>
-                    
+
                     <attDef ident="n" mode="replace">
                         <desc>Number of act or scene</desc>
                         <datatype>
@@ -698,21 +698,21 @@ target -->
                             <p>Used to number acts/scenes??? Don't know if datatype is correct</p>
                         </remarks>
                     </attDef>
-                    
-                   
+
+
                 </attList>
-                
+
                 <exemplum>
                     <p>Probably not the best example...</p>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                       
+
                     </egXML>
-                    
+
                 </exemplum>
-                
+
             </elementSpec>
-            
-            
+
+
             <!-- docTitle -->
             <elementSpec ident="docTitle" module="textstructure" mode="change">
                 <attList>
@@ -742,10 +742,10 @@ target -->
                     <attDef ident="ref" mode="delete"/>
                 </attList>
             </elementSpec>
-                
-            
+
+
             <!-- emph -->
-            <!-- 
+            <!--
              (att.global.responsibility (@cert, @resp)) (att.global.source (@source))
             -->
             <elementSpec ident="emph" module="core" mode="change">
@@ -769,9 +769,9 @@ target -->
                     <attDef ident="cert" mode="delete"/>
                     <attDef ident="resp" mode="delete"/>
                     <attDef ident="source" mode="delete"/>
-                    
+
                 </attList>
-                
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <sp who="#titus">
@@ -782,12 +782,12 @@ target -->
                                 Blüte war, hab' ich ihn oft wie eine Pflanze <emph>versetzt</emph>.</p>
                         </sp>
                     </egXML>
-                    
+
                 </exemplum>
-                
+
             </elementSpec>
-            
-            
+
+
             <!-- fileDesc -->
             <elementSpec ident="fileDesc" module="header" mode="change">
                 <attList>
@@ -803,10 +803,10 @@ target -->
                     <attDef ident="resp" mode="delete"/>
                     <attDef ident="source" mode="delete"/>
                 </attList>
-                
+
             </elementSpec>
-            
-            
+
+
             <!-- front -->
             <elementSpec ident="front" module="textstructure" mode="change">
                 <attList>
@@ -821,9 +821,9 @@ target -->
                     <attDef ident="cert" mode="delete"/>
                     <attDef ident="resp" mode="delete"/>
                     <attDef ident="source" mode="delete"/>
-                    <attDef ident="decls" mode="delete"/>  
+                    <attDef ident="decls" mode="delete"/>
                 </attList>
-                
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <front>
@@ -847,14 +847,14 @@ target -->
                         </set>
                         </front>
                     </egXML>
-                    
+
                 </exemplum>
-              
-                
+
+
             </elementSpec>
-            
+
             <!-- head -->
-            
+
             <elementSpec ident="head" module="core" mode="change">
                 <attList>
                     <attDef ident="xml:id" mode="delete"/>
@@ -868,13 +868,13 @@ target -->
                     <attDef ident="cert" mode="delete"/>
                     <attDef ident="resp" mode="delete"/>
                     <attDef ident="source" mode="delete"/>
-                    <attDef ident="decls" mode="delete"/> 
+                    <attDef ident="decls" mode="delete"/>
                     <attDef ident="type" mode="delete"/>
                     <attDef ident="subtype" mode="delete"/>
                     <attDef ident="place" mode="delete"/>
-                    <attDef ident="hand" mode="delete"/> 
+                    <attDef ident="hand" mode="delete"/>
                 </attList>
-                
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <div type="act">
@@ -889,19 +889,19 @@ target -->
                             </div>
                         </div>
                     </egXML>
-                    
+
                 </exemplum>
-                
-                
+
+
             </elementSpec>
-            
-            
+
+
             <!-- hi -->
             <!-- use <emph> instead! -->
-            
+
             <!-- idno -->
-            
-            
+
+
             <elementSpec ident="idno" module="header" mode="change">
 
                 <attList>
@@ -940,10 +940,10 @@ target -->
                     <attDef ident="to-custom" mode="delete"/>
                     <attDef ident="datingPoint" mode="delete"/>
                     <attDef ident="datingMethod" mode="delete"/>
-                    
-                    
-         
-                    
+
+
+
+
                     <attDef ident="type" mode="replace" usage="req">
                         <desc>Classifies the identifier</desc>
                         <valList type="closed">
@@ -959,29 +959,29 @@ target -->
                         </valList>
                     </attDef>
                     <attDef ident="subtype" mode="delete"/>
-                    
-                    
+
+
                 </attList>
-                
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <idno type="URL">http://www.textgridrep.org/textgrid:str1.0</idno>
                     </egXML>
-                    
+
                 </exemplum>
-                
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <idno type="DLINA-ID">83</idno>
                     </egXML>
-                    
+
                 </exemplum>
-                
+
             </elementSpec>
-            
-            
+
+
             <!-- keywords -->
-            
+
             <elementSpec ident="keywords" module="header" mode="change">
                 <attList>
                     <attDef ident="xml:id" mode="delete"/>
@@ -999,7 +999,7 @@ target -->
 
 
                 </attList>
-                
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <textClass>
@@ -1008,18 +1008,18 @@ target -->
                             </keywords>
                         </textClass>
                     </egXML>
-                    
+
                 </exemplum>
-                
-                
-                
+
+
+
             </elementSpec>
-            
+
             <!-- l -->
-           
+
             <elementSpec ident="l" module="core" mode="change">
                 <attList>
-                    
+
 
                     <attDef ident="xml:lang" mode="delete"/>
                     <attDef ident="xml:base" mode="delete"></attDef>
@@ -1049,13 +1049,13 @@ target -->
                                 <desc></desc>
                             </valItem>
                         </valList>
-                        
+
                     </attDef>
                     <attDef ident="xml:id" mode="delete"/>
                     <attDef ident="n" mode="delete"/>
-                    
-                    
-                    
+
+
+
                 </attList>
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -1097,18 +1097,18 @@ target -->
                             <l>За окном нам ветер подал знак.</l>
                         </sp>
                     </egXML>
-                    
+
                 </exemplum>
-                
-                
-                
+
+
+
             </elementSpec>
-            
-            
-            
+
+
+
             <!-- lb -->
-            
-            
+
+
             <elementSpec ident="lb" module="core" mode="change">
                 <attList>
                     <attDef ident="xml:id" mode="delete"/>
@@ -1128,11 +1128,11 @@ target -->
                     <attDef ident="edRef" mode="delete"/>
                     <attDef ident="spanTo" mode="delete"/>
                     <attDef ident="break" mode="delete"/>
-                    
-                    
+
+
                 </attList>
-                
-                
+
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <div type="dedication">
@@ -1140,19 +1140,19 @@ target -->
                             <p>Ihrer Königlichen Hoheit<lb/> der Prinzessin<lb/> Amalie Marie Anne<lb/> Gemahlin des
                                 Prinzen Wilhelm von Preußen<lb/> Bruders Sr. Majestät des Königs <lb/>geborne Prinzessin
                                 von Hessen-Homburg.</p>
- 
+
                         </div>
                     </egXML>
-                    
+
                 </exemplum>
-                
+
                 <remarks>
                     <p>Rarely used. Consider dropping it altogether?</p>
                 </remarks>
-                
+
             </elementSpec>
-            
-            
+
+
             <!-- lg -->
 
             <elementSpec ident="lg" module="core" mode="change">
@@ -1174,11 +1174,11 @@ target -->
                     <attDef ident="type" mode="delete"/>
                     <attDef ident="subtype" mode="delete"/>
                     <attDef ident="decls" mode="delete"/>
-                    
-                    
+
+
                 </attList>
-                
-                
+
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <sp who="#flora #salome">
@@ -1190,17 +1190,17 @@ target -->
                             </lg>
                         </sp>
                     </egXML>
-                    
+
                 </exemplum>
-                
-                
-                
+
+
+
             </elementSpec>
-            
-            
+
+
             <!-- licence -->
-            
-            
+
+
             <elementSpec ident="licence" module="header" mode="change">
                 <attList>
                     <attDef ident="xml:id" mode="delete"/>
@@ -1236,11 +1236,11 @@ target -->
                     <attDef ident="to-custom" mode="delete"/>
                     <attDef ident="datingPoint" mode="delete"/>
                     <attDef ident="datingMethod" mode="delete"/>
-                    
-                    
+
+
                 </attList>
-                
-                
+
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <availability>
@@ -1250,17 +1250,17 @@ target -->
                             </licence>
                         </availability>
                     </egXML>
-                    
+
                 </exemplum>
-                
-                
-                
-                
-                
+
+
+
+
+
             </elementSpec>
-            
+
             <!-- listChange -->
-            
+
 
             <elementSpec ident="listChange" module="core" mode="change">
                 <attList>
@@ -1279,11 +1279,11 @@ target -->
                     <attDef ident="type" mode="delete"/>
                     <attDef ident="subtype" mode="delete"/>
                     <attDef ident="ordered" mode="delete"/>
-                    
-                    
+
+
                 </attList>
-                
-                
+
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <revisionDesc>
@@ -1295,13 +1295,13 @@ target -->
                             </listChange>
                         </revisionDesc>
                     </egXML>
-                    
+
                 </exemplum>
-                
-                
-                
+
+
+
             </elementSpec>
-            
+
             <!-- listPerson -->
             <!--  (att.global.source (@source)) att.typed (@type, @subtype) att.declarable (@default) att.sortable (@sortKey)
                 -->
@@ -1322,11 +1322,11 @@ target -->
                     <attDef ident="type" mode="delete"/>
                     <attDef ident="subtype" mode="delete"/>
                     <attDef ident="default" mode="delete"/>
-                    
-                    
+
+
                 </attList>
-                
-                
+
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <profileDesc>
@@ -1351,20 +1351,20 @@ target -->
                                 <!-- ... -->
                                 </listPerson>
                             </particDesc>
-                        </profileDesc>        
+                        </profileDesc>
                     </egXML>
-                    
+
                 </exemplum>
                 <remarks><p>//Explain why <gi>listPerson</gi> in addition to <gi>castList</gi>. Use the same drama as example; probably an example, where speaker is not in castList</p></remarks>
-                
-                
+
+
             </elementSpec>
-            
-            
-            
+
+
+
             <!-- name -->
-           
-            
+
+
             <elementSpec ident="name" module="core" mode="change">
                 <attList>
                     <attDef ident="xml:id" mode="delete"/>
@@ -1382,7 +1382,7 @@ target -->
                     <attDef ident="sort" mode="delete"/>
                     <attDef ident="role" mode="delete"/>
                     <attDef ident="nymRef" mode="delete"/>
-                   
+
                     <attDef ident="calendar" mode="delete"/>
                     <attDef ident="period" mode="delete"/>
                     <attDef ident="when" mode="delete"/>
@@ -1404,8 +1404,8 @@ target -->
                     <attDef ident="datingMethod" mode="delete"/>
                     <attDef ident="key" mode="delete"/>
                     <attDef ident="ref" mode="delete"/>
-                    
-              
+
+
                     <attDef ident="evidence" mode="delete"/>
                     <attDef ident="instant" mode="delete"/>
                     <attDef ident="unit" mode="delete"/>
@@ -1419,7 +1419,7 @@ target -->
                     <attDef ident="max" mode="delete"/>
                     <attDef ident="confidence" mode="delete"/>
                     <attDef ident="subtype" mode="delete"/>
-                    
+
                     <attDef ident="type" mode="replace" usage="opt">
                         <valList type="closed">
                             <valItem ident="variant">
@@ -1427,9 +1427,9 @@ target -->
                             </valItem>
                         </valList>
                     </attDef>
-                    
+
                 </attList>
-                
+
                 <exemplum>
                     <p>Use <gi>name</gi> if encoding a group of characters with <gi>personGrp</gi>. <att>type</att> can be used, if more variants are present:</p>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -1438,22 +1438,22 @@ target -->
                             <name type="variant">Alle Bursche</name>
                         </personGrp>
                     </egXML>
-                    
+
                 </exemplum>
-                
+
                <remarks>
                    <p>Think about, why there is a need for <gi>persName</gi> and <gi>name</gi>.</p>
                </remarks>
-                
-                
-                
-                
-                
+
+
+
+
+
             </elementSpec>
-            
-            
+
+
             <!-- p -->
-            
+
             <elementSpec ident="p" module="core" mode="change">
                 <attList>
                     <attDef ident="xml:id" mode="delete"/>
@@ -1470,11 +1470,11 @@ target -->
                     <attDef ident="decls" mode="delete"/>
                     <attDef ident="part" mode="delete"/>
                     <attDef ident="hand" mode="delete"/>
-         
-                    
+
+
                 </attList>
-                
-                
+
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <sp who="#flora">
@@ -1487,16 +1487,16 @@ target -->
                                 weil er ohne Unterschied des Standes jeden Menschen aufsitzen laßt.</p>
                         </sp>
                     </egXML>
-                    
+
                 </exemplum>
-                
-                
+
+
             </elementSpec>
-            
-            
-            
+
+
+
             <!-- particDesc -->
-    
+
             <elementSpec ident="particDesc" module="corpus" mode="change">
                 <attList>
                     <attDef ident="xml:id" mode="delete"/>
@@ -1511,14 +1511,14 @@ target -->
                     <attDef ident="resp" mode="delete"/>
                     <attDef ident="source" mode="delete"/>
                     <attDef ident="default" mode="delete"/>
-                    
-                    
+
+
                 </attList>
-                
-                
+
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              
+
                         <profileDesc>
                             <particDesc>
                                 <listPerson>
@@ -1557,21 +1557,21 @@ target -->
                             </particDesc>
                         </profileDesc>
                     </egXML>
-                    
+
                 </exemplum>
                 <remarks><p>Explain, why we need <gi>particDesc</gi> and <gi>castList</gi></p></remarks>
-                
+
             </elementSpec>
-            
-            
+
+
             <!-- pb -->
-            
-            
-            
+
+
+
             <elementSpec ident="pb" module="core" mode="change">
                 <attList>
                     <attDef ident="xml:id" mode="delete"/>
-                    
+
                     <attDef ident="xml:lang" mode="delete"/>
                     <attDef ident="xml:base" mode="delete"/>
                     <attDef ident="xml:space" mode="delete"/>
@@ -1588,11 +1588,11 @@ target -->
                     <attDef ident="spanTo" mode="delete"/>
                     <attDef ident="break" mode="delete"/>
                     <!-- <attDef ident="n" mode="delete"/> -->
-                    
-                    
+
+
                 </attList>
-                
-                
+
+
                 <exemplum>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <sp who="#anton">
@@ -1614,15 +1614,15 @@ target -->
                                 gmacht!</p>
                         </sp>
                     </egXML>
-                    
+
                 </exemplum>
-                 
-                
+
+
             </elementSpec>
-            
-            
+
+
             <!-- persName -->
-            
+
             <elementSpec ident="persName" module="namesdates" mode="change">
                 <attList>
                     <!-- <attDef ident="xml:id" mode="delete"/> -->
@@ -1639,7 +1639,7 @@ target -->
                     <attDef ident="sort" mode="delete"/>
                     <attDef ident="role" mode="delete"/>
                     <attDef ident="nymRef" mode="delete"/>
-                    
+
                     <attDef ident="calendar" mode="delete"/>
                     <attDef ident="period" mode="delete"/>
                     <attDef ident="when" mode="delete"/>
@@ -1661,8 +1661,8 @@ target -->
                     <attDef ident="datingMethod" mode="delete"/>
                     <attDef ident="key" mode="delete"/>
                     <attDef ident="ref" mode="delete"/>
-                    
-                    
+
+
                     <attDef ident="evidence" mode="delete"/>
                     <attDef ident="instant" mode="delete"/>
                     <attDef ident="unit" mode="delete"/>
@@ -1676,7 +1676,7 @@ target -->
                     <attDef ident="max" mode="delete"/>
                     <attDef ident="confidence" mode="delete"/>
                     <attDef ident="subtype" mode="delete"/>
-                    
+
                     <attDef ident="type" mode="replace" usage="opt">
                         <valList type="closed">
                             <valItem ident="variant">
@@ -1684,9 +1684,9 @@ target -->
                             </valItem>
                         </valList>
                     </attDef>
-                    
+
                 </attList>
-                
+
                 <exemplum>
                     <p>Use <gi>name</gi> if encoding a group of characters with <gi>personGrp</gi>. <att>type</att> can be used, if more variants are present:</p>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -1706,18 +1706,18 @@ target -->
                             <!-- ... -->
                         </listPerson>
                     </egXML>
-                    
+
                 </exemplum>
-                
+
                 <remarks>
                     <p>Think about, why there is a need for <gi>persName</gi> and <gi>name</gi>.</p>
                 </remarks>
-     
-                
+
+
             </elementSpec>
-            
+
             <!-- person -->
-            <!-- 
+            <!--
             <attribute name="sex">
                 <value>MALE</value>
                 <value>FEMALE</value>
@@ -1778,9 +1778,9 @@ target -->
                     </egXML>
                 </exemplum>
             </elementSpec>
-            
+
             <!-- personGrp -->
-                
+
                 <elementSpec ident="personGrp" module="namesdates" mode="change">
                 <attList>
                     <attDef ident="xml:id" mode="change">
@@ -1822,7 +1822,7 @@ target -->
                     <attDef ident="size" mode="delete"/>
                 </attList>
             </elementSpec>
-            
+
             <!-- profileDesc -->
              <elementSpec ident="profileDesc" module="header" mode="change">
                  <attList>
@@ -1850,13 +1850,13 @@ target -->
                      <attDef ident="source" mode="delete"/>
                  </attList>
              </elementSpec>
-                
+
 
             <!-- publicationStmt -->
-                
+
              <elementSpec ident="publicationStmt" module="header" mode="change">
                  <attList>
-                     
+
                      <attDef ident="xml:id" mode="delete"/>
                      <attDef ident="n" mode="delete"/>
                      <attDef ident="xml:lang" mode="delete"/>
@@ -1878,14 +1878,14 @@ target -->
                      <attDef ident="change" mode="delete"/>
                      <attDef ident="cert" mode="delete"/>
                      <attDef ident="resp" mode="delete"/>
-                     <attDef ident="source" mode="delete"/>  
+                     <attDef ident="source" mode="delete"/>
                  </attList>
              </elementSpec>
-                
+
             <!-- publisher -->
                 <elementSpec ident="publisher" module="core" mode="change">
                     <attList>
-                        
+
                         <attDef ident="n" mode="delete"/>
                         <attDef ident="xml:lang" mode="delete"/>
                         <attDef ident="xml:base" mode="delete"/>
@@ -1911,7 +1911,7 @@ target -->
                         <attDef ident="ref" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
             <!-- ref -->
                 <elementSpec ident="ref" mode="change" module="core">
                     <attList>
@@ -1946,10 +1946,10 @@ target -->
                         <attDef ident="subtype" mode="delete"/>
                         <attDef ident="decls" mode="delete"/>
                         <attDef ident="cRef" mode="delete"/>
-                        
+
                     </attList>
                 </elementSpec>
-                
+
             <!-- revisionDesc -->
                 <elementSpec ident="revisionDesc" module="header" mode="change">
                     <attList>
@@ -1978,7 +1978,7 @@ target -->
                         <attDef ident="status" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
             <!-- roleDesc -->
                 <elementSpec ident="roleDesc" mode="change" module="drama">
                     <attList>
@@ -2006,7 +2006,7 @@ target -->
                         <attDef ident="source" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
             <!-- set -->
                 <elementSpec ident="set" module="drama" mode="change">
                     <attList>
@@ -2034,7 +2034,7 @@ target -->
                         <attDef ident="source" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
             <!-- sourceDesc -->
                 <elementSpec ident="sourceDesc" module="header" mode="change">
                     <attList>
@@ -2061,12 +2061,12 @@ target -->
                         <attDef ident="resp" mode="delete"/>
                         <attDef ident="source" mode="delete"/>
                         <attDef ident="default" mode="delete"/>
-                        
+
                     </attList>
                 </elementSpec>
-                
-            <!-- sp -->
-            
+
+            <!-- sp --> 
+
             <elementSpec ident="sp" module="core" mode="change">
                 <attList>
                     <attDef ident="n" mode="delete"/>
@@ -2082,9 +2082,9 @@ target -->
                     <attDef ident="xml:id" mode="delete"/>
                 </attList>
             </elementSpec>
-            
+
             <!-- speaker -->
-            
+
             <elementSpec ident="speaker" module="core" mode="change">
                 <attList>
                     <attDef ident="n" mode="delete"/>
@@ -2100,9 +2100,9 @@ target -->
                     <attDef ident="xml:id" mode="delete"/>
                 </attList>
             </elementSpec>
-            
+
             <!-- stage -->
-            
+
             <elementSpec ident="stage" module="core" mode="change">
                 <attList>
                     <attDef ident="n" mode="delete"/>
@@ -2118,7 +2118,7 @@ target -->
                     <attDef ident="place" mode="delete"/>
                 </attList>
             </elementSpec>
-            
+
             <!-- TEI -->
                 <elementSpec ident="TEI" module="textstructure" mode="change">
                     <attList>
@@ -2146,14 +2146,14 @@ target -->
                         <attDef ident="source" mode="delete"/>
                         <attDef ident="type" mode="delete"/>
                         <attDef ident="subtype" mode="delete"/>
-                        <attDef ident="version" mode="delete"/>	
+                        <attDef ident="version" mode="delete"/>
                     </attList>
                 </elementSpec>
-            
-            
-            
+
+
+
             <!-- teiHeader -->
-            
+
             <elementSpec ident="teiHeader" module="header" mode="change">
                 <attList>
                     <attDef ident="n" mode="delete"/>
@@ -2169,9 +2169,9 @@ target -->
                     <attDef ident="xml:lang" mode="delete"/>
                 </attList>
             </elementSpec>
-            
+
             <!-- term -->
-                
+
                 <elementSpec ident="term" module="core">
                     <attList>
                         <attDef ident="xml:id" mode="delete"/>
@@ -2206,11 +2206,11 @@ target -->
                         <attDef ident="ref" mode="delete"/>
                         <attDef ident="sortKey" mode="delete"/>
                         <attDef ident="cRef" mode="delete"/>
-                        
+
                 </attList>
                 </elementSpec>
-            
-            
+
+
             <!-- text -->
             <elementSpec ident="text" module="textstructure" mode="change">
                 <attList>
@@ -2229,9 +2229,9 @@ target -->
                     <attDef ident="hand" mode="delete"/>
                     <attDef ident="xml:id" mode="delete"/>
                     <attDef ident="xml:lang" mode="delete"/>
-                </attList>   
+                </attList>
             </elementSpec>
-            
+
             <!-- textClass -->
                 <elementSpec ident="textClass" module="header" mode="change">
                     <attList>
@@ -2260,10 +2260,10 @@ target -->
                         <attDef ident="default" mode="delete"/>
                 </attList>
                 </elementSpec>
-            
-            
+
+
             <!-- title -->
-            
+
             <elementSpec ident="title" module="core" mode="change">
                 <attList>
                     <attDef ident="n" mode="delete"/>
@@ -2294,17 +2294,17 @@ target -->
                     <attDef ident="to-custom" mode="delete"/>
                     <attDef ident="datingPoint" mode="delete"/>
                     <attDef ident="datingMethod" mode="delete"/>
-                </attList>   
+                </attList>
             </elementSpec>
-            
-            
-            
+
+
+
             <!-- titlePart -->
                 <elementSpec ident="titlePart" module="textstructure" mode="change">
                     <attList>
                         <attDef ident="xml:id" mode="delete"/>
                         <attDef ident="n" mode="delete"/>
-                        <attDef ident="xml:lang" mode="delete"/>    
+                        <attDef ident="xml:lang" mode="delete"/>
                         <attDef ident="xml:base" mode="delete"/>
                         <attDef ident="xml:space" mode="delete"/>
                         <attDef ident="rend" mode="delete"/>
@@ -2332,8 +2332,8 @@ target -->
                         </attDef>
                 </attList>
                 </elementSpec>
-            
-            
+
+
             <!-- titleStmt -->
                 <elementSpec ident="titleStmt" module="header" mode="change">
                     <attList>
@@ -2350,7 +2350,7 @@ target -->
                         <attDef ident="source" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
                 <!-- dateline -->
                 <elementSpec ident="dateline" module="textstructure" mode="change">
                     <!-- att.global (@xml:id, @n, @xml:lang, @xml:base, @xml:space) (att.global.rendition (@rend, @style, @rendition)) (att.global.linking (@corresp, @synch, @sameAs, @copyOf, @next, @prev, @exclude, @select)) (att.global.analytic (@ana)) (att.global.facs (@facs)) (att.global.change (@change)) (att.global.responsibility (@cert, @resp)) (att.global.source (@source)) -->
@@ -2379,7 +2379,7 @@ target -->
                         <attDef ident="source" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
                 <!-- signed -->
                 <elementSpec ident="signed" module="textstructure" mode="change">
                     <attList>
@@ -2408,7 +2408,7 @@ target -->
                         <attDef ident="hand" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
                 <!-- trailer -->
                 <elementSpec ident="trailer" module="textstructure" mode="change">
                     <attList>
@@ -2440,7 +2440,7 @@ target -->
                         <attDef ident="hand" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
                 <!-- spGrp -->
                 <elementSpec ident="spGrp" module="drama" mode="change">
                     <attList>
@@ -2472,7 +2472,7 @@ target -->
                         <attDef ident="who" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
                 <!-- epigraph -->
                 <elementSpec ident="epigraph" module="textstructure" mode="change">
                     <attList>
@@ -2500,7 +2500,7 @@ target -->
                         <attDef ident="source" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
                 <!-- cit -->
                 <elementSpec ident="cit" module="core" mode="change">
                     <attList>
@@ -2530,7 +2530,7 @@ target -->
                         <attDef ident="subtype" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
                 <!-- figure -->
                 <elementSpec ident="figure" module="figures" mode="change">
                     <attList>
@@ -2562,7 +2562,7 @@ target -->
                         <attDef ident="hand" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
                 <!-- quote -->
                 <elementSpec ident="quote" module="core" mode="change">
                     <attList>
@@ -2594,7 +2594,7 @@ target -->
                         <attDef ident="notation" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
                 <!-- role -->
                 <elementSpec ident="role" module="drama" mode="change">
                     <attList>
@@ -2622,7 +2622,7 @@ target -->
                         <attDef ident="source" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
                 <!-- actor -->
                 <elementSpec ident="actor" module="drama" mode="change">
                     <attList>
@@ -2652,7 +2652,7 @@ target -->
                         <attDef ident="ref" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
                 <!-- docAuthor -->
                 <elementSpec ident="docAuthor" module="textstructure" mode="change">
                     <attList>
@@ -2682,7 +2682,7 @@ target -->
                         <attDef ident="ref" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
                 <!-- graphic -->
                 <elementSpec ident="graphic" module="core" mode="change">
                     <attList>
@@ -2714,11 +2714,11 @@ target -->
                         <attDef ident="mimeType" mode="delete"/>
                         <!-- <attDef ident="url" mode="delete"/> -->
                         <attDef ident="decls" mode="delete"/>
-                        
-                     </attList>                
+
+                     </attList>
                 </elementSpec>
-                
-                
+
+
                 <!-- performance -->
                 <elementSpec ident="performance" module="drama" mode="change">
                     <attList>
@@ -2744,10 +2744,10 @@ target -->
                         <attDef ident="cert" mode="delete"/>
                         <attDef ident="resp" mode="delete"/>
                         <attDef ident="source" mode="delete"/>
-                        </attList>                
+                        </attList>
                 </elementSpec>
-                
-                
+
+
                 <!-- docImprint -->
                 <elementSpec ident="docImprint" module="textstructure" mode="change">
                     <attList>
@@ -2775,7 +2775,7 @@ target -->
                         <attDef ident="source" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
                 <!-- listRelation -->
                 <elementSpec ident="listRelation" module="namesdates" mode="change">
                     <attList>
@@ -2810,7 +2810,7 @@ target -->
                         <attDef ident="sortKey" mode="delete"/>
                     </attList>
                 </elementSpec>
-                
+
                 <elementSpec ident="relation" module="namesdates" mode="change">
                     <attList>
                         <attDef ident="xml:id" mode="delete"/>
@@ -2890,16 +2890,16 @@ target -->
                         <!-- <attDef ident="mutual" mode="change"/> -->
                     </attList>
                 </elementSpec>
-                
+
             </div>
-            
-           
-            
-           
-            
-            
+
+
+
+
+
+
         </body>
-       
+
 
     </text>
 </TEI>
