@@ -81,6 +81,7 @@
                 />
                 <moduleRef key="linking" include="ab"/>
                 <moduleRef key="figures" include="figure"/>
+                <moduleRef key="analysis"/>
             </schemaSpec>
             
             
