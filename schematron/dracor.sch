@@ -10,7 +10,8 @@
         <rule context="tei:TEI">
             <assert test="@xml:lang" role="warning">Attribut "xml:lang" is expected</assert>
             <assert test="matches(@xml:lang,'[a-z]{3}')" role="warning">Value of attribut "xml:lang" should follow the pattern '[a-z]{3}'</assert>
-            <!-- 2do check, if it's ISO X conformant -->
+            <!-- 2do check, if it's ISO 639 conformant -->
+            <!-- https://de.wikipedia.org/wiki/Listen_der_ISO-639-3-Codes -->
         </rule>
         
         <!-- Title of a play -->
