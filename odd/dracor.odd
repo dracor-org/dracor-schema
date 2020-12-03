@@ -66,7 +66,7 @@
                 <head>Appendix</head>
             <schemaSpec ident="dracor" docLang="en" prefix="tei_" xml:lang="en">
                 <moduleRef key="core"
-                    except="abbr add addrLine address analytic biblScope biblStruct binaryObject cb choice citedRange corr del desc distinct divGen editor email expan foreign gap gb gloss headItem headLabel hi imprint index item label list listBibl measure measureGrp media meeting mentioned milestone monogr num orig postBox postCode ptr pubPlace q reg relatedItem resp respStmt rs said series sic soCalled street teiCorpus textLang time unclear"/>
+                    except="abbr add addrLine address analytic biblScope biblStruct binaryObject cb choice citedRange corr del desc distinct divGen editor email expan foreign gap gb gloss headItem headLabel hi imprint index item label list listBibl measure measureGrp media meeting mentioned milestone monogr num orig postBox postCode ptr pubPlace q reg relatedItem rs said series sic soCalled street teiCorpus textLang time unclear"/>
                 <moduleRef key="tei" except=""/>
                 <moduleRef key="header"
                     except="abstract appInfo application authority biblFull cRefPattern calendar calendarDesc catDesc catRef category classDecl correction correspAction correspContext correspDesc creation distributor edition editionStmt editorialDecl encodingDesc extent funder geoDecl handNote hyphenation interpretation langUsage language listPrefixDef namespace normalization note notesStmt prefixDef principal projectDesc punctuation quotation refState refsDecl rendition samplingDecl schemaRef scriptNote segmentation seriesStmt sponsor stdVals styleDefDecl tagUsage tagsDecl taxonomy xenoData"/>
