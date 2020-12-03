@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2020-12-03T16:14:41Z. 2019.
+Schema generated from ODD source 2020-12-03T16:23:58Z. 2019.
 TEI Edition: Version 3.3.0. Last updated on
 	31st January 2018, revision f4d8439
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.3.0/
@@ -888,6 +888,7 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
    </define>
    <define name="tei_model.emphLike">
       <choice>
+         <ref name="tei_foreign"/>
          <ref name="tei_emph"/>
          <ref name="tei_term"/>
          <ref name="tei_title"/>
@@ -895,17 +896,22 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
    </define>
    <define name="tei_model.emphLike_alternation">
       <choice>
+         <ref name="tei_foreign"/>
          <ref name="tei_emph"/>
          <ref name="tei_term"/>
          <ref name="tei_title"/>
       </choice>
    </define>
    <define name="tei_model.emphLike_sequence">
+      <ref name="tei_foreign"/>
       <ref name="tei_emph"/>
       <ref name="tei_term"/>
       <ref name="tei_title"/>
    </define>
    <define name="tei_model.emphLike_sequenceOptional">
+      <optional>
+         <ref name="tei_foreign"/>
+      </optional>
       <optional>
          <ref name="tei_emph"/>
       </optional>
@@ -918,6 +924,9 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
    </define>
    <define name="tei_model.emphLike_sequenceOptionalRepeatable">
       <zeroOrMore>
+         <ref name="tei_foreign"/>
+      </zeroOrMore>
+      <zeroOrMore>
          <ref name="tei_emph"/>
       </zeroOrMore>
       <zeroOrMore>
@@ -928,6 +937,9 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
       </zeroOrMore>
    </define>
    <define name="tei_model.emphLike_sequenceRepeatable">
+      <oneOrMore>
+         <ref name="tei_foreign"/>
+      </oneOrMore>
       <oneOrMore>
          <ref name="tei_emph"/>
       </oneOrMore>
@@ -1809,6 +1821,14 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
          <ref name="tei_att.global.linking.attribute.exclude"/>
          <ref name="tei_att.global.linking.attribute.select"/>
          <ref name="tei_att.global.analytic.attribute.ana"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="tei_foreign">
+      <element name="foreign">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies a word or phrase as belonging to some language other than that of the surrounding text. [3.3.2.1. Foreign Words or Expressions]</a:documentation>
+         <ref name="tei_macro.phraseSeq"/>
+         <ref name="tei_att.global.attributes"/>
          <empty/>
       </element>
    </define>
