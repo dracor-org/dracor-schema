@@ -71,8 +71,19 @@
         <rule context="tei:person[ancestor::tei:listPerson[ancestor::tei:particDesc]]">
             <assert test="@xml:id">A person must have an ID. Element "xml:id" is missing</assert>
             <!-- should check, if ID is unique! tei-all will do this for xml:id -->
+            
             <!-- check, if there is a sp or a stage that is actually referencing this id -->
+            <let name="localID" value="@xml:id"/>
+            <assert test="ancestor::tei:TEI//tei:body//tei:sp[@who eq concat('#',$localID)] or ancestor::tei:TEI//tei:body//tei:stage[@who eq concat('#',$localID)]" role="information">There is no speech, that references the ID of this character</assert>
+            
+            <assert test="@sex" role="information">Information on gender of character is missing. Consider adding attribute "sex"</assert>
+            
+            <assert test="tei:persName">Element "persName" is missing</assert>
         </rule>
+        
+        <!-- ... -->
+        
+      
         
         
         
