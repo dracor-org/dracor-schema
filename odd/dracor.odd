@@ -659,6 +659,9 @@ target -->
                         <valItem ident="front" validUntil="2019-12-31">
                             <desc>Front [Title, Author,...]</desc>
                         </valItem>
+                        <valItem ident="epigraph">
+                            <desc>Epigraph</desc>
+                        </valItem>
                         
                         
                         
