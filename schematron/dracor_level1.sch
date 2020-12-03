@@ -21,16 +21,16 @@
             <!-- would have to check, if the correct external authority file is referenced, e.g. GND for gerdracor, other should have wikidata -->
         </rule>
         
-        <rule context="tei:availability">
+        <rule context="tei:availability[ancestor::tei:publicationStmt]">
             <assert test="tei:licence">Information on the licence are required. Element "licence" is missing</assert>
             <assert test="tei:idno[@type = 'wikidata']" role="warning">Play is not linked to Wikidata. Element "idno" is missing</assert>
         </rule>
         
-        <rule context="tei:licence">
+        <rule context="tei:licence[ancestor::tei:availability[ancestor::tei:publicationStmt]]">
             <assert test="tei:ref">A reference to a licence is required. Element "ref" is missing</assert>
         </rule>
         
-        <rule context="tei:ref[ancestor::tei:licence]">
+        <rule context="tei:ref[ancestor::tei:licence[ancestor::tei:availability[ancestor::tei:publicationStmt]]]">
             <assert test="@target">Attribute "target" is missing</assert>
             <assert test="contains(@target, 'https://creativecommons.org/publicdomain/zero/1.0')" role="information">If possible, licence should be CC0</assert>
         </rule>
