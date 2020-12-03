@@ -485,8 +485,8 @@ target -->
                     <attDef ident="period" mode="delete"/>
                    
                    
-                    <attDef ident="notBefore" mode="delete"/>
-                    <attDef ident="notAfter" mode="delete"/>
+                    <!-- <attDef ident="notBefore" mode="delete"/> -->
+                    <!-- <attDef ident="notAfter" mode="delete"/> -->
                     <attDef ident="from" mode="delete"/>
                     <attDef ident="to" mode="delete"/>
                     <attDef ident="when-iso" mode="delete"/>

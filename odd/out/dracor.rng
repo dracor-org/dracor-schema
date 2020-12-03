@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2019-12-10T09:20:06Z. 2019.
+Schema generated from ODD source 2020-12-03T15:00:16Z. 2019.
 TEI Edition: Version 3.3.0. Last updated on
 	31st January 2018, revision f4d8439
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.3.0/
@@ -1765,6 +1765,8 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
          <ref name="tei_att.global.linking.attribute.prev"/>
          <ref name="tei_att.global.linking.attribute.exclude"/>
          <ref name="tei_att.global.linking.attribute.select"/>
+         <ref name="tei_att.datable.w3c.attribute.notBefore"/>
+         <ref name="tei_att.datable.w3c.attribute.notAfter"/>
          <optional>
             <attribute name="when">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">use only year here</a:documentation>
