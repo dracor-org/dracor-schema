@@ -21,9 +21,12 @@
             <!-- would have to check, if the correct external authority file is referenced, e.g. GND for gerdracor, other should have wikidata -->
         </rule>
         
+        <rule context="tei:publicationStmt">
+            <assert test="tei:idno[@type = 'wikidata']" role="warning">Play is not linked to Wikidata. Element "idno" is missing</assert>
+        </rule>
+        
         <rule context="tei:availability[ancestor::tei:publicationStmt]">
             <assert test="tei:licence">Information on the licence are required. Element "licence" is missing</assert>
-            <assert test="tei:idno[@type = 'wikidata']" role="warning">Play is not linked to Wikidata. Element "idno" is missing</assert>
         </rule>
         
         <rule context="tei:licence[ancestor::tei:availability[ancestor::tei:publicationStmt]]">
