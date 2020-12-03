@@ -71,7 +71,7 @@
                 <moduleRef key="header"
                     except="abstract appInfo application authority biblFull cRefPattern calendar calendarDesc catDesc catRef category classDecl correction correspAction correspContext correspDesc creation distributor edition editionStmt editorialDecl encodingDesc extent funder geoDecl handNote hyphenation interpretation langUsage language listPrefixDef namespace normalization note notesStmt prefixDef principal projectDesc punctuation quotation refState refsDecl rendition samplingDecl schemaRef scriptNote segmentation seriesStmt sponsor stdVals styleDefDecl tagUsage tagsDecl taxonomy xenoData"/>
                 <moduleRef key="textstructure"
-                    except="argument back byline closer div1 div2 div3 div4 div5 div6 div7 docDate docEdition floatingText group imprimatur opener postscript salute titlePage"/>
+                    except="argument byline closer div1 div2 div3 div4 div5 div6 div7 docDate docEdition floatingText group imprimatur opener postscript salute titlePage"/>
                 <moduleRef key="drama"
                     except="camera caption epilogue move prologue sound tech view"/>
                 <moduleRef key="namesdates"
@@ -2904,6 +2904,8 @@ target -->
                 <!-- foreign -->
                 <!-- xml:lang erlauben -->
                 
+                
+                <!-- back -->
             </div>
             
            

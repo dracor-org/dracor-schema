@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2020-12-03T16:23:58Z. 2019.
+Schema generated from ODD source 2020-12-03T16:49:54Z. 2019.
 TEI Edition: Version 3.3.0. Last updated on
 	31st January 2018, revision f4d8439
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.3.0/
@@ -2860,6 +2860,14 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
             <zeroOrMore>
                <ref name="tei_model.global"/>
             </zeroOrMore>
+            <optional>
+               <group>
+                  <ref name="tei_back"/>
+                  <zeroOrMore>
+                     <ref name="tei_model.global"/>
+                  </zeroOrMore>
+               </group>
+            </optional>
          </group>
          <ref name="tei_att.global.linking.attribute.corresp"/>
          <ref name="tei_att.global.linking.attribute.synch"/>
@@ -3308,6 +3316,80 @@ Suggested values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4
          <ref name="tei_att.global.linking.attribute.exclude"/>
          <ref name="tei_att.global.linking.attribute.select"/>
          <ref name="tei_att.global.analytic.attribute.ana"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="tei_back">
+      <element name="back">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(back matter) contains any appendixes, etc. following the main part of a text. [4.7. Back Matter 4. Default Text Structure]</a:documentation>
+         <group>
+
+            <zeroOrMore>
+               <choice>
+                  <ref name="tei_model.frontPart"/>
+                  <ref name="tei_model.pLike.front"/>
+                  <ref name="tei_model.pLike"/>
+                  <ref name="tei_model.listLike"/>
+                  <ref name="tei_model.global"/>
+               </choice>
+            </zeroOrMore>
+
+
+
+            <optional>
+               <choice>
+                  <group>
+
+                     <ref name="tei_model.div1Like"/>
+
+
+                     <zeroOrMore>
+                        <choice>
+                           <ref name="tei_model.frontPart"/>
+                           <ref name="tei_model.div1Like"/>
+                           <ref name="tei_model.global"/>
+                        </choice>
+                     </zeroOrMore>
+
+                  </group>
+                  <group>
+
+                     <ref name="tei_model.divLike"/>
+
+
+                     <zeroOrMore>
+                        <choice>
+                           <ref name="tei_model.frontPart"/>
+                           <ref name="tei_model.divLike"/>
+                           <ref name="tei_model.global"/>
+                        </choice>
+                     </zeroOrMore>
+
+                  </group>
+               </choice>
+            </optional>
+
+
+
+            <optional>
+               <group>
+
+                  <ref name="tei_model.divBottomPart"/>
+
+
+                  <zeroOrMore>
+                     <choice>
+                        <ref name="tei_model.divBottomPart"/>
+                        <ref name="tei_model.global"/>
+                     </choice>
+                  </zeroOrMore>
+
+               </group>
+            </optional>
+
+         </group>
+         <ref name="tei_att.global.attributes"/>
+         <ref name="tei_att.declaring.attributes"/>
          <empty/>
       </element>
    </define>
