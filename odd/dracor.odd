@@ -956,6 +956,13 @@ target -->
                             <valItem ident="wikidata">
                                 <desc>wikidata</desc>
                             </valItem>
+                            <valItem ident="viaf">
+                                <desc>VIAF</desc>
+                            </valItem>
+                            <valItem ident="pnd">
+                                <desc>GND</desc>
+                            </valItem>
+                            
                         </valList>
                     </attDef>
                     <attDef ident="subtype" mode="delete"/>
