@@ -1682,6 +1682,15 @@ target -->
                             <valItem ident="variant">
                                 <desc>Variant of a name</desc>
                             </valItem>
+                            <valItem ident="pen">
+                                <desc>Pen name</desc>
+                            </valItem>
+                            <valItem ident="nobility">
+                                <desc>Pen name</desc>
+                            </valItem>
+                            <valItem ident="pseudo">
+                                <desc>Pen name</desc>
+                            </valItem>
                         </valList>
                     </attDef>
                     
