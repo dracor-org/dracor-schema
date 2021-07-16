@@ -140,13 +140,7 @@
                     <attDef ident="source" mode="delete"/>
                     <attDef ident="role" mode="delete"/>
                     <attDef ident="nymRef" mode="delete"/>
-                   
-                    <attDef ident="key" mode="replace" usage="req">
-                        <desc>Identifier of author,e.g., wikidata</desc>
-                        <datatype>
-                            <dataRef key="teidata.pointer"/>
-                        </datatype>
-                    </attDef>
+                    <attDef ident="key" mode="delete"/>
                 </attList>
 
                 <exemplum>
