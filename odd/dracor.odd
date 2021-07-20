@@ -75,7 +75,7 @@
                 <moduleRef key="drama"
                     except="camera caption epilogue move prologue sound tech view"/>
                 <moduleRef key="namesdates"
-                    except="addName affiliation age birth bloc climate country death district education event faith floruit genName geo geogFeat geogName langKnowledge langKnown listEvent listNym listOrg listPlace location nationality nym occupation offset org orgName persona place placeName population region residence roleName settlement sex socecStatus state terrain trait"/>
+                    except="affiliation age birth bloc climate country death district education event faith floruit genName geo geogFeat geogName langKnowledge langKnown listEvent listNym listOrg listPlace location nationality nym occupation offset org orgName persona place placeName population region residence roleName settlement sex socecStatus state terrain trait"/>
                 <moduleRef key="corpus"
                     except="activity channel constitution derivation domain factuality interaction locale preparedness purpose setting settingDesc textDesc"
                 />
@@ -3005,6 +3005,7 @@ target -->
                     </attList>
                 </elementSpec>
                 
+                <!-- nameLink -->
                 <elementSpec ident="nameLink" module="namesdates" mode="change">
                     <attList>
                         <attDef ident="xml:id" mode="delete"/>
@@ -3031,6 +3032,50 @@ target -->
                         <attDef ident="source" mode="delete"/>
                         <attDef ident="type" mode="delete"/>
                         <attDef ident="subtype" mode="delete"/>
+                    </attList>
+                </elementSpec>
+                
+                <!-- addName -->
+                <elementSpec ident="addName" module="namesdates" mode="change">
+                    <attList>
+                        <attDef ident="xml:id" mode="delete"/>
+                        <attDef ident="n" mode="delete"/>
+                        <attDef ident="xml:lang" mode="delete"/>
+                        <attDef ident="xml:base" mode="delete"/>
+                        <attDef ident="xml:space" mode="delete"/>
+                        <attDef ident="rend" mode="delete"/>
+                        <attDef ident="style" mode="delete"/>
+                        <attDef ident="rendition" mode="delete"/>
+                        <attDef ident="corresp" mode="delete"/>
+                        <attDef ident="synch" mode="delete"/>
+                        <attDef ident="sameAs" mode="delete"/>
+                        <attDef ident="copyOf" mode="delete"/>
+                        <attDef ident="next" mode="delete"/>
+                        <attDef ident="prev" mode="delete"/>
+                        <attDef ident="exclude" mode="delete"/>
+                        <attDef ident="select" mode="delete"/>
+                        <attDef ident="ana" mode="delete"/>
+                        <attDef ident="facs" mode="delete"/>
+                        <attDef ident="change" mode="delete"/>
+                        <attDef ident="cert" mode="delete"/>
+                        <attDef ident="resp" mode="delete"/>
+                        <attDef ident="source" mode="delete"/>
+                        <attDef ident="full" mode="delete"/>
+                        
+                        <attDef ident="sort" mode="change" usage="opt">
+                            <valList mode="replace" type="closed">
+                                <valItem ident="1">
+                                    <desc>sort on this</desc>
+                                </valItem>
+                            </valList>
+                        </attDef>
+                        <attDef ident="role" mode="delete"/>
+                        <attDef ident="nymRef" mode="delete"/>
+                        <attDef ident="key" mode="delete"/>
+                        <attDef ident="ref" mode="delete"/>
+                        <attDef ident="type" mode="delete"/>
+                        <attDef ident="subtype" mode="delete"/>
+                        
                     </attList>
                 </elementSpec>
                 
