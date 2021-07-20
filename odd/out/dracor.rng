@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2021-07-16T12:33:24Z. 2019.
+Schema generated from ODD source 2021-07-20T08:42:02Z. 2019.
 TEI Edition: Version 3.3.0. Last updated on
 	31st January 2018, revision f4d8439
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.3.0/
@@ -3124,6 +3124,12 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Front [Title, Author,...]</a:documentation>
                <value>epigraph</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Epigraph</a:documentation>
+               <value>review</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Review?</a:documentation>
+               <value>set</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Setting</a:documentation>
+               <value>notes</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Notes</a:documentation>
                <value>unten</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">"unten"</a:documentation>
                <value>oben</value>
@@ -3710,20 +3716,26 @@ Suggested values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4
       <choice>
          <ref name="tei_surname"/>
          <ref name="tei_forename"/>
+         <ref name="tei_genName"/>
          <ref name="tei_nameLink"/>
+         <ref name="tei_addName"/>
       </choice>
    </define>
    <define name="tei_model.persNamePart_alternation">
       <choice>
          <ref name="tei_surname"/>
          <ref name="tei_forename"/>
+         <ref name="tei_genName"/>
          <ref name="tei_nameLink"/>
+         <ref name="tei_addName"/>
       </choice>
    </define>
    <define name="tei_model.persNamePart_sequence">
       <ref name="tei_surname"/>
       <ref name="tei_forename"/>
+      <ref name="tei_genName"/>
       <ref name="tei_nameLink"/>
+      <ref name="tei_addName"/>
    </define>
    <define name="tei_model.persNamePart_sequenceOptional">
       <optional>
@@ -3733,7 +3745,13 @@ Suggested values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4
          <ref name="tei_forename"/>
       </optional>
       <optional>
+         <ref name="tei_genName"/>
+      </optional>
+      <optional>
          <ref name="tei_nameLink"/>
+      </optional>
+      <optional>
+         <ref name="tei_addName"/>
       </optional>
    </define>
    <define name="tei_model.persNamePart_sequenceOptionalRepeatable">
@@ -3744,7 +3762,13 @@ Suggested values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4
          <ref name="tei_forename"/>
       </zeroOrMore>
       <zeroOrMore>
+         <ref name="tei_genName"/>
+      </zeroOrMore>
+      <zeroOrMore>
          <ref name="tei_nameLink"/>
+      </zeroOrMore>
+      <zeroOrMore>
+         <ref name="tei_addName"/>
       </zeroOrMore>
    </define>
    <define name="tei_model.persNamePart_sequenceRepeatable">
@@ -3755,7 +3779,13 @@ Suggested values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4
          <ref name="tei_forename"/>
       </oneOrMore>
       <oneOrMore>
+         <ref name="tei_genName"/>
+      </oneOrMore>
+      <oneOrMore>
          <ref name="tei_nameLink"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="tei_addName"/>
       </oneOrMore>
    </define>
    <define name="tei_att.datable.iso.attributes">
@@ -3889,9 +3919,11 @@ Suggested values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4
                   <value>pen</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Pen name</a:documentation>
                   <value>nobility</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Pen name</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Noble name</a:documentation>
                   <value>pseudo</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Pen name</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Pseudonym</a:documentation>
+                  <value>patronym</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Patronym</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -3902,6 +3934,16 @@ Suggested values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4
       <element name="surname">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a family (inherited) name, as opposed to a given, baptismal, or nick name. [13.2.1. Personal Names]</a:documentation>
          <ref name="tei_macro.phraseSeq"/>
+         <optional>
+            <attribute name="sort">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the sort order of the name component in relation to others within the name.</a:documentation>
+               <choice>
+                  <value>1</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">sort on this</a:documentation>
+               </choice>
+            </attribute>
+         </optional>
+         <empty/>
       </element>
    </define>
    <define name="tei_forename">
@@ -3910,10 +3952,32 @@ Suggested values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4
          <ref name="tei_macro.phraseSeq"/>
       </element>
    </define>
+   <define name="tei_genName">
+      <element name="genName">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(generational name component) contains a name component used to distinguish otherwise similar names on the basis of the relative ages or generations of the persons named. [13.2.1. Personal Names]</a:documentation>
+         <ref name="tei_macro.phraseSeq"/>
+      </element>
+   </define>
    <define name="tei_nameLink">
       <element name="nameLink">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(name link) contains a connecting phrase or link used within a name but not regarded as part of it, such as van der or of. [13.2.1. Personal Names]</a:documentation>
          <ref name="tei_macro.phraseSeq"/>
+      </element>
+   </define>
+   <define name="tei_addName">
+      <element name="addName">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(additional name) contains an additional name component, such as a nickname, epithet, or alias, or any other descriptive phrase used within a personal name. [13.2.1. Personal Names]</a:documentation>
+         <ref name="tei_macro.phraseSeq"/>
+         <optional>
+            <attribute name="sort">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the sort order of the name component in relation to others within the name.</a:documentation>
+               <choice>
+                  <value>1</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">sort on this</a:documentation>
+               </choice>
+            </attribute>
+         </optional>
+         <empty/>
       </element>
    </define>
    <define name="tei_listPerson">
