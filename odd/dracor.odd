@@ -2989,7 +2989,13 @@ target -->
                         <attDef ident="resp" mode="delete"/>
                         <attDef ident="source" mode="delete"/>
                         <attDef ident="full" mode="delete"/>
-                        <attDef ident="sort" mode="delete"/>
+                        <attDef ident="sort" mode="change" usage="opt">
+                            <valList mode="replace" type="closed">
+                                <valItem ident="1">
+                                    <desc>sort on this</desc>
+                                </valItem>
+                            </valList>
+                        </attDef>
                         <attDef ident="role" mode="delete"/>
                         <attDef ident="nymRef" mode="delete"/>
                         <attDef ident="key" mode="delete"/>
