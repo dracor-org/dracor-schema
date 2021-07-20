@@ -1700,10 +1700,13 @@ target -->
                                 <desc>Pen name</desc>
                             </valItem>
                             <valItem ident="nobility">
-                                <desc>Pen name</desc>
+                                <desc>Noble name</desc>
                             </valItem>
                             <valItem ident="pseudo">
-                                <desc>Pen name</desc>
+                                <desc>Pseudonym</desc>
+                            </valItem>
+                            <valItem ident="patronym">
+                                <desc>Patronym</desc>
                             </valItem>
                         </valList>
                     </attDef>
