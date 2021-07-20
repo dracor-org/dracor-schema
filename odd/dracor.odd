@@ -660,6 +660,12 @@ target -->
                         <valItem ident="review">
                             <desc>Review?</desc>
                         </valItem>
+                        <valItem ident="set">
+                            <desc>Setting</desc>
+                        </valItem>
+                        <valItem ident="notes">
+                            <desc>Notes</desc>
+                        </valItem>
                         
                         
                         
