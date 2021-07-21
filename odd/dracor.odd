@@ -1705,9 +1705,6 @@ target -->
                             <valItem ident="pseudo">
                                 <desc>Pseudonym</desc>
                             </valItem>
-                            <valItem ident="patronym">
-                                <desc>Patronym</desc>
-                            </valItem>
                         </valList>
                     </attDef>
                     
@@ -2961,7 +2958,13 @@ target -->
                         <attDef ident="nymRef" mode="delete"/>
                         <attDef ident="key" mode="delete"/>
                         <attDef ident="ref" mode="delete"/>
-                        <attDef ident="type" mode="delete"/>
+                        <attDef ident="type" mode="change">
+                            <valList mode="replace" type="closed">
+                                <valItem ident="patronym">
+                                    <desc>Patronym</desc>
+                                </valItem>
+                            </valList>
+                        </attDef>
                         <attDef ident="subtype" mode="delete"/>
                     </attList>
                 </elementSpec>
