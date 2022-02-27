@@ -128,6 +128,14 @@
 
 
 
+    <!-- http://dracor.org/ontology#has_relation_type -->
+
+    <owl:ObjectProperty rdf:about="http://dracor.org/ontology#has_relation_type">
+        <rdfs:domain rdf:resource="http://dracor.org/ontology#relation"/>
+        <rdfs:label xml:lang="en">type of (social) relation</rdfs:label>
+    </owl:ObjectProperty>
+
+
     <!-- http://dracor.org/ontology#has_speaker -->
 
     <owl:ObjectProperty rdf:about="http://dracor.org/ontology#has_speaker">
@@ -606,8 +614,11 @@
 
 
     <!-- http://dracor.org/ontology#relation -->
-    <!-- must add -->
-
+    <owl:Class rdf:about="http://dracor.org/ontology#relation">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:label xml:lang="de">Beziehung zwischen Figuren</rdfs:label>
+        <rdfs:label xml:lang="en">relation of characters</rdfs:label>
+    </owl:Class>
 
 
     <!-- http://dracor.org/ontology#segment -->
