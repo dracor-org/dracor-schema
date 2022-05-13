@@ -30,9 +30,9 @@
                   <xsl:value-of select="."/>
                 </xsl:attribute>
               </xsl:for-each>
-              <desc>
+              <label>
                 <xsl:value-of select="./text()"/>
-              </desc>
+              </label>
             </event>
           </xsl:for-each>
         </listEvent>
