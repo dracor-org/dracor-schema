@@ -8,6 +8,8 @@
 
   <xsl:output method="xml" encoding="utf-8" omit-xml-declaration="no" indent="no"/>
 
+  <xsl:param name="eventcontent"/>
+
   <xsl:template match="@*|*|processing-instruction()|comment()|node()">
     <xsl:copy>
       <xsl:apply-templates select="@*|*|processing-instruction()|comment()|node()"/>
@@ -30,9 +32,24 @@
                   <xsl:value-of select="."/>
                 </xsl:attribute>
               </xsl:for-each>
-              <label>
-                <xsl:value-of select="./text()"/>
-              </label>
+              <xsl:variable name="content" select="text()"/>
+              <xsl:choose>
+                <xsl:when test="$content eq @when">
+                  <desc/>
+                </xsl:when>
+                <xsl:when test="$eventcontent eq 'label'">
+                  <label><xsl:value-of select="$content"/></label>
+                </xsl:when>
+                <xsl:when test="$eventcontent eq 'desc'">
+                  <desc><xsl:value-of select="$content"/></desc>
+                </xsl:when>
+                <xsl:when test="string-length($content) &lt; 10">
+                  <label><xsl:value-of select="$content"/></label>
+                </xsl:when>
+                <xsl:otherwise>
+                  <desc><xsl:value-of select="$content"/></desc>
+                </xsl:otherwise>
+              </xsl:choose>
             </event>
           </xsl:for-each>
         </listEvent>
