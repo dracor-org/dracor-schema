@@ -34,7 +34,7 @@
               </xsl:for-each>
               <xsl:variable name="content" select="text()"/>
               <xsl:choose>
-                <xsl:when test="$content eq @when">
+                <xsl:when test="not($content) or $content eq @when">
                   <desc/>
                 </xsl:when>
                 <xsl:when test="$eventcontent eq 'label'">
