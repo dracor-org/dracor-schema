@@ -77,4 +77,9 @@
     tei:sourceDesc//tei:bibl[@type='originalSource' or @type='firstEdition']
       /tei:date[@type='print' or  @type='premiere' or @type='written']" />
   <xsl:template match="tei:publicationStmt/tei:idno[@type='wikidata']" />
+  <xsl:template match="tei:bibl[
+    @type='originalSource' and
+    not(*[local-name!='date'])
+    and normalize-space()=''
+  ]"/>
 </xsl:stylesheet>
