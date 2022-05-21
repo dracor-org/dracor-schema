@@ -17,8 +17,15 @@
   </xsl:template>
 
   <xsl:template match="tei:teiHeader">
-    <xsl:variable name="dates" select="/tei:TEI/tei:teiHeader//tei:sourceDesc//tei:bibl[@type='originalSource']/tei:date[@type='print' or  @type='premiere' or @type='written'][@when != '' or @notBefore or @notAfter]"/>
-    <xsl:variable name="wd-idno" select="/tei:TEI//tei:publicationStmt/tei:idno[@type='wikidata']"/>
+    <xsl:variable name="dates" select="
+      /tei:TEI/tei:teiHeader//tei:sourceDesc//tei:bibl
+        [@type='originalSource' or @type='firstEdition']
+        /tei:date
+          [@type='print' or  @type='premiere' or @type='written']
+          [@when != '' or @notBefore or @notAfter]"/>
+    <xsl:variable
+      name="wd-idno"
+      select="/tei:TEI//tei:publicationStmt/tei:idno[@type='wikidata']"/>
     <teiHeader>
       <xsl:apply-templates/>
     </teiHeader>
@@ -66,6 +73,8 @@
   </xsl:template>
 
   <!-- strip old elements  -->
-  <xsl:template match="tei:sourceDesc//tei:bibl[@type='originalSource']/tei:date[@type='print' or  @type='premiere' or @type='written']" />
+  <xsl:template match="
+    tei:sourceDesc//tei:bibl[@type='originalSource' or @type='firstEdition']
+      /tei:date[@type='print' or  @type='premiere' or @type='written']" />
   <xsl:template match="tei:publicationStmt/tei:idno[@type='wikidata']" />
 </xsl:stylesheet>
