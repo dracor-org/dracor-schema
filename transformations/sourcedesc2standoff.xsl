@@ -10,10 +10,23 @@
 
   <xsl:param name="eventcontent"/>
 
+  <xsl:variable
+    name="dracor-id"
+    select="
+      /tei:TEI/@xml:id |
+      /tei:TEI/tei:teiHeader//tei:publicationStmt/tei:idno[@type='dracor']/text()"
+  />
+
   <xsl:template match="@*|*|processing-instruction()|comment()|node()">
     <xsl:copy>
       <xsl:apply-templates select="@*|*|processing-instruction()|comment()|node()"/>
     </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match="tei:TEI">
+    <TEI xml:id="{$dracor-id}">
+      <xsl:apply-templates select="@*|*"/>
+    </TEI>
   </xsl:template>
 
   <xsl:template match="tei:teiHeader">
@@ -29,47 +42,66 @@
     <teiHeader>
       <xsl:apply-templates/>
     </teiHeader>
-    <standOff>
-      <xsl:if test="$dates">
-        <listEvent>
-          <xsl:for-each select="$dates">
-            <event type="{@type}">
-              <xsl:for-each select="@when|@notBefore|@notAfter">
-                <xsl:attribute name="{local-name()}">
-                  <xsl:value-of select="."/>
-                </xsl:attribute>
-              </xsl:for-each>
-              <xsl:variable name="content" select="text()"/>
-              <xsl:choose>
-                <xsl:when test="not($content) or $content eq @when">
-                  <desc/>
-                </xsl:when>
-                <xsl:when test="$eventcontent eq 'label'">
-                  <label><xsl:value-of select="$content"/></label>
-                </xsl:when>
-                <xsl:when test="$eventcontent eq 'desc'">
-                  <desc><xsl:value-of select="$content"/></desc>
-                </xsl:when>
-                <xsl:when test="string-length($content) &lt; 10">
-                  <label><xsl:value-of select="$content"/></label>
-                </xsl:when>
-                <xsl:otherwise>
-                  <desc><xsl:value-of select="$content"/></desc>
-                </xsl:otherwise>
-              </xsl:choose>
-            </event>
-          </xsl:for-each>
-        </listEvent>
-      </xsl:if>
-      <xsl:if test="$wd-idno">
-        <link type="wikidata" target="Q51529377">
-          <xsl:attribute name="target">
-            <xsl:text>http://www.wikidata.org/entity/</xsl:text>
-            <xsl:value-of select="$wd-idno/text()"/>
-          </xsl:attribute>
-        </link>
-      </xsl:if>
-    </standOff>
+    <xsl:if test="not(/tei:TEI/tei:standOff)">
+      <standOff>
+        <xsl:if test="$dates">
+          <listEvent>
+            <xsl:for-each select="$dates">
+              <event type="{@type}">
+                <xsl:for-each select="@when|@notBefore|@notAfter">
+                  <xsl:attribute name="{local-name()}">
+                    <xsl:value-of select="."/>
+                  </xsl:attribute>
+                </xsl:for-each>
+                <xsl:variable name="content" select="text()"/>
+                <xsl:choose>
+                  <xsl:when test="not($content) or $content eq @when">
+                    <desc/>
+                  </xsl:when>
+                  <xsl:when test="$eventcontent eq 'label'">
+                    <label><xsl:value-of select="$content"/></label>
+                  </xsl:when>
+                  <xsl:when test="$eventcontent eq 'desc'">
+                    <desc><xsl:value-of select="$content"/></desc>
+                  </xsl:when>
+                  <xsl:when test="string-length($content) &lt; 10">
+                    <label><xsl:value-of select="$content"/></label>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <desc><xsl:value-of select="$content"/></desc>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </event>
+            </xsl:for-each>
+          </listEvent>
+        </xsl:if>
+        <xsl:if test="$wd-idno">
+          <xsl:call-template name="list-relation">
+            <xsl:with-param name="wd-id" select="$wd-idno/text()"/>
+          </xsl:call-template>
+        </xsl:if>
+      </standOff>
+    </xsl:if>
+  </xsl:template>
+
+  <!-- replace link elements from first iteraion -->
+  <xsl:template match="
+    tei:standOff/tei:link[
+      @type='wikidata' and starts-with(@target, 'http://www.wikidata.org/entity/')
+    ]">
+    <xsl:call-template name="list-relation">
+      <xsl:with-param name="wd-id" select="tokenize(@target, '/')[last()]"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template name="list-relation">
+    <xsl:param name="wd-id"/>
+    <listRelation>
+      <relation
+        name="wikidata"
+        active="https://dracor.org/entity/{$dracor-id}"
+        passive="http://www.wikidata.org/entity/{$wd-id}"/>
+    </listRelation>
   </xsl:template>
 
   <!-- strip old elements  -->
@@ -82,4 +114,5 @@
     not(*[local-name!='date'])
     and normalize-space()=''
   ]"/>
+  <xsl:template match="tei:publicationStmt/tei:idno[@type='dracor']"/>
 </xsl:stylesheet>
