@@ -3,7 +3,7 @@
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>dracor ODD</title>
+                <title>DraCor ODD</title>
                 <respStmt>
                     <resp>Encoding Guidelines by</resp>
                     <name>Frank Fischer</name>
@@ -74,7 +74,7 @@
                 <schemaSpec ident="dracor" docLang="en" prefix="tei_" xml:lang="en">
 
                     <moduleRef key="core"
-                        include="author availability bibl cit date emph foreign graphic head l lb lg listChange name p pb person publisher ref resp respStmt sp speaker stage term title quote"/>
+                        include="author availability bibl cit date desc emph foreign graphic head l lb lg listChange name p pb person publisher ref resp respStmt sp speaker stage term title quote"/>
 
                     <moduleRef key="tei" except=""/>
 
@@ -88,15 +88,15 @@
                         include="actor castGroup castItem castList performance role roleDesc set spGrp"/>
 
                     <moduleRef key="namesdates"
-                        include="addName forename genName listPerson listRelation nameLink personGrp personName relation surname"/>
+                        include="addName event forename genName listEvent listPerson listRelation nameLink personGrp personName relation surname"/>
 
                     <moduleRef key="corpus" include="particDesc"/>
 
-                    <moduleRef key="linking" include="ab"/>
+                    <moduleRef key="linking" include="ab standOff"/>
 
                     <moduleRef key="figures" include="figure"/>
 
-                    <moduleRef key="analysis"/>
+                    <moduleRef key="analysis" include=""/>
                 </schemaSpec>
 
 
@@ -682,8 +682,6 @@ target -->
                                 <dataRef key="gYear"/>
                             </datatype>
                         </attDef>
-
-
                     </attList>
 
                     <exemplum>
@@ -743,6 +741,37 @@ target -->
                         <attDef ident="cert" mode="delete"/>
                         <attDef ident="resp" mode="delete"/>
                         <attDef ident="source" mode="delete"/>
+                    </attList>
+                </elementSpec>
+                
+                <!-- desc -->
+                <elementSpec ident="desc" module="core" mode="change">
+                    <attList>
+                        <attDef ident="xml:id" mode="delete"/>
+                        <attDef ident="n" mode="delete"/>
+                        <attDef ident="xml:lang" mode="delete"/>
+                        <attDef ident="xml:base" mode="delete"/>
+                        <attDef ident="xml:space" mode="delete"/>
+                        <attDef ident="rend" mode="delete"/>
+                        <attDef ident="style" mode="delete"/>
+                        <attDef ident="rendition" mode="delete"/>
+                        <attDef ident="corresp" mode="delete"/>
+                        <attDef ident="synch" mode="delete"/>
+                        <attDef ident="sameAs" mode="delete"/>
+                        <attDef ident="copyOf" mode="delete"/>
+                        <attDef ident="next" mode="delete"/>
+                        <attDef ident="prev" mode="delete"/>
+                        <attDef ident="exclude" mode="delete"/>
+                        <attDef ident="select" mode="delete"/>
+                        <attDef ident="ana" mode="delete"/>
+                        <attDef ident="facs" mode="delete"/>
+                        <attDef ident="change" mode="delete"/>
+                        <attDef ident="cert" mode="delete"/>
+                        <attDef ident="resp" mode="delete"/>
+                        <attDef ident="source" mode="delete"/>
+                        <attDef ident="versionDate" mode="delete"/>
+                        <attDef ident="type" mode="delete"/>
+                        <attDef ident="subtype" mode="delete"/>
                     </attList>
                 </elementSpec>
 
@@ -1065,6 +1094,96 @@ target -->
                         <attDef ident="source" mode="delete"/>
                     </attList>
                 </elementSpec>
+
+                 <elementSpec ident="event" module="namesdates" mode="change">
+                     <attList>
+                         <attDef ident="xml:id" mode="delete"/>
+                         <attDef ident="n" mode="delete"/>
+                         <attDef ident="xml:lang" mode="delete"/>
+                         <attDef ident="xml:base" mode="delete"/>
+                         <attDef ident="xml:space" mode="delete"/>
+                         <attDef ident="rend" mode="delete"/>
+                         <attDef ident="style" mode="delete"/>
+                         <attDef ident="rendition" mode="delete"/>
+                         <attDef ident="corresp" mode="delete"/>
+                         <attDef ident="synch" mode="delete"/>
+                         <attDef ident="sameAs" mode="delete"/>
+                         <attDef ident="copyOf" mode="delete"/>
+                         <attDef ident="next" mode="delete"/>
+                         <attDef ident="prev" mode="delete"/>
+                         <attDef ident="exclude" mode="delete"/>
+                         <attDef ident="select" mode="delete"/>
+                         <attDef ident="ana" mode="delete"/>
+                         <attDef ident="facs" mode="delete"/>
+                         <attDef ident="change" mode="delete"/>
+                         <attDef ident="cert" mode="delete"/>
+                         <attDef ident="resp" mode="delete"/>
+                         <attDef ident="source" mode="delete"/>
+                         <attDef ident="calendar" mode="delete"/>
+                         <attDef ident="period" mode="delete"/>
+                         <!-- 2do: find out, what the API/eXist app supports -->
+                         <attDef ident="when" mode="change" usage="opt">
+                             <desc>use only year here</desc>
+                             <datatype>
+                                 <dataRef key="gYear"/>
+                             </datatype>
+                         </attDef>
+                         
+                         <!--<attDef ident="notBefore" mode="delete"/>-->
+                         <!--<attDef ident="notAfter" mode="delete"/>-->
+                         <!--<attDef ident="from" mode="delete"/>-->
+                         <!--<attDef ident="to" mode="delete"/>-->
+                         
+                        <attDef ident="when-iso" mode="delete"/>
+                         <attDef ident="notBefore-iso" mode="delete"/>
+                         <attDef ident="notAfter-iso" mode="delete"/>
+                         <attDef ident="from-iso" mode="delete"/>
+                         <attDef ident="to-iso" mode="delete"/>
+                         <attDef ident="when-custom" mode="delete"/>
+                         <attDef ident="notBefore-custom" mode="delete"/>
+                         <attDef ident="notAfter-custom" mode="delete"/>
+                         <attDef ident="from-custom" mode="delete"/>
+                         <attDef ident="to-custom" mode="delete"/>
+                         <attDef ident="datingPoint" mode="delete"/>
+                         <attDef ident="datingMethod" mode="delete"/>
+                         <attDef ident="evidence" mode="delete"/>
+                         <attDef ident="instant" mode="delete"/>
+                         
+                         <!--<attDef ident="type" mode="delete"/>-->
+                         
+                         <attDef ident="type" mode="change">
+                             <desc>classifies date, select from the following values</desc>
+                             <valList type="closed">
+                                 <valItem ident="print">
+                                     <desc>Date of impressum</desc>
+                                 </valItem>
+                                 <valItem ident="premiere">
+                                     <desc>Date of debut performance</desc>
+                                 </valItem>
+                                 <valItem ident="written">
+                                     <!-- don't really understand this, IB -->
+                                     <desc>Date of writing</desc>
+                                 </valItem>
+                             </valList>
+                         </attDef>
+                         
+                         <attDef ident="subtype" mode="delete"/>
+                         <attDef ident="role" mode="delete"/>
+                         <attDef ident="nymRef" mode="delete"/>
+                         <attDef ident="key" mode="delete"/>
+                         <attDef ident="ref" mode="delete"/>
+                         <attDef ident="sortKey" mode="delete"/>
+                         <attDef ident="where" mode="delete"/>
+                     </attList>
+                     <exemplum>
+                         <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                             <event type="written" when="1811">
+                                 <desc>geschrieben wahrscheinlich im Winter 1811</desc>
+                             </event>
+                         </egXML>
+                         <ab>Example see <ref target="https://github.com/dracor-org/dracor-schema/issues/38">Github Issue</ref>.</ab>
+                     </exemplum>
+                 </elementSpec>
 
                 <!-- ##### -->
                 <!--   F   -->
@@ -1566,9 +1685,6 @@ target -->
                         </egXML>
 
                     </exemplum>
-
-
-
                 </elementSpec>
 
 
@@ -1770,9 +1886,50 @@ target -->
                         </egXML>
 
                     </exemplum>
-
-
-
+                </elementSpec>
+                
+                
+                <!-- listEvent! -->
+                <elementSpec ident="listEvent" module="namesdates" mode="change">
+                    <attList>
+                        <attDef ident="xml:id" mode="delete"/>
+                        <attDef ident="n" mode="delete"/>
+                        <attDef ident="xml:lang" mode="delete"/>
+                        <attDef ident="xml:base" mode="delete"/>
+                        <attDef ident="xml:space" mode="delete"/>
+                        <attDef ident="rend" mode="delete"/>
+                        <attDef ident="style" mode="delete"/>
+                        <attDef ident="rendition" mode="delete"/>
+                        <attDef ident="corresp" mode="delete"/>
+                        <attDef ident="synch" mode="delete"/>
+                        <attDef ident="sameAs" mode="delete"/>
+                        <attDef ident="copyOf" mode="delete"/>
+                        <attDef ident="next" mode="delete"/>
+                        <attDef ident="prev" mode="delete"/>
+                        <attDef ident="exclude" mode="delete"/>
+                        <attDef ident="select" mode="delete"/>
+                        <attDef ident="ana" mode="delete"/>
+                        <attDef ident="facs" mode="delete"/>
+                        <attDef ident="change" mode="delete"/>
+                        <attDef ident="cert" mode="delete"/>
+                        <attDef ident="resp" mode="delete"/>
+                        <attDef ident="source" mode="delete"/>
+                        <attDef ident="type" mode="delete"/>
+                        <attDef ident="subtype" mode="delete"/>
+                        <attDef ident="default" mode="delete"/>
+                        <attDef ident="sortKey" mode="delete"/>
+                    </attList>
+                    <exemplum>
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                            <listEvent>
+                                <event type="print" when="1813"><desc/></event>
+                                <event type="premiere" when="1811"><desc/></event>
+                                <event type="written" when="1811">
+                                    <desc>geschrieben wahrscheinlich im Winter 1811</desc>
+                                </event>
+                            </listEvent>
+                        </egXML>
+                    </exemplum>
                 </elementSpec>
 
                 <!-- listPerson -->
@@ -1795,8 +1952,6 @@ target -->
                         <attDef ident="type" mode="delete"/>
                         <attDef ident="subtype" mode="delete"/>
                         <attDef ident="default" mode="delete"/>
-
-
                     </attList>
 
 
@@ -1860,7 +2015,7 @@ target -->
                         <attDef ident="cert" mode="delete"/>
                         <attDef ident="resp" mode="delete"/>
                         <attDef ident="source" mode="delete"/>
-                        <attDef ident="type" mode="change">
+                        <attDef ident="type" mode="change" usage="opt">
                             <valList mode="replace" type="closed">
                                 <valItem ident="personal"/>
                             </valList>
@@ -1868,6 +2023,14 @@ target -->
                         <attDef ident="subtype" mode="delete"/>
                         <attDef ident="sortKey" mode="delete"/>
                     </attList>
+                    <exemplum>
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                            <listRelation>
+                                <relation active="https://dracor.org/entity/ger000171" passive="http://www.wikidata.org/entity/Q42187688" name="wikidata"/>
+                            </listRelation>
+                        </egXML>
+                        <ab>Connect a DraCor play to Wikidata (Work).</ab>
+                    </exemplum>
                 </elementSpec>
 
 
@@ -2657,9 +2820,13 @@ target -->
                                 <valItem ident="friends">
                                     <desc>Characters marked as being friends</desc>
                                 </valItem>
+                                <valItem ident="wikidata">
+                                    <desc>Wikidata</desc>
+                                    <remarks><ab>Used in the relation to link the play to the wikidata entity</ab></remarks>
+                                </valItem>
                             </valList>
                             <remarks>
-                                <p>Values are taken from Quadrama-Project: <ref
+                                <p>Values of social relations are taken from Quadrama-Project: <ref
                                     target="https://github.com/quadrama/Corpus#relations"
                                     >https://github.com/quadrama/Corpus#relations</ref></p>
                             </remarks>
@@ -2936,6 +3103,56 @@ target -->
                         <attDef ident="source" mode="delete"/>
                         <attDef ident="place" mode="delete"/>
                     </attList>
+                </elementSpec>
+                
+                <!-- standOff -->
+                <elementSpec ident="standOff" module="linking" mode="change">
+                    <attList>
+                        <attDef ident="xml:id" mode="delete"/>
+                        <attDef ident="n" mode="delete"/>
+                        <attDef ident="xml:lang" mode="delete"/>
+                        <attDef ident="xml:base" mode="delete"/>
+                        <attDef ident="xml:space" mode="delete"/>
+                        <attDef ident="rend" mode="delete"/>
+                        <attDef ident="style" mode="delete"/>
+                        <attDef ident="rendition" mode="delete"/>
+                        <attDef ident="corresp" mode="delete"/>
+                        <attDef ident="synch" mode="delete"/>
+                        <attDef ident="sameAs" mode="delete"/>
+                        <attDef ident="copyOf" mode="delete"/>
+                        <attDef ident="next" mode="delete"/>
+                        <attDef ident="prev" mode="delete"/>
+                        <attDef ident="exclude" mode="delete"/>
+                        <attDef ident="select" mode="delete"/>
+                        <attDef ident="ana" mode="delete"/>
+                        <attDef ident="facs" mode="delete"/>
+                        <attDef ident="change" mode="delete"/>
+                        <attDef ident="cert" mode="delete"/>
+                        <attDef ident="resp" mode="delete"/>
+                        <attDef ident="source" mode="delete"/>
+                        <attDef ident="type" mode="delete"/>
+                        <attDef ident="subtype" mode="delete"/>
+                        <attDef ident="decls" mode="delete"/>
+                    </attList>
+                    <exemplum>
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                            <standOff>
+                                <listEvent>
+                                    <event type="print" when="1813"><desc/></event>
+                                    <event type="premiere" when="1811"><desc/></event>
+                                    <event type="written" when="1811">
+                                        <desc>geschrieben wahrscheinlich im Winter 1811</desc>
+                                    </event>
+                                </listEvent>
+                                <listRelation>
+                                    <relation active="https://dracor.org/entity/ger000171" passive="http://www.wikidata.org/entity/Q42187688" name="wikidata"/>
+                                </listRelation>
+                            </standOff>
+                        </egXML>
+                        <ab>
+                            Discussion see <ref target="https://github.com/dracor-org/dracor-schema/issues/38">Github Issue.</ref>
+                        </ab>
+                    </exemplum>
                 </elementSpec>
                 
                 <!-- surname -->
