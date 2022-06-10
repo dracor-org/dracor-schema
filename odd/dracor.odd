@@ -55,7 +55,7 @@
             <titlePage>
                 <titlePart type="main">Drama Corpora | dracor.org</titlePart>
                 <titlePart type="sub">TEI Customization</titlePart>
-                <docDate>2019</docDate>
+                <docDate>2022</docDate>
             </titlePage>
 
             <divGen type="toc"/>
@@ -1960,38 +1960,36 @@ target -->
                         <p>Think about, why there is a need for <gi>persName</gi> and
                             <gi>name</gi>.</p>
                     </remarks>
-
-                    <!-- nameLink -->
-                    <elementSpec ident="nameLink" module="namesdates" mode="change">
-                        <attList>
-                            <attDef ident="xml:id" mode="delete"/>
-                            <attDef ident="n" mode="delete"/>
-                            <attDef ident="xml:lang" mode="delete"/>
-                            <attDef ident="xml:base" mode="delete"/>
-                            <attDef ident="xml:space" mode="delete"/>
-                            <attDef ident="rend" mode="delete"/>
-                            <attDef ident="style" mode="delete"/>
-                            <attDef ident="rendition" mode="delete"/>
-                            <attDef ident="corresp" mode="delete"/>
-                            <attDef ident="synch" mode="delete"/>
-                            <attDef ident="sameAs" mode="delete"/>
-                            <attDef ident="copyOf" mode="delete"/>
-                            <attDef ident="next" mode="delete"/>
-                            <attDef ident="prev" mode="delete"/>
-                            <attDef ident="exclude" mode="delete"/>
-                            <attDef ident="select" mode="delete"/>
-                            <attDef ident="ana" mode="delete"/>
-                            <attDef ident="facs" mode="delete"/>
-                            <attDef ident="change" mode="delete"/>
-                            <attDef ident="cert" mode="delete"/>
-                            <attDef ident="resp" mode="delete"/>
-                            <attDef ident="source" mode="delete"/>
-                            <attDef ident="type" mode="delete"/>
-                            <attDef ident="subtype" mode="delete"/>
-                        </attList>
-                    </elementSpec>
-
-
+                </elementSpec>
+                
+                <!-- nameLink -->
+                <elementSpec ident="nameLink" module="namesdates" mode="change">
+                    <attList>
+                        <attDef ident="xml:id" mode="delete"/>
+                        <attDef ident="n" mode="delete"/>
+                        <attDef ident="xml:lang" mode="delete"/>
+                        <attDef ident="xml:base" mode="delete"/>
+                        <attDef ident="xml:space" mode="delete"/>
+                        <attDef ident="rend" mode="delete"/>
+                        <attDef ident="style" mode="delete"/>
+                        <attDef ident="rendition" mode="delete"/>
+                        <attDef ident="corresp" mode="delete"/>
+                        <attDef ident="synch" mode="delete"/>
+                        <attDef ident="sameAs" mode="delete"/>
+                        <attDef ident="copyOf" mode="delete"/>
+                        <attDef ident="next" mode="delete"/>
+                        <attDef ident="prev" mode="delete"/>
+                        <attDef ident="exclude" mode="delete"/>
+                        <attDef ident="select" mode="delete"/>
+                        <attDef ident="ana" mode="delete"/>
+                        <attDef ident="facs" mode="delete"/>
+                        <attDef ident="change" mode="delete"/>
+                        <attDef ident="cert" mode="delete"/>
+                        <attDef ident="resp" mode="delete"/>
+                        <attDef ident="source" mode="delete"/>
+                        <attDef ident="type" mode="delete"/>
+                        <attDef ident="subtype" mode="delete"/>
+                    </attList>
                 </elementSpec>
 
                 <!-- ##### -->
@@ -2989,7 +2987,14 @@ target -->
                 <!-- TEI -->
                 <elementSpec ident="TEI" module="textstructure" mode="change">
                     <attList>
-                        <attDef ident="xml:id" mode="delete"/>
+                        <attDef ident="xml:id" mode="change" usage="req">
+                            <datatype>
+                                <dataRef key="ID"/>
+                            </datatype>
+                            <remarks>
+                                <ab>Should contain the ID of the DraCor play, e.g. <val>ger000171</val></ab>
+                            </remarks>
+                        </attDef>
                         <attDef ident="n" mode="delete"/>
                         <attDef ident="xml:lang" mode="change" usage="opt"/>
                         <attDef ident="xml:base" mode="delete"/>
@@ -3015,6 +3020,14 @@ target -->
                         <attDef ident="subtype" mode="delete"/>
                         <attDef ident="version" mode="delete"/>
                     </attList>
+                    <exemplum>
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                            <TEI xml:id="ger000171" xml:lang="ger">
+                                <!-- ... -->
+                            </TEI>
+                        </egXML>
+                        <ab>The TEI namespace <val>http://www.tei-c.org/ns/1.0</val> should also be added to the root TEI element in the attribute <att>xmlns</att>.</ab>
+                    </exemplum>
                 </elementSpec>
 
 
