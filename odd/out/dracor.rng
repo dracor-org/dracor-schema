@@ -5,7 +5,7 @@
          xmlns="http://relaxng.org/ns/structure/1.0"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2022-06-24T09:23:20Z. 2022.
+Schema generated from ODD source 2022-06-24T11:20:56Z. 2022.
 TEI Edition: Version 4.4.0. Last updated on
         19th April 2022, revision ff9cc28b0
 TEI Edition Location: https://www.tei-c.org/Vault/P5/Version 4.4.0/
@@ -1051,29 +1051,41 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
    <define name="tei_model.labelLike">
       <choice>
          <ref name="tei_desc"/>
+         <ref name="tei_label"/>
       </choice>
    </define>
    <define name="tei_model.labelLike_alternation">
       <choice>
          <ref name="tei_desc"/>
+         <ref name="tei_label"/>
       </choice>
    </define>
    <define name="tei_model.labelLike_sequence">
       <ref name="tei_desc"/>
+      <ref name="tei_label"/>
    </define>
    <define name="tei_model.labelLike_sequenceOptional">
       <optional>
          <ref name="tei_desc"/>
+      </optional>
+      <optional>
+         <ref name="tei_label"/>
       </optional>
    </define>
    <define name="tei_model.labelLike_sequenceOptionalRepeatable">
       <zeroOrMore>
          <ref name="tei_desc"/>
       </zeroOrMore>
+      <zeroOrMore>
+         <ref name="tei_label"/>
+      </zeroOrMore>
    </define>
    <define name="tei_model.labelLike_sequenceRepeatable">
       <oneOrMore>
          <ref name="tei_desc"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="tei_label"/>
       </oneOrMore>
    </define>
    <define name="tei_model.listLike">
@@ -1910,6 +1922,12 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
             </attribute>
          </optional>
          <empty/>
+      </element>
+   </define>
+   <define name="tei_label">
+      <element name="label">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(label) contains any label or heading used to identify part of a text, typically but not exclusively in a list or glossary. [3.8. Lists]</a:documentation>
+         <text/>
       </element>
    </define>
    <define name="tei_head">

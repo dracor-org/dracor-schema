@@ -63,6 +63,7 @@
         </front>
         <body>
             <head>TEI Customization for Drama Corpora (dracor.org)</head>
+            <head>WORK IN PROGRESS!!!</head>
             <div xml:id="div_intro">
                 <p>Some intro. Documentation goes here.</p>
             </div>
@@ -99,12 +100,12 @@
                 <schemaSpec ident="dracor" docLang="en" prefix="tei_" xml:lang="en">
 
                     <moduleRef key="core"
-                        include="author availability bibl cit date desc emph foreign graphic head l lb lg listChange name p pb person publisher ref resp respStmt sp speaker stage term title quote"/>
+                        include="author bibl cit date desc editor emph foreign graphic head l label lb lg name p pb publisher ref resp respStmt sp speaker stage term title quote"/>
 
                     <moduleRef key="tei" except=""/>
 
                     <moduleRef key="header"
-                        include="change classCode fileDesc idno keywords licence profileDesc publicationStmt revisionDesc sourceDesc teiHeader textClass titleStmt"/>
+                        include="availability change classCode fileDesc idno keywords licence listChange profileDesc publicationStmt revisionDesc sourceDesc teiHeader textClass titleStmt"/>
 
                     <moduleRef key="textstructure"
                         include="TEI body div dateline docAuthor docImprint docTitle epigraph front text titlePart signed trailer"/>
@@ -113,7 +114,7 @@
                         include="actor castGroup castItem castList performance role roleDesc set spGrp"/>
 
                     <moduleRef key="namesdates"
-                        include="event forename genName listEvent listPerson listRelation nameLink personGrp personName relation surname"/>
+                        include="event forename genName listEvent listPerson listRelation nameLink person personGrp persName relation surname"/>
 
                     <moduleRef key="corpus" include="particDesc"/>
 
@@ -167,10 +168,6 @@
                             <attDef ident="part" mode="delete"/>
                             <attDef ident="hand" mode="delete"/>
                         </attList>
-                        <remarks mode="replace">
-                            <ab type="usage">Used as container for the label of the licence in
-                                    <gi>licence</gi> in the <gi>publicationStmt</gi>.</ab>
-                        </remarks>
                         <exemplum>
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <availability>
@@ -183,6 +180,10 @@
                                 </availability>
                             </egXML>
                         </exemplum>
+                        <remarks mode="replace">
+                            <ab type="usage">Used as container for the label of the licence in
+                                    <gi>licence</gi> in the <gi>publicationStmt</gi>.</ab>
+                        </remarks>
                     </elementSpec>
 
                     <!-- actor -->
@@ -308,9 +309,6 @@
                             <attDef ident="nymRef" mode="delete"/>
                             <attDef ident="key" mode="delete"/>
                         </attList>
-                        <remarks>
-                            <ab>For additional information on the encoding of author names and the rationale see also corresponding <ref target="https://github.com/dracor-org/dracor-api/issues/119">github issue</ref>.</ab>
-                        </remarks>
                         <exemplum>
                             <egXML xmlns="http://www.tei-c.org/ns/Examples" source="ger000546">
                                 <author>
@@ -343,12 +341,15 @@
                             </egXML>
                             <ab>Encoding of the author "Владимир Иванович Бельский" of the play <ref target="https://dracor.org/id/rus000205">Сказание о невидимом граде Китеже и деве Февронии</ref>.</ab>
                         </exemplum>
+                        <remarks>
+                            <ab>For additional information on the encoding of author names and the rationale see also corresponding <ref target="https://github.com/dracor-org/dracor-api/issues/119">github issue</ref>.</ab>
+                        </remarks>
                     </elementSpec>
 
 
 
                     <!-- availability -->
-                    <elementSpec ident="availability" module="core" mode="change">
+                    <elementSpec ident="availability" module="header" mode="change">
                         <attList>
 
                             <attDef ident="n" mode="delete"/>
@@ -1117,6 +1118,39 @@ target -->
                     <!-- ##### -->
                     <!--   E   -->
                     <!-- ##### -->
+                    
+                    
+                    <elementSpec ident="editor" module="core" mode="change">
+                        <attList>
+                            <attDef ident="xml:id" mode="delete"/>
+                            <attDef ident="n" mode="delete"/>
+                            <attDef ident="xml:lang" mode="delete"/>
+                            <attDef ident="xml:base" mode="delete"/>
+                            <attDef ident="xml:space" mode="delete"/>
+                            <attDef ident="rend" mode="delete"/>
+                            <attDef ident="style" mode="delete"/>
+                            <attDef ident="rendition" mode="delete"/>
+                            <!-- )) (att.global.linking (@corresp, @synch, @sameAs, @copyOf, @next, @prev, @exclude, @select)) (att.global.analytic (@ana)) (att.global.responsibility (@cert, @resp)) (att.global.source (@source)) att.naming (@role, @nymRef) (att.canonical (@key, @ref)) att.datable (@calendar, @period) (att.datable.w3c (@when, @notBefore, @notAfter, @from, @to)) (att.datable.iso (@when-iso, @notBefore-iso, @notAfter-iso, @from-iso, @to-iso)) (att.datable.custom (@when-custom, @notBefore-custom, @notAfter-custom, @from-custom, @to-custom, @datingPoint, @datingMethod)) -->
+                        </attList>
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <bibl type="originalSource">
+                                    <author>William Shakespeare</author>:
+                                    <title level="a">Romeo und Julia</title>.
+                                    In: <title level="s">Sämtliche Werke in vier Bänden</title>.
+                                    Herausgegeben von <editor>Anselm Schlösser</editor>.
+                                    Band <biblScope unit="volume">4</biblScope>.
+                                    <pubPlace>Berlin</pubPlace>:
+                                    <publisher>Aufbau</publisher>
+                                    <date>1975</date>,
+                                    S. <biblScope unit="page" from="83" to="178">83–178</biblScope>.
+                                </bibl>
+                            </egXML>    
+                            
+                        </exemplum>
+
+                    </elementSpec>
+                    
 
                     <!-- emph -->
                     <!-- 
@@ -1785,7 +1819,49 @@ target -->
                         </exemplum>
                     </elementSpec>
 
-
+                    <!-- label -->
+                    <elementSpec ident="label" module="core" mode="change">
+                        <content>
+                            <textNode/>
+                        </content>
+                        <attList>
+                            <attDef ident="xml:id" mode="delete"/>
+                            <attDef ident="n" mode="delete"/>
+                            <attDef ident="xml:lang" mode="delete"/>
+                            <attDef ident="xml:base" mode="delete"/>
+                            <attDef ident="xml:space" mode="delete"/>
+                            <attDef ident="rend" mode="delete"/>
+                            <attDef ident="style" mode="delete"/>
+                            <attDef ident="rendition" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+                            <attDef ident="facs" mode="delete"/>
+                            <attDef ident="change" mode="delete"/>
+                            <attDef ident="cert" mode="delete"/>
+                            <attDef ident="resp" mode="delete"/>
+                            <attDef ident="source" mode="delete"/>
+                            <attDef ident="type" mode="delete"/>
+                            <attDef ident="subtype" mode="delete"/>
+                            <attDef ident="place" mode="delete"/>
+                            <attDef ident="hand" mode="delete"/>
+                        </attList>
+                        <exemplum source="#ger000549">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <event type="written" notBefore="1647" notAfter="1650">
+                                    <label>1647–1650</label>
+                                </event>
+                            </egXML>
+                            <ab>Encoding of the written date of <ref target="https://dracor.org/id/ger000549">Gryphius: Horribilicribrifax Teutsch</ref>.</ab>
+                        </exemplum>
+                        <remarks>In DraCor <gi>label</gi> is used exclusively to attach a non-iso date/date string to an event.</remarks>
+                    </elementSpec>
 
                     <!-- lb -->
 
@@ -1946,7 +2022,7 @@ target -->
                     <!-- listChange -->
 
 
-                    <elementSpec ident="listChange" module="core" mode="change">
+                    <elementSpec ident="listChange" module="header" mode="change">
                         <attList>
                             <attDef ident="xml:id" mode="delete"/>
                             <attDef ident="n" mode="delete"/>
@@ -1963,11 +2039,7 @@ target -->
                             <attDef ident="type" mode="delete"/>
                             <attDef ident="subtype" mode="delete"/>
                             <attDef ident="ordered" mode="delete"/>
-
-
                         </attList>
-
-
                         <exemplum>
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <revisionDesc>
@@ -1982,7 +2054,6 @@ target -->
                                     </listChange>
                                 </revisionDesc>
                             </egXML>
-
                         </exemplum>
                     </elementSpec>
 
@@ -2809,7 +2880,7 @@ target -->
                     <!-- ##### -->
 
                     <!-- ref -->
-                    <elementSpec ident="ref" mode="change" module="core">
+                    <elementSpec ident="ref" module="core" mode="change">
                         <attList>
                             <attDef ident="xml:id" mode="delete"/>
                             <attDef ident="n" mode="delete"/>
@@ -3381,8 +3452,9 @@ target -->
                     </elementSpec>
 
                     <!-- term -->
+           
 
-                    <elementSpec ident="term" module="core">
+                    <elementSpec ident="term" module="core" mode="change">
                         <attList>
                             <attDef ident="xml:id" mode="delete"/>
                             <attDef ident="n" mode="delete"/>
@@ -3410,7 +3482,8 @@ target -->
                             <attDef ident="targetLang" mode="delete"/>
                             <attDef ident="target" mode="delete"/>
                             <attDef ident="evaluate" mode="delete"/>
-                            <attDef ident="type" mode="delete"/>
+                            <!--<attDef ident="type" mode="delete"/>-->
+                            <!-- must be modified -->
                             <attDef ident="subtype" mode="delete"/>
                             <attDef ident="key" mode="delete"/>
                             <attDef ident="ref" mode="delete"/>
