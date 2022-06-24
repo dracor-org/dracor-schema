@@ -100,7 +100,7 @@
                 <schemaSpec ident="dracor" docLang="en" prefix="tei_" xml:lang="en">
 
                     <moduleRef key="core"
-                        include="author bibl cit date desc editor emph foreign graphic head l label lb lg name p pb publisher ref resp respStmt sp speaker stage term title quote"/>
+                        include="author bibl cit date desc editor emph foreign graphic head l label lb lg name note p pb publisher ref resp respStmt sp speaker stage term title quote"/>
 
                     <moduleRef key="tei" except=""/>
 
@@ -108,7 +108,7 @@
                         include="availability change classCode fileDesc idno keywords licence listChange profileDesc publicationStmt revisionDesc sourceDesc teiHeader textClass titleStmt"/>
 
                     <moduleRef key="textstructure"
-                        include="TEI body div dateline docAuthor docImprint docTitle epigraph front text titlePart signed trailer"/>
+                        include="TEI argument back body div dateline docAuthor docImprint docTitle epigraph front text titlePart signed trailer"/>
 
                     <moduleRef key="drama"
                         include="actor castGroup castItem castList performance role roleDesc set spGrp"/>
@@ -290,7 +290,51 @@
                         </attList>
                     </elementSpec>
                     -->
-
+                    
+                    <elementSpec ident="argument" module="textstructure" mode="change">
+                        <attList>
+                            <attDef ident="xml:id" mode="delete"/>
+                            <attDef ident="n" mode="delete"/>
+                            <attDef ident="xml:lang" mode="delete"/>
+                            <attDef ident="xml:base" mode="delete"/>
+                            <attDef ident="xml:space" mode="delete"/>
+                            <attDef ident="rend" mode="delete"/>
+                            <attDef ident="style" mode="delete"/>
+                            <attDef ident="rendition" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+                            <attDef ident="facs" mode="delete"/>
+                            <attDef ident="change" mode="delete"/>
+                            <attDef ident="cert" mode="delete"/>
+                            <attDef ident="resp" mode="delete"/>
+                            <attDef ident="source" mode="delete"/>
+                        </attList>
+                        <exemplum source="#ger000546">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <argument>
+                                    <head>Inhalt des trauer-spiels.</head>
+                                    <p>Michael Balbus, käyser Leonis Armenii oberster feldhauptmann, nach dem er zu
+                                        unterschiedenen mahlen wegen seiner untreu und verleumbdungen angeklaget, verschweret sich
+                                        wider den käyser, welcher ihn durch Exabolium, seinen geheimesten rath, offt von seiner
+                                        leichtfertigkeit abzustehen ermahnet. Weil aber Michael auf seinem vorsatz verharret, wird
+                                        er unversehens gefangen und von dem rath, in welchem der käyser selbst kläger und richter,
+                                        zu dem feuer verdammet. <!-- ... --></p>
+                                    <p>Dieses trauerspiel beginnet den mittag vor dem heiligen christtage, wehret durch die
+                                        nacht und endet sich vor auffgang der sonnen.</p>
+                                    <p>Der schauplatz ist Constantinopel und vornehmlich die käyserliche burg.</p>
+                                </argument>
+                            </egXML>
+                            <ab><ref target="https://dracor.org/id/ger000546">Andreas Gryphius: Leo Armenius oder Fürsten-Mord</ref></ab>
+                        </exemplum>
+                    </elementSpec>
+                    
                     <!-- author -->
                     <elementSpec ident="author" module="core" mode="change">
                         <attList>
@@ -394,7 +438,33 @@
                     <!-- ##### -->
 
                     <!-- back -->
-                    <!--  removed it, not in use -->
+                    <elementSpec ident="back" module="textstructure" mode="change">
+                        <attList>
+                            <attDef ident="xml:id" mode="delete"/>
+                            <attDef ident="n" mode="delete"/>
+                            <attDef ident="xml:lang" mode="delete"/>
+                            <attDef ident="xml:base" mode="delete"/>
+                            <attDef ident="xml:space" mode="delete"/>
+                            <attDef ident="rend" mode="delete"/>
+                            <attDef ident="style" mode="delete"/>
+                            <attDef ident="rendition" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+                            <attDef ident="facs" mode="delete"/>
+                            <attDef ident="change" mode="delete"/>
+                            <attDef ident="cert" mode="delete"/>
+                            <attDef ident="resp" mode="delete"/>
+                            <attDef ident="source" mode="delete"/>
+                            <attDef ident="decls" mode="delete"/>                            
+                        </attList>
+                    </elementSpec>
 
                     <!-- bibl -->
                     <elementSpec ident="bibl" module="core" mode="change">
@@ -2324,6 +2394,65 @@ target -->
                             <attDef ident="type" mode="delete"/>
                             <attDef ident="subtype" mode="delete"/>
                         </attList>
+                    </elementSpec>
+                    
+                    <!-- note -->
+                    <elementSpec ident="note" module="core" mode="change">
+                        <attList>
+                            <attDef ident="xml:id" mode="delete"/>
+                            <attDef ident="n" mode="delete"/>
+                            <attDef ident="xml:lang" mode="delete"/>
+                            <attDef ident="xml:base" mode="delete"/>
+                            <attDef ident="xml:space" mode="delete"/>
+                            <attDef ident="rend" mode="delete"/>
+                            <attDef ident="style" mode="delete"/>
+                            <attDef ident="rendition" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+                            <attDef ident="facs" mode="delete"/>
+                            <attDef ident="change" mode="delete"/>
+                            <attDef ident="cert" mode="delete"/>
+                            <attDef ident="resp" mode="delete"/>
+                            <attDef ident="source" mode="delete"/>
+                            <!--<attDef ident="place" mode="delete"/>-->
+                            <!-- should check for values here -->
+                            <attDef ident="targetLang" mode="delete"/>
+                            <attDef ident="target" mode="delete"/>
+                            <attDef ident="evaluate" mode="delete"/>
+                            <attDef ident="type" mode="delete"/>
+                            <attDef ident="subtype" mode="delete"/>
+                            <attDef ident="hand" mode="delete"/>
+                            <!--<attDef ident="anchored" mode="delete"/>-->
+                            <!-- should check for values here -->
+                            <attDef ident="targetEnd" mode="delete"/>
+                        </attList>
+                        <exemplum source="#ger000069">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <stage>Hinter der Szene lautes Schreien und Rufen; Gäste, Herren, und Damen kommen
+                                    lebhaft miteinander sprechend auf die <pb n="62"/> Bühne, indem sie sich ängstlich
+                                    umblicken, hinter ihnen Bernhardy mit zwei jungen Leoparden,<note place="foot">Ausgestopften natürlich.</note> die er, in jeder Hand einen, im Genick
+                                    hält.</stage>
+                            </egXML>
+                            <ab>A footnote in a stage direction in the play <ref target="https://dracor.org/id/ger000069">Carl Laufs u. Wilhelm Jacoby: Pension Schöller</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000039">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sp who="#thomas">
+                                    <speaker>THOMAS.</speaker>
+                                    <p><!-- ... -->Na<note place="foot">Na = nein.</note>!
+                                        Gelten S'! – Kommen S', Frau Schwägerin!</p>
+                                    <stage>Während er Herminen den Arm reicht, fällt der Zwischenvorhang.</stage>
+                                </sp>
+                            </egXML>
+                            <ab>A note in <ref target="https://dracor.org/id/ger000039">Ludwig Anzengruber: Heimg'funden</ref> that is rendered as a footnote in the source.</ab>
+                        </exemplum>
                     </elementSpec>
 
                     <!-- ##### -->
