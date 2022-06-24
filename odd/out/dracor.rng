@@ -5,7 +5,7 @@
          xmlns="http://relaxng.org/ns/structure/1.0"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2022-06-24T08:26:16Z. 2022.
+Schema generated from ODD source 2022-06-24T08:35:26Z. 2022.
 TEI Edition: Version 4.4.0. Last updated on
         19th April 2022, revision ff9cc28b0
 TEI Edition Location: https://www.tei-c.org/Vault/P5/Version 4.4.0/
@@ -688,29 +688,41 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
    <define name="tei_model.nameLike.agent">
       <choice>
          <ref name="tei_name"/>
+         <ref name="tei_persName"/>
       </choice>
    </define>
    <define name="tei_model.nameLike.agent_alternation">
       <choice>
          <ref name="tei_name"/>
+         <ref name="tei_persName"/>
       </choice>
    </define>
    <define name="tei_model.nameLike.agent_sequence">
       <ref name="tei_name"/>
+      <ref name="tei_persName"/>
    </define>
    <define name="tei_model.nameLike.agent_sequenceOptional">
       <optional>
          <ref name="tei_name"/>
+      </optional>
+      <optional>
+         <ref name="tei_persName"/>
       </optional>
    </define>
    <define name="tei_model.nameLike.agent_sequenceOptionalRepeatable">
       <zeroOrMore>
          <ref name="tei_name"/>
       </zeroOrMore>
+      <zeroOrMore>
+         <ref name="tei_persName"/>
+      </zeroOrMore>
    </define>
    <define name="tei_model.nameLike.agent_sequenceRepeatable">
       <oneOrMore>
          <ref name="tei_name"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="tei_persName"/>
       </oneOrMore>
    </define>
    <define name="tei_model.segLike">
@@ -1237,7 +1249,9 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
       </choice>
    </define>
    <define name="tei_model.persStateLike">
-      <notAllowed/>
+      <choice>
+         <ref name="tei_persName"/>
+      </choice>
    </define>
    <define name="tei_model.personLike">
       <choice>
@@ -3659,6 +3673,39 @@ Suggested values include: 1] main (main); 2] sub (subordinate); 3] alt (alternat
             </choice>
          </attribute>
       </optional>
+   </define>
+   <define name="tei_persName">
+      <element name="persName">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(personal name) contains a proper noun or proper-noun phrase referring to a person, possibly including one or more of the person's forenames, surnames, honorifics, added names, etc. [13.2.1. Personal Names]</a:documentation>
+         <ref name="tei_macro.phraseSeq"/>
+         <ref name="tei_att.global.attribute.xmlid"/>
+         <ref name="tei_att.global.attribute.xmllang"/>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <ref name="tei_att.global.analytic.attribute.ana"/>
+         <optional>
+            <attribute name="type">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <choice>
+                  <value>variant</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Variant of a name</a:documentation>
+                  <value>pen</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Pen name</a:documentation>
+                  <value>nobility</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Noble name</a:documentation>
+                  <value>pseudo</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Pseudonym</a:documentation>
+               </choice>
+            </attribute>
+         </optional>
+         <empty/>
+      </element>
    </define>
    <define name="tei_surname">
       <element name="surname">
