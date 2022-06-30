@@ -66,8 +66,11 @@
             <head>WORK IN PROGRESS!!!</head>
             <div xml:id="div_intro">
                 <p>Some intro. Documentation goes here.</p>
+                <p>We are building a Drama Corpus with files encoded in TEI-P5. For more information
+                    on the project and the corpora, see <ref target="https://github.com/dracor-org"
+                        >https://github.com/dracor-org</ref>.</p>
             </div>
-            <div xml:id="div_issues">
+            <div xml:id="div_authornames">
                 <head>Encoding of author's names</head>
                 <list>
                     <head>relevant github issues</head>
@@ -83,6 +86,43 @@
                     </item>
                 </list>
 
+            </div>
+            <div>
+                <head>Frontmatter</head>
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <front>
+                       <titlePage>
+                         <docAuthor>Gotthold Ephraim Lessing</docAuthor>
+                         <docTitle>
+                             <titlePart type="main">Emilia Galotti</titlePart>
+                             <titlePart type="sub">Ein Trauerspiel in fünf Aufzügen</titlePart>
+                        </docTitle>
+                       </titlePage> 
+                        <pb n="128"/>
+                        <castList>
+                            <head>Personen.</head>
+                            <castItem><role>Emilia Galotti.</role></castItem>
+                            <castGroup rend="braced">
+                                <castItem><role>Odoardo,</role></castItem>
+                                <castItem><role>Claudia Galotti,</role></castItem>
+                                <roleDesc>Eltern der Emilia.</roleDesc>
+                            </castGroup>
+                            <castItem><role>Hettore Gonzaga,</role> <roleDesc>Prinz von Guastalla.</roleDesc></castItem>
+                            <castItem><role>Marinelli,</role> <roleDesc>Kammerherr des Prinzen.</roleDesc></castItem>
+                            <castItem><role>Camillo Rota,</role> <roleDesc>einer von des Prinzen Räten.</roleDesc></castItem>
+                            <castItem><role>Conti,</role> <roleDesc>Maler.</roleDesc></castItem>
+                            <castItem><role>Graf Appiani.</role></castItem>
+                            <castItem><role>Gräfin Orsina.</role></castItem>
+                            <castItem><role>Angelo,</role> und <role>einige Bediente.</role></castItem>
+                            <pb n="128"/>
+                        </castList>
+                    </front>
+                </egXML>
+            </div>
+            <div xml:id="characters">
+                <head>Marking up characters and linking them to the particDesc</head>
+                <p>Why are <egXML xmlns="http://www.tei-c.org/ns/Examples"><castItem><role>Schmiede</role></castItem></egXML> (Goethe: Pandora) not a group? </p>
+                
             </div>
             <div xml:id="div_other_resources">
                 <listBibl>
@@ -100,7 +140,7 @@
                 <schemaSpec ident="dracor" docLang="en" prefix="tei_" xml:lang="en">
 
                     <moduleRef key="core"
-                        include="author bibl cit date desc editor emph foreign graphic head l label lb lg name note p pb publisher ref resp respStmt sp speaker stage term title quote"/>
+                        include="author bibl cit desc editor emph foreign graphic head l label lb lg name note p pb publisher ref resp respStmt sp speaker stage term title quote"/>
 
                     <moduleRef key="tei" except=""/>
 
@@ -108,7 +148,7 @@
                         include="availability change classCode fileDesc idno keywords licence listChange profileDesc publicationStmt revisionDesc sourceDesc teiHeader textClass titleStmt"/>
 
                     <moduleRef key="textstructure"
-                        include="TEI argument back body div dateline docAuthor docImprint docTitle epigraph front text titlePart signed trailer"/>
+                        include="TEI argument back body div dateline docAuthor docTitle epigraph front text titlePart signed trailer"/>
 
                     <moduleRef key="drama"
                         include="actor castGroup castItem castList performance role roleDesc set spGrp"/>
@@ -214,8 +254,8 @@
                             <attDef ident="key" mode="delete"/>
                             <attDef ident="ref" mode="delete"/>
                         </attList>
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples" source="ger000057">
+                        <exemplum source="#ger000057">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <castList>
                                     <head>Personen.</head>
                                     <castItem>Sir John Smith, ein Podagrist, vormals ein reicher
@@ -229,8 +269,8 @@
                                     target="https://dracor.org/id/ger000057">Kotzebue: Die Indianer
                                     in England</ref>. </ab>
                         </exemplum>
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples" source="rus000094">
+                        <exemplum source="#rus000094">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <castItem>
                                     <role>Адам Карлович Либенталь, молодой немец<note place="foot"
                                             >Слово «немец» было заменено в афише словом
@@ -352,9 +392,38 @@
                             <attDef ident="role" mode="delete"/>
                             <attDef ident="nymRef" mode="delete"/>
                             <attDef ident="key" mode="delete"/>
+                            <attDef ident="calendar" mode="delete"/>
+                            <attDef ident="period" mode="delete"/>
+                            <attDef ident="when" mode="delete"/>
+                            <attDef ident="notBefore" mode="delete"/>
+                            <attDef ident="notAfter" mode="delete"/>
+                            <attDef ident="from" mode="delete"/>
+                            <attDef ident="to" mode="delete"/>
+                            <attDef ident="when-iso" mode="delete"/>
+                            <attDef ident="notBefore-iso" mode="delete"/>
+                            <attDef ident="notAfter-iso" mode="delete"/>
+                            <attDef ident="from-iso" mode="delete"/>
+                            <attDef ident="to-iso" mode="delete"/>
+                            <attDef ident="when-custom" mode="delete"/>
+                            <attDef ident="notBefore-custom" mode="delete"/>
+                            <attDef ident="notAfter-custom" mode="delete"/>
+                            <attDef ident="from-custom" mode="delete"/>
+                            <attDef ident="to-custom" mode="delete"/>
+                            <attDef ident="datingPoint" mode="delete"/>
+                            <attDef ident="datingMethod" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+                            <attDef ident="ref" mode="delete"/>
                         </attList>
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples" source="ger000546">
+                        <exemplum source="#ger000546">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <author>
                                     <persName>
                                         <forename>Andreas</forename>
@@ -368,8 +437,8 @@
                                 Encoding of the author "Andreas Gryphius" of the play <ref target="https://dracor.org/id/ger000546">Leo Armenius oder Fürsten-Mord</ref>.
                             </ab>
                         </exemplum>
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples" source="rus000205">
+                        <exemplum  source="#rus000205">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <author>
                                     <persName>
                                         <forename>Владимир</forename>
@@ -390,12 +459,9 @@
                         </remarks>
                     </elementSpec>
 
-
-
                     <!-- availability -->
                     <elementSpec ident="availability" module="header" mode="change">
                         <attList>
-
                             <attDef ident="n" mode="delete"/>
                             <attDef ident="xml:id" mode="delete"/>
                             <attDef ident="xml:lang" mode="delete"/>
@@ -415,8 +481,24 @@
                                     </valItem>
                                 </valList>
                             </attDef>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
                         </attList>
-
+                        <exemplum source="#ger000480">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <availability status="free">
+                                    <p>In the public domain.</p>
+                                </availability>
+                            </egXML>
+                            <ab>Copyright status of the digital source of <ref target="https://dracor.org/id/ger000480">Karl Kraus: Die letzten Tage der Menschheit</ref>.</ab>
+                        </exemplum>
                         <exemplum>
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <availability>
@@ -464,13 +546,25 @@
                             <attDef ident="source" mode="delete"/>
                             <attDef ident="decls" mode="delete"/>                            
                         </attList>
+                        <exemplum source="#ger000428">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <back>
+                                    <div type="notes">
+                                        <head>[Anmerkung]</head>
+                                        <p>Dem zu Beginn des <emph>Actus quintus</emph> in freier Weise verwendeten Zitate aus den
+                                            Selbstbetrachtungen des Marc Aurel liegt ein griechischer und lateinischer Text des
+                                            achtzehnten Jahrhunderts zugrunde. Bei der Übersetzung ins Deutsche diente in einzelnen
+                                            Wendungen die Übersetzung von Otto Kiefer (Eugen Diederichs, Jena 1906) zum Vorbilde.</p>
+                                    </div>
+                                </back>
+                            </egXML>
+                            <ab>A note in the <gi>back</gi> of the play <ref target="https://dracor.org/id/ger000428">Anton Wildgans: Dies irae</ref>. Should maybe wrapped with a <gi>note</gi> element.</ab>
+                        </exemplum>
                     </elementSpec>
 
                     <!-- bibl -->
                     <elementSpec ident="bibl" module="core" mode="change">
                         <attList>
-
-
                             <attDef ident="xml:id" mode="delete"/>
                             <attDef ident="n" mode="delete"/>
                             <attDef ident="xml:lang" mode="delete"/>
@@ -497,40 +591,24 @@
                             <attDef ident="default" mode="delete"/>
                             <attDef ident="sortKey" mode="delete"/>
                             <attDef ident="status" mode="delete"/>
-
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+       
                         </attList>
-
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                                <bibl type="digitalSource">
-                                    <name>TextGrid Repository</name>
-                                    <idno type="URL"
-                                        >http://www.textgridrep.org/textgrid:str1.0</idno>
-                                    <availability>
-                                        <licence>
-                                            <ab>CC-BY-3.0</ab>
-                                            <ref
-                                                target="http://creativecommons.org/licenses/by/3.0/de/legalcode"
-                                                >Lizenzvertrag</ref>
-                                        </licence>
-                                    </availability>
-                                    <bibl type="originalSource">
-                                        <title>Johann Nestroy: Werke. Ausgewählt und mit einem
-                                            Nachwort versehen von Oskar Maurus Fontana, München:
-                                            Winkler, 1962.</title>
-                                        <date type="print" when="1843">1843</date>
-                                        <date type="premiere" when="1843">1843</date>
-                                        <date type="written" when="1840">1840</date>
-                                    </bibl>
-                                </bibl>
-                            </egXML>
-
-                        </exemplum>
-
+                        <remarks>
+                            <p>Will be reworked in the near future.</p>
+                        </remarks>
+                        <exemplum/>
                     </elementSpec>
 
                     <!-- body -->
-
                     <elementSpec ident="body" module="textstructure" mode="change">
                         <attList>
                             <attDef ident="xml:id" mode="delete"/>
@@ -545,13 +623,35 @@
                             <attDef ident="resp" mode="delete"/>
                             <attDef ident="source" mode="delete"/>
                             <attDef ident="decls" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+
                         </attList>
-
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
-
+                        <exemplum source="#ger000289">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                            <body>
+                                <div type="act">
+                                    <head>Erster Akt.</head>
+                                    <stage>Scene: Elegantes Zimmer in Gustav's Hause.</stage>
+                                    <div type="scene">
+                                        <head>Erster Auftritt.</head>
+                                        <stage>Durch die Mittelthür kommen: Ehrenthal und Dörthe.</stage>
+                                     <!-- ... -->
+                                    </div>
+                                </div>
+                                    <!-- ... -->
+                            </body>
+                            </egXML>
+                            <ab>Common structure of the <gi>body</gi> element of a play. Example is taken from <ref target="https://dracor.org/id/ger000289">Karl von Holtei: Ein Trauerspiel in Berlin</ref>.</ab>
                         </exemplum>
-
+                        
                     </elementSpec>
 
                     <!-- ##### -->
@@ -561,7 +661,6 @@
                     <!-- castGroup -->
 
                     <elementSpec ident="castGroup" module="drama" mode="change">
-
                         <attList>
                             <attDef ident="xml:id" mode="delete"/>
                             <attDef ident="n" mode="delete"/>
@@ -580,13 +679,66 @@
                             <attDef ident="cert" mode="delete"/>
                             <attDef ident="resp" mode="delete"/>
                             <attDef ident="source" mode="delete"/>
+                            <attDef ident="corresp" mode="change">
+                                <datatype>
+                                    <dataRef key="teidata.pointer"></dataRef>
+                                </datatype>
+                                <remarks>
+                                    <p>Used to link a character in the dramatis personae to the corresponding <!-- person/group? --> element in the <gi>particDesc</gi></p>
+                                </remarks>
+                            </attDef>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
                         </attList>
-
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
-
+                        <exemplum source="#ger000442">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castGroup>
+                                    <castItem>Silva,</castItem>
+                                    <castItem>Gomez,</castItem>
+                                    <roleDesc>unter Alba dienend</roleDesc>
+                                </castGroup>
+                            </egXML>
+                            <ab>The characters are grouped and given a role in the in the "dramatis personae" in the play <ref target="https://dracor.org/id/ger000442">Goethe: Egmont</ref>.</ab>
                         </exemplum>
-
+                        <exemplum source="#ger000139">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castGroup rend="braced">
+                                    <castItem>Balthasar</castItem>
+                                    <castItem>Caspar</castItem>
+                                    <roleDesc>Jäger</roleDesc>
+                                </castGroup>
+                            </egXML>
+                            <ab>A group of characters in <ref target="https://dracor.org/id/ger000139">Genoveva</ref>. In the source, they are marked with a curly bracket.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000575">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castGroup>
+                                    <castItem><role>Elpore,</role></castItem>
+                                    <castItem><role>Epimeleia,</role></castItem>
+                                    <roleDesc>Epimetheus' Töchter</roleDesc>
+                                </castGroup>
+                            </egXML>
+                            <ab>A group of characters with explicitly marked-up roles in <ref target="https://dracor.org/id/ger000575">Goethe: Pandora</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000572">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castGroup>
+                                    <castItem><role>Magdalene,</role>
+                                        <roleDesc>Behrings Braut, 20 Jahre alt,</roleDesc></castItem>
+                                    <castItem><role>Fritz,</role>
+                                        <roleDesc>12 Jahre alt,</roleDesc></castItem>
+                                    <roleDesc>beider Kinder.</roleDesc>
+                                </castGroup>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000572">Otto Ernst: Die größte Sünde</ref>.</ab>
+                        </exemplum>
+                        
                     </elementSpec>
 
                     <!-- castItem -->
@@ -604,13 +756,61 @@
                             <attDef ident="resp" mode="delete"/>
                             <attDef ident="source" mode="delete"/>
                             <attDef ident="type" mode="delete"/>
+                            <attDef ident="corresp" mode="change">
+                                <datatype>
+                                    <dataRef key="teidata.pointer"></dataRef>
+                                </datatype>
+                                <remarks>
+                                    <p>Used to link a character in the dramatis personae to the corresponding <!-- person/group? --> element in the <gi>particDesc</gi></p>
+                                </remarks>
+                            </attDef>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+                            <attDef ident="type" mode="delete"/>
+                            <attDef ident="subtype" mode="delete"/>
                         </attList>
-
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
-
+                        <exemplum source="#ger000088">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castItem>Marinelli, Kammerherr des Prinzen.</castItem>
+                            </egXML>
+                            <ab>A character in the play <ref target="https://dracor.org/id/ger000088">Lessing: Emilia Galotti</ref>.</ab>
                         </exemplum>
-
+                        <exemplum source="#ger000546">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                            <castItem><role>Leo Armenius,</role>
+                                <roleDesc>käyser von Constantinopel.</roleDesc>
+                            </castItem>
+                            </egXML>
+                                <ab>A <gi>castItem</gi> in the play <ref target="https://dracor.org/id/ger000546">Gryphius: Leo Armenius</ref>. The name of the role and its description have been explicitly marked-up.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000575">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castItem><role>Dämonen</role></castItem>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000575">Goethe: Pandora</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000451">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castItem>Andreas Doria, Doge von Genua <roleDesc>Ehrwürdiger Greis von achtzig Jahren,
+                                    Spuren von Feuer. Ein Hauptzug: Gewicht und strenge befehlende
+                                    Kürze</roleDesc></castItem>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000451">Schiller: Die Verschwörung des Fiesco zu Genua</ref>.</ab>
+                        </exemplum>
+                        <!-- this is not valid: -->
+                        <!--<exemplum source="#ger000474">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castItem><emph>Volumnia</emph>, seine Gattin.</castItem>
+                            </egXML>
+                            <ab>Encoding of a character in <ref target="https://dracor.org/id/ger000474">Collin: Coriolan</ref>. Actually, there should be semantic markup, e.g. <gi>role</gi> and <gi>roleDesc</gi>.</ab>
+                        </exemplum>-->
+                        <!-- Elements, that currently occur in castItem: pb, emph, note, foreign, actor, lb: distinct-values(//castItem[*][not(role)][not(roleDesc)]/element()/name()) -->
                     </elementSpec>
 
 
@@ -629,7 +829,37 @@
                             <attDef ident="resp" mode="delete"/>
                             <attDef ident="source" mode="delete"/>
                             <attDef ident="type" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
                         </attList>
+                        <exemplum source="#ger000575">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castList>
+                                    <head> Personen.</head>
+                                    <castGroup>
+                                        <castItem><role>Prometheus,</role></castItem>
+                                        <castItem><role>Epimetheus,</role></castItem>
+                                        <roleDesc>Japetiden</roleDesc>
+                                    </castGroup>
+                                    <castItem><role>Phileros,</role>
+                                        <roleDesc>Prometheus' Sohn</roleDesc></castItem>
+                                    <!-- ... -->
+                                    <castItem><role>Dämonen</role></castItem>
+                                    <castItem><role>Helios</role></castItem>
+                                    <castItem><role>Schmiede</role></castItem>
+                                    <castItem><role>Hirten</role></castItem>
+                                    <!-- ... -->
+                                </castList>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000575">Goethe: Pandora</ref>.</ab>
+                        </exemplum>
 
                         <exemplum>
                             <p>Probably not the best example...</p>
@@ -657,17 +887,12 @@
                                     <!-- ... -->
                                 </castList>
                             </egXML>
-
                         </exemplum>
-
                     </elementSpec>
 
 
                     <!-- change -->
                     <elementSpec ident="change" module="header" mode="change">
-                        <!--    (att.global.responsibility (@cert, @resp)) (att.global.source (@source)) att.typed (@type, @subtype)
-target -->
-
                         <attList>
                             <attDef ident="who" mode="delete"/>
                             <attDef ident="calendar" mode="delete"/>
@@ -714,22 +939,43 @@ target -->
                             <attDef ident="type" mode="delete"/>
                             <attDef ident="subtype" mode="delete"/>
                             <attDef ident="target" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
                         </attList>
 
-                        <exemplum>
+                        <exemplum source="#ger000030">
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <revisionDesc>
                                     <listChange>
-                                        <change who="#ds" when="2018-03-04">convert from
-                                            source</change>
-                                        <change who="#ff" when="2018-03-15">add some missing text;
-                                            lower case IDs</change>
-                                        <change who="#ff" when="2018-03-23">change some falsely
-                                            attributed stage directions into paragraphs</change>
+                                        <change when="2017-01-06">(dlina) file conversion from source</change>
+                                        <change when="2017-08-04">(ff) structural cleanup</change>
+                                        <change when="2018-12-23">(ff) formalities</change>
                                     </listChange>
                                 </revisionDesc>
                             </egXML>
-
+                            <ab><gi>revisionDesc</gi> with <gi>change</gi> elements of the play <ref target="https://dracor.org/id/ger000030">Scheerbart: Der alte Petrus</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#rus000016">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <revisionDesc>
+                                    <listChange>
+                                        <change when="2017-05-23">(ds) convert from source</change>
+                                        <change when="2017-05-23">(ff) add metadata, insert configuration changes</change>
+                                        <change when="2017-06-01">(zh) add dates, ids</change>
+                                        <change when="2017-06-03">(gg) gender info</change>
+                                        <change when="2017-12-03">(ff) formalities; delete duplicate of poem; work on IDs</change>
+                                        <change when="2018-04-07">(zh) group tag</change>
+                                    </listChange>
+                                </revisionDesc>
+                            </egXML>
+                            <ab>Record of the changes in the file of the play <ref target="https://dracor.org/id/rus000016">Александр Сергеевич Пушкин: Сцены из рыцарских времен</ref>.</ab>
                         </exemplum>
 
                     </elementSpec>
@@ -762,56 +1008,65 @@ target -->
                             <attDef ident="type" mode="delete"/>
                             <attDef ident="subtype" mode="delete"/>
                         </attList>
+                        <exemplum source="#ger000371">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <epigraph>
+                                    <cit>
+                                        <quote>
+                                            <l>Wie ist mir eine Stimme doch erklungen</l>
+                                            <l>Im tiefsten Innern,</l>
+                                            <l>Und hat mit einem Male mir verschlungen</l>
+                                            <l>All mein Erinnern.</l>
+                                        </quote>
+                                        <bibl>Adalbert von Chamisso</bibl>
+                                    </cit>
+                                </epigraph>
+                            </egXML>
+                            <ab>A citation in the epigraph to the play <ref target="https://dracor.org/id/ger000371">Büchner: Leonce und Lena</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#rus000021">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <epigraph>
+                                    <cit>
+                                        <quote>
+                                            <lg>
+                                                <l>Leporello. O statua gentilissima</l>
+                                                <l>Del gran' Commendatore!..</l>
+                                                <l>...Ah, Padrone!</l>
+                                            </lg>
+                                        </quote>
+                                    </cit>
+                                    <bibl>Don Giovanni.</bibl>
+                                </epigraph>
+                                <ab>Citation in the play <ref target="https://dracor.org/id/rus000021">Пушкин: Каменный гость</ref></ab>
+                            </egXML>
+                        </exemplum>
+                        <exemplum source="#ger000369">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <div type="epigraph">
+                                    <head>[Motto]</head>
+                                    <cit>
+                                        <quote>
+                                            <p>Introite, nam et heic Dii sunt!</p>
+                                        </quote>
+                                        <bibl>APUD GELLIUM</bibl>
+                                    </cit>
+                                    <pb n="206"/>
+                                </div>
+                            </egXML>
+                            <ab>Only one other example discovered using <code>//cit[not(parent::epigraph)]</code>, but this is due to encoding – it's actually kind of an epigraph in the play <ref target="https://dracor.org/id/ger000369">Lessing: Nathan der Weise</ref></ab>
+                        </exemplum>
+                        <remarks>
+                            <p>In DraCor mostly used to mark citation in epigraphs, see examples.</p>
+                        </remarks>
                     </elementSpec>
 
                     <!-- classCode  -->
-                    <!-- 2do -->
-
-                    <!-- ##### -->
-                    <!--   D   -->
-                    <!-- ##### -->
-
-                    <!-- date -->
-
-                    <elementSpec ident="date" module="core" mode="change">
-                        <!-- 
-                 ) att.datable (@calendar, @period) att.datable.w3c (when, @notBefore, @notAfter, @from, @to) att.datable.iso (@when-iso, @notBefore-iso, @notAfter-iso, @from-iso, @to-iso) att.datable.custom (@when-custom, @notBefore-custom, @notAfter-custom, @from-custom, @to-custom, @datingPoint, @datingMethod) att.typed (type, @subtype)
-                -->
+                    <elementSpec ident="classCode" module="header" mode="change">
+                        <content>
+                            <textNode/>
+                        </content>
                         <attList>
-                            <attDef ident="evidence" mode="delete"/>
-                            <attDef ident="instant" mode="delete"/>
-                            <attDef ident="unit" mode="delete"/>
-                            <attDef ident="quantity" mode="delete"/>
-                            <attDef ident="extent" mode="delete"/>
-                            <attDef ident="precision" mode="delete"/>
-                            <attDef ident="scope" mode="delete"/>
-                            <attDef ident="atLeast" mode="delete"/>
-                            <attDef ident="atMost" mode="delete"/>
-                            <attDef ident="min" mode="delete"/>
-                            <attDef ident="max" mode="delete"/>
-                            <attDef ident="confidence" mode="delete"/>
-
-
-                            <attDef ident="calendar" mode="delete"/>
-                            <attDef ident="period" mode="delete"/>
-
-
-                            <!-- <attDef ident="notBefore" mode="delete"/> -->
-                            <!-- <attDef ident="notAfter" mode="delete"/> -->
-                            <attDef ident="from" mode="delete"/>
-                            <attDef ident="to" mode="delete"/>
-                            <attDef ident="when-iso" mode="delete"/>
-                            <attDef ident="notBefore-iso" mode="delete"/>
-                            <attDef ident="notAfter-iso" mode="delete"/>
-                            <attDef ident="from-iso" mode="delete"/>
-                            <attDef ident="to-iso" mode="delete"/>
-                            <attDef ident="when-custom" mode="delete"/>
-                            <attDef ident="notBefore-custom" mode="delete"/>
-                            <attDef ident="notAfter-custom" mode="delete"/>
-                            <attDef ident="from-custom" mode="delete"/>
-                            <attDef ident="to-custom" mode="delete"/>
-                            <attDef ident="datingPoint" mode="delete"/>
-                            <attDef ident="datingMethod" mode="delete"/>
                             <attDef ident="xml:id" mode="delete"/>
                             <attDef ident="n" mode="delete"/>
                             <attDef ident="xml:lang" mode="delete"/>
@@ -820,71 +1075,65 @@ target -->
                             <attDef ident="rend" mode="delete"/>
                             <attDef ident="style" mode="delete"/>
                             <attDef ident="rendition" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
                             <attDef ident="cert" mode="delete"/>
                             <attDef ident="resp" mode="delete"/>
                             <attDef ident="source" mode="delete"/>
-
-
-                            <attDef ident="subtype" mode="delete"/>
-
-                            <attDef ident="type" mode="change">
-                                <desc>classifies date, select from the following values</desc>
-                                <valList type="closed">
-                                    <valItem ident="print">
-                                        <desc>Date of impressum</desc>
+                            <attDef ident="scheme" mode="replace" usage="req">
+                                <valList type="closed" mode="replace">
+                                    <valItem ident="http://www.wikidata.org/entity/">
+                                        <desc>Wikidata</desc>
                                     </valItem>
-                                    <valItem ident="premiere">
-                                        <desc>Date of debut performance</desc>
-                                    </valItem>
-                                    <valItem ident="written">
-                                        <!-- don't really understand this, IB -->
-                                        <desc>Date of writing</desc>
-                                    </valItem>
-
                                 </valList>
-                            </attDef>
-                            <attDef ident="when" mode="change" usage="opt">
-                                <desc>use only year here</desc>
-                                <datatype>
-                                    <dataRef key="gYear"/>
-                                </datatype>
-                            </attDef>
+                            </attDef>	
                         </attList>
-
-                        <exemplum>
+                        
+                        <exemplum source="#ger000442">
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                                <bibl type="originalSource">
-                                    <title>Johann Nestroy: Werke. Ausgewählt und mit einem Nachwort
-                                        versehen von Oskar Maurus Fontana, München: Winkler,
-                                        1962.</title>
-                                    <date type="print" when="1843">1843</date>
-                                    <date type="premiere" when="1843">1843</date>
-                                    <date type="written" when="1840">1840</date>
-                                </bibl>
+                                <textClass>
+                                    <keywords>
+                                        <term type="genreTitle">Tragedy</term>
+                                    </keywords>
+                                    <classCode scheme="http://www.wikidata.org/entity/">Q80930</classCode>
+                                </textClass>
                             </egXML>
-
+                            <ab>Genre classification of the play <ref target="https://dracor.org/id/ger000442">Goethe: Egmont</ref>.</ab>
                         </exemplum>
-                        <exemplum>
+                        <exemplum source="#ger000150">
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                                <bibl type="originalSource">
-                                    <title>А.Н.Островский. Собрание сочинений в десяти томах. Том
-                                        шестой. М., Государственное издательство художественной
-                                        литературы, 1960</title>
-                                    <date type="print" when="1871">Комедия в пяти действиях
-                                        (Wikipedia)</date>
-                                    <date type="premiere" when="1871">1 ноября 1871 года —
-                                        Александринский театр (Wikipedia)</date>
-                                    <date type="written" when="1870">"1870" (Wikipedia)</date>
-                                </bibl>
+                                <classCode scheme="http://www.wikidata.org/entity/">Q40831</classCode>
                             </egXML>
-
+                            <ab>The play <ref target="https://dracor.org/id/ger000150">Schnitzler: Komtesse Mizzi</ref> is classified as a "comedy".</ab>
                         </exemplum>
-
+                        <exemplum source="#ger000175">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <classCode scheme="http://www.wikidata.org/entity/">Q131084</classCode>
+                            </egXML>
+                            <ab>The "libretto" to the opera <ref target="https://dracor.org/id/ger000175">Wagner: Lohengrin</ref>.</ab>
+                        </exemplum>
+                        <remarks>
+                            <p>Classifiaction of the genre of the play is done by re-using Wikidata entites.</p>
+                        </remarks>
                     </elementSpec>
+
+                    <!-- ##### -->
+                    <!--   D   -->
+                    <!-- ##### -->
+
+                    <!-- date -->
+                    <!-- removed because not in use anymore, info is contained in standOff as a event -->
+
 
                     <!-- dateline -->
                     <elementSpec ident="dateline" module="textstructure" mode="change">
-                        <!-- att.global (@xml:id, @n, @xml:lang, @xml:base, @xml:space) (att.global.rendition (@rend, @style, @rendition)) (att.global.linking (@corresp, @synch, @sameAs, @copyOf, @next, @prev, @exclude, @select)) (att.global.analytic (@ana)) (att.global.facs (@facs)) (att.global.change (@change)) (att.global.responsibility (@cert, @resp)) (att.global.source (@source)) -->
                         <attList>
                             <attDef ident="xml:id" mode="delete"/>
                             <attDef ident="n" mode="delete"/>
@@ -909,6 +1158,30 @@ target -->
                             <attDef ident="resp" mode="delete"/>
                             <attDef ident="source" mode="delete"/>
                         </attList>
+                        <exemplum source="#ger000525">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <dateline>Offenbach am Mayn, gedruckt bey Ulrich Weiß, 1765.</dateline>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000525">André: Der Comödienfeind</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000523">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <dateline>Am verhängnißvollen 24sten Februar.</dateline>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000523">Castelli: Der Schicksalsstrumpf</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000008">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <dateline>Geschrieben in der Ostermesse. 1781.</dateline>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000008">Schiller: Die Räuber</ref></ab>
+                        </exemplum>
+                        <exemplum source="#rus000036">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <dateline>Между декабрем 1750 и ноябрем 1751</dateline>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/rus000036">Ломоносов: Демофонт</ref></ab>
+                        </exemplum>
                     </elementSpec>
 
                     <!-- desc -->
@@ -940,11 +1213,45 @@ target -->
                             <attDef ident="type" mode="delete"/>
                             <attDef ident="subtype" mode="delete"/>
                         </attList>
+                        <exemplum source="#ger000124">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <listEvent>
+                                    <event type="print" when="1745">
+                                        <desc/>
+                                    </event>
+                                    <event type="premiere" when="1745">
+                                        <desc/>
+                                    </event>
+                                </listEvent>
+                            </egXML>
+                            <ab>Empty <gi>desc</gi> elements in the <gi>standOff</gi> container of the play <ref target="https://dracor.org/id/ger000124">Gellert: Die Betschwester</ref>. The dates of publication and the premiere are extracted from the <att>when</att> of the corresponding <gi>event</gi>. If there is no more information available the <gi>desc</gi> can be used as an empty element, but has to be included due to the default TEI content model of the parent element.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000480">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <listEvent>
+                                    <event type="print" when="1919">
+                                        <desc>"Erscheinen konnte das Werk erst nach Aufhebung der
+                                            Zensur. Noch am 13. Dezember 1918 erschien der Epilog als Sonderheft der Fackel,
+                                            weitere Teile (mit jeweils zwei Akten) folgten im April, August und (wahrscheinlich)
+                                            September 1919." (Wikipedia)</desc>
+                                    </event>
+                                    <event type="premiere" when="1964">
+                                        <desc>"1964: Wiener Festwochen im Theater an der Wien
+                                            (Regie: Leopold Lindtberg). Erste szenische Aufführung mit 42 Szenen des Dramas, nach
+                                            einer Bühnenfassung von Heinrich Fischer." (Wikipedia)</desc>
+                                    </event>
+                                    <event type="written" notBefore="1915" notAfter="1922">
+                                        <desc>"in den Jahren 1915–1922
+                                            entstanden" (Wikipedia)</desc>
+                                    </event>
+                                </listEvent>
+                            </egXML>
+                            <ab>Descriptions of events in the <gi>standOff</gi> container of the play <ref target="https://dracor.org/id/ger000480">Kraus: Die Letzten Tage der Menschheit</ref>.</ab>
+                        </exemplum>
                     </elementSpec>
 
 
                     <!-- div -->
-
                     <elementSpec ident="div" module="textstructure" mode="change">
                         <attList>
                             <attDef ident="xml:id" mode="delete"/>
@@ -960,7 +1267,26 @@ target -->
                             <attDef ident="org" mode="delete"/>
                             <attDef ident="sample" mode="delete"/>
                             <attDef ident="part" mode="delete"/>
-
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+                            
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+   
                             <attDef ident="type" mode="replace" usage="req">
                                 <desc>Classifies the segment</desc>
                                 <valList type="closed">
@@ -1045,10 +1371,6 @@ target -->
                                         <desc>Notes</desc>
                                     </valItem>
 
-
-
-
-
                                     <!-- Sonderformen aus Nestroy-Stücken-->
                                     <valItem ident="unten" validUntil="2020-12-31">
                                         <desc>"unten"</desc>
@@ -1088,10 +1410,36 @@ target -->
 
                         </attList>
 
-                        <exemplum>
-                            <p>Probably not the best example...</p>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples"> </egXML>
-
+                        <exemplum source="#ger000253">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <div type="scene">
+                                    <head>Fünfte Szene</head>
+                                    <sp who="#poniatowsky">
+                                        <speaker>PONIATOWSKY.</speaker>
+                                        <lg>
+                                            <l>Der alte Woiwode predigt gut,</l>
+                                            <l>Doch seine Weisheit kommt von seinen Haaren,</l>
+                                            <l>Ich lobe den, der aus der Kirche läuft.</l>
+                                        </lg>
+                                    </sp>
+                                </div>
+                            </egXML>
+                            <ab>A short "scene" in the play <ref target="https://dracor.org/id/ger000253">Hebbel: Demetrius</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#rus000109">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <div type="scene">
+                                    <head>Явление 13</head>
+                                    <sp who="#zdravomyslov">
+                                        <speaker>Г. Здравомыслов.</speaker>
+                                        <p>Что это значит? Прогневать я не мог, я ни в чем не проступился; но докучать не надо,
+                                            ее нрав более умягчается повиновением. На прекрасную ее племянницу надежду свою
+                                            полагаю; пойду, однако ж, постараюсь узнать причину холодного сего приема.</p>
+                                    </sp>
+                                    <trailer>Конец четвертого действия.</trailer>
+                                </div>
+                            </egXML>
+                            <ab>The last "scene" of the fourth act of the play <ref target="https://dracor.org/id/rus000109">Дашкова: Тоисиоков</ref>.</ab>
                         </exemplum>
 
                     </elementSpec>
@@ -1123,12 +1471,29 @@ target -->
                             <attDef ident="source" mode="delete"/>
                             <attDef ident="key" mode="delete"/>
                             <attDef ident="ref" mode="delete"/>
-                        </attList>
+                        </attList>    
+                        <exemplum source="#ger000088">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <front>
+                                    <docAuthor>Gotthold Ephraim Lessing</docAuthor>
+                                    <docTitle>
+                                        <titlePart type="main">Emilia Galotti</titlePart>
+                                        <titlePart type="sub">Ein Trauerspiel in fünf Aufzügen</titlePart>
+                                        <pb n="128"/>
+                                    </docTitle>
+                                    <!-- ... -->
+                                </front>
+                            </egXML>
+                            <ab>Used in <ref target="https://dracor.org/id/ger000088">Lessing: Emilia Galotti</ref></ab>
+                        </exemplum>
+                        <remarks>
+                            <p>Used inconsitently throughout the corpora. Needs to be revised!</p>
+                        </remarks>
                     </elementSpec>
 
-
                     <!-- docImprint -->
-                    <elementSpec ident="docImprint" module="textstructure" mode="change">
+                    <!-- no longer in use -->
+                    <!--<elementSpec ident="docImprint" module="textstructure" mode="change">
                         <attList>
                             <attDef ident="xml:id" mode="delete"/>
                             <attDef ident="n" mode="delete"/>
@@ -1153,7 +1518,7 @@ target -->
                             <attDef ident="resp" mode="delete"/>
                             <attDef ident="source" mode="delete"/>
                         </attList>
-                    </elementSpec>
+                    </elementSpec>-->
 
                     <!-- docTitle -->
                     <elementSpec ident="docTitle" module="textstructure" mode="change">
@@ -1183,6 +1548,18 @@ target -->
                             <attDef ident="key" mode="delete"/>
                             <attDef ident="ref" mode="delete"/>
                         </attList>
+                        <exemplum source="#ger000482">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <front>
+                                    <docTitle>
+                                        <titlePart type="main">Die beiden Billets.</titlePart>
+                                        <titlePart type="sub">Ein Lustspiel in einem Akt nach Florian von Anton-Wall.</titlePart>
+                                    </docTitle>
+                                <!-- ... -->
+                                </front>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000482">Heyne: Die beiden Billets</ref></ab>
+                        </exemplum>
                     </elementSpec>
 
                     <!-- ##### -->
@@ -1200,7 +1577,41 @@ target -->
                             <attDef ident="rend" mode="delete"/>
                             <attDef ident="style" mode="delete"/>
                             <attDef ident="rendition" mode="delete"/>
-                            <!-- )) (att.global.linking (@corresp, @synch, @sameAs, @copyOf, @next, @prev, @exclude, @select)) (att.global.analytic (@ana)) (att.global.responsibility (@cert, @resp)) (att.global.source (@source)) att.naming (@role, @nymRef) (att.canonical (@key, @ref)) att.datable (@calendar, @period) (att.datable.w3c (@when, @notBefore, @notAfter, @from, @to)) (att.datable.iso (@when-iso, @notBefore-iso, @notAfter-iso, @from-iso, @to-iso)) (att.datable.custom (@when-custom, @notBefore-custom, @notAfter-custom, @from-custom, @to-custom, @datingPoint, @datingMethod)) -->
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+                            <attDef ident="cert" mode="delete"/>
+                            <attDef ident="resp" mode="delete"/>
+                            <attDef ident="source" mode="delete"/>
+                            <attDef ident="role" mode="delete"/>
+                            <attDef ident="nymRef" mode="delete"/>
+                            <attDef ident="key" mode="delete"/>
+                            <attDef ident="ref" mode="delete"/>
+                            <attDef ident="calendar" mode="delete"/>
+                            <attDef ident="period" mode="delete"/>
+                            <attDef ident="when" mode="delete"/>
+                            <attDef ident="notBefore" mode="delete"/>
+                            <attDef ident="notAfter" mode="delete"/>
+                            <attDef ident="from" mode="delete"/>
+                            <attDef ident="to" mode="delete"/>
+                            <attDef ident="when-iso" mode="delete"/>
+                            <attDef ident="notBefore-iso" mode="delete"/>
+                            <attDef ident="notAfter-iso" mode="delete"/>
+                            <attDef ident="from-iso" mode="delete"/>
+                            <attDef ident="to-iso" mode="delete"/>
+                            <attDef ident="when-custom" mode="delete"/>
+                            <attDef ident="notBefore-custom" mode="delete"/>
+                            <attDef ident="notAfter-custom" mode="delete"/>
+                            <attDef ident="from-custom" mode="delete"/>
+                            <attDef ident="to-custom" mode="delete"/>
+                            <attDef ident="datingPoint" mode="delete"/>
+                            <attDef ident="datingMethod" mode="delete"/>
                         </attList>
                         <exemplum>
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -1215,17 +1626,13 @@ target -->
                                     <date>1975</date>,
                                     S. <biblScope unit="page" from="83" to="178">83–178</biblScope>.
                                 </bibl>
-                            </egXML>    
-                            
+                            </egXML>
+                            <ab>Example from GerShDraCor</ab>
                         </exemplum>
-
                     </elementSpec>
                     
 
                     <!-- emph -->
-                    <!-- 
-             (att.global.responsibility (@cert, @resp)) (att.global.source (@source))
-            -->
                     <elementSpec ident="emph" module="core" mode="change">
                         <attList>
                             <attDef ident="xml:id" mode="delete"/>
@@ -1233,24 +1640,35 @@ target -->
                             <attDef ident="xml:lang" mode="delete"/>
                             <attDef ident="xml:base" mode="delete"/>
                             <attDef ident="xml:space" mode="delete"/>
-                            <attDef ident="rend" mode="change">
+                            <attDef ident="rend" mode="delete"/>
+                            <!--<attDef ident="rend" mode="change">
                                 <remarks>
                                     <p>Use <att>rend</att> or <att>rendition</att>?</p>
                                 </remarks>
-                            </attDef>
+                            </attDef>-->
                             <attDef ident="style" mode="delete"/>
-                            <attDef ident="rendition" mode="change">
+                            <attDef ident="rendition" mode="delete"/>
+                            <!--<attDef ident="rendition" mode="change">
                                 <remarks>
                                     <p>Use <att>rend</att> or <att>rendition</att>?</p>
                                 </remarks>
-                            </attDef>
+                            </attDef>-->
                             <attDef ident="cert" mode="delete"/>
                             <attDef ident="resp" mode="delete"/>
                             <attDef ident="source" mode="delete"/>
-
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+                            <!-- no attributes used: //emph[@*] -->
                         </attList>
 
-                        <exemplum>
+                        <exemplum source="#ger000083">
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <sp who="#titus">
                                     <speaker>TITUS.</speaker>
@@ -1262,7 +1680,7 @@ target -->
                                             <emph>versetzt</emph>.</p>
                                 </sp>
                             </egXML>
-
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000083">Nestroy: Der Talisman</ref>.</ab>
                         </exemplum>
 
                     </elementSpec>
@@ -1293,8 +1711,30 @@ target -->
                             <attDef ident="resp" mode="delete"/>
                             <attDef ident="source" mode="delete"/>
                         </attList>
+                        <exemplum source="#ger000522">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <epigraph>
+                                    <p>Nichts gibt so sehr das Gefühl der Unendlichkeit als wie die Dummheit.</p>
+                                </epigraph>
+                            </egXML>
+                            <ab>Epigraph of <ref target="https://dracor.org/id/ger000522">Horvath: Geschichten aus dem Wiener Wald</ref></ab>
+                        </exemplum>
+                        <exemplum source="#ger000314">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <epigraph xml:lang="lat">
+                                    <cit>
+                                        <quote>
+                                            <l>Flectere si nequeo superos, acheronta movebo.</l>
+                                        </quote>
+                                    </cit>
+                                </epigraph>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000314">Benkowitz: Die Jubelfeier der Hölle, oder Faust der jüngere</ref>.</ab>
+                        </exemplum>
                     </elementSpec>
-
+                    
+                    
+                    <!-- event -->
                     <elementSpec ident="event" module="namesdates" mode="change">
                         <attList>
                             <attDef ident="xml:id" mode="delete"/>
@@ -1323,17 +1763,31 @@ target -->
                             <attDef ident="period" mode="delete"/>
                             <!-- 2do: find out, what the API/eXist app supports -->
                             <attDef ident="when" mode="change" usage="opt">
-                                <desc>use only year here</desc>
+                                <desc>supplies the value of the date</desc>
                                 <datatype>
                                     <dataRef key="gYear"/>
                                 </datatype>
+                                <remarks><p>use only year here</p></remarks>
                             </attDef>
-
-                            <!--<attDef ident="notBefore" mode="delete"/>-->
-                            <!--<attDef ident="notAfter" mode="delete"/>-->
-                            <!--<attDef ident="from" mode="delete"/>-->
-                            <!--<attDef ident="to" mode="delete"/>-->
-
+                            
+                            <!-- have to allow these two -->
+                            <attDef ident="notBefore" mode="change" usage="opt">
+                                <desc>supplies the value of the date</desc>
+                                <datatype>
+                                    <dataRef key="gYear"/>
+                                </datatype>
+                                <remarks><p>use only year here</p></remarks>
+                            </attDef>
+                            <attDef ident="notAfter" mode="change" usage="opt">
+                                <desc>supplies the value of the date</desc>
+                                <datatype>
+                                    <dataRef key="gYear"/>
+                                </datatype>
+                                <remarks><p>use only year here</p></remarks>
+                            </attDef>
+                            
+                            <attDef ident="from" mode="delete"/>
+                            <attDef ident="to" mode="delete"/>
                             <attDef ident="when-iso" mode="delete"/>
                             <attDef ident="notBefore-iso" mode="delete"/>
                             <attDef ident="notAfter-iso" mode="delete"/>
@@ -1351,9 +1805,8 @@ target -->
 
                             <!--<attDef ident="type" mode="delete"/>-->
 
-                            <attDef ident="type" mode="change">
-                                <desc>classifies date, select from the following values</desc>
-                                <valList type="closed">
+                            <attDef ident="type" mode="change" usage="req">
+                                <valList type="closed" mode="replace">
                                     <valItem ident="print">
                                         <desc>Date of impressum</desc>
                                     </valItem>
@@ -1365,6 +1818,7 @@ target -->
                                         <desc>Date of writing</desc>
                                     </valItem>
                                 </valList>
+                                <remarks><p>classifies date, select from the following values</p></remarks>
                             </attDef>
 
                             <attDef ident="subtype" mode="delete"/>
@@ -1384,6 +1838,14 @@ target -->
                             <ab>Example see <ref
                                     target="https://github.com/dracor-org/dracor-schema/issues/38"
                                     >Github Issue</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000564">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <event type="written" notBefore="1836" notAfter="1837">
+                                    <label>1836–1837</label>
+                                </event>
+                            </egXML>
+                            <ab>Written date of the play <ref target="https://dracor.org/id/ger000564">Büchner: Woyzeck</ref>.</ab>
                         </exemplum>
                     </elementSpec>
 
@@ -1421,6 +1883,23 @@ target -->
                             <attDef ident="subtype" mode="delete"/>
                             <attDef ident="hand" mode="delete"/>
                         </attList>
+                        <exemplum source="#ger000104">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <figure>
+                                    <graphic url="http://images.zeno.org/Literatur/I/big/haup0031.jpg"/>
+                                    <ab>Glumms große Kretschamstube.</ab>
+                                </figure>
+                            </egXML>
+                            <ab>A figure in <ref target="https://dracor.org/id/ger000104">Hauptmann: Ephraims Breite</ref></ab>
+                        </exemplum>
+                        <exemplum source="#ger000191">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <figure>
+                                    <graphic url="https://textgridlab.org/1.0/tgcrud/rest/textgrid:x3gp.0/data"/>
+                                </figure>
+                            </egXML>
+                            <ab>An image in <ref target="https://dracor.org/id/ger000191">Wedekind: König Nicolo oder So ist das Leben</ref></ab>
+                        </exemplum>
                     </elementSpec>
 
                     <!-- fileDesc -->
@@ -1437,62 +1916,84 @@ target -->
                             <attDef ident="cert" mode="delete"/>
                             <attDef ident="resp" mode="delete"/>
                             <attDef ident="source" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
                         </attList>
+                        <exemplum source="#ger000442">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <fileDesc>
+                                    <titleStmt>
+                                        <title type="main">Egmont</title>
+                                        <!-- ... -->
+                                    </titleStmt>
+                                    <publicationStmt>
+                                        <publisher xml:id="dracor">DraCor</publisher>
+                                        <!-- ... -->
+                                    </publicationStmt>
+                                    <sourceDesc>
+                                        <bibl type="digitalSource">
+                                            <name>TextGrid Repository</name>
+                                            <!-- ... -->
+                                            <bibl type="originalSource">
+                                                <title>Goethes Werke. <!-- ... --></title>
+                                            </bibl>
+                                        </bibl>
+                                    </sourceDesc>
+                                </fileDesc>
+                            </egXML>
+                            <ab>Example taken adapted from <ref target="https://dracor.org/id/ger000442">Goethe: Egmont</ref>.</ab>
+                        </exemplum>
 
                     </elementSpec>
 
 
                     <!-- foreign -->
                     <!-- xml:lang erlauben -->
-
-
-                    <!-- front -->
-                    <elementSpec ident="front" module="textstructure" mode="change">
+                    <elementSpec ident="foreign" module="core" mode="change">
                         <attList>
                             <attDef ident="xml:id" mode="delete"/>
                             <attDef ident="n" mode="delete"/>
-                            <attDef ident="xml:lang" mode="delete"/>
+                            <!--<attDef ident="xml:lang" mode="delete"/>-->
                             <attDef ident="xml:base" mode="delete"/>
                             <attDef ident="xml:space" mode="delete"/>
                             <attDef ident="rend" mode="delete"/>
                             <attDef ident="style" mode="delete"/>
                             <attDef ident="rendition" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
                             <attDef ident="cert" mode="delete"/>
                             <attDef ident="resp" mode="delete"/>
                             <attDef ident="source" mode="delete"/>
-                            <attDef ident="decls" mode="delete"/>
                         </attList>
-
-                        <exemplum>
+                        <exemplum source="#ger000581">
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                                <front>
-                                    <div type="front">
-                                        <head>Johann Nestroy</head>
-                                        <head>Der Talisman</head>
-                                        <head>Posse mit Gesang in drei Aufzügen</head>
-                                        <pb n="244"/>
-                                    </div>
-                                    <div type="Dramatis_Personae">
-                                        <castList>
-                                            <head>Personen.</head>
-                                            <castItem>Titus Feuerfuchs, ein vazierender
-                                                Barbiergeselle.</castItem>
-                                            <castItem>Frau von Cypressenburg, Witwe.</castItem>
-                                            <castItem>Emma, ihre Tochter.</castItem>
-                                            <!-- ... -->
-                                        </castList>
-                                    </div>
-                                    <set>
-                                        <p>Die Handlung spielt auf dem Gute der Frau von
-                                            Cypressenburg, nahe bei einer großen Stadt.</p>
-                                    </set>
-                                </front>
+                                <sp who="#baronesse_von_ehegestern">
+                                    <speaker>B. v. Ehegestern</speaker>
+                                    <stage>(für sich.)</stage>
+                                    <p><foreign xml:lang="fre">Mais, mon Dieu, qu'elle confidence!</foreign>
+                                        <stage>(laut:)</stage> Nun es kann nicht lange <foreign xml:lang="fre">Mystère</foreign>
+                                        bleiben. <foreign xml:lang="fre">Voilà une lettre.</foreign> Der Doktor hat ihn
+                                        abgegeben.</p>
+                                </sp>
                             </egXML>
-
+                            <ab><ref target="https://dracor.org/id/ger000581">Rambach: Die Kuhpocken</ref></ab>
                         </exemplum>
                     </elementSpec>
-
-
+                    
                     <!-- forename -->
                     <elementSpec ident="forename" module="namesdates" mode="change">
                         <attList>
@@ -1533,7 +2034,102 @@ target -->
                             </attDef>
                             <attDef ident="subtype" mode="delete"/>
                         </attList>
+                        <exemplum source="#ger000565">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <persName>
+                                    <forename>Hermann</forename>
+                                    <surname>Bahr</surname>
+                                </persName>
+                            </egXML>
+                        </exemplum>
+                        <exemplum source="#ger000124">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <persName>
+                                    <forename>Christian</forename>
+                                    <forename>Fürchtegott</forename>
+                                    <surname>Gellert</surname>
+                                </persName>
+                            </egXML>
+                        </exemplum>
+                        <exemplum source="#rus000142">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <persName>
+                                    <forename>Евдокия</forename>
+                                    <forename type="patronym">Петровна</forename>
+                                    <surname>Ростопчина</surname>
+                                </persName>
+                            </egXML>
+                        </exemplum>
                     </elementSpec>
+
+
+                    <!-- front -->
+                    <elementSpec ident="front" module="textstructure" mode="change">
+                        <attList>
+                            <attDef ident="xml:id" mode="delete"/>
+                            <attDef ident="n" mode="delete"/>
+                            <attDef ident="xml:lang" mode="delete"/>
+                            <attDef ident="xml:base" mode="delete"/>
+                            <attDef ident="xml:space" mode="delete"/>
+                            <attDef ident="rend" mode="delete"/>
+                            <attDef ident="style" mode="delete"/>
+                            <attDef ident="rendition" mode="delete"/>
+                            <attDef ident="cert" mode="delete"/>
+                            <attDef ident="resp" mode="delete"/>
+                            <attDef ident="source" mode="delete"/>
+                            <attDef ident="decls" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+                        </attList>
+
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <front>
+                                    <div type="front">
+                                        <head>Johann Nestroy</head>
+                                        <head>Der Talisman</head>
+                                        <head>Posse mit Gesang in drei Aufzügen</head>
+                                        <pb n="244"/>
+                                    </div>
+                                    <div type="Dramatis_Personae">
+                                        <castList>
+                                            <head>Personen.</head>
+                                            <castItem>Titus Feuerfuchs, ein vazierender
+                                                Barbiergeselle.</castItem>
+                                            <castItem>Frau von Cypressenburg, Witwe.</castItem>
+                                            <castItem>Emma, ihre Tochter.</castItem>
+                                            <!-- ... -->
+                                        </castList>
+                                    </div>
+                                    <set>
+                                        <p>Die Handlung spielt auf dem Gute der Frau von
+                                            Cypressenburg, nahe bei einer großen Stadt.</p>
+                                    </set>
+                                </front>
+                            </egXML>
+                            <ab>The frontmatter of the play <ref target="https://dracor.org/id/ger000083">Nestroy: Der Talisman</ref>. 
+                                
+                                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                    <div type="front">
+                                <head>Johann Nestroy</head>
+                                <head>Der Talisman</head>
+                                <head>Posse mit Gesang in drei Aufzügen</head>
+                                <pb n="244"/>
+                            </div>
+                                </egXML> will be deprecated though and replaced with <gi>titlePage</gi>.</ab>
+
+                        </exemplum>
+                    </elementSpec>
+
+
+                    
 
 
 
@@ -1575,6 +2171,28 @@ target -->
                             <attDef ident="type" mode="delete"/>
                             <attDef ident="subtype" mode="delete"/>
                         </attList>
+                        <exemplum source="#rus000209">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <author>
+                                    <persName type="nobility">
+                                        <forename>Екатерина</forename>
+                                        <genName>II</genName>
+                                    </persName>
+                                    <persName>
+                                        <forename>София</forename>
+                                        <forename>Августа</forename>
+                                        <forename>Фредерика</forename>
+                                        <surname>Ангальт-Цербстская</surname>
+                                    </persName>
+                                    <persName xml:lang="eng">
+                                        <forename>Catherine</forename>
+                                        <genName>II</genName>
+                                    </persName>
+                                    <idno type="wikidata">Q36450</idno>
+                                </author>
+                            </egXML>
+                            <ab>Encoding of the name of the author "Catherine II" of the play <ref target="https://dracor.org/id/rus000209">Расстроенная семья острожками и подозрениями</ref>.</ab>
+                        </exemplum>
                     </elementSpec>
 
 
@@ -1609,8 +2227,18 @@ target -->
                             <attDef ident="mimeType" mode="delete"/>
                             <!-- <attDef ident="url" mode="delete"/> -->
                             <attDef ident="decls" mode="delete"/>
-
+                            <attDef ident="type" mode="delete"/>
+                            <attDef ident="subtype" mode="delete"/>
                         </attList>
+                        <exemplum source="#ger000104">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <figure>
+                                    <graphic url="http://images.zeno.org/Literatur/I/big/haup0031.jpg"/>
+                                    <ab>Glumms große Kretschamstube.</ab>
+                                </figure>
+                            </egXML>
+                            <ab>A figure in <ref target="https://dracor.org/id/ger000104">Hauptmann: Ephraims Breite</ref></ab>
+                        </exemplum>
                     </elementSpec>
 
                     <!-- ##### -->
@@ -1637,9 +2265,18 @@ target -->
                             <attDef ident="subtype" mode="delete"/>
                             <attDef ident="place" mode="delete"/>
                             <attDef ident="hand" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
                         </attList>
 
-                        <exemplum>
+                        <exemplum source="#ger000083">
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <div type="act">
                                     <head>Erster Aufzug</head>
@@ -1656,7 +2293,31 @@ target -->
                                     </div>
                                 </div>
                             </egXML>
-
+                            <ab>Headings of an act and a scene in <ref target="https://dracor.org/id/ger000083">Nestroy: Der Talisman</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000546">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <argument>
+                                    <head>Inhalt des trauer-spiels.</head>
+                                    <p>Michael Balbus, käyser Leonis Armenii oberster feldhauptmann, nach dem er zu
+                                        unterschiedenen mahlen wegen seiner untreu und verleumbdungen angeklaget, verschweret sich
+                                        wider den käyser, welcher ihn durch Exabolium, seinen geheimesten rath, offt von seiner
+                                        leichtfertigkeit abzustehen ermahnet.<!-- ... --></p>
+                                </argument>
+                            </egXML>
+                            <ab><ref target="https://dracor.org/id/ger000546">Gryphius: Leo Armenius oder Fürsten-Mord</ref></ab>
+                        </exemplum>
+                        <exemplum source="#ger000562">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castList>
+                                    <head>In stummen Rollen</head>
+                                    <castGroup>
+                                        <castItem>Kardinal Dupin, Erzbischof von Paris</castItem>
+                                        <castItem>Minister</castItem>
+                                        <!-- ... -->
+                                    </castGroup>
+                                </castList>
+                            </egXML>
                         </exemplum>
 
 
@@ -1680,11 +2341,7 @@ target -->
                             <attDef ident="xml:id" mode="delete"/>
                             <attDef ident="n" mode="delete"/>
                             <attDef ident="xml:lang" mode="delete"/>
-                            <attDef ident="xml:base" mode="change">
-                                <remarks>
-                                    <p>Use this to alway note the base-uri?</p>
-                                </remarks>
-                            </attDef>
+                            <attDef ident="xml:base" mode="delete"/>
                             <attDef ident="xml:space" mode="delete"/>
                             <attDef ident="rend" mode="delete"/>
                             <attDef ident="style" mode="delete"/>
@@ -1716,45 +2373,94 @@ target -->
 
 
 
-                            <attDef ident="type" mode="replace" usage="req">
+                            <attDef ident="type" mode="change" usage="req">
                                 <desc>Classifies the identifier</desc>
-                                <valList type="closed">
-                                    <valItem ident="dracor">
+                                <valList type="closed" mode="replace">
+                                    <!--<valItem ident="dracor">
                                         <desc>DraCor-Identifier</desc>
-                                    </valItem>
+                                    </valItem>-->
                                     <valItem ident="URL">
                                         <desc>URL</desc>
                                     </valItem>
                                     <valItem ident="wikidata">
                                         <desc>wikidata</desc>
                                     </valItem>
-                                    <valItem ident="viaf">
+                                    <!--<valItem ident="viaf">
                                         <desc>VIAF</desc>
-                                    </valItem>
-                                    <valItem ident="pnd">
+                                    </valItem>-->
+                                    <!--<valItem ident="pnd">
                                         <desc>GND</desc>
-                                    </valItem>
+                                    </valItem>-->
 
                                 </valList>
                             </attDef>
                             <attDef ident="subtype" mode="delete"/>
-
-
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
                         </attList>
-
-                        <exemplum>
+                        <exemplum source="#ger000416">
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                                <idno type="URL">http://www.textgridrep.org/textgrid:str1.0</idno>
+                                <author>
+                                    <persName>
+                                        <forename>Ferdinand</forename>
+                                        <surname>Raimund</surname>
+                                    </persName>
+                                    <idno type="wikidata">Q45025</idno>
+                                    <idno type="pnd">118597914</idno>
+                                </author>
                             </egXML>
-
+                            <ab>Identifiers of the author of the play <ref target="https://dracor.org/id/ger000416">Raimund: Die gefesselte Phantasie</ref></ab>
+                        </exemplum>
+                        <exemplum source="#ger000416">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <publicationStmt>
+                                    <publisher xml:id="dracor">DraCor</publisher>
+                                    <idno type="URL">https://dracor.org</idno>
+                                    <availability>
+                                        <licence>
+                                            <ab>CC0 1.0</ab>
+                                            <ref target="https://creativecommons.org/publicdomain/zero/1.0/">Licence</ref>
+                                        </licence>
+                                    </availability>
+                                </publicationStmt>
+                            </egXML>
+                            <ab>Provide an identifier for DraCor (use the URL)</ab>
+                        </exemplum>
+                        <exemplum source="#ger000416">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <bibl type="digitalSource">
+                                    <name>TextGrid Repository</name>
+                                    <idno type="URL">http://www.textgridrep.org/textgrid:t97f.0</idno>
+                                    <!-- ... -->
+                                    </bibl>
+                            </egXML>
+                            <ab>URL as an identifier of the digital source of the play <ref target="https://dracor.org/id/ger000416">Raimund: Die gefesselte Phantasie</ref></ab>
+                        </exemplum>
+                        <exemplum source="#rus000117">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sourceDesc>
+                                    <bibl type="digitalSource">
+                                        <name>Библиотека Максима Мошкова (lib.ru)</name>
+                                        <idno type="URL">http://az.lib.ru/p/plawilxshikow_p_a/text_0040.shtml</idno>
+                                        <availability status="free">
+                                            <p>In the public domain.</p>
+                                        </availability>
+                                        <bibl type="originalSource">
+                                            <title>Русская драматургия XVIII века. – М.: Современник, 1986. – С. 445–460.</title>
+                                        </bibl>
+                                    </bibl>
+                                </sourceDesc>
+                            </egXML>
+                            <ab><ref target="https://dracor.org/id/rus000117">Плавильщиков: Ермак, покоритель Сибири</ref></ab>
                         </exemplum>
 
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                                <idno type="DLINA-ID">83</idno>
-                            </egXML>
-
-                        </exemplum>
 
                     </elementSpec>
 
@@ -1930,7 +2636,7 @@ target -->
                             </egXML>
                             <ab>Encoding of the written date of <ref target="https://dracor.org/id/ger000549">Gryphius: Horribilicribrifax Teutsch</ref>.</ab>
                         </exemplum>
-                        <remarks>In DraCor <gi>label</gi> is used exclusively to attach a non-iso date/date string to an event.</remarks>
+                        <remarks><p>In DraCor <gi>label</gi> is used exclusively to attach a non-iso date/date string to an event.</p></remarks>
                     </elementSpec>
 
                     <!-- lb -->
