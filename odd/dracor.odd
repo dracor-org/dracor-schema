@@ -148,7 +148,7 @@
                         include="availability change classCode fileDesc idno keywords licence listChange profileDesc publicationStmt revisionDesc sourceDesc teiHeader textClass titleStmt"/>
 
                     <moduleRef key="textstructure"
-                        include="TEI argument back body div dateline docAuthor docTitle epigraph front text titlePart signed trailer"/>
+                        include="TEI argument back body div dateline docAuthor docTitle epigraph front text titlePage titlePart signed trailer"/>
 
                     <moduleRef key="drama"
                         include="actor castGroup castItem castList performance role roleDesc set spGrp"/>
@@ -2388,9 +2388,9 @@
                                     <!--<valItem ident="viaf">
                                         <desc>VIAF</desc>
                                     </valItem>-->
-                                    <!--<valItem ident="pnd">
+                                    <valItem ident="pnd">
                                         <desc>GND</desc>
-                                    </valItem>-->
+                                    </valItem>
 
                                 </valList>
                             </attDef>
@@ -2460,8 +2460,6 @@
                             </egXML>
                             <ab><ref target="https://dracor.org/id/rus000117">Плавильщиков: Ермак, покоритель Сибири</ref></ab>
                         </exemplum>
-
-
                     </elementSpec>
 
 
@@ -2484,24 +2482,26 @@
                             <attDef ident="cert" mode="delete"/>
                             <attDef ident="resp" mode="delete"/>
                             <attDef ident="source" mode="delete"/>
-                            <!-- <attDef ident="scheme" mode="delete"/> -->
-
-
+                            <attDef ident="scheme" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
                         </attList>
-
-                        <exemplum>
+                        <exemplum source="#ger000389">
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                                <textClass>
-                                    <keywords>
-                                        <term type="genreTitle">Posse</term>
-                                    </keywords>
-                                </textClass>
+                                <keywords>
+                                    <term type="genreTitle">Tragedy</term>
+                                </keywords>
                             </egXML>
+                            <ab>Keywords used to classify genre of the play <ref target="https://dracor.org/id/ger000389">Laube: Struensee</ref>.</ab>
 
                         </exemplum>
-
-
-
                     </elementSpec>
 
                     <!-- ##### -->
@@ -2512,18 +2512,13 @@
 
                     <elementSpec ident="l" module="core" mode="change">
                         <attList>
-
-
                             <attDef ident="xml:lang" mode="delete"/>
                             <attDef ident="xml:base" mode="delete"/>
                             <attDef ident="xml:space" mode="delete"/>
-                            <attDef ident="rend" mode="replace" usage="opt">
-                                <valList type="closed">
+                            <attDef ident="rend" mode="change" usage="opt">
+                                <valList type="closed" mode="replace">
                                     <valItem ident="indent"/>
                                 </valList>
-                                <remarks>
-                                    <p>Switch to <att>rendition</att> and use predefined values?</p>
-                                </remarks>
                             </attDef>
                             <attDef ident="style" mode="delete"/>
                             <attDef ident="rendition" mode="delete"/>
@@ -2546,11 +2541,17 @@
                             </attDef>
                             <attDef ident="xml:id" mode="delete"/>
                             <attDef ident="n" mode="delete"/>
-
-
-
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
                         </attList>
-                        <exemplum>
+                        <exemplum source="#ger000083">
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <sp who="#chor_2-23">
                                     <speaker>CHOR.</speaker>
@@ -2564,10 +2565,9 @@
                                         Teetisch gebracht und die Stühle gesetzt.</stage>
                                 </sp>
                             </egXML>
+                            <ab><ref target="https://dracor.org/id/ger000083">Nestroy: Der Talisman</ref></ab>
                         </exemplum>
-                        <exemplum>
-                            <p>Блок Балаганчик to illustrate usage of <att>part</att>; would need
-                                the source as well</p>
+                        <exemplum source="#rus000022">
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <sp who="#TretijMistik">
                                     <speaker>Третий мистик</speaker>
@@ -2591,7 +2591,31 @@
                                     <l>За окном нам ветер подал знак.</l>
                                 </sp>
                             </egXML>
+                            <ab><ref target="https://dracor.org/id/rus000022">Блок: Балаганчик</ref> to illustrate usage of <att>part</att>; would need
+                                the source as well.</ab>
 
+                        </exemplum>
+                        <exemplum source="#rus000018">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sp who="#rusalki">
+                                    <speaker>Русалки</speaker>
+                                    <lg>
+                                        <l rend="indent">Веселой толпою</l>
+                                        <l rend="indent">С глубокого дна</l>
+                                        <l rend="indent">Мы ночью всплываем,</l>
+                                        <l rend="indent">Нас греет луна.</l>
+                                        <l>Любо нам порой ночною</l>
+                                        <l>Дно речное покидать,</l>
+                                        <l>Любо вольной головою</l>
+                                        <l>Высь речную разрезать,</l>
+                                        <l>Подавать друг дружке голос,</l>
+                                        <l>Воздух звонкий раздражать,</l>
+                                        <l>И зеленый, влажный волос</l>
+                                        <l>В нем сушить и отряхать.</l>
+                                    </lg>
+                                </sp>
+                            </egXML>
+                            <ab>Indented lines in the play <ref target="https://dracor.org/id/rus000018">Пушкин: Русалка</ref>.</ab>
                         </exemplum>
                     </elementSpec>
 
@@ -2661,11 +2685,16 @@
                             <attDef ident="edRef" mode="delete"/>
                             <attDef ident="spanTo" mode="delete"/>
                             <attDef ident="break" mode="delete"/>
-
-
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
                         </attList>
-
-
                         <exemplum>
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <div type="dedication">
@@ -2677,7 +2706,6 @@
 
                                 </div>
                             </egXML>
-
                         </exemplum>
 
                         <remarks>
@@ -2708,12 +2736,10 @@
                             <attDef ident="type" mode="delete"/>
                             <attDef ident="subtype" mode="delete"/>
                             <attDef ident="decls" mode="delete"/>
-
-
                         </attList>
 
 
-                        <exemplum>
+                        <exemplum source="#ger000083">
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <sp who="#flora #salome">
                                     <speaker>FLORA, SALOME.</speaker>
@@ -2724,15 +2750,13 @@
                                     </lg>
                                 </sp>
                             </egXML>
-
+                            <ab>Grouping of lines in <ref target="https://dracor.org/id/ger000083">Nestroy: Der Talisman</ref>.</ab>
                         </exemplum>
-
-
-
                     </elementSpec>
 
 
                     <!-- licence -->
+                    <!-- HIER -->
 
 
                     <elementSpec ident="licence" module="header" mode="change">
@@ -2770,11 +2794,7 @@
                             <attDef ident="to-custom" mode="delete"/>
                             <attDef ident="datingPoint" mode="delete"/>
                             <attDef ident="datingMethod" mode="delete"/>
-
-
                         </attList>
-
-
                         <exemplum>
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <availability>
@@ -2786,7 +2806,6 @@
                                     </licence>
                                 </availability>
                             </egXML>
-
                         </exemplum>
 
 
@@ -4416,7 +4435,47 @@
                         </attList>
                     </elementSpec>
 
-
+                    <!-- titlePage -->
+                    <elementSpec ident="titlePage" module="textstructure" mode="change">
+                        <attList>
+                            <attDef ident="xml:id" mode="delete"/>
+                            <attDef ident="n" mode="delete"/>
+                            <attDef ident="xml:lang" mode="delete"/>
+                            <attDef ident="xml:base" mode="delete"/>
+                            <attDef ident="xml:space" mode="delete"/>
+                            <attDef ident="rend" mode="delete"/>
+                            <attDef ident="style" mode="delete"/>
+                            <attDef ident="rendition" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+                            <attDef ident="facs" mode="delete"/>
+                            <attDef ident="change" mode="delete"/>
+                            <attDef ident="cert" mode="delete"/>
+                            <attDef ident="resp" mode="delete"/>
+                            <attDef ident="source" mode="delete"/>
+                            <attDef ident="type" mode="delete"/>
+                            <attDef ident="subtype" mode="delete"/>
+                        </attList>
+                        <exemplum source="#ger000304">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <titlePage>
+                                    <docAuthor>Ludwig Anzengruber</docAuthor>
+                                    <docTitle>
+                                        <titlePart type="main">Die Kreuzelschreiber</titlePart>
+                                        <titlePart type="sub">Bauernkomödie mit Gesang in drei Akten</titlePart>
+                                    </docTitle>
+                                </titlePage>
+                            </egXML>
+                            <ab>Encoding of the title page of the play <ref target="https://dracor.org/id/ger000304">Anzengruber: Die Kreuzelschreiber</ref>.</ab>
+                        </exemplum>
+                    </elementSpec>
 
                     <!-- titlePart -->
                     <elementSpec ident="titlePart" module="textstructure" mode="change">
