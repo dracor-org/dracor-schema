@@ -56,7 +56,7 @@
         <front>
             <titlePage>
                 <titlePart type="main">Drama Corpora | dracor.org</titlePart>
-                <titlePart type="sub">TEI Customization</titlePart>
+                <titlePart type="sub">TEI Customization and Documentation</titlePart>
                 <docDate>2022</docDate>
             </titlePage>
             <divGen type="toc"/>
@@ -123,6 +123,9 @@
                 <head>Marking up characters and linking them to the particDesc</head>
                 <p>Why are <egXML xmlns="http://www.tei-c.org/ns/Examples"><castItem><role>Schmiede</role></castItem></egXML> (Goethe: Pandora) not a group? </p>
                 
+            </div>
+            <div xml:id="licensing">
+                <head>Licensing</head>
             </div>
             <div xml:id="div_other_resources">
                 <listBibl>
@@ -2756,10 +2759,13 @@
 
 
                     <!-- licence -->
-                    <!-- HIER -->
-
-
                     <elementSpec ident="licence" module="header" mode="change">
+                        <content>
+                            <sequence minOccurs="1" maxOccurs="1" preserveOrder="true">
+                                <elementRef key="ab" minOccurs="1" maxOccurs="1"/>
+                                <elementRef key="ref" minOccurs="1" maxOccurs="1"/>
+                            </sequence>
+                        </content>
                         <attList>
                             <attDef ident="xml:id" mode="delete"/>
                             <attDef ident="n" mode="delete"/>
@@ -2794,30 +2800,92 @@
                             <attDef ident="to-custom" mode="delete"/>
                             <attDef ident="datingPoint" mode="delete"/>
                             <attDef ident="datingMethod" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
                         </attList>
-                        <exemplum>
+                        <exemplum source="#ger000010">
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                                <availability>
-                                    <licence>
-                                        <ab>CC-BY-4.0</ab>
-                                        <ref
-                                            target="https://creativecommons.org/licenses/by/4.0/legalcode"
-                                            >Lizenzvertrag</ref>
-                                    </licence>
-                                </availability>
-                            </egXML>
+                                <publicationStmt>
+                                    <publisher xml:id="dracor">DraCor</publisher>
+                                    <idno type="URL">https://dracor.org</idno>
+                                    <availability>
+                                        <licence>
+                                            <ab>CC0 1.0</ab>
+                                            <ref target="https://creativecommons.org/publicdomain/zero/1.0/">Licence</ref>
+                                        </licence>
+                                    </availability>
+                                </publicationStmt>
+                                
+                                <!-- ... -->
+                                
+                                <sourceDesc>
+                                    <bibl type="digitalSource">
+                                        <name>TextGrid Repository</name>
+                                        <idno type="URL">http://www.textgridrep.org/textgrid:npsg.0</idno>
+                                        <availability>
+                                            <licence>
+                                                <ab>CC-BY-3.0</ab>
+                                                <ref target="http://creativecommons.org/licenses/by/3.0/de/legalcode">Lizenzvertrag</ref>
+                                            </licence>
+                                        </availability>
+                                        <bibl type="originalSource">
+                                            <title>Franz Grillparzer: Sämtliche Werke. Ausgewählte Briefe, Gespräche, Berichte.
+                                                Herausgegeben von Peter Frank und Karl Pörnbacher, München: Hanser,
+                                                [1960–1965].</title>
+                                        </bibl>
+                                    </bibl>
+                                </sourceDesc>
+                            </egXML>                            
+                            <ab>The text of the play <ref target="https://dracor.org/id/ger000010">Grillparzer: Des Meeres und der Liebe Wellen</ref> is in the public domain and thus licensed under a CC0 licence, as is the encoding by DraCor. The digital source is also contained in Textgrid and was licensed under a CC BY 3.0 licence.</ab>
                         </exemplum>
-
-
-
-
-
+                        <exemplum source="#ger000082">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <licence>
+                                    <ab>CC-BY-3.0</ab>
+                                    <ref target="http://creativecommons.org/licenses/by/3.0/de/legalcode">Lizenzvertrag</ref>
+                                </licence>
+                            </egXML>
+                            <ab>The digital source of the play <ref target="https://dracor.org/id/ger000082">Goethe: Torquato Tasso</ref> distributed by Textgrid is licensed under a CC-BY 3.0 licence.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000485">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <licence>
+                                    <ab>CC BY-NC 3.0</ab>
+                                    <ref target="http://creativecommons.org/licenses/by-nc/3.0/de/">Lizenzvertrag</ref>
+                                </licence>
+                            </egXML>
+                            <ab>The digital source of the play <ref target="https://dracor.org/id/ger000485">Kotzebue: Der Schutzgeist</ref> distributed by the DTA is licensed under a CC-BY-NC 3.0 licence.</ab>
+                        </exemplum>
+                        <exemplum source="rus000042">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <licence>
+                                    <ab>CC BY-SA 3.0</ab>
+                                    <ref target="https://creativecommons.org/licenses/by-sa/3.0/deed.ru">Licence</ref>
+                                </licence>
+                            </egXML>
+                            <ab>The digital source of the play <ref target="https://dracor.org/id/rus000042">Pushkin: Boris Godunov</ref> is licensed by Wikisource under a CC BY-SA 3.0 license.</ab>
+                        </exemplum>
+                        <remarks>
+                            <!-- overwrite the default tei's remarks -->
+                            <ab/>
+                        </remarks>
                     </elementSpec>
 
                     <!-- listChange -->
 
 
                     <elementSpec ident="listChange" module="header" mode="change">
+                        <content>
+                            <elementRef key="change" minOccurs="1"
+                                maxOccurs="unbounded"/>
+                        </content>
                         <attList>
                             <attDef ident="xml:id" mode="delete"/>
                             <attDef ident="n" mode="delete"/>
@@ -2834,21 +2902,27 @@
                             <attDef ident="type" mode="delete"/>
                             <attDef ident="subtype" mode="delete"/>
                             <attDef ident="ordered" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
                         </attList>
-                        <exemplum>
+                        <exemplum source="#ger000262">
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <revisionDesc>
                                     <listChange>
-                                        <change who="#dlina" when="2017-01-06T17:46:09.786+01:00"
-                                            >file conversion from source</change>
-                                        <change who="#ff" when="2017-08-04T01:01:05.278+02:00"
-                                            >structural cleanup</change>
-                                        <change who="#ff" when="2018-02-11">formalities; work on
-                                            IDs; transform -hi- in either -stage- or -emph-; add
-                                            gender</change>
+                                        <change when="2017-01-06">(dlina) file conversion from source</change>
+                                        <change when="2017-08-04">(ff) structural cleanup</change>
+                                        <change when="2018-09-25">(ff) formalities, IDs</change>
                                     </listChange>
                                 </revisionDesc>
                             </egXML>
+                            <ab>List of changes in the <gi>revisionDesc</gi> of the play <ref target="https://dracor.org/id/ger000262">Engel: Eid und Pflicht</ref>.</ab>
                         </exemplum>
                     </elementSpec>
 
@@ -2916,10 +2990,19 @@
                             <attDef ident="type" mode="delete"/>
                             <attDef ident="subtype" mode="delete"/>
                             <attDef ident="default" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
                         </attList>
 
 
-                        <exemplum>
+                        <exemplum source="#ger000304">
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <profileDesc>
                                     <particDesc>
@@ -2945,7 +3028,7 @@
                                     </particDesc>
                                 </profileDesc>
                             </egXML>
-
+                            <ab>Characters listed in the <gi>particDesc</gi> of the play <ref target="https://dracor.org/id/ger000304">Anzengruber: Die Kreuzelschreiber</ref>.</ab>
                         </exemplum>
                         <remarks>
                             <p>//Explain why <gi>listPerson</gi> in addition to <gi>castList</gi>.
