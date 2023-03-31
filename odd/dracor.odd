@@ -3094,7 +3094,7 @@
                         <attList>
                             <attDef ident="xml:id" mode="delete"/>
                             <attDef ident="n" mode="delete"/>
-                            <!-- <attDef ident="xml:lang" mode="change"/> -->
+                            <attDef ident="xml:lang" mode="delete"/> 
                             <attDef ident="xml:base" mode="delete"/>
                             <attDef ident="xml:space" mode="delete"/>
                             <attDef ident="rend" mode="delete"/>
@@ -3107,7 +3107,6 @@
                             <attDef ident="sort" mode="delete"/>
                             <attDef ident="role" mode="delete"/>
                             <attDef ident="nymRef" mode="delete"/>
-
                             <attDef ident="calendar" mode="delete"/>
                             <attDef ident="period" mode="delete"/>
                             <attDef ident="when" mode="delete"/>
@@ -3129,8 +3128,6 @@
                             <attDef ident="datingMethod" mode="delete"/>
                             <attDef ident="key" mode="delete"/>
                             <attDef ident="ref" mode="delete"/>
-
-
                             <attDef ident="evidence" mode="delete"/>
                             <attDef ident="instant" mode="delete"/>
                             <attDef ident="unit" mode="delete"/>
@@ -3144,6 +3141,15 @@
                             <attDef ident="max" mode="delete"/>
                             <attDef ident="confidence" mode="delete"/>
                             <attDef ident="subtype" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
 
                             <attDef ident="type" mode="replace" usage="opt">
                                 <valList type="closed">
@@ -3155,7 +3161,7 @@
 
                         </attList>
 
-                        <exemplum>
+                        <exemplum source="#ger000304">
                             <p>Use <gi>name</gi> if encoding a group of characters with
                                     <gi>personGrp</gi>. <att>type</att> can be used, if more
                                 variants are present:</p>
@@ -3165,9 +3171,28 @@
                                     <name type="variant">Alle Bursche</name>
                                 </personGrp>
                             </egXML>
-
+                            <ab>Encoding of the name of a group of characters in the play <ref target="https://dracor.org/id/ger000304">Anzengruber: Die Kreuzelschreiber</ref>.</ab>
                         </exemplum>
-
+                        <exemplum source="#ger000526">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <bibl type="digitalSource">
+                                    <name>Google Books</name>
+                                    <idno type="URL">https://books.google.com/books?id=q1PDO0ko1mcC&amp;pg=PA51</idno>
+                                    <!-- ... -->
+                                </bibl>
+                            </egXML>
+                            <ab>Encoding of the name of the digital source of the play <ref target="https://dracor.org/id/ger000526">Solbrig: Die Dorfschule</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000258">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="false">
+                                <person xml:id="fausts_vater" sex="MALE">
+                                    <persName>Fausts Vater</persName>
+                                    <name type="variant">Vater</name>
+                                </person>
+                            </egXML>
+                            <ab>This might be unintentional/an error in <ref target="https://dracor.org/id/ger000258">Voss: Faust</ref>. Element <gi>name</gi> should not appear in a <gi>person</gi>.</ab>
+                        </exemplum>
+                      
                         <remarks>
                             <p>Think about, why there is a need for <gi>persName</gi> and
                                     <gi>name</gi>.</p>
@@ -3569,6 +3594,16 @@
                                 </listPerson>
                             </egXML>
 
+                        </exemplum>
+                        <exemplum source="#ger000451">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="false">
+                                <personGrp xml:id="verschworene" sex="MALE">
+                                    <name>Verschworene</name>
+                                    <persName type="variant">Alle</persName>
+                                    <persName type="variant">Einige Verschworene</persName>
+                                </personGrp>
+                            </egXML>
+                            <ab>Wrong usage of <gi>persName</gi> in a <gi>personGrp</gi> in the play <ref target="https://dracor.org/id/ger000451">Schiller: Die Verschwörung des Fiesco zu Genua</ref>.</ab>
                         </exemplum>
 
                         <remarks>
