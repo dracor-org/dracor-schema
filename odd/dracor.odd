@@ -68,37 +68,66 @@
             <head>TEI Customization for Drama Corpora (dracor.org)</head>
             <div xml:id="div_intro">
                 <head>Introduction</head>
-                <p>We are building drama corpora with files encoded in TEI-P5. For more information
-                    on the project and the corpora, see <ref target="https://github.com/dracor-org"
-                        >https://github.com/dracor-org</ref>.</p>
-                <div xml:id="div_what_is_dracor">
-                    <head>What is DraCor and how it works</head>
-                    <list>
-                        <item><p>DraCor is a corpus of <hi rend="bold">dramatic texts</hi> with a
-                                layer of <hi rend="bold">machine-readable markup</hi> on top of
-                                them</p></item>
-                        <item><p>One can do lots of cool stuff with DraCor, from <hi>social network
-                                    analysis</hi> of drama to <hi rend="bold">quantitative analysis
-                                    of character speech</hi>, e.g. what women say to men or parents
-                                to children in hundreds (or even thousands) of plays.</p>
-                            <figure>
-                                <graphic url="none-yet123"/>
-                                <head>Example network obtained from the DraCor markup (through
-                                    Gephi).</head>
-                            </figure>
-                        </item>
-                        <item>
-                            <p>But before that cool stuff can happen, <hi rend="bold">each play
-                                    needs to be encoded</hi>, i.e. we need to provide texts with the
-                                aforementioned machine-readable markup. A lot of the markup can be
-                                automated, but never 100% of it. Each encoded play needs to be <hi
-                                    rend="bold">polished by a human being</hi> before it joins the
-                                DraCor pool. The work of human encoders is precious for the whole
-                                project.</p>
-                        </item>
-                    </list>
-                </div>
-                <!-- /what is dracor -->
+                <p>We are building drama corpora with files encoded following the guidelines of the
+                        <ref target="https://tei-c.org/release/doc/tei-p5-doc/en/html/index.html"
+                        >Text Encoding Initiative (TEI P5)</ref>, especially the Module <ref
+                        target="https://tei-c.org/release/doc/tei-p5-doc/en/html/DR.html"
+                        >Performance Texts</ref>. The encoded plays are suitable for the field of
+                    digital drama analysis, which manifests itself in a growing <ref
+                        target="https://dracor.org/doc/research">list of research</ref> done based
+                    on DraCor corpora and is especially facilitated by also hosting the corpora on
+                        <ref target="https://github.com/dracor-org">GitHub</ref> with an open
+                    license that allows for extensive re-use.</p>
+                <p>The encoded texts are the basis for <ref target="https://dracor.org">DraCor</ref>
+                    (Drama Corpora Platform). It is a multi-component system which realizes the
+                    concept of “Programmable Corpora” (<ref target="#fischer_et_al_2019">Fischer et
+                        al. 2019</ref>), understood as corpora that expose an open, transparently
+                    documented and (at least partly) research-driven API to make texts
+                    machine-actionable. (cf. <ref target="#boerner_trilcke_2023">Börner and Trilcke
+                        2023</ref>). The documentation of the DraCor API can be accessed at ; <ref
+                        target="https://dracor.org/doc/api">https://dracor.org/doc/api</ref>.</p>
+                <p> DraCor uses a TEI customization that contains only selected TEI elements
+                    supported by the wider DraCor system and restricts the use of XML attributes and
+                    its values (see <ref target="#div_schema">Schema</ref>). The customization is
+                    documented in this <ref
+                        target="https://github.com/dracor-org/dracor-schema/blob/main/odd/dracor.odd"
+                        >ODD</ref> from which a RelaxNG schema (<ref
+                        target="https://dracor.org/schema.rng">https://dracor.org/schema.rng</ref>)
+                    is generated, that is used to validate the encoding of the plays.</p>
+                <p>Although the corpora in DraCor have different sources, they are largely
+                    homogeneous both structurally and in terms of metadata. This homogeneity makes
+                    it possible, for example, to perform comparative research on the corpora or to
+                    perform processing operations (such as extracting information or counting) in a
+                    comparable way on the corpora. However, homogeneity is something that has to be
+                    created first, because even if corpora are available in the target format TEI,
+                    they often differ in the way TEI is applied.</p>
+                <p>The literary texts in the DraCor corpora have a basic structural markup and are
+                    ready for further analysis by various methods of Computational Literary Studies
+                    (CLS). They have been additionally enriched with a research-driven markup for
+                    the application of a specific method, the <hi rend="bold">network analysis of
+                        literary texts</hi> (<ref target="#trilcke_2013">Trilcke 2013</ref>).
+                    Therefore the encoding is tailored to allow for the extraction of co-presence
+                    networks relying on structural segmentation of a given play into acts and scenes
+                    and having uniquely identifiable speaking and acting characters. </p>
+                <p>The cast lists or <term>dramatis personae</term> that are contained in most
+                    dramatic texts are an insufficient source in this regard, because they tend to
+                    be incomplete. Speaker labels contained in the proper text are also often
+                    misleading, because they are often not stable enough to serve as an identifier. </p>
+                <p>Therefore the plays encoded for the DraCor plattform have an additional section
+                    in their metadata in the <gi>teiHeader</gi> that lists all characters as
+                        <gi>person</gi> elements in a <gi>listPerson</gi> and assigns them an unique
+                    identifier <att>xml:id</att>, that is then used in the attribute <att>who</att>
+                    to link the individual speech acts <gi>sp</gi> with their respective speakers.
+                    The co-presence network can then be extracted by a designated algorithm.<note>A
+                        more detailed explaination of the implementation in the DraCor system can be
+                        found in <ref target="#boerner_trilcke_2023">Börner/Trilcke
+                        (2023)</ref>.</note> While each distinct speaker represents a node in a
+                    network, a relation (edge) is established if the speeches <gi>sp</gi> of two or
+                    more speakers appear in the same segment <gi>div</gi> (normally a “scene”
+                    classified by the attribute <att>type</att>). It is important to note that this
+                    method of extracting networks from dramatic texts is only one possibility among
+                    many others and that the scope for interpretation is determined by this
+                    mechanism of extraction.</p>
             </div>
             <!-- /intro -->
             <div xml:id="div_how-to">
@@ -107,7 +136,7 @@
                     <head>File formats and copyright issues</head>
                     <p>Depending on the source’s original format, you may follow one of these
                         pipelines: <list>
-                            <item>If your text is already encoded in .xml, it may be possible to
+                            <item>If your text is already encoded in XML, it may be possible to
                                 write a XSLT or a Python script to adapt it to the DraCor
                                 format.</item>
                             <item>If that is not possible, or your text is available in some other
@@ -119,30 +148,26 @@
                         </list>
                     </p>
                     <p rend="hint"> It is possible to convert a .txt file encoded in UTF-8 to a
-                        basic DraCor format through the experimental EzDrama conversion tool (Python
-                        script). </p>
+                        basic DraCor format through the experimental <ref
+                            target="https://github.com/dracor-org/ezdrama">EzDrama</ref> conversion
+                        tool (Python script). </p>
                     <p> Please note that DraCor considers for publication only works which are
                         either in the <hi rend="bold">public domain (CC BY 0)</hi> or released under
                         an open <hi rend="bold">Creative Commons Attribution Licence (e.g. CC BY
                             3.0)</hi>. According to German law, works become public domain after 70
                         years from their author’s death. Even though it is possible to build
                         copyright-protected corpora, they could be run only on a local DraCor
-                        instance built through Docker (procedure still under development).</p>
+                        instance built through Docker (procedure still under development; for hints
+                        on using DraCor with Docker see this <ref
+                            target="https://github.com/dracor-org/dracor-notebooks/blob/f72a7722a3ce9c3fa35ea856c81a108166c96f4d/docker/local-dracor-with-docker.ipynb"
+                            >Jupyter Notebook</ref>).</p>
                 </div>
                 <!-- /file formats -->
                 <div xml:id="div_overview">
-                    <head>Overview</head>
-                    <p>DraCor’s encoding mostly follows the Guidelines of the Text Encoding
-                        Initiative (<ref target="https://tei-c.org/guidelines/p5">TEI
-                            Guidelines</ref>), especially the Module <ref
-                            target="https://tei-c.org/release/doc/tei-p5-doc/en/html/DR.html"
-                            >Performance Texts</ref>. The customization of these guidelines used for
-                        DraCor and included in this document can be found on <ref
-                            target="https://github.com/dracor-org/dracor-schema/blob/main/odd/dracor.odd"
-                            >Github</ref>.</p>
+                    <head>Basic Structure</head>
                     <p> The basic structure of a DraCor file requires a <gi>teiHeader</gi>,
                         containing metadata on the play, and a <gi>text</gi> with the actual text.
-                        Between header and text there is a <gi>standOff</gi>> element with some
+                        Between header and text there is a <gi>standOff</gi> element with some
                         additional pieces of information. The structure of your final XML file
                         should therefore look like this: <egXML
                             xmlns="http://www.tei-c.org/ns/Examples">
@@ -179,14 +204,28 @@
                 </div>
                 <!-- /overview -->
                 <div xml:id="div_encoding-header">
-                    <head>Encoding the header <gi>teiHeader</gi></head>
-                    <p>The header is composed of several sections:</p>
+                    <head>Metadata in the <gi>teiHeader</gi></head>
+                    <p>The header is composed of several sections: <gi>fileDesc</gi>,
+                            <gi>profileDesc</gi> and <gi>revisionDesc</gi>.</p>
                     <div xml:id="div_file-desc">
                         <head><gi>fileDesc</gi></head>
-                        <p> Basic metadata go here. It contains a title statement
-                                (<gi>titleStmt</gi>), a publication statement
-                                (<gi>publicationStmt</gi>) and and a description of the digital and
-                            original sources (<gi>sourceDesc</gi>). </p>
+                        <p>The basic metadata on the digital file are included in the
+                                <gi>fileDesc</gi>. It contains a title statement
+                            (<gi>titleStmt</gi>), a publication statement (<gi>publicationStmt</gi>)
+                            and and a description of the digital and original sources
+                                (<gi>sourceDesc</gi>). </p>
+                        <div xml:id="div_title_in_titleStmt">
+                            <head>Title</head>
+                            <p>The title is encoded using the element <gi>title</gi> in <gi>titleStmt</gi>. It can be
+                                further classified using the attribute <att>type</att> as main and
+                                subtitle: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                    <title type="main">Des Meeres und der Liebe Wellen</title>
+                                    <title type="sub">Trauerspiel in fünf Aufzügen</title>
+                                </egXML>
+                            </p>
+                            <p></p>
+                        </div>
+                        <!-- title -->
                     </div>
                     <!-- /file desc -->
                     <div xml:id="div_profileDesc_particDesc">
@@ -194,9 +233,9 @@
                         <p> Fill this section after annotating the play. It lists the characters as
                             given in the <att>who</att> of the <gi>person</gi> and
                                 <gi>personGrp</gi> elements used to encode the individual speech
-                            acts <gi>sp</gi>
-                            <ref>(see §2.5.2b)</ref>. The <gi>particDesc</gi> should follow this
-                            format: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                            acts <gi>sp</gi> (see <ref target="#div_speech_acts">Speech Acts</ref>).
+                            The <gi>particDesc</gi> should follow this format: <egXML
+                                xmlns="http://www.tei-c.org/ns/Examples">
                                 <person xml:id="eleonora" sex="FEMALE">
                                     <persName>Eleonora</persName>
                                 </person>
@@ -417,21 +456,23 @@
                                 <p>If the speaker name is not explicitly given in-text, while e.g.
                                     being wrapped into a stage direction, just create a normal
                                         <gi>sp</gi> block and omit the <gi>speaker</gi> tag (don’t
-                                    forget the <att>who</att> attribute though).
-                                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                                    <sp who="#governor">
-                                        <stage>Enter the Governor singing.</stage>
-                                        <l>If an old man has a beauteous Treasure,</l>
-                                        <l>Let her sing, and dance, and laugh without measure,</l>
-                                        <l>And then she'l think of no other Pleasure.</l>
-                                    </sp>
-                                </egXML>
+                                    forget the <att>who</att> attribute though). <egXML
+                                        xmlns="http://www.tei-c.org/ns/Examples">
+                                        <sp who="#governor">
+                                            <stage>Enter the Governor singing.</stage>
+                                            <l>If an old man has a beauteous Treasure,</l>
+                                            <l>Let her sing, and dance, and laugh without
+                                                measure,</l>
+                                            <l>And then she'l think of no other Pleasure.</l>
+                                        </sp>
+                                    </egXML>
                                 </p>
-                            </div> <!-- /no explicit speaker -->
+                            </div>
+                            <!-- /no explicit speaker -->
                             <div>
                                 <head>Speaker unknown</head>
-          
-                                    <!--<p>
+
+                                <!--<p>
                                     In the remote case it is not possible to identify who is speaking, you can put the lines into a <gi>stage</gi> block.
                                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                         <stage>A Song.
@@ -441,7 +482,7 @@
                                         </stage>
                                     </egXML>
                                 </p>-->
-                                
+
                                 <!-- not sure about that, IB -->
                             </div>
                         </div>
@@ -453,101 +494,103 @@
 
             </div>
             <!-- /how-to -->
-            
+
             <div xml:id="div_misc">
-            <!-- old stuff -->
-            <div xml:id="div_authornames">
-                <head>Encoding of author's names</head>
-                <list>
-                    <head>relevant github issues</head>
-                    <item>
-                        <ref type="githubissue"
-                            target="https://github.com/dracor-org/dracor-api/issues/119"
-                            >https://github.com/dracor-org/dracor-api/issues/119</ref>
-                    </item>
-                    <item>
-                        <ref type="githubissue"
-                            target="https://github.com/dracor-org/dracor-schema/issues/21"
-                            >https://github.com/dracor-org/dracor-schema/issues/21</ref>
-                    </item>
-                </list>
+                <!-- old stuff -->
+                <div xml:id="div_authornames">
+                    <head>Encoding of author's names</head>
+                    <list>
+                        <head>relevant github issues</head>
+                        <item>
+                            <ref type="githubissue"
+                                target="https://github.com/dracor-org/dracor-api/issues/119"
+                                >https://github.com/dracor-org/dracor-api/issues/119</ref>
+                        </item>
+                        <item>
+                            <ref type="githubissue"
+                                target="https://github.com/dracor-org/dracor-schema/issues/21"
+                                >https://github.com/dracor-org/dracor-schema/issues/21</ref>
+                        </item>
+                    </list>
 
-            </div>
-            <div>
-                <head>Frontmatter</head>
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                    <front>
-                        <titlePage>
-                            <docAuthor>Gotthold Ephraim Lessing</docAuthor>
-                            <docTitle>
-                                <titlePart type="main">Emilia Galotti</titlePart>
-                                <titlePart type="sub">Ein Trauerspiel in fünf Aufzügen</titlePart>
-                            </docTitle>
-                        </titlePage>
-                        <pb n="128"/>
-                        <castList>
-                            <head>Personen.</head>
-                            <castItem>
-                                <role>Emilia Galotti.</role>
-                            </castItem>
-                            <castGroup rend="braced">
-                                <castItem>
-                                    <role>Odoardo,</role>
-                                </castItem>
-                                <castItem>
-                                    <role>Claudia Galotti,</role>
-                                </castItem>
-                                <roleDesc>Eltern der Emilia.</roleDesc>
-                            </castGroup>
-                            <castItem>
-                                <role>Hettore Gonzaga,</role>
-                                <roleDesc>Prinz von Guastalla.</roleDesc>
-                            </castItem>
-                            <castItem>
-                                <role>Marinelli,</role>
-                                <roleDesc>Kammerherr des Prinzen.</roleDesc>
-                            </castItem>
-                            <castItem>
-                                <role>Camillo Rota,</role>
-                                <roleDesc>einer von des Prinzen Räten.</roleDesc>
-                            </castItem>
-                            <castItem>
-                                <role>Conti,</role>
-                                <roleDesc>Maler.</roleDesc>
-                            </castItem>
-                            <castItem>
-                                <role>Graf Appiani.</role>
-                            </castItem>
-                            <castItem>
-                                <role>Gräfin Orsina.</role>
-                            </castItem>
-                            <castItem><role>Angelo,</role> und <role>einige
-                                Bediente.</role></castItem>
+                </div>
+                <div>
+                    <head>Frontmatter</head>
+                    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                        <front>
+                            <titlePage>
+                                <docAuthor>Gotthold Ephraim Lessing</docAuthor>
+                                <docTitle>
+                                    <titlePart type="main">Emilia Galotti</titlePart>
+                                    <titlePart type="sub">Ein Trauerspiel in fünf
+                                        Aufzügen</titlePart>
+                                </docTitle>
+                            </titlePage>
                             <pb n="128"/>
-                        </castList>
-                    </front>
-                </egXML>
-            </div>
-            <div xml:id="characters">
-                <head>Marking up characters and linking them to the particDesc</head>
-                <p>Why are <egXML xmlns="http://www.tei-c.org/ns/Examples"
-                                ><castItem><role>Schmiede</role></castItem></egXML> (Goethe:
-                    Pandora) not a group? </p>
+                            <castList>
+                                <head>Personen.</head>
+                                <castItem>
+                                    <role>Emilia Galotti.</role>
+                                </castItem>
+                                <castGroup rend="braced">
+                                    <castItem>
+                                        <role>Odoardo,</role>
+                                    </castItem>
+                                    <castItem>
+                                        <role>Claudia Galotti,</role>
+                                    </castItem>
+                                    <roleDesc>Eltern der Emilia.</roleDesc>
+                                </castGroup>
+                                <castItem>
+                                    <role>Hettore Gonzaga,</role>
+                                    <roleDesc>Prinz von Guastalla.</roleDesc>
+                                </castItem>
+                                <castItem>
+                                    <role>Marinelli,</role>
+                                    <roleDesc>Kammerherr des Prinzen.</roleDesc>
+                                </castItem>
+                                <castItem>
+                                    <role>Camillo Rota,</role>
+                                    <roleDesc>einer von des Prinzen Räten.</roleDesc>
+                                </castItem>
+                                <castItem>
+                                    <role>Conti,</role>
+                                    <roleDesc>Maler.</roleDesc>
+                                </castItem>
+                                <castItem>
+                                    <role>Graf Appiani.</role>
+                                </castItem>
+                                <castItem>
+                                    <role>Gräfin Orsina.</role>
+                                </castItem>
+                                <castItem><role>Angelo,</role> und <role>einige
+                                    Bediente.</role></castItem>
+                                <pb n="128"/>
+                            </castList>
+                        </front>
+                    </egXML>
+                </div>
+                <div xml:id="characters">
+                    <head>Marking up characters and linking them to the particDesc</head>
+                    <p>Why are <egXML xmlns="http://www.tei-c.org/ns/Examples"
+                                    ><castItem><role>Schmiede</role></castItem></egXML> (Goethe:
+                        Pandora) not a group? </p>
 
+                </div>
+                <div xml:id="licensing">
+                    <head>Licensing</head>
+                </div>
+                <div xml:id="div_other_resources">
+                    <listBibl>
+                        <bibl>
+                            <title>Encoding hints in the GerDraCor Wiki on Github</title>
+                            <ref target="https://github.com/dracor-org/gerdracor/wiki"
+                                >https://github.com/dracor-org/gerdracor/wiki</ref>
+                        </bibl>
+                    </listBibl>
+                </div>
             </div>
-            <div xml:id="licensing">
-                <head>Licensing</head>
-            </div>
-            <div xml:id="div_other_resources">
-                <listBibl>
-                    <bibl>
-                        <title>Encoding hints in the GerDraCor Wiki on Github</title>
-                        <ref target="https://github.com/dracor-org/gerdracor/wiki"
-                            >https://github.com/dracor-org/gerdracor/wiki</ref>
-                    </bibl>
-                </listBibl>
-            </div>
-            </div> <!-- / misc -->
+            <!-- / misc -->
 
             <!-- SCHEMA, ELEMENTS -->
             <div xml:id="div_schema">
@@ -5162,7 +5205,57 @@
                             <attDef ident="to-custom" mode="delete"/>
                             <attDef ident="datingPoint" mode="delete"/>
                             <attDef ident="datingMethod" mode="delete"/>
+                            <attDef ident="key" mode="delete"/>
+                            <attDef ident="ref" mode="delete"/>
+                            <attDef ident="n" mode="delete"/>
+                            <attDef ident="xml:base" mode="delete"/>
+                            <attDef ident="xml:space" mode="delete"/>
+                            <attDef ident="xml:id" mode="delete"/> 
+                            <!-- xml:lang -->
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+                            <attDef ident="type" mode="replace">
+                                <valList mode="replace" type="closed">
+                                    <valItem ident="main">
+                                        <desc>Main Title</desc>
+                                    </valItem>
+                                    <valItem ident="sub">
+                                        <desc>Subtitle</desc>
+                                    </valItem>
+                                </valList>
+                            </attDef>
+                            <attDef ident="subtype" mode="delete"/>
+                            <attDef ident="level" mode="delete"/>
+                            
                         </attList>
+                        <exemplum source="#ger000010">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <title type="main">Des Meeres und der Liebe Wellen</title>
+                            </egXML>
+                            <ab>Main title of the play <ref target="https://dracor.org/id/ger000010">Grillparzer: "Des Meeres und der Liebe Wellen"</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000010">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <title type="sub">Trauerspiel in fünf Aufzügen</title>
+                            </egXML>
+                            <ab>Subtitle of the play <ref target="https://dracor.org/id/ger000010">Grillparzer: "Des Meeres und der Liebe Wellen"</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#rus000054">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <title type="main">Ревизор</title>
+                                <title type="main" xml:lang="eng">The Government Inspector</title>
+                                <title type="sub">Комедия в пяти действиях</title>
+                                <title type="sub" xml:lang="eng">A Comedy in Five Acts</title>
+                            </egXML>
+                            <ab>Main and subtitle of <ref target="https://dracor.org/id/rus000054">Gogol': Revisor</ref> in the original (Russian) and Eglish languages.</ab>
+                        </exemplum>
                     </elementSpec>
 
                     <!-- titlePage -->
@@ -5259,7 +5352,62 @@
                             <attDef ident="cert" mode="delete"/>
                             <attDef ident="resp" mode="delete"/>
                             <attDef ident="source" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
                         </attList>
+                        <exemplum source="#ger000010">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <titleStmt>
+                                    <title type="main">Des Meeres und der Liebe Wellen</title>
+                                    <title type="sub">Trauerspiel in fünf Aufzügen</title>
+                                    <author>
+                                        <persName>
+                                            <forename>Franz</forename>
+                                            <surname>Grillparzer</surname>
+                                        </persName>
+                                        <idno type="wikidata">Q154438</idno>
+                                        <idno type="pnd">118542192</idno>
+                                    </author>
+                                </titleStmt>
+                            </egXML>
+                            <ab><gi>titleStmt</gi> of the play <ref target="https://dracor.org/id/ger000010">"Des Meeres und der Liebe Wellen"</ref> by
+                                Franz Grillparzer. The author has an entry on Wikidata which is
+                                identified by the URI <ref
+                                    target="http://www.wikidata.org/entity/Q154438"
+                                    >http://www.wikidata.org/entity/Q154438</ref>. In the
+                                "Gemeinsame Normdatei" (GND) the author is identified by the
+                                URI <ref target="https://d-nb.info/gnd/11854219">https://d-nb.info/gnd/11854219</ref>. The identifiers are included in the <gi>idno</gi> elements.</ab>
+                        </exemplum>
+                        <exemplum source="#rus000054">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <titleStmt>
+                                    <title type="main">Ревизор</title>
+                                    <title type="main" xml:lang="eng">The Government Inspector</title>
+                                    <title type="sub">Комедия в пяти действиях</title>
+                                    <title type="sub" xml:lang="eng">A Comedy in Five Acts</title>
+                                    <author>
+                                        <persName>
+                                            <forename>Николай</forename>
+                                            <forename type="patronym">Васильевич</forename>
+                                            <surname>Гоголь</surname>
+                                        </persName>
+                                        <persName xml:lang="eng">
+                                            <forename>Nikolai</forename>
+                                            <surname>Gogol</surname>
+                                        </persName>
+                                        <idno type="wikidata">Q43718</idno>
+                                    </author>
+                                </titleStmt>
+                            </egXML>
+                            <ab><gi>titleStmt</gi> of <ref target="https://dracor.org/id/rus000054">Gogol: Revizor</ref>. Titles and author names are given both in Russian and English.</ab>
+                        </exemplum>
                     </elementSpec>
 
                     <!-- trailer -->
@@ -5296,6 +5444,30 @@
 
                 </schemaSpec>
             </div>
+            <!-- /schema -->
+            <div xml:id="bibliography">
+                <head>Bibliography</head>
+                <listBibl>
+                    <bibl xml:id="boerner_trilcke_2023"> Börner, I., &amp; Trilcke, P. (2023). CLS
+                        INFRA D7.1 On Programmable Corpora. <ref
+                            target="https://doi.org/10.5281/zenodo.7664964">doi:
+                            10.5281/zenodo.7664964</ref>
+                    </bibl>
+                    <bibl xml:id="fischer_et_al_2019">Fischer, F., Börner, I., Göbel, M., Hechtl,
+                        A., Kittel, C., Milling, C., &amp; Trilcke, P. (2019). Programmable Corpora:
+                        Introducing DraCor, an Infrastructure for the Research on European Drama.
+                        DH2019: »Complexities«. 9–12 July 2019. Book of Abstracts.
+                        DH2019 »Complexities«, Utrecht. <ref
+                            target="https://doi.org/10.5281/ZENODO.4284002">doi:
+                            10.5281/ZENODO.4284002</ref>
+                    </bibl>
+                    <bibl xml:id="trilcke_2013">Trilcke, P. (2013). Social Network Analysis (SNA)
+                        als Methode einer textempirischen Literaturwissenschaft. In P. Ajouri, K.
+                        Mellmann, &amp; C. Rauen (Eds.), Empirie in der Literaturwissenschaft (S.
+                        201–247). Mentis </bibl>
+                </listBibl>
+            </div>
+            <!-- /bibliography -->
         </body>
     </text>
 </TEI>
