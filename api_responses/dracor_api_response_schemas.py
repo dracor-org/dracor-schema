@@ -33,6 +33,18 @@ def is_valid(item: dict, schema: Schema, catch_error: bool = True) -> bool:
         schema_instance.load(item)
 
 
+# Field that can hold values of multiple types; this is a mess!
+class StringOrListOfStringsField(fields.Field):
+    """Field that can hold a value of type string or a list or be of None type
+    solution taken from https://stackoverflow.com/questions/61614546/python-marshmallow-field-can-be-two-different-types
+    """
+    def _deserialize(self, value, attr, data, **kwargs):
+        if isinstance(value, str) or isinstance(value, list):
+            return value
+        else:
+            raise ValidationError('Field should be str or list')
+
+
 # /info endpoint
 class InfoSchema(Schema):
     """Response object of the /info endpoint"""
@@ -213,6 +225,248 @@ class CorpusSchema(Schema):
     dramas = fields.List(fields.Nested(PlayInCorpusSchema))
 
 
-# characterGender = fields.Str(validate=validate.OneOf(["male", "female", "nonbinary"]))
+# /corpora/{corpusname}/metadata
 
+"""
+{
+    "id": "ger000569",
+    "name": "adolph-am-ersten-mai",
+    "playName": "adolph-am-ersten-mai",
+    "wikidataId": "Q111795417",
+    "normalizedGenre": null,
+    "libretto": false,
+    "firstAuthor": "Adolph",
+    "title": "Am ersten Mai",
+    "subtitle": "Eine Tragikomödie der Arbeit aus Friedenstagen",
+    "numOfCoAuthors": 0,
+    "maxDegreeIds": "mieter",
+    "numOfSegments": 18,
+    "numOfActs": 0,
+    "numOfSpeakers": 7,
+    "numOfSpeakersMale": 5,
+    "numOfSpeakersFemale": 2,
+    "numOfSpeakersUnknown": 0,
+    "numOfPersonGroups": 0,
+    "numOfP": 244,
+    "numOfL": 2,
+    "wikipediaLinkCount": 0,
+    "wordCountText": 7696,
+    "wordCountSp": 7438,
+    "wordCountStage": 998,
+    "yearWritten": null,
+    "yearPremiered": "1920",
+    "yearPrinted": "1919",
+    "yearNormalized": 1919,
+    "digitalSource": "https://www.projekt-gutenberg.org/adolph/am1mai/index.html",
+    "originalSourcePublisher": null,
+    "originalSourcePubPlace": null,
+    "originalSourceYear": null,
+    "originalSourceNumberOfPages": null,
+    "averageDegree": 3.7142857142857144,
+    "density": 0.6190476190476191,
+    "averageClustering": 0.738095238095238,
+    "size": 7,
+    "maxDegree": 6,
+    "numConnectedComponents": 1,
+    "numEdges": 13,
+    "diameter": 2,
+    "averagePathLength": 1.380952380952381
+  }
+"""
+
+
+class PlayMetadataSchema(Schema):
+    """Play metadata object returned in the response of the /corpora/{corpusname}/metadata endpoint"""
+    # P2 play_id
+    id = fields.Str()
+    # P3 play_name (duplicates "name" and "playName")
+    name = fields.Str()
+    playName = fields.Str()
+    # P4 play_wikidata_id
+    wikidataId = fields.Str(allow_none=True)
+    # P5 play_title
+    title = fields.Str()
+    # P6 play_subtitle
+    subtitle = fields.Str(allow_none=True)
+    # P16 play_first_author_shortname
+    firstAuthor = fields.Str()
+    # P21 play_num_of_co_authors
+    numOfCoAuthors = fields.Int()
+    # P22 play_genre_normalized
+    normalizedGenre = fields.Str(allow_none=True)
+    # P23 play_is_libretto
+    libretto = fields.Bool()
+    # P24 play_year_written
+    yearWritten = fields.Str(allow_none=True)
+    # P25 play_year_printed
+    yearPrinted = fields.Str(allow_none=True)
+    # P26 play_year_premiered
+    yearPremiered = fields.Str(allow_none=True)
+    # P27 play_year_normalized
+    yearNormalized = fields.Int(allow_none=True)
+    # P29 play_digital_source_url
+    # In FreDraCor: ValidationError: {'digitalSource': ['Not a valid URL.']}
+    # This is the same problem as in "PlayInCorpusSchema" because of empty string?
+    # TODO: revert back to url later?!
+    # digitalSource = fields.Url(allow_none=True)
+    # digitalSource = fields.Str(allow_none=True)
+    # also produces a ValidationError: {'digitalSource': ['Not a valid string.']}
+    # because FreDraCor outputs an array
+    # "digitalSource": [
+    #       "http://theatre-classique.fr/pages/programmes/edition.php?t=../documents/ABEILLE_ARGELIE.xml",
+    #       "http://theatre-classique.fr/pages/documents/ABEILLE_ARGELIE.xml"
+    #     ]
+    # This is a hack with a custom field: This is nor perfect, because actually, it should check if the value is a URL.
+    digitalSource = StringOrListOfStringsField(allow_none=True)
+    # P31 play_original_source_publisher
+    originalSourcePublisher = fields.Str(allow_none=True)
+    # P32 play_original_source_publication_place
+    originalSourcePubPlace = fields.Str(allow_none=True)
+    # P33 play_original_source_publication_year
+    originalSourceYear = fields.Int(allow_none=True)
+    # P34 play_original_source_num_of_pages
+    originalSourceNumberOfPages = fields.Int(allow_none=True)
+    # P35 play_num_of_wikipedia_links
+    wikipediaLinkCount = fields.Int(allow_none=True)
+    # P37 play_num_of_segments
+    numOfSegments = fields.Int()
+    # P38 play_num_of_acts
+    numOfActs = fields.Int()
+    # P39 play_num_of_paragraphs
+    numOfP = fields.Int()
+    # P40 play_num_of_verse_lines
+    numOfL = fields.Int()
+    # P41 play_num_of_word_tokens_in_text_elements
+    wordCountText = fields.Int()
+    # P42 play_num_of_word_tokens_in_sp
+    wordCountSp = fields.Int()
+    # P43 play_num_of_word_tokens_in_stage
+    wordCountStage = fields.Int()
+    # P45 play_num_of_speakers
+    numOfSpeakers = fields.Int()
+    # P46 play_num_of_speakers_gender_female
+    numOfSpeakersFemale = fields.Int()
+    # P47 play_num_of_speakers_gender_male
+    numOfSpeakersMale = fields.Int()
+    # P48 play_num_of_speakers_gender_unknown
+    numOfSpeakersUnknown = fields.Int()
+    # P49 play_num_of_person_groups
+    numOfPersonGroups = fields.Int()
+    # P55 play_network_size
+    size = fields.Int()
+    # P56 play_network_num_of_edges
+    numEdges = fields.Int()
+    # P57 play_network_average_degree
+    averageDegree = fields.Float()
+    # P58 play_network_density
+    density = fields.Float()
+    # P59 play_network_diameter
+    diameter = fields.Int()
+    # P60 play_network_average_path_length
+    averagePathLength = fields.Float()
+    # P61 play_network_average_clustering
+    averageClustering = fields.Float()
+    # P62 play_network_num_connected_components
+    numConnectedComponents = fields.Int()
+    # P63 play_network_max_degree
+    maxDegree = fields.Int()
+    # P46 play_network_max_degree_character_ids
+    maxDegreeIds = fields.Str()
+
+# /corpus/{corpusname}/play/{playname}
+
+"""
+  "id": "ger000088",
+  "name": "lessing-emilia-galotti",
+  "corpus": "ger",
+  "title": "Emilia Galotti",
+  "author": {
+    "name": "Lessing, Gotthold Ephraim",
+    "warning": "The single author property is deprecated. Use the array of 'authors' instead!"
+  },
+  "authors": [
+    {
+      "name": "Lessing, Gotthold Ephraim",
+      "fullname": "Gotthold Ephraim Lessing",
+      "shortname": "Lessing",
+      "refs": [
+        {
+          "ref": "Q34628",
+          "type": "wikidata"
+        },
+        {
+          "ref": "118572121",
+          "type": "pnd"
+        }
+      ]
+    }
+  ],
+  "genre": "Tragedy",
+  "libretto": false,
+  "allInSegment": 30,
+  "allInIndex": 0.6976744186046512,
+  "cast": [
+    {
+      "id": "conti",
+      "name": "Conti",
+      "isGroup": false,
+      "sex": "MALE"
+    },
+    {
+      "id": "claudia",
+      "name": "Claudia",
+      "isGroup": false,
+      "sex": "FEMALE"
+    }
+  ],
+  "segments": [
+    {
+      "type": "scene",
+      "number": 1,
+      "title": "Erster Aufzug | Erster Auftritt",
+      "speakers": [
+        "der_prinz",
+        "der_kammerdiener"
+      ]
+    },
+    {
+      "type": "scene",
+      "number": 2,
+      "title": "Erster Aufzug | Zweiter Auftritt",
+      "speakers": [
+        "der_prinz",
+        "conti"
+      ]
+    }
+  ],
+  "yearWritten": null,
+  "yearPremiered": "1772",
+  "yearPrinted": "1772",
+  "yearNormalized": 1772,
+  "wikidataId": "Q782653",
+  "subtitle": "Ein Trauerspiel in fünf Aufzügen",
+  "relations": [
+    {
+      "directed": true,
+      "type": "parent_of",
+      "source": "odoardo",
+      "target": "emilia"
+    },
+    {
+      "directed": true,
+      "type": "parent_of",
+      "source": "claudia",
+      "target": "emilia"
+    }
+  ],
+  "source": {
+    "name": "TextGrid Repository",
+    "url": "http://www.textgridrep.org/textgrid:rksp.0"
+  },
+  "originalSource": "Gotthold Ephraim Lessing: Werke. Herausgegeben von Herbert G. Göpfert in Zusammenarbeit mit Karl Eibl, Helmut Göbel, Karl S. Guthke, Gerd Hillen, Albert von Schirmding und Jörg Schönert, Band 1–8, München: Hanser, 1970 ff."
+}
+"""
+
+
+# characterGender = fields.Str(validate=validate.OneOf(["male", "female", "nonbinary"]))
 
