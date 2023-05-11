@@ -513,5 +513,59 @@ class PlaySchema(Schema):
     # P52 play_character_relations
     relations = fields.List(fields.Nested(RelationItemInPlayMetadataSchema))
 
-# characterGender = fields.Str(validate=validate.OneOf(["male", "female", "nonbinary"]))
+
+# /corpora/{corpusname}/play/{playname}/metrics
+
+class NodeInPlayMetricsSchema(Schema):
+    """Node object in the response of the endpoint /corpora/{corpusname}/play/{playname}/metrics"""
+    # Ch1 character_id [actually, I am wondering if node and character should be two classes of entities]
+    id = fields.Str()
+    # Ch6 character_node_betweenness
+    betweenness = fields.Float()
+    # Ch7 character_node_degree
+    degree = fields.Int()
+    # Ch8 character_node_closeness
+    closeness = fields.Float()
+    # Ch9 character_node_eigenvector
+    eigenvector = fields.Float()
+    # Ch10 character_node_weighted_degree
+    weightedDegree = fields.Int()
+
+
+class PlayMetricsSchema(Schema):
+    """Response Object of the endpoint /corpora/{corpusname}/play/{playname}/metrics"""
+    # P1 play_corpus_name
+    corpus = fields.Str()
+    # P2 play_id
+    id = fields.Str()
+    # P3 play_name
+    name = fields.Str()
+    # P35 play_num_of_wikipedia_link_count
+    # FreDraCor threw error...
+    wikipediaLinkCount = fields.Int(allow_none=True)
+    # P55 play_network_size
+    size = fields.Int()
+    # P56 play_network_num_edges
+    numEdges = fields.Int()
+    # P57 play_network_average_degree
+    averageDegree = fields.Float()
+    # P58 play_network_density
+    density = fields.Float()
+    # P59 play_network_diameter
+    diameter = fields.Int()
+    # P60 play_network_average_path_length
+    averagePathLength = fields.Float()
+    # P61 play_network_average_clustering
+    averageClustering = fields.Float()
+    # P62 play_network_num_connected_components
+    numConnectedComponents = fields.Int()
+    # P63 play_network_max_degree
+    maxDegree = fields.Int()
+    # P64 play_network_max_degree_ids
+    maxDegreeIds = fields.List(fields.Str())
+    # P54 play_network_nodes
+    nodes = fields.List(fields.Nested(NodeInPlayMetricsSchema))
+
+
+
 
