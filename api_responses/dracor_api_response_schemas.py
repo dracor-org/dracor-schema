@@ -227,54 +227,6 @@ class CorpusSchema(Schema):
 
 # /corpora/{corpusname}/metadata
 
-"""
-{
-    "id": "ger000569",
-    "name": "adolph-am-ersten-mai",
-    "playName": "adolph-am-ersten-mai",
-    "wikidataId": "Q111795417",
-    "normalizedGenre": null,
-    "libretto": false,
-    "firstAuthor": "Adolph",
-    "title": "Am ersten Mai",
-    "subtitle": "Eine Tragikomödie der Arbeit aus Friedenstagen",
-    "numOfCoAuthors": 0,
-    "maxDegreeIds": "mieter",
-    "numOfSegments": 18,
-    "numOfActs": 0,
-    "numOfSpeakers": 7,
-    "numOfSpeakersMale": 5,
-    "numOfSpeakersFemale": 2,
-    "numOfSpeakersUnknown": 0,
-    "numOfPersonGroups": 0,
-    "numOfP": 244,
-    "numOfL": 2,
-    "wikipediaLinkCount": 0,
-    "wordCountText": 7696,
-    "wordCountSp": 7438,
-    "wordCountStage": 998,
-    "yearWritten": null,
-    "yearPremiered": "1920",
-    "yearPrinted": "1919",
-    "yearNormalized": 1919,
-    "digitalSource": "https://www.projekt-gutenberg.org/adolph/am1mai/index.html",
-    "originalSourcePublisher": null,
-    "originalSourcePubPlace": null,
-    "originalSourceYear": null,
-    "originalSourceNumberOfPages": null,
-    "averageDegree": 3.7142857142857144,
-    "density": 0.6190476190476191,
-    "averageClustering": 0.738095238095238,
-    "size": 7,
-    "maxDegree": 6,
-    "numConnectedComponents": 1,
-    "numEdges": 13,
-    "diameter": 2,
-    "averagePathLength": 1.380952380952381
-  }
-"""
-
-
 class PlayMetadataSchema(Schema):
     """Play metadata object returned in the response of the /corpora/{corpusname}/metadata endpoint"""
     # P2 play_id
@@ -374,6 +326,7 @@ class PlayMetadataSchema(Schema):
     maxDegreeIds = fields.Str()
 
 # /corpus/{corpusname}/play/{playname}
+
 
 class AuthorInPlayMetadataSchema(Schema):
     """Author Object in the object returned by the /corpora/{corpusname}/play/{playname}"""
@@ -566,6 +519,59 @@ class PlayMetricsSchema(Schema):
     # P54 play_network_nodes
     nodes = fields.List(fields.Nested(NodeInPlayMetricsSchema))
 
+# /corpora/{corpusname}/play/{playname}/cast
+# can only have a schema for the single item; the endpoint returns an array
 
 
+class CastItemSchema(Schema):
+    """Cast Item Object returned in the JSON array of the endpoint /corpora/{corpusname}/play/{playname}/cast"""
+    # Ch1 character_id
+    id = fields.Str()
+    # Ch2 character_name
+    # There are also characters without names,
+    # e.g. in https://dracor.org/api/corpora/fre/play/bernardt-partie-de-bridge/cast; also in CalDraCor
+    # TODO: check if this makes sense!
+    name = fields.Str(allow_none=True)
+    # Ch3 character_is_group
+    isGroup = fields.Bool()
+    # Ch4 character_gender
+    gender = fields.Str(validate=validate.OneOf(["MALE", "FEMALE", "UNKNOWN"]), allow_none=True)
+    # Ch5 character_wikidata_id
+    wikidataId = fields.Str()
+    # Ch6 character_node_betweenness
+    betweenness = fields.Float(allow_none=True)
+    # Ch7 character_node_degree
+    degree = fields.Int(allow_none=True)
+    # Ch8 character_node_closeness
+    closeness = fields.Float(allow_none=True)
+    # Ch9 character_node_eigenvector
+    eigenvector = fields.Float(allow_none=True)
+    # Ch10 character_node_weighted_degree
+    weightedDegree = fields.Int(allow_none=True)
+    # Ch11 character_num_of_segments
+    numOfScenes = fields.Int()
+    # Ch12 character_num_of_sp
+    numOfSpeechActs = fields.Int()
+    # Ch13 character_num_of_word_tokens
+    numOfWords = fields.Int()
+
+
+# /corpora/{corpusname}/play/{playname}/spoken-text-by-character
+
+class SpokenTextByCharacterSchema(Schema):
+    """Spoken Text Item object in the array returned by the
+    /corpora/{corpusname}/play/{playname}/spoken-text-by-character endpoint"""
+    # Ch1 character_id
+    id = fields.Str()
+    # Ch2 character_name
+    label = fields.Str()
+    # Ch3 character_is_group
+    isGroup = fields.Bool()
+    # Ch4 character_gender
+    # when testing FreDraCor had a play with a character node with no gender info
+    gender = fields.Str(validate=validate.OneOf(["MALE", "FEMALE", "UNKNOWN"]), allow_none=True)
+    # Ch14 character_roles
+    roles = fields.List(fields.Str(), allow_none=True)
+    # Ch15 character_spoken_text
+    text = fields.List(fields.Str())
 
