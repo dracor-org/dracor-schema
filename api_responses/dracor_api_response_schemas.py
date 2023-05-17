@@ -575,3 +575,13 @@ class SpokenTextByCharacterSchema(Schema):
     # Ch15 character_spoken_text
     text = fields.List(fields.Str())
 
+
+# /character/id
+class PlayWithWikidataCharacterSchema(Schema):
+    """Response object returned by the /character/id endpoint"""
+    id = fields.Str()
+    uri = fields.Url()
+    title = fields.Str()
+    authors = fields.List(fields.Str())
+    characterName = fields.Str()
+
