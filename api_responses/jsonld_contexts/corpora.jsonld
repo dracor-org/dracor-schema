@@ -1,0 +1,96 @@
+{
+    "@context": {
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "datetime": {
+            "@id": "https://dracor.org/ontology_v2#api_response_datetime",
+            "@type": "xsd:dateTime"
+        },
+        "data": {
+            "@id": "https://dracor.org/ontology_v2#api_response_data",
+            "@context": {
+                "name": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_name",
+                    "@type": "xsd:string"
+                },
+                "title": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_title",
+                    "@type": "xsd:string"
+                },
+                "acronym": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_acronym",
+                    "@type": "xsd:string"
+                },
+                "description": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_description",
+                    "@type": "xsd:string"
+                },
+                "repository": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_repository",
+                    "@type": "@id"
+                },
+                "licence": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_licence",
+                    "@type": "xsd:string"
+                },
+                "licenceUrl": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_licence_url",
+                    "@type": "@id"
+                },
+                "metrics": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_metrics",
+                    "@context": {
+                        "plays": {
+                            "@id": "https://dracor.org/ontology_v2#corpus_num_of_plays",
+                            "@type": "xsd:integer"
+                        },
+                        "characters": {
+                            "@id": "https://dracor.org/ontology_v2#corpus_num_of_characters",
+                            "@type": "xsd:integer"
+                        },
+                        "male": {
+                            "@id": "https://dracor.org/ontology_v2#corpus_num_of_characters_male",
+                            "@type": "xsd:integer"
+                        },
+                        "female": {
+                            "@id": "https://dracor.org/ontology_v2#corpus_num_of_characters_female",
+                            "@type": "xsd:integer"
+                        },
+                        "text": {
+                            "@id": "https://dracor.org/ontology_v2#corpus_num_of_tei_text_elements",
+                            "@type": "xsd:integer"
+                        },
+                        "sp": {
+                            "@id": "https://dracor.org/ontology_v2#corpus_num_of_sp",
+                            "@type": "xsd:integer"
+                        },
+                        "stage": {
+                            "@id": "https://dracor.org/ontology_v2#corpus_num_of_stage",
+                            "@type": "xsd:integer"
+                        },
+                        "wordcount": {
+                            "@id": "https://dracor.org/ontology_v2#corpus_wordcounts",
+                            "@context": {
+                                "text": {
+                                    "@id": "https://dracor.org/ontology_v2#corpus_num_of_word_tokens_in_text_elements",
+                                    "@type": "xsd:integer"
+                                },
+                                "sp": {
+                                    "@id": "https://dracor.org/ontology_v2#corpus_num_of_word_tokens_in_sp",
+                                    "@type": "xsd:integer"
+                                },
+                                "stage": {
+                                    "@id": "https://dracor.org/ontology_v2#corpus_num_of_word_tokens_in_stage",
+                                    "@type": "xsd:integer"
+                                }
+                            }
+                        },
+                        "updated": {
+                            "@id": "https://dracor.org/ontology_v2#corpus_metrics_date_updated",
+                            "@type": "xsd:dateTime"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
