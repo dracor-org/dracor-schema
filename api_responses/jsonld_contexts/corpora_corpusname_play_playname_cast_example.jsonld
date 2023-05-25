@@ -1,0 +1,505 @@
+{
+    "@context": {
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "timestamp": {
+            "@id": "https://dracor.org/ontology_v2#api_response_timestamp",
+            "@type": "xsd:dateTime"
+        },
+        "data": {
+            "@id": "https://dracor.org/ontology_v2#contains_data",
+            "@context": {
+                "id": {
+                    "@id": "https://dracor.org/ontology_v2#character_id",
+                    "@type": "xsd:string"
+                },
+                "name": {
+                    "@id": "https://dracor.org/ontology_v2#character_name",
+                    "@type": "xsd:string"
+                },
+                "isGroup": {
+                    "@id": "https://dracor.org/ontology_v2#character_is_group",
+                    "@type": "xsd:boolean"
+                },
+                "gender": {
+                    "@id": "https://dracor.org/ontology_v2#character_gender",
+                    "@type": "xsd:string"
+                },
+                "wikidataId": {
+                    "@id": "https://dracor.org/ontology_v2#character_wikidata_id",
+                    "@type": "xsd:string"
+                },
+                "betweenness": {
+                    "@id": "https://dracor.org/ontology_v2#character_node_betweenness",
+                    "@type": "xsd:float"
+                },
+                "degree": {
+                    "@id": "https://dracor.org/ontology_v2#character_node_degree",
+                    "@type": "xsd:integer"
+                },
+                "closeness": {
+                    "@id": "https://dracor.org/ontology_v2#character_node_closeness",
+                    "@type": "xsd:float"
+                },
+                "eigenvector": {
+                    "@id": "https://dracor.org/ontology_v2#character_node_eigenvector",
+                    "@type": "xsd:float"
+                },
+                "weightedDegree": {
+                    "@id": "https://dracor.org/ontology_v2#character_node_weighted_degree",
+                    "@type": "xsd:float"
+                },
+                "numOfScenes": {
+                    "@id": "https://dracor.org/ontology_v2#character_num_of_segments",
+                    "@type": "xsd:integer"
+                },
+                "numOfSpeechActs": {
+                    "@id": "https://dracor.org/ontology_v2#character_num_of_sp",
+                    "@type": "xsd:integer"
+                },
+                "numOfWords": {
+                    "@id": "https://dracor.org/ontology_v2#character_num_of_word_tokens",
+                    "@type": "xsd:integer"
+                }
+            }
+        }
+    },
+    "@id": "https://dracor.org/api/corpora/rus/play/gogol-revizor/cast",
+    "@type": "https://dracor.org/ontology_v2#API_Response_Data",
+    "timestamp": "2023-05-22T117:07:23.463+01:00",
+    "data": [
+        {
+            "id": "gorodnichij",
+            "name": "Городничий",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 21,
+            "numOfSpeechActs": 172,
+            "numOfWords": 4991,
+            "degree": 26,
+            "weightedDegree": 84,
+            "closeness": 0.8760416666666667,
+            "betweenness": 0.1264602852635307,
+            "eigenvector": 0.24182361124623364
+        },
+        {
+            "id": "ammos_fedorovich_ljapkin_tjapkin",
+            "name": "Аммос Федорович",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 8,
+            "numOfSpeechActs": 49,
+            "numOfWords": 748,
+            "degree": 21,
+            "weightedDegree": 54,
+            "closeness": 0.7377192982456141,
+            "betweenness": 0.010129431082777935,
+            "eigenvector": 0.23046261804194926
+        },
+        {
+            "id": "artemij_filippovich_zemljanika",
+            "name": "Артемий Филиппович Земляника",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 10,
+            "numOfSpeechActs": 51,
+            "numOfWords": 737,
+            "degree": 21,
+            "weightedDegree": 63,
+            "closeness": 0.7377192982456141,
+            "betweenness": 0.010129431082777935,
+            "eigenvector": 0.23046261804194926
+        },
+        {
+            "id": "luka_lukich",
+            "name": "Лука Лукич",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 9,
+            "numOfSpeechActs": 25,
+            "numOfWords": 294,
+            "degree": 21,
+            "weightedDegree": 61,
+            "closeness": 0.7377192982456141,
+            "betweenness": 0.010129431082777935,
+            "eigenvector": 0.23046261804194926
+        },
+        {
+            "id": "lekar",
+            "name": "Лекарь Христиан Иванович",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 2,
+            "numOfSpeechActs": 2,
+            "numOfWords": 3,
+            "degree": 9,
+            "weightedDegree": 13,
+            "closeness": 0.5391025641025641,
+            "betweenness": 0,
+            "eigenvector": 0.1033485550907006
+        },
+        {
+            "id": "pochtmejster",
+            "name": "Почтмейстер",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 5,
+            "numOfSpeechActs": 40,
+            "numOfWords": 668,
+            "degree": 21,
+            "weightedDegree": 35,
+            "closeness": 0.7377192982456141,
+            "betweenness": 0.010129431082777935,
+            "eigenvector": 0.23046261804194926
+        },
+        {
+            "id": "bobchinskij",
+            "name": "Бобчинский",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 10,
+            "numOfSpeechActs": 39,
+            "numOfWords": 975,
+            "degree": 21,
+            "weightedDegree": 59,
+            "closeness": 0.7377192982456141,
+            "betweenness": 0.010129431082777935,
+            "eigenvector": 0.23046261804194926
+        },
+        {
+            "id": "dobchinskij",
+            "name": "Добчинский",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 9,
+            "numOfSpeechActs": 37,
+            "numOfWords": 531,
+            "degree": 21,
+            "weightedDegree": 55,
+            "closeness": 0.7377192982456141,
+            "betweenness": 0.010129431082777935,
+            "eigenvector": 0.23046261804194926
+        },
+        {
+            "id": "chastnyj_pristav",
+            "name": "Частный пристав",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 4,
+            "numOfSpeechActs": 8,
+            "numOfWords": 79,
+            "degree": 20,
+            "weightedDegree": 41,
+            "closeness": 0.7188034188034188,
+            "betweenness": 0.006862745098039216,
+            "eigenvector": 0.22356462890173054
+        },
+        {
+            "id": "svistunov",
+            "name": "Свистунов",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 2,
+            "numOfSpeechActs": 4,
+            "numOfWords": 32,
+            "degree": 9,
+            "weightedDegree": 11,
+            "closeness": 0.5391025641025641,
+            "betweenness": 0,
+            "eigenvector": 0.1033485550907006
+        },
+        {
+            "id": "anna_andreevna",
+            "name": "Анна Андреевна",
+            "isGroup": false,
+            "gender": "FEMALE",
+            "numOfScenes": 16,
+            "numOfSpeechActs": 87,
+            "numOfWords": 1713,
+            "degree": 22,
+            "weightedDegree": 62,
+            "closeness": 0.7787037037037038,
+            "betweenness": 0.04011494252873563,
+            "eigenvector": 0.22843371964442732
+        },
+        {
+            "id": "marja_antonovna",
+            "name": "Марья Антоновна",
+            "isGroup": false,
+            "gender": "FEMALE",
+            "numOfScenes": 13,
+            "numOfSpeechActs": 43,
+            "numOfWords": 371,
+            "degree": 21,
+            "weightedDegree": 56,
+            "closeness": 0.7576576576576577,
+            "betweenness": 0.028735632183908053,
+            "eigenvector": 0.22587621769882374
+        },
+        {
+            "id": "osip",
+            "name": "Осип",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 10,
+            "numOfSpeechActs": 44,
+            "numOfWords": 1113,
+            "degree": 12,
+            "weightedDegree": 24,
+            "closeness": 0.6094202898550725,
+            "betweenness": 0.08345278341221544,
+            "eigenvector": 0.06778403083161338
+        },
+        {
+            "id": "hlestakov",
+            "name": "Хлестаков",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 26,
+            "numOfSpeechActs": 230,
+            "numOfWords": 3995,
+            "degree": 17,
+            "weightedDegree": 49,
+            "closeness": 0.683739837398374,
+            "betweenness": 0.06003155285102547,
+            "eigenvector": 0.13714969613944714
+        },
+        {
+            "id": "sluga",
+            "name": "Слуга",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 3,
+            "numOfSpeechActs": 25,
+            "numOfWords": 159,
+            "degree": 3,
+            "weightedDegree": 5,
+            "closeness": 0.5096969696969696,
+            "betweenness": 0,
+            "eigenvector": 0.02365974535183478
+        },
+        {
+            "id": "mishka",
+            "name": "Мишка",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 1,
+            "numOfSpeechActs": 6,
+            "numOfWords": 55,
+            "degree": 1,
+            "weightedDegree": 1,
+            "closeness": 0.37882882882882885,
+            "betweenness": 0,
+            "eigenvector": 0.0035898432715767464
+        },
+        {
+            "id": "derzhimorda",
+            "name": "Держиморда",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 2,
+            "numOfSpeechActs": 2,
+            "numOfWords": 8,
+            "degree": 4,
+            "weightedDegree": 4,
+            "closeness": 0.5191358024691358,
+            "betweenness": 0,
+            "eigenvector": 0.03587057407551654
+        },
+        {
+            "id": "kuptsy",
+            "name": "Купцы",
+            "isGroup": true,
+            "gender": "MALE",
+            "numOfScenes": 4,
+            "numOfSpeechActs": 14,
+            "numOfWords": 263,
+            "degree": 24,
+            "weightedDegree": 29,
+            "closeness": 0.8245098039215686,
+            "betweenness": 0.11026594545864327,
+            "eigenvector": 0.23057368952827517
+        },
+        {
+            "id": "odin_iz_kuptsov",
+            "name": "Один из купцов",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 2,
+            "numOfSpeechActs": 2,
+            "numOfWords": 128,
+            "degree": 7,
+            "weightedDegree": 8,
+            "closeness": 0.549673202614379,
+            "betweenness": 0.002839756592292089,
+            "eigenvector": 0.05084885584861123
+        },
+        {
+            "id": "slesarsha",
+            "name": "Слесарша",
+            "isGroup": false,
+            "gender": "FEMALE",
+            "numOfScenes": 2,
+            "numOfSpeechActs": 6,
+            "numOfWords": 233,
+            "degree": 5,
+            "weightedDegree": 8,
+            "closeness": 0.5096969696969696,
+            "betweenness": 0,
+            "eigenvector": 0.027197341882623224
+        },
+        {
+            "id": "unter-ofitsersha",
+            "name": "Унтер-офицерша",
+            "isGroup": false,
+            "gender": "FEMALE",
+            "numOfScenes": 2,
+            "numOfSpeechActs": 6,
+            "numOfWords": 71,
+            "degree": 5,
+            "weightedDegree": 8,
+            "closeness": 0.5096969696969696,
+            "betweenness": 0,
+            "eigenvector": 0.027197341882623224
+        },
+        {
+            "id": "golos_jamschika",
+            "name": "Голос ямщика",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 1,
+            "numOfSpeechActs": 4,
+            "numOfWords": 6,
+            "degree": 5,
+            "weightedDegree": 5,
+            "closeness": 0.5289308176100629,
+            "betweenness": 0,
+            "eigenvector": 0.04771924174726539
+        },
+        {
+            "id": "rastakovskij",
+            "name": "Растаковский",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 3,
+            "numOfSpeechActs": 2,
+            "numOfWords": 42,
+            "degree": 18,
+            "weightedDegree": 33,
+            "closeness": 0.683739837398374,
+            "betweenness": 0,
+            "eigenvector": 0.21316888208185764
+        },
+        {
+            "id": "korobkin",
+            "name": "Коробкин",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 3,
+            "numOfSpeechActs": 11,
+            "numOfWords": 171,
+            "degree": 18,
+            "weightedDegree": 33,
+            "closeness": 0.683739837398374,
+            "betweenness": 0,
+            "eigenvector": 0.21316888208185764
+        },
+        {
+            "id": "zhena_korobkina",
+            "name": "Жена Коробкина",
+            "isGroup": false,
+            "gender": "FEMALE",
+            "numOfScenes": 3,
+            "numOfSpeechActs": 5,
+            "numOfWords": 47,
+            "degree": 18,
+            "weightedDegree": 33,
+            "closeness": 0.683739837398374,
+            "betweenness": 0,
+            "eigenvector": 0.21316888208185764
+        },
+        {
+            "id": "ljuljukov",
+            "name": "Люлюков",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 2,
+            "numOfSpeechActs": 1,
+            "numOfWords": 21,
+            "degree": 18,
+            "weightedDegree": 20,
+            "closeness": 0.683739837398374,
+            "betweenness": 0,
+            "eigenvector": 0.21316888208185764
+        },
+        {
+            "id": "zhena_luki_lukicha",
+            "name": "Жена Луки Лукича",
+            "isGroup": false,
+            "gender": "FEMALE",
+            "numOfScenes": 2,
+            "numOfSpeechActs": 1,
+            "numOfWords": 121,
+            "degree": 18,
+            "weightedDegree": 20,
+            "closeness": 0.683739837398374,
+            "betweenness": 0,
+            "eigenvector": 0.21316888208185764
+        },
+        {
+            "id": "mnogie_iz_gostej",
+            "name": "Многие из гостей",
+            "isGroup": true,
+            "gender": "UNKNOWN",
+            "numOfScenes": 2,
+            "numOfSpeechActs": 1,
+            "numOfWords": 13,
+            "degree": 18,
+            "weightedDegree": 31,
+            "closeness": 0.683739837398374,
+            "betweenness": 0,
+            "eigenvector": 0.21316888208185764
+        },
+        {
+            "id": "gostja",
+            "name": "Гостья",
+            "isGroup": false,
+            "gender": "FEMALE",
+            "numOfScenes": 2,
+            "numOfSpeechActs": 1,
+            "numOfWords": 27,
+            "degree": 18,
+            "weightedDegree": 31,
+            "closeness": 0.683739837398374,
+            "betweenness": 0,
+            "eigenvector": 0.21316888208185764
+        },
+        {
+            "id": "odna_iz_dam",
+            "name": "Одна из дам",
+            "isGroup": false,
+            "gender": "FEMALE",
+            "numOfScenes": 1,
+            "numOfSpeechActs": 1,
+            "numOfWords": 3,
+            "degree": 18,
+            "weightedDegree": 18,
+            "closeness": 0.683739837398374,
+            "betweenness": 0,
+            "eigenvector": 0.21316888208185764
+        },
+        {
+            "id": "zhandarm",
+            "name": "Жандарм",
+            "isGroup": false,
+            "gender": "MALE",
+            "numOfScenes": 1,
+            "numOfSpeechActs": 1,
+            "numOfWords": 18,
+            "degree": 0,
+            "weightedDegree": 0,
+            "closeness": 0,
+            "betweenness": 0,
+            "eigenvector": 1.070442410509596E-15
+        }
+    ]
+}

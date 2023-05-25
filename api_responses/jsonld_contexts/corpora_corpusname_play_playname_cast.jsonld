@@ -1,0 +1,66 @@
+{
+    "@context": {
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "timestamp": {
+            "@id": "https://dracor.org/ontology_v2#api_response_timestamp",
+            "@type": "xsd:dateTime"
+        },
+        "data": {
+            "@id": "https://dracor.org/ontology_v2#contains_data",
+            "@context": {
+                "id": {
+                    "@id": "https://dracor.org/ontology_v2#character_id",
+                    "@type": "xsd:string"
+                },
+                "name": {
+                    "@id": "https://dracor.org/ontology_v2#character_name",
+                    "@type": "xsd:string"
+                },
+                "isGroup": {
+                    "@id": "https://dracor.org/ontology_v2#character_is_group",
+                    "@type": "xsd:boolean"
+                },
+                "gender": {
+                    "@id": "https://dracor.org/ontology_v2#character_gender",
+                    "@type": "xsd:string"
+                },
+                "wikidataId": {
+                    "@id": "https://dracor.org/ontology_v2#character_wikidata_id",
+                    "@type": "xsd:string"
+                },
+                "betweenness": {
+                    "@id": "https://dracor.org/ontology_v2#character_node_betweenness",
+                    "@type": "xsd:float"
+                },
+                "degree": {
+                    "@id": "https://dracor.org/ontology_v2#character_node_degree",
+                    "@type": "xsd:integer"
+                },
+                "closeness": {
+                    "@id": "https://dracor.org/ontology_v2#character_node_closeness",
+                    "@type": "xsd:float"
+                },
+                "eigenvector": {
+                    "@id": "https://dracor.org/ontology_v2#character_node_eigenvector",
+                    "@type": "xsd:float"
+                },
+                "weightedDegree": {
+                    "@id": "https://dracor.org/ontology_v2#character_node_weighted_degree",
+                    "@type": "xsd:float"
+                },
+                "numOfScenes": {
+                    "@id": "https://dracor.org/ontology_v2#character_num_of_segments",
+                    "@type": "xsd:integer"
+                },
+                "numOfSpeechActs": {
+                    "@id": "https://dracor.org/ontology_v2#character_num_of_sp",
+                    "@type": "xsd:integer"
+                },
+                "numOfWords": {
+                    "@id": "https://dracor.org/ontology_v2#character_num_of_word_tokens",
+                    "@type": "xsd:integer"
+                }
+            }
+        }
+    }
+}
