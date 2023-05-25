@@ -1,0 +1,221 @@
+{
+    "@context": {
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "timestamp": {
+            "@id": "https://dracor.org/ontology_v2#api_response_timestamp",
+            "@type": "xsd:dateTime"
+        },
+        "data": {
+            "@id": "https://dracor.org/ontology_v2#contains_data",
+            "@context": {
+                "corpus": {
+                    "@id": "https://dracor.org/ontology_v2#play_corpus_name",
+                    "@type": "xsd:string"
+                },
+                "id": {
+                    "@id": "https://dracor.org/ontology_v2#play_id",
+                    "@type": "xsd:string"
+                },
+                "name": {
+                    "@id": "https://dracor.org/ontology_v2#play_name",
+                    "@type": "xsd:string"
+                },
+                "playName": {
+                    "@id": "https://dracor.org/ontology_v2#play_name",
+                    "@type": "xsd:string"
+                },
+                "wikidataId": {
+                    "@id": "https://dracor.org/ontology_v2#play_wikidata_id",
+                    "@type": "xsd:string"
+                },
+                "title": {
+                    "@id": "https://dracor.org/ontology_v2#play_title",
+                    "@type": "xsd:string"
+                },
+                "titleEn": {
+                    "@id": "https://dracor.org/ontology_v2#play_title_en",
+                    "@type": "xsd:string"
+                },
+                "subtitle": {
+                    "@id": "https://dracor.org/ontology_v2#play_subtitle",
+                    "@type": "xsd:string"
+                },
+                "subtitleEn": {
+                    "@id": "https://dracor.org/ontology_v2#play_subtitle_en",
+                    "@type": "xsd:string"
+                },
+                "author": {
+                    "@id": "https://dracor.org/ontology_v2#contains_play_first_author_data",
+                    "@context": {
+                        "name": {
+                            "@id": "https://dracor.org/ontology_v2#play_first_author_name",
+                            "@type": "xsd:string"
+                        }
+                    }
+                },
+                "authors": {
+                    "@id": "https://dracor.org/ontology_v2#contains_play_author_data",
+                    "@context": {
+                        "name": {
+                            "@id": "https://dracor.org/ontology_v2#play_author_name",
+                            "@type": "xsd:string"
+                        },
+                        "nameEn": {
+                            "@id": "https://dracor.org/ontology_v2#play_author_name_en",
+                            "@type": "xsd:string"
+                        },
+                        "fullname": {
+                            "@id": "https://dracor.org/ontology_v2#play_author_fullname",
+                            "@type": "xsd:string"
+                        },
+                        "fullnameEn": {
+                            "@id": "https://dracor.org/ontology_v2#play_author_fullname_en",
+                            "@type": "xsd:string"
+                        },
+                        "shortname": {
+                            "@id": "https://dracor.org/ontology_v2#play_author_shortname",
+                            "@type": "xsd:string"
+                        },
+                        "shortnameEn": {
+                            "@id": "https://dracor.org/ontology_v2#play_author_shortname_en",
+                            "@type": "xsd:string"
+                        },
+                        "alsoKnownAs": {
+                            "@id": "https://dracor.org/ontology_v2#play_author_also_known_as",
+                            "@type": "xsd:string"
+                        },
+                        "refs": {
+                            "@id": "https://dracor.org/ontology_v2#contains_external_ref_id_data",
+                            "@context": {
+                                "ref": {
+                                    "@id": "https://dracor.org/ontology_v2#play_author_ref_external_id",
+                                    "@type": "xsd:string"
+                                },
+                                "type": {
+                                    "@id": "https://dracor.org/ontology_v2#play_author_ref_type",
+                                    "@type": "xsd:string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "genre": {
+                    "@id": "https://dracor.org/ontology_v2#play_genre_normalized",
+                    "@type": "xsd:string"
+                },
+                "libretto": {
+                    "@id": "https://dracor.org/ontology_v2#play_is_libretto",
+                    "@type": "xsd:boolean"
+                },
+                "yearWritten": {
+                    "@id": "https://dracor.org/ontology_v2#play_year_written",
+                    "@type": "xsd:string"
+                },
+                "yearPrinted": {
+                    "@id": "https://dracor.org/ontology_v2#play_year_printed",
+                    "@type": "xsd:string"
+                },
+                "yearPremiered": {
+                    "@id": "https://dracor.org/ontology_v2#play_year_premiered",
+                    "@type": "xsd:string"
+                },
+                "yearNormalized": {
+                    "@id": "https://dracor.org/ontology_v2#play_year_premiered",
+                    "@type": "xsd:gYear"
+                },
+                "originalSource": {
+                    "@id": "https://dracor.org/ontology_v2#play_original_source_full_citation",
+                    "@type": "xsd:string"
+                },
+                "source": {
+                    "@id": "https://dracor.org/ontology_v2#contains_digital_source_data",
+                    "@context": {
+                        "name": {
+                            "@id": "https://dracor.org/ontology_v2#play_digital_source_name",
+                            "@type": "xsd:string"
+                        },
+                        "url": {
+                            "@id": "https://dracor.org/ontology_v2#play_digital_source_url",
+                            "@type": "@id"
+                        }
+                    }
+                },
+                "allInSegment": {
+                    "@id": "https://dracor.org/ontology_v2#play_all_in_segment",
+                    "@type": "xsd:integer"
+                },
+                "allInIndex": {
+                    "@id": "https://dracor.org/ontology_v2#play_all_in_index",
+                    "@type": "xsd:float"
+                },
+                "cast": {
+                    "@id": "https://dracor.org/ontology_v2#contains_play_character_data",
+                    "@context": {
+                        "id": {
+                            "@id": "https://dracor.org/ontology_v2#character_id",
+                            "@type": "xsd:string"
+                        },
+                        "name": {
+                            "@id": "https://dracor.org/ontology_v2#character_name",
+                            "@type": "xsd:string"
+                        },
+                        "isGroup": {
+                            "@id": "https://dracor.org/ontology_v2#character_is_group",
+                            "@type": "xsd:boolean"
+                        },
+                        "sex": {
+                            "@id": "https://dracor.org/ontology_v2#character_gender",
+                            "@type": "xsd:string"
+                        },
+                        "wikidataId": {
+                            "@id": "https://dracor.org/ontology_v2#character_wikidata_id",
+                            "@type": "xsd:string"
+                        }
+                    }
+                },
+                "segments": {
+                    "@id": "https://dracor.org/ontology_v2#contains_play_segment_data",
+                    "@context": {
+                        "type": {
+                            "@id": "https://dracor.org/ontology_v2#segment_type",
+                            "@type": "xsd:string"
+                        },
+                        "number": {
+                            "@id": "https://dracor.org/ontology_v2#segment_number",
+                            "@type": "xsd:integer"
+                        },
+                        "title": {
+                            "@id": "https://dracor.org/ontology_v2#segment_title",
+                            "@type": "xsd:string"
+                        },
+                        "speakers": {
+                            "@id": "https://dracor.org/ontology_v2#segment_speaking_character_id",
+                            "@type": "xsd:string"
+                        }
+                    }
+                },
+                "relations": {
+                    "@id": "https://dracor.org/ontology_v2#contains_character_relation_data",
+                    "@context": {
+                        "directed": {
+                            "@id": "https://dracor.org/ontology_v2#character_relation_is_directed",
+                            "@type": "xsd:boolean"
+                        },
+                        "type": {
+                            "@id": "https://dracor.org/ontology_v2#character_relation_type",
+                            "@type": "xsd:string"
+                        },
+                        "source": {
+                            "@id": "https://dracor.org/ontology_v2#character_relation_from",
+                            "@type": "xsd:string"
+                        },
+                        "target": {
+                            "@id": "https://dracor.org/ontology_v2#character_relation_to",
+                            "@type": "xsd:string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
