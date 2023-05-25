@@ -1,0 +1,99 @@
+{
+    "@context": {
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "timestamp": {
+            "@id": "https://dracor.org/ontology_v2#api_response_timestamp",
+            "@type": "xsd:dateTime"
+        },
+        "data": {
+            "@id": "https://dracor.org/ontology_v2#contains_data",
+            "@context": {
+                "corpus": {
+                    "@id": "https://dracor.org/ontology_v2#play_corpus_name",
+                    "@type": "xsd:string"
+                },
+                "id": {
+                    "@id": "https://dracor.org/ontology_v2#play_id",
+                    "@type": "xsd:string"
+                },
+                "name": {
+                    "@id": "https://dracor.org/ontology_v2#play_name",
+                    "@type": "xsd:string"
+                },
+                "wikipediaLinkCount": {
+                    "@id": "https://dracor.org/ontology_v2#play_num_of_wikipedia_link_count",
+                    "@type": "xsd:integer"
+                },
+                "size": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_size",
+                    "@type": "xsd:integer"
+                },
+                "numEdges": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_num_edges",
+                    "@type": "xsd:integer"
+                },
+                "averageDegree": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_num_edges",
+                    "@type": "xsd:float"
+                },
+                "density": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_density",
+                    "@type": "xsd:float"
+                },
+                "diameter": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_diameter",
+                    "@type": "xsd:integer"
+                },
+                "averagePathLength": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_average_path_length",
+                    "@type": "xsd:float"
+                },
+                "averageClustering": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_average_clustering",
+                    "@type": "xsd:float"
+                },
+                "numConnectedComponents": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_num_connected_components",
+                    "@type": "xsd:integer"
+                },
+                "maxDegree": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_max_degree",
+                    "@type": "xsd:integer"
+                },
+                "maxDegreeIds": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_max_degree_character_id",
+                    "@type": "xsd:string"
+                },
+                "nodes": {
+                    "@id": "https://dracor.org/ontology_v2#contains_play_network_node_data",
+                    "@context": {
+                        "id": {
+                            "@id": "https://dracor.org/ontology_v2#character_id",
+                            "@type": "xsd:string"
+                        },
+                        "betweenness": {
+                            "@id": "https://dracor.org/ontology_v2#character_node_betweenness",
+                            "@type": "xsd:float"
+                        },
+                        "degree": {
+                            "@id": "https://dracor.org/ontology_v2#character_node_degree",
+                            "@type": "xsd:integer"
+                        },
+                        "closeness": {
+                            "@id": "https://dracor.org/ontology_v2#character_node_closeness",
+                            "@type": "xsd:float"
+                        },
+                        "eigenvector": {
+                            "@id": "https://dracor.org/ontology_v2#character_node_eigenvector",
+                            "@type": "xsd:float"
+                        },
+                        "weightedDegree": {
+                            "@id": "https://dracor.org/ontology_v2#character_node_weighted_degree",
+                            "@type": "xsd:integer"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

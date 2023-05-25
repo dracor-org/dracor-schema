@@ -1,0 +1,168 @@
+{
+    "@context": {
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "timestamp": {
+            "@id": "https://dracor.org/ontology_v2#api_response_timestamp",
+            "@type": "xsd:dateTime"
+        },
+        "data": {
+            "@id": "https://dracor.org/ontology_v2#contains_data",
+            "@context": {
+                "corpus": {
+                    "@id": "https://dracor.org/ontology_v2#play_corpus_name",
+                    "@type": "xsd:string"
+                },
+                "id": {
+                    "@id": "https://dracor.org/ontology_v2#play_id",
+                    "@type": "xsd:string"
+                },
+                "name": {
+                    "@id": "https://dracor.org/ontology_v2#play_name",
+                    "@type": "xsd:string"
+                },
+                "wikipediaLinkCount": {
+                    "@id": "https://dracor.org/ontology_v2#play_num_of_wikipedia_link_count",
+                    "@type": "xsd:integer"
+                },
+                "size": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_size",
+                    "@type": "xsd:integer"
+                },
+                "numEdges": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_num_edges",
+                    "@type": "xsd:integer"
+                },
+                "averageDegree": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_num_edges",
+                    "@type": "xsd:float"
+                },
+                "density": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_density",
+                    "@type": "xsd:float"
+                },
+                "diameter": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_diameter",
+                    "@type": "xsd:integer"
+                },
+                "averagePathLength": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_average_path_length",
+                    "@type": "xsd:float"
+                },
+                "averageClustering": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_average_clustering",
+                    "@type": "xsd:float"
+                },
+                "numConnectedComponents": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_num_connected_components",
+                    "@type": "xsd:integer"
+                },
+                "maxDegree": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_max_degree",
+                    "@type": "xsd:integer"
+                },
+                "maxDegreeIds": {
+                    "@id": "https://dracor.org/ontology_v2#play_network_max_degree_character_id",
+                    "@type": "xsd:string"
+                },
+                "nodes": {
+                    "@id": "https://dracor.org/ontology_v2#contains_play_network_node_data",
+                    "@context": {
+                        "id": {
+                            "@id": "https://dracor.org/ontology_v2#character_id",
+                            "@type": "xsd:string"
+                        },
+                        "betweenness": {
+                            "@id": "https://dracor.org/ontology_v2#character_node_betweenness",
+                            "@type": "xsd:float"
+                        },
+                        "degree": {
+                            "@id": "https://dracor.org/ontology_v2#character_node_degree",
+                            "@type": "xsd:integer"
+                        },
+                        "closeness": {
+                            "@id": "https://dracor.org/ontology_v2#character_node_closeness",
+                            "@type": "xsd:float"
+                        },
+                        "eigenvector": {
+                            "@id": "https://dracor.org/ontology_v2#character_node_eigenvector",
+                            "@type": "xsd:float"
+                        },
+                        "weightedDegree": {
+                            "@id": "https://dracor.org/ontology_v2#character_node_weighted_degree",
+                            "@type": "xsd:integer"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "@id": "https://dracor.org/api/corpora/greek/play/aeschylus-persians/metrics",
+    "@type": "https://dracor.org/ontology_v2#API_Response_Data",
+    "timestamp": "2023-05-25T16:28:23.463+01:00",
+    "data": {
+        "id": "greek000022",
+        "name": "aeschylus-persians",
+        "corpus": "greek",
+        "wikipediaLinkCount": 32,
+        "nodes": [
+            {
+                "betweenness": 0,
+                "degree": 0,
+                "id": "eidolon_dareiou",
+                "closeness": 0,
+                "eigenvector": 7.415736540205905E-8,
+                "weightedDegree": 0
+            },
+            {
+                "betweenness": 0.35000000000000003,
+                "degree": 4,
+                "id": "choros",
+                "closeness": 0.8,
+                "eigenvector": 0.582539253575509,
+                "weightedDegree": 11
+            },
+            {
+                "betweenness": 0,
+                "degree": 2,
+                "id": "dareios",
+                "closeness": 0.5333333333333333,
+                "eigenvector": 0.41191709737006654,
+                "weightedDegree": 3
+            },
+            {
+                "betweenness": 0.05,
+                "degree": 3,
+                "id": "atossa",
+                "closeness": 0.6400000000000001,
+                "eigenvector": 0.5236826290621259,
+                "weightedDegree": 7
+            },
+            {
+                "betweenness": 0,
+                "degree": 2,
+                "id": "angelos",
+                "closeness": 0.5333333333333333,
+                "eigenvector": 0.41191709737006654,
+                "weightedDegree": 5
+            },
+            {
+                "betweenness": 0,
+                "degree": 1,
+                "id": "xerxes",
+                "closeness": 0.45714285714285713,
+                "eigenvector": 0.21691733875073607,
+                "weightedDegree": 2
+            }
+        ],
+        "averageDegree": 2,
+        "density": 0.4,
+        "averageClustering": 0.5,
+        "maxDegreeIds": ["choros"],
+        "size": 6,
+        "maxDegree": 4,
+        "numConnectedComponents": 2,
+        "numEdges": 6,
+        "diameter": 2,
+        "averagePathLength": 1.4
+    }
+}
