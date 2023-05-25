@@ -1,0 +1,297 @@
+{
+    "@context": {
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "timestamp": {
+            "@id": "https://dracor.org/ontology_v2#api_response_timestamp",
+            "@type": "xsd:dateTime"
+        },
+        "data": {
+            "@id": "https://dracor.org/ontology_v2#contains_data",
+            "@context": {
+                "name": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_name",
+                    "@type": "xsd:string"
+                },
+                "title": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_title",
+                    "@type": "xsd:string"
+                },
+                "acronym": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_acronym",
+                    "@type": "xsd:string"
+                },
+                "description": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_description",
+                    "@type": "xsd:string"
+                },
+                "repository": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_repository",
+                    "@type": "@id"
+                },
+                "licence": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_licence",
+                    "@type": "xsd:string"
+                },
+                "licenceUrl": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_licence_url",
+                    "@type": "@id"
+                },
+                "dramas": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_licence_url",
+                    "@context": {
+                        "id": {
+                            "@id": "https://dracor.org/ontology_v2#play_id",
+                            "@type": "xsd:string"
+                        },
+                        "name": {
+                            "@id": "https://dracor.org/ontology_v2#play_name",
+                            "@type": "xsd:string"
+                        },
+                        "wikidataId": {
+                            "@id": "https://dracor.org/ontology_v2#play_wikidata_id",
+                            "@type": "xsd:string"
+                        },
+                        "title": {
+                            "@id": "https://dracor.org/ontology_v2#play_title",
+                            "@type": "xsd:string"
+                        },
+                        "subtitle": {
+                            "@id": "https://dracor.org/ontology_v2#play_subtitle",
+                            "@type": "xsd:string"
+                        },
+                        "titleEn": {
+                            "@id": "https://dracor.org/ontology_v2#play_title_en",
+                            "@type": "xsd:string"
+                        },
+                        "subtitleEn": {
+                            "@id": "https://dracor.org/ontology_v2#play_subtitle_en",
+                            "@type": "xsd:string"
+                        },
+                        "play_year_written": {
+                            "@id": "https://dracor.org/ontology_v2#play_year_written",
+                            "@type": "xsd:string"
+                        },
+                        "yearPrinted": {
+                            "@id": "https://dracor.org/ontology_v2#play_year_printed",
+                            "@type": "xsd:string"
+                        },
+                        "yearPremiered": {
+                            "@id": "https://dracor.org/ontology_v2#play_year_premiered",
+                            "@type": "xsd:string"
+                        },
+                        "yearNormalized": {
+                            "@id": "https://dracor.org/ontology_v2#play_year_normalized",
+                            "@type": "xsd:integer"
+                        },
+                        "writtenYear": {
+                            "@id": "https://dracor.org/ontology_v2#play_year_written",
+                            "@type": "xsd:string"
+                        },
+                        "printYear": {
+                            "@id": "https://dracor.org/ontology_v2#play_year_printed",
+                            "@type": "xsd:string"
+                        },
+                        "premiereYear": {
+                            "@id": "https://dracor.org/ontology_v2#play_year_premiered",
+                            "@type": "xsd:string"
+                        },
+                        "source": {
+                            "@id": "https://dracor.org/ontology_v2#play_digital_source_name",
+                            "@type": "xsd:string"
+                        },
+                        "sourceUrl": {
+                            "@id": "https://dracor.org/ontology_v2#play_digital_source_url",
+                            "@type": "@id"
+                        },
+                        "networkdataCsvUrl": {
+                            "@id": "https://dracor.org/ontology_v2#play_network_data_csv_url",
+                            "@type": "@id"
+                        },
+                        "networkSize": {
+                            "@id": "https://dracor.org/ontology_v2#play_network_size",
+                            "@type": "xsd:integer"
+                        },
+                        "author": {
+                            "@id": "https://dracor.org/ontology_v2#play_first_author",
+                            "@context": {
+                                "name": {
+                                    "@id": "https://dracor.org/ontology_v2#play_first_author_name",
+                                    "@type": "xsd:string"
+                                }
+                            }
+                        },
+                        "authors": {
+                            "@id": "https://dracor.org/ontology_v2#play_author",
+                            "@context": {
+                                "name": {
+                                    "@id": "https://dracor.org/ontology_v2#play_author_name",
+                                    "@type": "xsd:string"
+                                },
+                                "nameEn": {
+                                    "@id": "https://dracor.org/ontology_v2#play_author_name_en",
+                                    "@type": "xsd:string"
+                                },
+                                "fullname": {
+                                    "@id": "https://dracor.org/ontology_v2#play_author_fullname",
+                                    "@type": "xsd:string"
+                                },
+                                "fullnameEn": {
+                                    "@id": "https://dracor.org/ontology_v2#play_author_fullname_en",
+                                    "@type": "xsd:string"
+                                },
+                                "shortname": {
+                                    "@id": "https://dracor.org/ontology_v2#play_author_shortname",
+                                    "@type": "xsd:string"
+                                },
+                                "shortnameEn": {
+                                    "@id": "https://dracor.org/ontology_v2#play_author_shortname_en",
+                                    "@type": "xsd:string"
+                                },
+                                "alsoKnownAs": {"@id": "https://dracor.org/ontology_v2#play_author_also_known_as"},
+                                "refs": {
+                                    "@id": "https://dracor.org/ontology_v2#external_ref_id",
+                                    "@context": {
+                                        "ref": {
+                                            "@id": "https://dracor.org/ontology_v2#play_author_ref_external_id",
+                                            "@type": "xsd:string"
+                                        },
+                                        "type": {
+                                            "@id": "https://dracor.org/ontology_v2#play_author_ref_type",
+                                            "@type": "xsd:string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "@id": "https://dracor.org/api/corpora/tat",
+    "@type": "https://dracor.org/ontology_v2#API_Response_Data",
+    "timestamp": "2023-05-17T18:27:23.463+01:00",
+    "data": {
+        "description": "Edited by Daniil Skorinkin and Frank Fischer. Features a handful of plays in Tatar language, provided through Tatar Electronic Library.",
+        "title": "Tatar Drama Corpus",
+        "repository": "https://github.com/dracor-org/tatdracor",
+        "name": "tat",
+        "dramas": [
+            {
+                "writtenYear": "1908",
+                "wikidataId": "Q25556355",
+                "yearPremiered": null,
+                "source": "Татарская электронная библиотека",
+                "yearWritten": "1908",
+                "id": "tat000001",
+                "title": "Беренче театр",
+                "sourceUrl": "http://kitap.net.ru/galiaskar/2.php",
+                "networkSize": "7",
+                "name": "qamal-berenche-teatr",
+                "yearNormalized": 1908,
+                "yearPrinted": null,
+                "printYear": null,
+                "subtitle": "Комедия 1 пәрдәдә",
+                "premiereYear": null,
+                "authors": [
+                    {
+                        "name": "Камал, Галиәсгар",
+                        "fullname": "Галиәсгар Камал",
+                        "shortname": "Камал",
+                        "refs": [
+                            {
+                                "ref": "Q2497099",
+                                "type": "wikidata"
+                            }
+                        ],
+                        "fullnameEn": "Ğäliäsğar Kamal",
+                        "nameEn": "Kamal, Ğäliäsğar",
+                        "shortnameEn": "Kamal",
+                        "alsoKnownAs": ["Ğäliäsğar Kamal"]
+                    }
+                ],
+                "networkdataCsvUrl": "https://dracor.org/api/corpora/tat/play/qamal-berenche-teatr/networkdata/csv",
+                "author": {"name": "Камал, Галиәсгар"},
+                "subtitleEn": "Comedy in 1 Act",
+                "titleEn": "First Theatre"
+            },
+            {
+                "writtenYear": "1911",
+                "wikidataId": "Q78598039",
+                "yearPremiered": null,
+                "source": "Татарская электронная библиотека",
+                "yearWritten": "1911",
+                "id": "tat000003",
+                "title": "Безнең шәһәрнең серләре",
+                "sourceUrl": "http://kitap.net.ru/galiaskar/5.php",
+                "networkSize": "16",
+                "name": "qamal-beznen-shehernen-serlere",
+                "yearNormalized": 1911,
+                "yearPrinted": null,
+                "printYear": null,
+                "subtitle": "(Пьеса)",
+                "premiereYear": null,
+                "authors": [
+                    {
+                        "name": "Камал, Галиәсгар",
+                        "fullname": "Галиәсгар Камал",
+                        "shortname": "Камал",
+                        "refs": [
+                            {
+                                "ref": "Q2497099",
+                                "type": "wikidata"
+                            }
+                        ],
+                        "fullnameEn": "Ğäliäsğar Kamal",
+                        "nameEn": "Kamal, Ğäliäsğar",
+                        "shortnameEn": "Kamal",
+                        "alsoKnownAs": ["Ğäliäsğar Kamal"]
+                    }
+                ],
+                "networkdataCsvUrl": "https://dracor.org/api/corpora/tat/play/qamal-beznen-shehernen-serlere/networkdata/csv",
+                "author": {"name": "Камал, Галиәсгар"},
+                "subtitleEn": "(Play)",
+                "titleEn": "Secrets of Our City"
+            },
+            {
+                "writtenYear": "1912",
+                "wikidataId": "Q78063407",
+                "yearPremiered": null,
+                "source": "Татарская электронная библиотека",
+                "yearWritten": "1912",
+                "id": "tat000002",
+                "title": "Кайниш",
+                "sourceUrl": "http://kitap.net.ru/galiaskar/3.php",
+                "networkSize": "7",
+                "name": "qamal-kaynish",
+                "yearNormalized": 1912,
+                "yearPrinted": null,
+                "printYear": null,
+                "subtitle": "Пьеса 1 пәрдәдә 2 манзарада (картинада)",
+                "premiereYear": null,
+                "authors": [
+                    {
+                        "name": "Камал, Галиәсгар",
+                        "fullname": "Галиәсгар Камал",
+                        "shortname": "Камал",
+                        "refs": [
+                            {
+                                "ref": "Q2497099",
+                                "type": "wikidata"
+                            }
+                        ],
+                        "fullnameEn": "Ğäliäsğar Kamal",
+                        "nameEn": "Kamal, Ğäliäsğar",
+                        "shortnameEn": "Kamal",
+                        "alsoKnownAs": ["Ğäliäsğar Kamal"]
+                    }
+                ],
+                "networkdataCsvUrl": "https://dracor.org/api/corpora/tat/play/qamal-kaynish/networkdata/csv",
+                "author": {"name": "Камал, Галиәсгар"},
+                "subtitleEn": "Play in One Act and Two Scenes (Pictures)",
+                "titleEn": "Qayniş"
+            }
+        ],
+        "acronym": "TatDraCor"
+    }
+}
