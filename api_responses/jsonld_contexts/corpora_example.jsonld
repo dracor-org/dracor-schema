@@ -1,0 +1,460 @@
+{
+    "@context": {
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "timestamp": {
+            "@id": "https://dracor.org/ontology_v2#api_response_timestamp",
+            "@type": "xsd:dateTime"
+        },
+        "data": {
+            "@id": "https://dracor.org/ontology_v2#contains_data",
+            "@context": {
+                "name": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_name",
+                    "@type": "xsd:string"
+                },
+                "title": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_title",
+                    "@type": "xsd:string"
+                },
+                "acronym": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_acronym",
+                    "@type": "xsd:string"
+                },
+                "description": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_description",
+                    "@type": "xsd:string"
+                },
+                "repository": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_repository",
+                    "@type": "@id"
+                },
+                "licence": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_licence",
+                    "@type": "xsd:string"
+                },
+                "licenceUrl": {
+                    "@id": "https://dracor.org/ontology_v2#corpus_licence_url",
+                    "@type": "@id"
+                },
+                "metrics": {
+                    "@id": "https://dracor.org/ontology_v2#contains_corpus_metrics_data",
+                    "@context": {
+                        "plays": {
+                            "@id": "https://dracor.org/ontology_v2#corpus_num_of_plays",
+                            "@type": "xsd:integer"
+                        },
+                        "characters": {
+                            "@id": "https://dracor.org/ontology_v2#corpus_num_of_characters",
+                            "@type": "xsd:integer"
+                        },
+                        "male": {
+                            "@id": "https://dracor.org/ontology_v2#corpus_num_of_characters_male",
+                            "@type": "xsd:integer"
+                        },
+                        "female": {
+                            "@id": "https://dracor.org/ontology_v2#corpus_num_of_characters_female",
+                            "@type": "xsd:integer"
+                        },
+                        "text": {
+                            "@id": "https://dracor.org/ontology_v2#corpus_num_of_tei_text_elements",
+                            "@type": "xsd:integer"
+                        },
+                        "sp": {
+                            "@id": "https://dracor.org/ontology_v2#corpus_num_of_sp",
+                            "@type": "xsd:integer"
+                        },
+                        "stage": {
+                            "@id": "https://dracor.org/ontology_v2#corpus_num_of_stage",
+                            "@type": "xsd:integer"
+                        },
+                        "wordcount": {
+                            "@id": "https://dracor.org/ontology_v2#contains_corpus_wordcount_data",
+                            "@context": {
+                                "text": {
+                                    "@id": "https://dracor.org/ontology_v2#corpus_num_of_word_tokens_in_text_elements",
+                                    "@type": "xsd:integer"
+                                },
+                                "sp": {
+                                    "@id": "https://dracor.org/ontology_v2#corpus_num_of_word_tokens_in_sp",
+                                    "@type": "xsd:integer"
+                                },
+                                "stage": {
+                                    "@id": "https://dracor.org/ontology_v2#corpus_num_of_word_tokens_in_stage",
+                                    "@type": "xsd:integer"
+                                }
+                            }
+                        },
+                        "updated": {
+                            "@id": "https://dracor.org/ontology_v2#corpus_metrics_date_updated",
+                            "@type": "xsd:dateTime"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "@id": "https://dracor.org/api/corpora?include=metrics",
+    "@type": "https://dracor.org/ontology_v2#API_Response_Data",
+    "timestamp": "2023-05-17T18:27:23.463+01:00",
+    "data": [
+        {
+            "description": "Edited by Pablo Ruiz Fabo ([MeThAL project](https://methal.pages.unistra.fr/) at University of Strasbourg). Features a growing number of Alsation plays from the 19th and 20th century. For a corpus description and full credits please see the [README on GitHub](https://github.com/dracor-org/alsdracor).",
+            "uri": "https://dracor.org/api/corpora/als",
+            "title": "Alsatian Drama Corpus",
+            "name": "als",
+            "acronym": "AlsDraCor",
+            "metrics": {
+                "plays": 30,
+                "characters": 375,
+                "male": 232,
+                "female": 110,
+                "text": 30,
+                "sp": 15092,
+                "stage": 7958,
+                "wordcount": {
+                    "text": 329985,
+                    "sp": 312184,
+                    "stage": 44647
+                },
+                "updated": "2022-11-19T12:41:23.463+01:00"
+            },
+            "repository": "https://github.com/dracor-org/alsdracor"
+        },
+        {
+            "description": "Edited by Boris Orekhov. Contains a growing number of plays in the Bashkir language. Works still under copyright published with the permission of the rights holders.",
+            "uri": "https://dracor.org/api/corpora/bash",
+            "title": "Bashkir Drama Corpus",
+            "name": "bash",
+            "acronym": "BashDraCor",
+            "metrics": {
+                "plays": 3,
+                "characters": 56,
+                "male": 37,
+                "female": 16,
+                "text": 3,
+                "sp": 1405,
+                "stage": 575,
+                "wordcount": {
+                    "text": 23464,
+                    "sp": 21184,
+                    "stage": 3275
+                },
+                "updated": "2022-11-19T12:41:34.932+01:00"
+            },
+            "repository": "https://github.com/dracor-org/bashdracor"
+        },
+        {
+            "description": "Edited by members of the [Institute of Romance Languages and Literatures at University of Tübingen](https://uni-tuebingen.de/en/fakultaeten/philosophische-fakultaet/fachbereiche/neuphilologie/romanisches-seminar/home/) and the [Institute of Romance Studies at University of Vienna](https://romanistik.univie.ac.at/). For a corpus description and full credits please see the [README on GitHub](https://github.com/dracor-org/caldracor).",
+            "uri": "https://dracor.org/api/corpora/cal",
+            "title": "Calderón Drama Corpus",
+            "name": "cal",
+            "acronym": "CalDraCor",
+            "metrics": {
+                "plays": 205,
+                "characters": 3406,
+                "male": 2188,
+                "female": 1131,
+                "text": 205,
+                "sp": 121384,
+                "stage": 24058,
+                "wordcount": {
+                    "text": 2.838359E6,
+                    "sp": 2.738002E6,
+                    "stage": 115075
+                },
+                "updated": "2022-11-19T13:52:56.04+01:00"
+            },
+            "repository": "https://github.com/dracor-org/caldracor"
+        },
+        {
+            "licence": "CC BY-NC-SA 4.0",
+            "licenceUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+            "description": "A [TEI P5](https://tei-c.org/guidelines/p5/) version of Paul Fièvre's [Théâtre Classique](https://www.theatre-classique.fr/index.html). Edited by Carsten Milling, Frank Fischer and Mathias Göbel. For corpus description and list of enhancements please consult the [README on GitHub](https://github.com/dracor-org/fredracor).",
+            "uri": "https://dracor.org/api/corpora/fre",
+            "title": "French Drama Corpus",
+            "name": "fre",
+            "acronym": "FreDraCor",
+            "metrics": {
+                "plays": 1560,
+                "characters": 15526,
+                "male": 6860,
+                "female": 3720,
+                "text": 1560,
+                "sp": 445403,
+                "stage": 38306,
+                "wordcount": {
+                    "text": 1.5671583E7,
+                    "sp": 1.4444033E7,
+                    "stage": 307262
+                },
+                "updated": "2022-11-20T12:16:02.669+01:00"
+            },
+            "repository": "https://github.com/dracor-org/fredracor"
+        },
+        {
+            "licence": "CC0",
+            "licenceUrl": "https://creativecommons.org/share-your-work/public-domain/cc0/",
+            "description": "Edited by Frank Fischer and Peer Trilcke. Features more than 600 German-language plays from the 1540s to the 1940s. For a corpus description and full credits please see the [README on GitHub](https://github.com/dracor-org/gerdracor).",
+            "uri": "https://dracor.org/api/corpora/ger",
+            "title": "German Drama Corpus",
+            "name": "ger",
+            "acronym": "GerDraCor",
+            "metrics": {
+                "plays": 614,
+                "characters": 14466,
+                "male": 10266,
+                "female": 2965,
+                "text": 614,
+                "sp": 418970,
+                "stage": 197438,
+                "wordcount": {
+                    "text": 1.0573167E7,
+                    "sp": 1.0086205E7,
+                    "stage": 1.237979E6
+                },
+                "updated": "2023-05-16T22:41:43.716+02:00"
+            },
+            "repository": "https://github.com/dracor-org/gerdracor"
+        },
+        {
+            "licence": "CC0",
+            "licenceUrl": "https://creativecommons.org/share-your-work/public-domain/cc0/",
+            "description": "Edited by [Frank Fischer](https://lehkost.github.io/). This corpus contains all 37 of Shakespeare's plays in their German translations published by Schlegel and Tieck, in the edition of Aufbau-Verlag Berlin/Weimar (3rd edition 1975), which is based on the last edition published during Schlegel's lifetime (3rd edition 1843/44). The digitised print edition was procured from [Zeno.org](http://www.zeno.org/nid/20005683920) (via TextGrid Repository), which also provided an additional play (»Die beiden edlen Vettern«) that Shakespeare is now considered to have co-authored. This is a first beta version of the corpus. For a full description please see the [README on GitHub](https://github.com/dracor-org/gershdracor).",
+            "uri": "https://dracor.org/api/corpora/gersh",
+            "title": "German Shakespeare Drama Corpus",
+            "name": "gersh",
+            "acronym": "GerShDraCor",
+            "metrics": {
+                "plays": 38,
+                "characters": 185,
+                "male": 149,
+                "female": 25,
+                "text": 38,
+                "sp": 31767,
+                "stage": 6883,
+                "wordcount": {
+                    "text": 873037,
+                    "sp": 855064,
+                    "stage": 32064
+                },
+                "updated": "2022-11-19T12:57:23.819+01:00"
+            },
+            "repository": "https://github.com/dracor-org/gershdracor"
+        },
+        {
+            "licence": "CC BY-SA 3.0 US",
+            "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/us/",
+            "description": "Derived from [Perseus Digital Library](http://www.perseus.tufts.edu/hopper/opensource/download), features 39 ancient Greek plays. Maintained by Boris Orekhov, Julia Jennifer Beine and Frank Fischer. Corpus description and list of enhancements in the [README on GitHub](https://github.com/dracor-org/greekdracor).",
+            "uri": "https://dracor.org/api/corpora/greek",
+            "title": "Greek Drama Corpus",
+            "name": "greek",
+            "acronym": "GreekDraCor",
+            "metrics": {
+                "plays": 40,
+                "characters": 450,
+                "male": 285,
+                "female": 113,
+                "text": 40,
+                "sp": 16097,
+                "stage": 15,
+                "wordcount": {
+                    "text": 328406,
+                    "sp": 327766,
+                    "stage": 22
+                },
+                "updated": "2022-12-19T17:10:51.728+01:00"
+            },
+            "repository": "https://github.com/dracor-org/greekdracor"
+        },
+        {
+            "description": "Edited by the Department of Digital Humanities at Eötvös Loránd University (ELTE) and the National Laboratory for Digital Heritage. Currently featuring 40 Hungarian-language plays from the 16th to the 20th century. For a corpus description and full credits please see the [README on GitHub](https://github.com/dracor-org/hundracor).",
+            "uri": "https://dracor.org/api/corpora/hun",
+            "title": "Hungarian Drama Corpus",
+            "name": "hun",
+            "acronym": "HunDraCor",
+            "metrics": {
+                "plays": 41,
+                "characters": 986,
+                "male": 609,
+                "female": 222,
+                "text": 41,
+                "sp": 33220,
+                "stage": 15793,
+                "wordcount": {
+                    "text": 627903,
+                    "sp": 604496,
+                    "stage": 71869
+                },
+                "updated": "2022-11-19T13:10:02.394+01:00"
+            },
+            "repository": "https://github.com/dracor-org/hundracor"
+        },
+        {
+            "description": "Derived from [Biblioteca Italiana](http://www.bibliotecaitaliana.it/), maintained by Frank Fischer and Carsten Milling. Features 139 Italian plays from 15th to 20th century. For corpus description and list of enhancements please consult the [README on GitHub](https://github.com/dracor-org/itadracor).",
+            "uri": "https://dracor.org/api/corpora/ita",
+            "title": "Italian Drama Corpus",
+            "name": "ita",
+            "acronym": "ItaDraCor",
+            "metrics": {
+                "plays": 139,
+                "characters": 1529,
+                "male": 990,
+                "female": 414,
+                "text": 139,
+                "sp": 66610,
+                "stage": 13523,
+                "wordcount": {
+                    "text": 1.895917E6,
+                    "sp": 1.764272E6,
+                    "stage": 62494
+                },
+                "updated": "2022-11-19T13:39:28.256+01:00"
+            },
+            "repository": "https://github.com/dracor-org/itadracor"
+        },
+        {
+            "licence": "CC BY-SA 3.0 US",
+            "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/us/",
+            "description": "Derived from [Perseus Digital Library](http://www.perseus.tufts.edu/hopper/opensource/download), updated to [TEI P5](https://tei-c.org/guidelines/p5/) and enhanced by Julia Jennifer Beine (Ruhr University Bochum), Frank Fischer and Boris Orekhov (both Higher School of Economics, Moscow). Features 36 plays (20 comedies by **Plautus**, 6 comedies by **Terence**, 10 tragedies by **Seneca**). For corpus description and full credits please see the [README on GitHub](https://github.com/dracor-org/romdracor).",
+            "uri": "https://dracor.org/api/corpora/rom",
+            "title": "Roman Drama Corpus",
+            "name": "rom",
+            "acronym": "RomDraCor",
+            "metrics": {
+                "plays": 36,
+                "characters": 405,
+                "male": 278,
+                "female": 104,
+                "text": 36,
+                "sp": 18485,
+                "stage": 204,
+                "wordcount": {
+                    "text": 307156,
+                    "sp": 298298,
+                    "stage": 529
+                },
+                "updated": "2023-05-17T14:24:18.458+02:00"
+            },
+            "repository": "https://github.com/dracor-org/romdracor"
+        },
+        {
+            "licence": "CC0",
+            "licenceUrl": "https://creativecommons.org/share-your-work/public-domain/cc0/",
+            "description": "Edited by Frank Fischer and Daniil Skorinkin. Features more than 200 Russian plays from the 1740s to the 1940s. For a corpus description and full credits please see the [README on GitHub](https://github.com/dracor-org/rusdracor).",
+            "uri": "https://dracor.org/api/corpora/rus",
+            "title": "Russian Drama Corpus",
+            "name": "rus",
+            "acronym": "RusDraCor",
+            "metrics": {
+                "plays": 212,
+                "characters": 3707,
+                "male": 2608,
+                "female": 871,
+                "text": 212,
+                "sp": 119333,
+                "stage": 49440,
+                "wordcount": {
+                    "text": 2.316995E6,
+                    "sp": 2.191657E6,
+                    "stage": 215112
+                },
+                "updated": "2023-01-27T17:19:17.493+01:00"
+            },
+            "repository": "https://github.com/dracor-org/rusdracor"
+        },
+        {
+            "licence": "CC BY-NC 3.0",
+            "licenceUrl": "https://creativecommons.org/licenses/by-nc/3.0/deed.en_US",
+            "description": "Derived from the [Folger Shakespeare Library](https://shakespeare.folger.edu/). Enhancements documented in our [README at GitHub](https://github.com/dracor-org/shakedracor).",
+            "uri": "https://dracor.org/api/corpora/shake",
+            "title": "Shakespeare Drama Corpus",
+            "name": "shake",
+            "acronym": "ShakeDraCor",
+            "metrics": {
+                "plays": 37,
+                "characters": 1433,
+                "male": 797,
+                "female": 116,
+                "text": 37,
+                "sp": 31066,
+                "stage": 10450,
+                "wordcount": {
+                    "text": 908286,
+                    "sp": 876744,
+                    "stage": 41230
+                },
+                "updated": "2022-11-19T14:02:47.848+01:00"
+            },
+            "repository": "https://github.com/dracor-org/shakedracor"
+        },
+        {
+            "description": "Edited by [María Concepción Jiménez](https://www.unir.net/profesores/maria-concepcion-jimenez-fernandez/), [Teresa Santa María Fernández](https://www.unir.net/profesores/ma-teresa-santa-maria-fernandez/) and [José Calvo Tello](https://www.sub.uni-goettingen.de/kontakt/personen-a-z/personendetails/person/jose-calvo-tello/). Forked from the [BETTE corpus](https://github.com/GHEDI/BETTE) (Biblioteca Electrónica Textual del Teatro en Español de 1868\u20131936).",
+            "uri": "https://dracor.org/api/corpora/span",
+            "title": "Spanish Drama Corpus",
+            "name": "span",
+            "acronym": "SpanDraCor",
+            "metrics": {
+                "plays": 25,
+                "characters": 580,
+                "male": 331,
+                "female": 226,
+                "text": 25,
+                "sp": 23600,
+                "stage": 8393,
+                "wordcount": {
+                    "text": 444653,
+                    "sp": 388916,
+                    "stage": 84339
+                },
+                "updated": "2022-11-19T14:04:36.726+01:00"
+            },
+            "repository": "https://github.com/dracor-org/spandracor"
+        },
+        {
+            "description": "Derived from the [eDrama](http://www.dramawebben.se/sida/edrama) project. Features 68 Swedish plays from around 1880 to 1900. More information in the [README on GitHub](https://github.com/dracor-org/swedracor).",
+            "uri": "https://dracor.org/api/corpora/swe",
+            "title": "Swedish Drama Corpus",
+            "name": "swe",
+            "acronym": "SweDraCor",
+            "metrics": {
+                "plays": 68,
+                "characters": 769,
+                "male": 382,
+                "female": 327,
+                "text": 73,
+                "sp": 35420,
+                "stage": 17209,
+                "wordcount": {
+                    "text": 737231,
+                    "sp": 690830,
+                    "stage": 96277
+                },
+                "updated": "2022-11-19T14:20:08.699+01:00"
+            },
+            "repository": "https://github.com/dracor-org/swedracor"
+        },
+        {
+            "description": "Edited by Daniil Skorinkin and Frank Fischer. Features a handful of plays in Tatar language, provided through Tatar Electronic Library.",
+            "uri": "https://dracor.org/api/corpora/tat",
+            "title": "Tatar Drama Corpus",
+            "name": "tat",
+            "acronym": "TatDraCor",
+            "metrics": {
+                "plays": 3,
+                "characters": 30,
+                "male": 20,
+                "female": 9,
+                "text": 3,
+                "sp": 701,
+                "stage": 433,
+                "wordcount": {
+                    "text": 13037,
+                    "sp": 12223,
+                    "stage": 1788
+                },
+                "updated": "2022-11-19T14:06:21.65+01:00"
+            },
+            "repository": "https://github.com/dracor-org/tatdracor"
+        }
+    ]
+}
