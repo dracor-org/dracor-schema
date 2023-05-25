@@ -1,0 +1,38 @@
+{
+    "@context": {
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "timestamp": {
+            "@id": "https://dracor.org/ontology_v2#api_response_timestamp",
+            "@type": "xsd:dateTime"
+        },
+        "data": {
+            "@id": "https://dracor.org/ontology_v2#contains_data",
+            "@context": {
+                "id": {
+                    "@id": "https://dracor.org/ontology_v2#character_id",
+                    "@type": "xsd:string"
+                },
+                "label": {
+                    "@id": "https://dracor.org/ontology_v2#character_name",
+                    "@type": "xsd:string"
+                },
+                "isGroup": {
+                    "@id": "https://dracor.org/ontology_v2#character_is_group",
+                    "@type": "xsd:boolean"
+                },
+                "gender": {
+                    "@id": "https://dracor.org/ontology_v2#character_gender",
+                    "@type": "xsd:string"
+                },
+                "roles": {
+                    "@id": "https://dracor.org/ontology_v2#character_role",
+                    "@type": "xsd:string"
+                },
+                "text": {
+                    "@id": "https://dracor.org/ontology_v2#character_spoken_text",
+                    "@type": "xsd:string"
+                }
+            }
+        }
+    }
+}
