@@ -1,12 +1,12 @@
 {
     "@context": {
         "xsd": "http://www.w3.org/2001/XMLSchema#",
-        "datetime": {
-            "@id": "https://dracor.org/ontology_v2#api_response_datetime",
+        "timestamp": {
+            "@id": "https://dracor.org/ontology_v2#api_response_timestamp",
             "@type": "xsd:dateTime"
         },
         "data": {
-            "@id": "https://dracor.org/ontology_v2#api_response_data",
+            "@id": "https://dracor.org/ontology_v2#contains_data",
             "@context": {
                 "name": {
                     "@id": "https://dracor.org/ontology_v2#corpus_name",
@@ -37,7 +37,7 @@
                     "@type": "@id"
                 },
                 "metrics": {
-                    "@id": "https://dracor.org/ontology_v2#corpus_metrics",
+                    "@id": "https://dracor.org/ontology_v2#contains_corpus_metrics_data",
                     "@context": {
                         "plays": {
                             "@id": "https://dracor.org/ontology_v2#corpus_num_of_plays",
@@ -68,7 +68,7 @@
                             "@type": "xsd:integer"
                         },
                         "wordcount": {
-                            "@id": "https://dracor.org/ontology_v2#corpus_wordcounts",
+                            "@id": "https://dracor.org/ontology_v2#contains_corpus_wordcount_data",
                             "@context": {
                                 "text": {
                                     "@id": "https://dracor.org/ontology_v2#corpus_num_of_word_tokens_in_text_elements",
