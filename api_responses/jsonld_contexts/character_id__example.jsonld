@@ -1,0 +1,53 @@
+{
+    "@context": {
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "timestamp": {
+            "@id": "https://dracor.org/ontology_v2#api_response_timestamp",
+            "@type": "xsd:dateTime"
+        },
+        "data": {
+            "@id": "https://dracor.org/ontology_v2#contains_data",
+            "@context": {
+                "id": {
+                    "@id": "https://dracor.org/ontology_v2#play_id",
+                    "@type": "xsd:string"
+                },
+                "uri": {
+                    "@id": "https://dracor.org/ontology_v2#play_uri",
+                    "@type": "@id"
+                },
+                "title": {
+                    "@id": "https://dracor.org/ontology_v2#play_title",
+                    "@type": "xsd:string"
+                },
+                "authors": {
+                    "@id": "https://dracor.org/ontology_v2#play_author_fullname",
+                    "@type": "xsd:string"
+                },
+                "characterName": {
+                    "@id": "https://dracor.org/ontology_v2#character_name",
+                    "@type": "xsd:string"
+                }
+            }
+        }
+    },
+    "@id": "https://dracor.org/api/character/Q131412",
+    "@type": "https://dracor.org/ontology_v2#API_Response_Data",
+    "timestamp": "2023-05-22T11:45:23.463+01:00",
+    "data": [
+        {
+            "id": "ger000311",
+            "uri": "https://dracor.org/id/ger000311",
+            "title": "Maria Stuart",
+            "authors": ["Friedrich Schiller"],
+            "characterName": "Maria"
+        },
+        {
+            "id": "ita000009",
+            "uri": "https://dracor.org/id/ita000009",
+            "title": "Maria Stuarda",
+            "authors": ["Vittorio Alfieri"],
+            "characterName": "Maria"
+        }
+    ]
+}
