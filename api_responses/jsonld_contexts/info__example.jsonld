@@ -1,0 +1,39 @@
+{
+    "@context": {
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "timestamp": {
+            "@id": "https://dracor.org/ontology_v2#api_response_timestamp",
+            "@type": "xsd:dateTime"
+        },
+        "data": {
+            "@id": "https://dracor.org/ontology_v2#contains_data",
+            "@context": {
+                "name": {
+                    "@id": "https://dracor.org/ontology_v2#service_name",
+                    "@type": "xsd:string"
+                },
+                "version": {
+                    "@id": "https://dracor.org/ontology_v2#service_version",
+                    "@type": "xsd:string"
+                },
+                "status": {
+                    "@id": "https://dracor.org/ontology_v2#service_development_stage",
+                    "@type": "xsd:string"
+                },
+                "existdb": {
+                    "@id": "https://dracor.org/ontology_v2#service_dependency_is_existdb_version",
+                    "@type": "xsd:string"
+                }
+            }
+        }
+    },
+    "@id": "https://dracor.org/api/info",
+    "@type": "https://dracor.org/ontology_v2#API_Response_Data",
+    "timestamp": "2023-05-22T11:45:23.463+01:00",
+    "data": {
+        "name": "DraCor API",
+        "version": "0.89.0",
+        "status": "beta",
+        "existdb": "6.0.1"
+    }
+}
