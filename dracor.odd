@@ -492,22 +492,23 @@
                 </div>
                 <!-- /body elements -->
 
-            </div>
-            <!-- /how-to -->
-
-            <div xml:id="div_misc">
-                <!-- old stuff -->
                 <div xml:id="characters">
                     <head>Marking up characters and linking them to the particDesc</head>
-                    <p>Why are <egXML xmlns="http://www.tei-c.org/ns/Examples"
-                                    ><castItem><role>Schmiede</role></castItem></egXML> (Goethe:
-                        Pandora) not a group? </p>
-
+                    <p>
+                        Why are
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                            <castItem><role>Schmiede</role></castItem>
+                        </egXML>
+                        (Goethe: Pandora) not a group?
+                    </p>
                 </div>
+
                 <div xml:id="licensing">
                     <head>Licensing</head>
                 </div>
+
                 <div xml:id="div_other_resources">
+                    <head>See also</head>
                     <listBibl>
                         <bibl>
                             <title>Encoding hints in the GerDraCor Wiki on Github</title>
@@ -517,7 +518,6 @@
                     </listBibl>
                 </div>
             </div>
-            <!-- / misc -->
 
             <!-- SCHEMA, ELEMENTS -->
             <div xml:id="div_schema">
