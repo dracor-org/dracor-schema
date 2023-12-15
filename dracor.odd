@@ -497,23 +497,6 @@
 
             <div xml:id="div_misc">
                 <!-- old stuff -->
-                <div xml:id="div_authornames">
-                    <head>Encoding of author's names</head>
-                    <list>
-                        <head>relevant github issues</head>
-                        <item>
-                            <ref type="githubissue"
-                                target="https://github.com/dracor-org/dracor-api/issues/119"
-                                >https://github.com/dracor-org/dracor-api/issues/119</ref>
-                        </item>
-                        <item>
-                            <ref type="githubissue"
-                                target="https://github.com/dracor-org/dracor-schema/issues/21"
-                                >https://github.com/dracor-org/dracor-schema/issues/21</ref>
-                        </item>
-                    </list>
-
-                </div>
                 <div>
                     <head>Frontmatter</head>
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -924,9 +907,20 @@
                         </exemplum>
                         <remarks>
                             <ab>For additional information on the encoding of author names and the
-                                rationale see also corresponding <ref
-                                    target="https://github.com/dracor-org/dracor-api/issues/119"
-                                    >github issue</ref>.</ab>
+                                rationale also see the following GitHub issues:
+                                <list>
+                                    <item>
+                                        <ref type="githubissue"
+                                            target="https://github.com/dracor-org/dracor-api/issues/119"
+                                            >https://github.com/dracor-org/dracor-api/issues/119</ref>
+                                    </item>
+                                    <item>
+                                        <ref type="githubissue"
+                                            target="https://github.com/dracor-org/dracor-schema/issues/21"
+                                            >https://github.com/dracor-org/dracor-schema/issues/21</ref>
+                                    </item>
+                                </list>
+                            </ab>
                         </remarks>
                     </elementSpec>
 
@@ -4270,7 +4264,7 @@
                     </elementSpec>
 
                     <!-- person -->
-                    <!-- 
+                    <!--
             <attribute name="sex">
                 <value>MALE</value>
                 <value>FEMALE</value>
@@ -5210,7 +5204,7 @@
                             <attDef ident="n" mode="delete"/>
                             <attDef ident="xml:base" mode="delete"/>
                             <attDef ident="xml:space" mode="delete"/>
-                            <attDef ident="xml:id" mode="delete"/> 
+                            <attDef ident="xml:id" mode="delete"/>
                             <!-- xml:lang -->
                             <attDef ident="corresp" mode="delete"/>
                             <attDef ident="synch" mode="delete"/>
@@ -5233,7 +5227,7 @@
                             </attDef>
                             <attDef ident="subtype" mode="delete"/>
                             <attDef ident="level" mode="delete"/>
-                            
+
                         </attList>
                         <exemplum source="#ger000010">
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
