@@ -497,62 +497,6 @@
 
             <div xml:id="div_misc">
                 <!-- old stuff -->
-                <div>
-                    <head>Frontmatter</head>
-                    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                        <front>
-                            <titlePage>
-                                <docAuthor>Gotthold Ephraim Lessing</docAuthor>
-                                <docTitle>
-                                    <titlePart type="main">Emilia Galotti</titlePart>
-                                    <titlePart type="sub">Ein Trauerspiel in fünf
-                                        Aufzügen</titlePart>
-                                </docTitle>
-                            </titlePage>
-                            <pb n="128"/>
-                            <castList>
-                                <head>Personen.</head>
-                                <castItem>
-                                    <role>Emilia Galotti.</role>
-                                </castItem>
-                                <castGroup rend="braced">
-                                    <castItem>
-                                        <role>Odoardo,</role>
-                                    </castItem>
-                                    <castItem>
-                                        <role>Claudia Galotti,</role>
-                                    </castItem>
-                                    <roleDesc>Eltern der Emilia.</roleDesc>
-                                </castGroup>
-                                <castItem>
-                                    <role>Hettore Gonzaga,</role>
-                                    <roleDesc>Prinz von Guastalla.</roleDesc>
-                                </castItem>
-                                <castItem>
-                                    <role>Marinelli,</role>
-                                    <roleDesc>Kammerherr des Prinzen.</roleDesc>
-                                </castItem>
-                                <castItem>
-                                    <role>Camillo Rota,</role>
-                                    <roleDesc>einer von des Prinzen Räten.</roleDesc>
-                                </castItem>
-                                <castItem>
-                                    <role>Conti,</role>
-                                    <roleDesc>Maler.</roleDesc>
-                                </castItem>
-                                <castItem>
-                                    <role>Graf Appiani.</role>
-                                </castItem>
-                                <castItem>
-                                    <role>Gräfin Orsina.</role>
-                                </castItem>
-                                <castItem><role>Angelo,</role> und <role>einige
-                                    Bediente.</role></castItem>
-                                <pb n="128"/>
-                            </castList>
-                        </front>
-                    </egXML>
-                </div>
                 <div xml:id="characters">
                     <head>Marking up characters and linking them to the particDesc</head>
                     <p>Why are <egXML xmlns="http://www.tei-c.org/ns/Examples"
@@ -2662,6 +2606,59 @@
                         </attList>
 
                         <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <front>
+                                    <titlePage>
+                                        <docAuthor>Gotthold Ephraim Lessing</docAuthor>
+                                        <docTitle>
+                                            <titlePart type="main">Emilia Galotti</titlePart>
+                                            <titlePart type="sub">Ein Trauerspiel in fünf
+                                                Aufzügen</titlePart>
+                                        </docTitle>
+                                    </titlePage>
+                                    <pb n="128"/>
+                                    <castList>
+                                        <head>Personen.</head>
+                                        <castItem>
+                                            <role>Emilia Galotti.</role>
+                                        </castItem>
+                                        <castGroup rend="braced">
+                                            <castItem>
+                                                <role>Odoardo,</role>
+                                            </castItem>
+                                            <castItem>
+                                                <role>Claudia Galotti,</role>
+                                            </castItem>
+                                            <roleDesc>Eltern der Emilia.</roleDesc>
+                                        </castGroup>
+                                        <castItem>
+                                            <role>Hettore Gonzaga,</role>
+                                            <roleDesc>Prinz von Guastalla.</roleDesc>
+                                        </castItem>
+                                        <castItem>
+                                            <role>Marinelli,</role>
+                                            <roleDesc>Kammerherr des Prinzen.</roleDesc>
+                                        </castItem>
+                                        <castItem>
+                                            <role>Camillo Rota,</role>
+                                            <roleDesc>einer von des Prinzen Räten.</roleDesc>
+                                        </castItem>
+                                        <castItem>
+                                            <role>Conti,</role>
+                                            <roleDesc>Maler.</roleDesc>
+                                        </castItem>
+                                        <castItem>
+                                            <role>Graf Appiani.</role>
+                                        </castItem>
+                                        <castItem>
+                                            <role>Gräfin Orsina.</role>
+                                        </castItem>
+                                        <castItem><role>Angelo,</role> und <role>einige
+                                            Bediente.</role></castItem>
+                                        <pb n="128"/>
+                                    </castList>
+                                </front>
+                            </egXML>
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <front>
                                     <div type="front">
