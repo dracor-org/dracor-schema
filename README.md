@@ -4,4 +4,4 @@ The TEI ODD and schema for dracor.org files.
 
 ## See also
 
-https://staging.dracor.org/doc/odd
+The DraCor ODD is now published at https://dracor.org/doc/odd.
