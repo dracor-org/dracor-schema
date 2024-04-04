@@ -60,7 +60,7 @@
             <titlePage>
                 <titlePart type="main">Drama Corpora | dracor.org</titlePart>
                 <titlePart type="sub">TEI Customization and Documentation</titlePart>
-                <docDate>2023</docDate>
+                <docDate>2024</docDate>
             </titlePage>
             <divGen type="toc"/>
         </front>
@@ -525,7 +525,7 @@
                 <schemaSpec ident="dracor" docLang="en" prefix="tei_" xml:lang="en">
 
                     <moduleRef key="core"
-                        include="author bibl cit desc editor emph foreign graphic head l label lb lg name note p pb publisher ref resp respStmt sp speaker stage term title quote"/>
+                        include="author bibl biblScope cit desc editor emph foreign graphic head l label lb lg name note p pb publisher ref resp respStmt sp speaker stage term title quote"/>
 
                     <moduleRef key="tei" except=""/>
 
@@ -978,7 +978,7 @@
                                 element.</ab>
                         </exemplum>
                     </elementSpec>
-
+                    
                     <!-- bibl -->
                     <elementSpec ident="bibl" module="core" mode="change">
                         <attList>
@@ -1017,14 +1017,68 @@
                             <attDef ident="exclude" mode="delete"/>
                             <attDef ident="select" mode="delete"/>
                             <attDef ident="ana" mode="delete"/>
-
+                            
                         </attList>
                         <remarks>
                             <p>Will be reworked in the near future.</p>
                         </remarks>
                         <!-- <exemplum/> -->
                     </elementSpec>
-
+                    
+                    <!-- bibl -->
+                    <elementSpec ident="biblScope" module="core" mode="change">
+                        <attList>
+                            <attDef ident="xml:id" mode="delete"/>
+                            <attDef ident="n" mode="delete"/>
+                            <attDef ident="xml:lang" mode="delete"/>
+                            <attDef ident="xml:base" mode="delete"/>
+                            <attDef ident="xml:space" mode="delete"/>
+                            <attDef ident="rend" mode="delete"/>
+                            <attDef ident="style" mode="delete"/>
+                            <attDef ident="rendition" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+                            <attDef ident="facs" mode="delete"/>
+                            <attDef ident="change" mode="delete"/>
+                            <attDef ident="cert" mode="delete"/>
+                            <attDef ident="resp" mode="delete"/>
+                            <attDef ident="source" mode="delete"/>
+                            <attDef ident="unit" mode="replace" usage="rec">
+                                <valList type="closed">
+                                    <valItem ident="volume">
+                                        <desc>The volume in which a play is contained if an edition consists of several volumes.</desc>
+                                    </valItem>
+                                    <valItem ident="page">
+                                        <desc>The page range in which a piece is printed within a volume.</desc>
+                                    </valItem>
+                                </valList>
+                            </attDef>
+                            <attDef ident="from" mode="delete"/>
+                            <attDef ident="to" mode="delete"/>
+                        </attList>
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <bibl type="originalSource">
+                                    <author>William Shakespeare</author>: <title level="a">Romeo und
+                                        Julia</title>. In: <title level="s">Sämtliche Werke in vier
+                                            Bänden</title>. Herausgegeben von <editor>Anselm
+                                                Schlösser</editor>. Band <biblScope unit="volume"
+                                                    >4</biblScope>. <pubPlace>Berlin</pubPlace>:
+                                    <publisher>Aufbau</publisher>
+                                    <date>1975</date>, S. <biblScope unit="page" from="83" to="178"
+                                        >83–178</biblScope>. </bibl>
+                            </egXML>
+                            <ab>Example from GerShDraCor</ab>
+                        </exemplum>
+                    </elementSpec>
+                    
                     <!-- body -->
                     <elementSpec ident="body" module="textstructure" mode="change">
                         <attList>
