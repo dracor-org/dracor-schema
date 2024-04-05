@@ -525,7 +525,7 @@
                 <schemaSpec ident="dracor" docLang="en" prefix="tei_" xml:lang="en">
 
                     <moduleRef key="core"
-                        include="author bibl biblScope cit desc editor emph foreign graphic head l label lb lg name note p pb publisher ref resp respStmt sp speaker stage term title quote"/>
+                        include="author bibl biblScope cit date desc editor emph foreign graphic head l label lb lg name note p pb publisher pubPlace ref resp respStmt sp speaker stage term title quote"/>
 
                     <moduleRef key="tei" except=""/>
 
@@ -1060,8 +1060,14 @@
                                     </valItem>
                                 </valList>
                             </attDef>
-                            <attDef ident="from" mode="delete"/>
-                            <attDef ident="to" mode="delete"/>
+                            <attDef ident="from" mode="change" usage="rec">
+                                <desc>First page of a page range.</desc>
+                                <valList mode="replace" type="open"/>
+                            </attDef>
+                            <attDef ident="to" mode="change" usage="rec">
+                                <desc>Last page of a page range.</desc>
+                                <valList mode="replace" type="open"/>
+                            </attDef>
                         </attList>
                         <exemplum>
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -1648,8 +1654,83 @@
                     <!-- ##### -->
 
                     <!-- date -->
-                    <!-- removed because not in use anymore, info is contained in standOff as a event -->
-
+                    <elementSpec ident="date" module="core" mode="change">
+                        <attList>
+                            <attDef ident="xml:id" mode="delete"/>
+                            <attDef ident="n" mode="delete"/>
+                            <attDef ident="xml:lang" mode="delete"/>
+                            <attDef ident="xml:base" mode="delete"/>
+                            <attDef ident="xml:space" mode="delete"/>
+                            <attDef ident="rend" mode="delete"/>
+                            <attDef ident="style" mode="delete"/>
+                            <attDef ident="rendition" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+                            <attDef ident="facs" mode="delete"/>
+                            <attDef ident="change" mode="delete"/>
+                            <attDef ident="cert" mode="delete"/>
+                            <attDef ident="resp" mode="delete"/>
+                            <attDef ident="source" mode="delete"/>
+                            <attDef ident="key" mode="delete"/>
+                            <attDef ident="ref" mode="delete"/>
+                            <attDef ident="period" mode="delete"/>
+                            <attDef ident="when" mode="delete"/>
+                            <attDef ident="notBefore" mode="delete"/>
+                            <attDef ident="notAfter" mode="delete"/>
+                            <attDef ident="from" mode="delete"/>
+                            <attDef ident="to" mode="delete"/>
+                            <attDef ident="when-iso" mode="delete"/>
+                            <attDef ident="notBefore-iso" mode="delete"/>
+                            <attDef ident="notAfter-iso" mode="delete"/>
+                            <attDef ident="from-iso" mode="delete"/>
+                            <attDef ident="to-iso" mode="delete"/>
+                            <attDef ident="when-custom" mode="delete"/>
+                            <attDef ident="notBefore-custom" mode="delete"/>
+                            <attDef ident="notAfter-custom" mode="delete"/>
+                            <attDef ident="from-custom" mode="delete"/>
+                            <attDef ident="to-custom" mode="delete"/>
+                            <attDef ident="datingPoint" mode="delete"/>
+                            <attDef ident="datingMethod" mode="delete"/>
+                            <attDef ident="calendar" mode="delete"/>
+                            <attDef ident="dur" mode="delete"/>
+                            <attDef ident="dur-iso" mode="delete"/>
+                            <attDef ident="evidence" mode="delete"/>
+                            <attDef ident="instant" mode="delete"/>
+                            <attDef ident="unit" mode="delete"/>
+                            <attDef ident="quantity" mode="delete"/>
+                            <attDef ident="extent" mode="delete"/>
+                            <attDef ident="precision" mode="delete"/>
+                            <attDef ident="scope" mode="delete"/>
+                            <attDef ident="atLeast" mode="delete"/>
+                            <attDef ident="atMost" mode="delete"/>
+                            <attDef ident="min" mode="delete"/>
+                            <attDef ident="max" mode="delete"/>
+                            <attDef ident="confidence" mode="delete"/>
+                            <attDef ident="type" mode="delete"/>
+                            <attDef ident="subtype" mode="delete"/>
+                        </attList>
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <bibl type="originalSource">
+                                    <author>William Shakespeare</author>: <title level="a">Romeo und
+                                        Julia</title>. In: <title level="s">Sämtliche Werke in vier
+                                            Bänden</title>. Herausgegeben von <editor>Anselm
+                                                Schlösser</editor>. Band <biblScope unit="volume"
+                                                    >4</biblScope>. <pubPlace>Berlin</pubPlace>:
+                                    <publisher>Aufbau</publisher>
+                                    <date>1975</date>, S. <biblScope unit="page" from="83" to="178"
+                                        >83–178</biblScope>. </bibl>
+                            </egXML>
+                            <ab>Example from GerShDraCor</ab>
+                        </exemplum>
+                    </elementSpec>                    
 
                     <!-- dateline -->
                     <elementSpec ident="dateline" module="textstructure" mode="change">
@@ -1907,22 +1988,22 @@
                                     </valItem>
 
                                     <!-- Sonderformen aus Nestroy-Stücken-->
-                                    <valItem ident="unten" validUntil="2020-12-31">
+                                    <valItem ident="unten" validUntil="2024-12-31">
                                         <desc>"unten"</desc>
                                     </valItem>
-                                    <valItem ident="oben" validUntil="2020-12-31">
+                                    <valItem ident="oben" validUntil="2024-12-31">
                                         <desc>"oben"</desc>
                                     </valItem>
-                                    <valItem ident="cholerisch" validUntil="2020-12-31">
+                                    <valItem ident="cholerisch" validUntil="2024-12-31">
                                         <desc>"cholerisch"</desc>
                                     </valItem>
-                                    <valItem ident="phlegmatisch" validUntil="2020-12-31">
+                                    <valItem ident="phlegmatisch" validUntil="2024-12-31">
                                         <desc>"phlegmatisch"</desc>
                                     </valItem>
-                                    <valItem ident="melancholisch" validUntil="2020-12-31">
+                                    <valItem ident="melancholisch" validUntil="2024-12-31">
                                         <desc>"melancholisch"</desc>
                                     </valItem>
-                                    <valItem ident="sanguinisch" validUntil="2020-12-31">
+                                    <valItem ident="sanguinisch" validUntil="2024-12-31">
                                         <desc>"sanguinisch"</desc>
                                     </valItem>
                                 </valList>
@@ -2713,6 +2794,8 @@
                                     </castList>
                                 </front>
                             </egXML>
+                        </exemplum>
+                        <exemplum>
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <front>
                                     <div type="front">
@@ -4508,6 +4591,52 @@
                             <attDef ident="key" mode="delete"/>
                             <attDef ident="ref" mode="delete"/>
                         </attList>
+                    </elementSpec>
+
+                    <!-- pubPlace -->
+                    <elementSpec ident="pubPlace" module="core" mode="change">
+                        <attList>
+                            <attDef ident="xml:id" mode="delete"/>
+                            <attDef ident="n" mode="delete"/>
+                            <attDef ident="xml:lang" mode="delete"/>
+                            <attDef ident="xml:base" mode="delete"/>
+                            <attDef ident="xml:space" mode="delete"/>
+                            <attDef ident="rend" mode="delete"/>
+                            <attDef ident="style" mode="delete"/>
+                            <attDef ident="rendition" mode="delete"/>
+                            <attDef ident="corresp" mode="delete"/>
+                            <attDef ident="synch" mode="delete"/>
+                            <attDef ident="sameAs" mode="delete"/>
+                            <attDef ident="copyOf" mode="delete"/>
+                            <attDef ident="next" mode="delete"/>
+                            <attDef ident="prev" mode="delete"/>
+                            <attDef ident="exclude" mode="delete"/>
+                            <attDef ident="select" mode="delete"/>
+                            <attDef ident="ana" mode="delete"/>
+                            <attDef ident="facs" mode="delete"/>
+                            <attDef ident="change" mode="delete"/>
+                            <attDef ident="cert" mode="delete"/>
+                            <attDef ident="resp" mode="delete"/>
+                            <attDef ident="source" mode="delete"/>
+                            <attDef ident="role" mode="delete"/>
+                            <attDef ident="nymRef" mode="delete"/>
+                            <attDef ident="key" mode="delete"/>
+                            <attDef ident="ref" mode="delete"/>
+                        </attList>
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <bibl type="originalSource">
+                                    <author>William Shakespeare</author>: <title level="a">Romeo und
+                                        Julia</title>. In: <title level="s">Sämtliche Werke in vier
+                                            Bänden</title>. Herausgegeben von <editor>Anselm
+                                                Schlösser</editor>. Band <biblScope unit="volume"
+                                                    >4</biblScope>. <pubPlace>Berlin</pubPlace>:
+                                    <publisher>Aufbau</publisher>
+                                    <date>1975</date>, S. <biblScope unit="page" from="83" to="178"
+                                        >83–178</biblScope>. </bibl>
+                            </egXML>
+                            <ab>Example from GerShDraCor</ab>
+                        </exemplum>
                     </elementSpec>
 
                     <!-- ##### -->
