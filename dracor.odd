@@ -1050,8 +1050,8 @@
                             <attDef ident="cert" mode="delete"/>
                             <attDef ident="resp" mode="delete"/>
                             <attDef ident="source" mode="delete"/>
-                            <attDef ident="unit" mode="replace" usage="rec">
-                                <valList type="closed">
+                            <attDef ident="unit" mode="change" usage="rec">
+                                <valList type="closed" mode="replace">
                                     <valItem ident="volume">
                                         <desc>The volume in which a play is contained if an edition consists of several volumes.</desc>
                                     </valItem>
@@ -1059,14 +1059,6 @@
                                         <desc>The page range in which a piece is printed within a volume.</desc>
                                     </valItem>
                                 </valList>
-                            </attDef>
-                            <attDef ident="from" mode="change" usage="rec">
-                                <desc>First page of a page range.</desc>
-                                <valList mode="replace" type="open"/>
-                            </attDef>
-                            <attDef ident="to" mode="change" usage="rec">
-                                <desc>Last page of a page range.</desc>
-                                <valList mode="replace" type="open"/>
                             </attDef>
                         </attList>
                         <exemplum>
@@ -1971,7 +1963,9 @@
                                     <valItem ident="variant">
                                         <desc>Variant</desc>
                                     </valItem>
-                                    <valItem ident="front" validUntil="2019-12-31">
+                                    <valItem ident="front">
+                                        <!-- div type front is for legacy textgridrep plays,
+                                             can be deleted if not used anymore -->
                                         <desc>Front [Title, Author,...]</desc>
                                     </valItem>
                                     <valItem ident="epigraph">
@@ -1988,22 +1982,22 @@
                                     </valItem>
 
                                     <!-- Sonderformen aus Nestroy-Stücken-->
-                                    <valItem ident="unten" validUntil="2024-12-31">
+                                    <valItem ident="unten">
                                         <desc>"unten"</desc>
                                     </valItem>
-                                    <valItem ident="oben" validUntil="2024-12-31">
+                                    <valItem ident="oben">
                                         <desc>"oben"</desc>
                                     </valItem>
-                                    <valItem ident="cholerisch" validUntil="2024-12-31">
+                                    <valItem ident="cholerisch">
                                         <desc>"cholerisch"</desc>
                                     </valItem>
-                                    <valItem ident="phlegmatisch" validUntil="2024-12-31">
+                                    <valItem ident="phlegmatisch">
                                         <desc>"phlegmatisch"</desc>
                                     </valItem>
-                                    <valItem ident="melancholisch" validUntil="2024-12-31">
+                                    <valItem ident="melancholisch">
                                         <desc>"melancholisch"</desc>
                                     </valItem>
-                                    <valItem ident="sanguinisch" validUntil="2024-12-31">
+                                    <valItem ident="sanguinisch">
                                         <desc>"sanguinisch"</desc>
                                     </valItem>
                                 </valList>
