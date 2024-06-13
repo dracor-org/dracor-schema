@@ -5400,8 +5400,7 @@
                                 </valList>
                             </attDef>
                             <attDef ident="subtype" mode="delete"/>
-                            <attDef ident="level" mode="delete"/>
-
+                            <!-- level -->
                         </attList>
                         <exemplum source="#ger000010">
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
