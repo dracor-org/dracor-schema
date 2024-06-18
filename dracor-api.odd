@@ -71,8 +71,10 @@
                 they might become available by including module classes below-->
                 <!-- <moduleRef key="analysis"/> -->
                 
-                <!-- global changes to the class system introduced by tei-drama, adapted for DraCor: -->
-                <classSpec predeclare="true" module="linking" xml:id="CLLINK"
+                <!-- global changes to the class system introduced by tei-drama -->
+                
+                <!-- removed linking adaptions for for DraCor: -->
+                <!-- <classSpec predeclare="true" module="linking" xml:id="CLLINK"
                 type="atts" ident="att.global.linking" mode="change">
                 <desc xml:lang="en" versionDate="2014-01-12">defines the
                     attributes used for aggregating partial elements into a
@@ -92,19 +94,22 @@
                     </attDef>
                     <attDef ident="exclude" usage="opt" mode="delete"/>
                     <attDef ident="select" usage="opt" mode="delete"/>
-                </attList>
-                    
-            </classSpec>
+                </attList>     
+            </classSpec> -->
+                
                 <classSpec module="tei" xml:id="GLOBAL" type="atts" ident="att.global" mode="change">
                 <desc xml:lang="en" versionDate="2014-01-12">provides a set
                     of attributes common to all elements in the
                     <name>tei_drama</name> customization of the TEI encoding
                     scheme.</desc>
                 <classes>
-                    <memberOf key="att.global.linking"/>
+                    <!-- removed linking as introduced in tei-drama for DraCor globally here -->
+                    <!-- this included and changed prev, next as defined in the uncommented parts above -->
+                    <!-- <memberOf key="att.global.linking"/> -->
                     <memberOf key="att.global.analytic"/>
                 </classes>
                 <attList>
+                    <!-- globally removes xml:space and xml:base -->
                     <attDef ident="xml:space" usage="opt" mode="delete"/>
                     <attDef ident="xml:base" usage="opt" mode="delete"/>
                 </attList>
