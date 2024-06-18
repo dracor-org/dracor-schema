@@ -1,11 +1,10 @@
-<?xml version="1.0"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" 
-    xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+<?xml version="1.0"  encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron"
     xml:lang="en">
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>DraCor ODD: API Restrictions</title>
+                <title>DraCor API</title>
                 <respStmt>
                     <resp>TEI Customization/ODD developed by</resp>
                     <name xml:id="ib">Ingo Boerner</name>
@@ -13,6 +12,9 @@
             </titleStmt>
             <publicationStmt>
                 <publisher>dracor.org</publisher>
+                <availability status="free">
+                    <licence>CC BY</licence>
+                </availability>
             </publicationStmt>
             <sourceDesc>
                 <p>born digital</p>
@@ -20,25 +22,95 @@
         </fileDesc>
     </teiHeader>
     <text>
-
         <body>
 
+                <p>This customization restricts the use of TEI Guidelines to allow a smooth integration
+                    into the DraCor system. It is originally based on the <ref
+                        target="https://tei-c.org/release/xml/tei/custom/odd/tei_drama.odd">TEI ODD for
+                        Drama</ref>.</p>
 
-
-            <!-- SCHEMA, ELEMENTS -->
-            <!-- this must come form something -->
+            
+            <!-- TODO: Adapt D71 API part and include here -->
+            
+            
+            <!-- Legacy modules -->
+            <!-- 
             <schemaSpec ident="dracor-api" docLang="en" prefix="tei_" xml:lang="en">
                 <moduleRef key="core"/>
                 <moduleRef key="tei"/>
                 <moduleRef key="header"/>
                 <moduleRef key="textstructure"/>
-                <!-- <moduleRef key="textstructure" include="div"/> -->
                 <moduleRef key="drama"/>
                 <moduleRef key="namesdates"/>
                 <moduleRef key="corpus"/>
                 <moduleRef key="linking"/>
                 <moduleRef key="figures"/>
-                <moduleRef key="analysis"/>
+                <moduleRef key="analysis"/> -->
+
+
+            <schemaSpec ident="dracor-api" docLang="en" prefix="tei_" xml:lang="en" start="TEI">
+                
+                <!-- modules included in the tei_drama ODD:
+                header, core, tei, textstructure, linking, drama
+                -->
+                <moduleRef key="header"/>
+                <moduleRef key="core"/>
+                <moduleRef key="tei"/>
+                <moduleRef key="textstructure" except="div1 div2 div3 div4 div5 div6 div7"/>
+                <moduleRef key="linking"/>
+                <moduleRef key="drama"/>
+                
+                <!-- The dracor-legacy ODD also included additional elements from the following modules: -->
+                
+                <moduleRef key="namesdates"
+                    include="event forename genName listEvent listPerson listRelation nameLink person personGrp persName relation surname"/>
+                <moduleRef key="corpus" include="particDesc"/>
+                <moduleRef key="figures" include="figure"/>
+                
+                <!-- The module analysis was originally included to have the analysis attributes; 
+                they might become available by including module classes below-->
+                <!-- <moduleRef key="analysis"/> -->
+                
+                <!-- global changes to the class system introduced by tei-drama, adapted for DraCor: -->
+                <classSpec predeclare="true" module="linking" xml:id="CLLINK"
+                type="atts" ident="att.global.linking" mode="change">
+                <desc xml:lang="en" versionDate="2014-01-12">defines the
+                    attributes used for aggregating partial elements into a
+                    single virtual element.</desc>
+                <attList>
+                    <attDef ident="corresp" usage="opt" mode="delete"/>
+                    <attDef ident="synch" usage="opt" mode="delete"/>
+                    <attDef ident="sameAs" usage="opt" mode="delete"/>
+                    <attDef ident="copyOf" usage="opt" mode="delete"/>
+                    <attDef ident="next" usage="opt" mode="change">
+                        <valDesc mode="change">a URI which should point to an element of
+                            the same type, typically within the same document</valDesc>
+                    </attDef>
+                    <attDef ident="prev" usage="opt" mode="change">
+                        <valDesc mode="change">a URI which should point to an element of
+                            the same type, typically within the same document</valDesc>
+                    </attDef>
+                    <attDef ident="exclude" usage="opt" mode="delete"/>
+                    <attDef ident="select" usage="opt" mode="delete"/>
+                </attList>
+                    
+            </classSpec>
+                <classSpec module="tei" xml:id="GLOBAL" type="atts" ident="att.global" mode="change">
+                <desc xml:lang="en" versionDate="2014-01-12">provides a set
+                    of attributes common to all elements in the
+                    <name>tei_drama</name> customization of the TEI encoding
+                    scheme.</desc>
+                <classes>
+                    <memberOf key="att.global.linking"/>
+                    <memberOf key="att.global.analytic"/>
+                </classes>
+                <attList>
+                    <attDef ident="xml:space" usage="opt" mode="delete"/>
+                    <attDef ident="xml:base" usage="opt" mode="delete"/>
+                </attList>
+            </classSpec>   
+            
+            <!-- Elements changed for DraCor -->
 
 
                 <!-- ##### -->
@@ -844,9 +916,8 @@
                     <constraintSpec ident="only_allow_dracor_ids" scheme="schematron" mode="add">
                         <constraint>
                             <sch:rule context="tei:TEI">
-                                <sch:assert test="matches(./@xml:id,'^[a-z]+[0-9]{6}$')">
-                                    For DraCor IDs we recommend the pattern ^[a-z]+[0-9]{6}$
-                                </sch:assert>
+                                <sch:assert test="matches(./@xml:id,'^[a-z]+[0-9]{6}$')"> For DraCor
+                                    IDs we recommend the pattern ^[a-z]+[0-9]{6}$ </sch:assert>
                             </sch:rule>
                         </constraint>
                     </constraintSpec>
@@ -958,6 +1029,411 @@
                 <!-- /schema -->
             </schemaSpec>
         </body>
+        <back>
+            <div xml:id="div_d71_feature_tables">
+                <head>Feature Tables</head>
+                <p>In the <title>Report on Programmable Corpora</title> (<ref
+                        target="https://zenodo.org/records/7664964"
+                        >https://zenodo.org/records/7664964</ref>) we identified
+                        <soCalled>features</soCalled> that are returned by the DraCor API. We
+                    include the adapted tables here for reference.</p>
+                <div xml:id="div_corpus_feature_table">
+                    <head>Corpus Features</head>
+                    <table>
+                        <row>
+                            <cell>C1</cell>
+                            <cell>corpus_name</cell>
+                        </row>
+                        <row>
+                            <cell>C2</cell>
+                            <cell>corpus_uri</cell>
+                        </row>
+                        <row>
+                            <cell>C3</cell>
+                            <cell>corpus_title</cell>
+                        </row>
+                        <row>
+                            <cell>C4</cell>
+                            <cell>corpus_acronym</cell>
+                        </row>
+                        <row>
+                            <cell>C5</cell>
+                            <cell>corpus_description</cell>
+                        </row>
+                        <row>
+                            <cell>C6</cell>
+                            <cell>corpus_repository</cell>
+                        </row>
+                        <row>
+                            <cell>C7</cell>
+                            <cell>corpus_licence</cell>
+                        </row>
+                        <row>
+                            <cell>C8</cell>
+                            <cell>corpus_licence_url</cell>
+                        </row>
+                        <row>
+                            <cell>C9</cell>
+                            <cell>corpus_num_of_plays</cell>
+                        </row>
+                        <row>
+                            <cell>C10</cell>
+                            <cell>corpus_num_of_characters</cell>
+                        </row>
+                        <row>
+                            <cell>C11</cell>
+                            <cell>corpus_num_of_characters_male</cell>
+                        </row>
+                        <row>
+                            <cell>C12</cell>
+                            <cell>corpus_num_of_characters_female</cell>
+                        </row>
+                        <row>
+                            <cell>C13</cell>
+                            <cell>corpus_num_of_tei_text_elements</cell>
+                        </row>
+                        <row>
+                            <cell>C14</cell>
+                            <cell>corpus_num_of_sp</cell>
+                        </row>
+                        <row>
+                            <cell>C15</cell>
+                            <cell>corpus_num_of_stage</cell>
+                        </row>
+                        <row>
+                            <cell>C16</cell>
+                            <cell>corpus_num_of_word_tokens_in_text_elements</cell>
+                        </row>
+                        <row>
+                            <cell>C17</cell>
+                            <cell>corpus_num_of_word_tokens_in_sp</cell>
+                        </row>
+                        <row>
+                            <cell>C18</cell>
+                            <cell>corpus_num_of_word_tokens_in_stage</cell>
+                        </row>
+                        <row>
+                            <cell>C19</cell>
+                            <cell>corpus_metrics_date_updated</cell>
+                        </row>
+                        <row>
+                            <cell>C20</cell>
+                            <cell>corpus_play_objects</cell>
+                        </row>
+                    </table>
+                </div>
+                <div xml:id="div_play_feature_table">
+                    <head>Play Features</head>
+                    <table>
+                        
+                        <row>
+                            <cell>P1</cell>
+                            <cell>play_corpus_name</cell>
+                        </row>
+                        <row>
+                            <cell>P2</cell>
+                            <cell>play_id</cell>
+                        </row>
+                        <row>
+                            <cell>P3</cell>
+                            <cell>play_name</cell>
+                        </row>
+                        <row>
+                            <cell>P4</cell>
+                            <cell>play_wikidata_id</cell>
+                        </row>
+                        <row>
+                            <cell>P5</cell>
+                            <cell>play_title</cell>
+                        </row>
+                        <row>
+                            <cell>P6</cell>
+                            <cell>play_subtitle</cell>
+                        </row>
+                        <row>
+                            <cell>P7</cell>
+                            <cell>play_title_en</cell>
+                        </row>
+                        <row>
+                            <cell>P8</cell>
+                            <cell>play_subtitle_en</cell>
+                        </row>
+                        <row>
+                            <cell>P9</cell>
+                            <cell>play_author_name</cell>
+                        </row>
+                        <row>
+                            <cell>P10</cell>
+                            <cell>play_author_name_en</cell>
+                        </row>
+                        <row>
+                            <cell>P11</cell>
+                            <cell>play_author_fullname</cell>
+                        </row>
+                        <row>
+                            <cell>P12</cell>
+                            <cell>play_author_fullname_en</cell>
+                        </row>
+                        <row>
+                            <cell>P13</cell>
+                            <cell>play_author_shortname</cell>
+                        </row>
+                        <row>
+                            <cell>P14</cell>
+                            <cell>play_author_shortname_en</cell>
+                        </row>
+                        <row>
+                            <cell>P15</cell>
+                            <cell>play_first_author_name</cell>
+                        </row>
+                        <row>
+                            <cell>P16</cell>
+                            <cell>play_first_author_shortname</cell>
+                        </row>
+                        <row>
+                            <cell>P17</cell>
+                            <cell>play_first_author_deprecation_warning</cell>
+                        </row>
+                        <row>
+                            <cell>P18</cell>
+                            <cell>play_author_also_known_as</cell>
+                        </row>
+                        <row>
+                            <cell>P19</cell>
+                            <cell>play_author_ref_external_id</cell>
+                        </row>
+                        <row>
+                            <cell>P20</cell>
+                            <cell>play_author_ref_type</cell>
+                        </row>
+                        <row>
+                            <cell>P21</cell>
+                            <cell>play_num_of_co_authors</cell>
+                        </row>
+                        <row>
+                            <cell>P22</cell>
+                            <cell>play_genre_normalized</cell>
+                        </row>
+                        <row>
+                            <cell>P23</cell>
+                            <cell>play_is_libretto</cell>
+                        </row>
+                        <row>
+                            <cell>P24</cell>
+                            <cell>play_year_written</cell>
+                        </row>
+                        <row>
+                            <cell>P25</cell>
+                            <cell>play_year_printed</cell>
+                        </row>
+                        <row>
+                            <cell>P26</cell>
+                            <cell>play_year_premiered</cell>
+                        </row>
+                        <row>
+                            <cell>P27</cell>
+                            <cell>play_year_normalized</cell>
+                        </row>
+                        <row>
+                            <cell>P28</cell>
+                            <cell>play_digital_source_name</cell>
+                        </row>
+                        <row>
+                            <cell>P29</cell>
+                            <cell>play_digital_source_url</cell>
+                        </row>
+                        <row>
+                            <cell>P30</cell>
+                            <cell>play_original_source_full_citation</cell>
+                        </row>
+                        <row>
+                            <cell>P31</cell>
+                            <cell>play_original_source_publisher</cell>
+                        </row>
+                        <row>
+                            <cell>P32</cell>
+                            <cell>play_original_source_publication_place</cell>
+                        </row>
+                        <row>
+                            <cell>P33</cell>
+                            <cell>play_original_source_publication_year</cell>
+                        </row>
+                        <row>
+                            <cell>P34</cell>
+                            <cell>play_original_source_num_of_pages</cell>
+                        </row>
+                        <row>
+                            <cell>P35</cell>
+                            <cell>play_num_of_wikipedia_links</cell>
+                        </row>
+                        <row>
+                            <cell>P36</cell>
+                            <cell>play_segments</cell>
+                        </row>
+                        <row>
+                            <cell>P37</cell>
+                            <cell>play_num_of_segments</cell>
+                        </row>
+                        <row>
+                            <cell>P38</cell>
+                            <cell>play_num_of_acts</cell>
+                        </row>
+                        <row>
+                            <cell>P39</cell>
+                            <cell>play_num_of_paragraphs</cell>
+                        </row>
+                        <row>
+                            <cell>P40</cell>
+                            <cell>play_num_of_verse_lines</cell>
+                        </row>
+                        <row>
+                            <cell>P41</cell>
+                            <cell>play_num_of_word_tokens_in_text_elements</cell>
+                        </row>
+                        <row>
+                            <cell>P42</cell>
+                            <cell>play_num_of_word_tokens_in_sp</cell>
+                        </row>
+                        <row>
+                            <cell>P43</cell>
+                            <cell>play_num_of_word_tokens_in_stage</cell>
+                        </row>
+                        <row>
+                            <cell>P44</cell>
+                            <cell>play_characters</cell>
+                        </row>
+                        <row>
+                            <cell>P45</cell>
+                            <cell>play_num_of_speakers</cell>
+                        </row>
+                        <row>
+                            <cell>P46</cell>
+                            <cell>play_num_of_speakers_gender_female</cell>
+                        </row>
+                        <row>
+                            <cell>P47</cell>
+                            <cell>play_num_of_speakers_gender_male</cell>
+                        </row>
+                        <row>
+                            <cell>P48</cell>
+                            <cell>play_num_of_speakers_gender_unknown</cell>
+                        </row>
+                        <row>
+                            <cell>P49</cell>
+                            <cell>play_num_of_person_groups</cell>
+                        </row>
+                        <row>
+                            <cell>P50</cell>
+                            <cell>play_all_in_segment</cell>
+                        </row>
+                        <row>
+                            <cell>P51</cell>
+                            <cell>play_all_in_index</cell>
+                        </row>
+                        <row>
+                            <cell>P52</cell>
+                            <cell>play_character_relations</cell>
+                        </row>
+                        <row>
+                            <cell>P53</cell>
+                            <cell>play_network_data_csv_url</cell>
+                        </row>
+                        <row>
+                            <cell>P54</cell>
+                            <cell>play_network_nodes</cell>
+                        </row>
+                        <row>
+                            <cell>P55</cell>
+                            <cell>play_network_size</cell>
+                        </row>
+                        <row>
+                            <cell>P56</cell>
+                            <cell>play_network_num_edges</cell>
+                        </row>
+                        <row>
+                            <cell>P57</cell>
+                            <cell>play_network_average_degree</cell>
+                        </row>
+                        <row>
+                            <cell>P58</cell>
+                            <cell>play_network_density</cell>
+                        </row>
+                        <row>
+                            <cell>P59</cell>
+                            <cell>play_network_diameter</cell>
+                        </row>
+                        <row>
+                            <cell>P60</cell>
+                            <cell>play_network_average_path_length</cell>
+                        </row>
+                        <row>
+                            <cell>P61</cell>
+                            <cell>play_network_average_clustering</cell>
+                        </row>
+                        <row>
+                            <cell>P62</cell>
+                            <cell>play_network_num_connected_components</cell>
+                        </row>
+                        <row>
+                            <cell>P63</cell>
+                            <cell>play_network_max_degree</cell>
+                        </row>
+                        <row>
+                            <cell>P64</cell>
+                            <cell>play_network_max_degree_character_ids</cell>
+                        </row>
+                    </table>
+                </div>
+
+                <div xml:id="div_segment_feature_table">
+                    <head>Segment Features</head>
+                    <table>
+                        <row>
+                            <cell>S1</cell>
+                            <cell>segment_type</cell>
+                        </row>
+                        <row>
+                            <cell>S2</cell>
+                            <cell>segment_number</cell>
+                        </row>
+                        <row>
+                            <cell>S3</cell>
+                            <cell>segment_title</cell>
+                        </row>
+                        <row>
+                            <cell>S4</cell>
+                            <cell>segment_speaking_characters</cell>
+                        </row>
+                    </table>
+                </div>
+                
+                <div xml:id="table_character_features">
+                    <head>Character Features</head>
+                    <table>
+                        <row><cell>Ch1</cell> <cell>character_id</cell></row>
+                        <row><cell>Ch2</cell> <cell>character_name</cell></row>
+                        <row><cell>Ch3</cell> <cell>character_is_group</cell></row>
+                        <row><cell>Ch4</cell> <cell>character_gender</cell></row>
+                        <row><cell>Ch5</cell> <cell>character_wikidata_id</cell></row>
+                        <row><cell>Ch6</cell> <cell>character_node_betweenness</cell></row>
+                        <row><cell>Ch7</cell> <cell>character_node_degree</cell></row>
+                        
+                        <row><cell>Ch8</cell> <cell>character_node_closeness</cell></row>
+                        <row><cell>Ch9</cell> <cell>character_node_eigenvector</cell></row>
+                        <row><cell>Ch10</cell> <cell>character_node_weighted_degree</cell>
+                        </row>
+                        <row><cell>Ch11</cell> <cell>character_num_of_segments</cell></row>
+                        <row><cell>Ch12</cell> <cell>character_num_of_sp</cell></row>
+                        <row><cell>Ch13</cell> <cell>character_num_of_word_tokens</cell></row>
+                        <row><cell>Ch14</cell> <cell>character_roles</cell></row>
+                        <row><cell>Ch15</cell> <cell>character_spoken_text</cell></row>
+                    </table>
+                           
+                </div>
+
+            </div>
+            <!-- /div_feature_tables -->
+        </back>
 
     </text>
 </TEI>
