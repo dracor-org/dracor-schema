@@ -1,0 +1,963 @@
+<?xml version="1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" 
+    xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+    xml:lang="en">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>DraCor ODD: API Restrictions</title>
+                <respStmt>
+                    <resp>TEI Customization/ODD developed by</resp>
+                    <name xml:id="ib">Ingo Boerner</name>
+                </respStmt>
+            </titleStmt>
+            <publicationStmt>
+                <publisher>dracor.org</publisher>
+            </publicationStmt>
+            <sourceDesc>
+                <p>born digital</p>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+    <text>
+
+        <body>
+
+
+
+            <!-- SCHEMA, ELEMENTS -->
+            <!-- this must come form something -->
+            <schemaSpec ident="dracor-api" docLang="en" prefix="tei_" xml:lang="en">
+                <moduleRef key="core"/>
+                <moduleRef key="tei"/>
+                <moduleRef key="header"/>
+                <moduleRef key="textstructure"/>
+                <!-- <moduleRef key="textstructure" include="div"/> -->
+                <moduleRef key="drama"/>
+                <moduleRef key="namesdates"/>
+                <moduleRef key="corpus"/>
+                <moduleRef key="linking"/>
+                <moduleRef key="figures"/>
+                <moduleRef key="analysis"/>
+
+
+                <!-- ##### -->
+                <!--   A   -->
+                <!-- ##### -->
+
+                <!-- ab  -->
+                <!-- Restriction: ab should only include strings; maybe no need to restrict that -->
+                <elementSpec ident="ab" module="linking" mode="change">
+                    <content>
+                        <textNode/>
+                    </content>
+                </elementSpec>
+
+
+                <!-- argument -->
+
+                <!-- author -->
+
+                <!-- availability -->
+
+                <!-- ##### -->
+                <!--   B   -->
+                <!-- ##### -->
+
+                <!-- back -->
+
+                <!-- bibl -->
+                <elementSpec ident="bibl" module="core" mode="change">
+                    <attList>
+                        <attDef ident="type" mode="replace" usage="rec">
+                            <valList type="closed">
+                                <valItem ident="digitalSource">
+                                    <desc>Digital Source</desc>
+                                </valItem>
+                                <valItem ident="originalSource">
+                                    <desc>Bibliographic citation of the original print publication
+                                        the digital text is derived from</desc>
+                                </valItem>
+                            </valList>
+                        </attDef>
+                    </attList>
+                </elementSpec>
+
+                <!-- biblScope -->
+                <elementSpec ident="biblScope" module="core" mode="change">
+                    <attList>
+                        <attDef ident="type" mode="replace" usage="rec">
+                            <valList type="closed">
+                                <valItem ident="volume">
+                                    <desc>Volume containing a play</desc>
+                                </valItem>
+                                <valItem ident="page">
+                                    <desc>page range</desc>
+                                </valItem>
+                            </valList>
+                        </attDef>
+                    </attList>
+                </elementSpec>
+
+                <!-- body -->
+
+
+                <!-- ##### -->
+                <!--   C   -->
+                <!-- ##### -->
+
+                <!-- castGroup -->
+
+                <elementSpec ident="castGroup" module="drama" mode="change">
+                    <attList>
+                        <attDef ident="rend" mode="change">
+                            <valList mode="replace" type="closed">
+                                <valItem ident="braced">
+                                    <desc>braced</desc>
+                                </valItem>
+                            </valList>
+                        </attDef>
+                        <attDef ident="corresp" mode="change">
+                            <datatype>
+                                <dataRef key="teidata.pointer"/>
+                            </datatype>
+                            <remarks>
+                                <p>Used to link a character in the dramatis personae to the
+                                    corresponding <!-- person/group? --> element in the
+                                        <gi>particDesc</gi></p>
+                            </remarks>
+                        </attDef>
+                    </attList>
+                </elementSpec>
+
+                <!-- castItem -->
+                <elementSpec ident="castItem" module="drama" mode="change">
+                    <attList>
+                        <attDef ident="corresp" mode="change">
+                            <datatype>
+                                <dataRef key="teidata.pointer"/>
+                            </datatype>
+                            <remarks>
+                                <p>Used to link a character in the dramatis personae to the
+                                    corresponding <!-- person/group? --> element in the
+                                        <gi>particDesc</gi></p>
+                            </remarks>
+                        </attDef>
+                    </attList>
+                </elementSpec>
+
+
+                <!-- castList -->
+
+
+                <!-- change -->
+                <elementSpec ident="change" module="header" mode="change">
+                    <attList>
+                        <attDef ident="when" mode="change">
+                            <!-- we could use @when-iso, because we enforce iso-comlient anyway -->
+                            <desc>When was the change made. Should be an iso-conformant
+                                date-time</desc>
+                            <datatype>
+                                <dataRef key="teidata.temporal.iso"/>
+                            </datatype>
+                        </attDef>
+                        <!-- maybe use this: -->
+                    </attList>
+                </elementSpec>
+
+                <!-- cit -->
+
+
+                <!-- classCode  -->
+                <elementSpec ident="classCode" module="header" mode="change">
+                    <content>
+                        <textNode/>
+                    </content>
+                    <attList>
+                        <attDef ident="scheme" mode="replace" usage="req">
+                            <valList type="closed" mode="replace">
+                                <valItem ident="http://www.wikidata.org/entity/">
+                                    <desc>Wikidata</desc>
+                                </valItem>
+                            </valList>
+                        </attDef>
+                    </attList>
+                </elementSpec>
+
+                <!-- ##### -->
+                <!--   D   -->
+                <!-- ##### -->
+
+                <!-- date -->
+                <!-- removed because not in use anymore, info is contained in standOff as a event -->
+
+
+                <!-- dateline -->
+
+
+                <!-- desc -->
+
+
+                <!-- div -->
+                <elementSpec ident="div" module="textstructure" mode="change">
+                    <attList>
+                        <attDef ident="type" mode="replace" usage="req">
+                            <desc>Classifies the segment</desc>
+                            <valList type="closed">
+
+                                <!--
+                        intermission
+                        -->
+
+                                <valItem ident="act">
+                                    <desc>Act, also "Aufzug", "Auftritt"</desc>
+                                </valItem>
+                                <valItem ident="Dramatis_Personae">
+                                    <!-- normalize spelling of value? -->
+                                    <desc>Dramatis personae</desc>
+                                </valItem>
+                                <valItem ident="scene">
+                                    <desc>Scene</desc>
+                                </valItem>
+                                <valItem ident="subscene">
+                                    <desc>Subscene</desc>
+                                </valItem>
+                                <valItem ident="dedication">
+                                    <desc>Dedication</desc>
+                                </valItem>
+                                <valItem ident="preface">
+                                    <desc>Preface</desc>
+                                </valItem>
+                                <valItem ident="postface">
+                                    <desc>Postface</desc>
+                                </valItem>
+
+                                <valItem ident="prologue">
+                                    <desc>Prologue</desc>
+                                </valItem>
+                                <valItem ident="epilogue">
+                                    <desc>Prologue</desc>
+                                </valItem>
+                                <valItem ident="interlude">
+                                    <desc>Interlude, auch: Zwischenspiel</desc>
+                                </valItem>
+                                <valItem ident="entracte">
+                                    <desc>Entracte</desc>
+                                </valItem>
+                                <valItem ident="ouverture">
+                                    <desc>Ouverture</desc>
+                                </valItem>
+                                <valItem ident="location">
+                                    <desc>Location change</desc>
+                                </valItem>
+                                <valItem ident="configuration">
+                                    <desc>Change of character constellation, which is not marked as
+                                        scene change</desc>
+                                </valItem>
+                                <valItem ident="part">
+                                    <desc>Part</desc>
+                                </valItem>
+                                <valItem ident="appendix">
+                                    <desc>Appendix</desc>
+                                </valItem>
+                                <valItem ident="tableau">
+                                    <desc>Tableau, auch: Kartina</desc>
+                                </valItem>
+                                <valItem ident="dictionary">
+                                    <desc>Dictionary</desc>
+                                </valItem>
+                                <valItem ident="variant">
+                                    <desc>Variant</desc>
+                                </valItem>
+                                <valItem ident="front">
+                                    <desc>Front [Title, Author,...]</desc>
+                                </valItem>
+                                <valItem ident="epigraph">
+                                    <desc>Epigraph</desc>
+                                </valItem>
+                                <valItem ident="review">
+                                    <desc>Review?</desc>
+                                </valItem>
+                                <valItem ident="set">
+                                    <desc>Setting</desc>
+                                </valItem>
+                                <valItem ident="notes">
+                                    <desc>Notes</desc>
+                                </valItem>
+
+                                <!-- Sonderformen aus Nestroy-Stücken-->
+                                <valItem ident="unten">
+                                    <desc>"unten"</desc>
+                                    <remarks>
+                                        <p>Only used in a play of Johann Nestroy</p>
+                                    </remarks>
+                                </valItem>
+                                <valItem ident="oben">
+                                    <desc>"oben"</desc>
+                                </valItem>
+                                <valItem ident="cholerisch">
+                                    <desc>"cholerisch"</desc>
+                                </valItem>
+                                <valItem ident="phlegmatisch">
+                                    <desc>"phlegmatisch"</desc>
+                                </valItem>
+                                <valItem ident="melancholisch">
+                                    <desc>"melancholisch"</desc>
+                                </valItem>
+                                <valItem ident="sanguinisch">
+                                    <desc>"sanguinisch"</desc>
+                                </valItem>
+                            </valList>
+                        </attDef>
+                        <attDef ident="n" mode="replace">
+                            <desc>Number of act or scene</desc>
+                            <datatype>
+                                <dataRef key="teidata.text"/>
+                            </datatype>
+                            <remarks>
+                                <p>Used to number acts/scenes??? Don't know if datatype is
+                                    correct</p>
+                            </remarks>
+                        </attDef>
+                    </attList>
+                </elementSpec>
+
+                <!-- docAuthor -->
+
+                <!-- docImprint -->
+
+
+                <!-- docTitle -->
+
+
+                <!-- ##### -->
+                <!--   E   -->
+                <!-- ##### -->
+
+                <!-- editor -->
+
+                <!-- emph -->
+
+
+                <!-- epigraph -->
+
+
+
+                <!-- event -->
+                <elementSpec ident="event" module="namesdates" mode="change">
+                    <attList>
+                        <!-- 2do: find out, what the API/eXist app supports -->
+                        <attDef ident="when" mode="change" usage="opt">
+                            <desc>supplies the value of the date</desc>
+                            <datatype>
+                                <dataRef key="gYear"/>
+                            </datatype>
+                            <remarks>
+                                <p>use only year here</p>
+                            </remarks>
+                        </attDef>
+                        <!-- have to allow these two -->
+                        <attDef ident="notBefore" mode="change" usage="opt">
+                            <desc>supplies the value of the date</desc>
+                            <datatype>
+                                <dataRef key="gYear"/>
+                            </datatype>
+                            <remarks>
+                                <p>use only year here</p>
+                            </remarks>
+                        </attDef>
+                        <attDef ident="notAfter" mode="change" usage="opt">
+                            <desc>supplies the value of the date</desc>
+                            <datatype>
+                                <dataRef key="gYear"/>
+                            </datatype>
+                            <remarks>
+                                <p>use only year here</p>
+                            </remarks>
+                        </attDef>
+                        <attDef ident="type" mode="change" usage="req">
+                            <valList type="closed" mode="replace">
+                                <valItem ident="print">
+                                    <desc>Date of impressum</desc>
+                                </valItem>
+                                <valItem ident="premiere">
+                                    <desc>Date of debut performance</desc>
+                                </valItem>
+                                <valItem ident="written">
+                                    <!-- don't really understand this, IB -->
+                                    <desc>Date of writing</desc>
+                                </valItem>
+                            </valList>
+                            <remarks>
+                                <p>classifies date, select from the following values</p>
+                            </remarks>
+                        </attDef>
+                    </attList>
+                </elementSpec>
+
+                <!-- ##### -->
+                <!--   F   -->
+                <!-- ##### -->
+
+                <!-- figure -->
+
+                <!-- fileDesc -->
+
+
+
+                <!-- foreign -->
+
+
+                <!-- forename -->
+                <elementSpec ident="forename" module="namesdates" mode="change">
+                    <attList>
+                        <attDef ident="type" mode="change">
+                            <valList mode="replace" type="closed">
+                                <valItem ident="patronym">
+                                    <desc>Patronym</desc>
+                                </valItem>
+                            </valList>
+                        </attDef>
+                    </attList>
+                </elementSpec>
+
+
+                <!-- front -->
+
+                <!-- ##### -->
+                <!--   G   -->
+                <!-- ##### -->
+
+                <!-- genName -->
+
+
+                <!-- graphic -->
+
+
+                <!-- ##### -->
+                <!--   H   -->
+                <!-- ##### -->
+
+                <!-- head -->
+
+
+                <!-- hi -->
+                <!-- use <emph> instead! -->
+
+
+                <!-- ##### -->
+                <!--   I   -->
+                <!-- ##### -->
+
+                <!-- idno -->
+
+
+                <elementSpec ident="idno" module="header" mode="change">
+
+                    <attList>
+
+                        <attDef ident="type" mode="change" usage="req">
+                            <desc>Classifies the identifier</desc>
+                            <valList type="closed" mode="replace">
+                                <!--<valItem ident="dracor">
+                                        <desc>DraCor-Identifier</desc>
+                                    </valItem>-->
+                                <valItem ident="URL">
+                                    <desc>URL</desc>
+                                </valItem>
+                                <valItem ident="wikidata">
+                                    <desc>wikidata</desc>
+                                </valItem>
+                                <!--<valItem ident="viaf">
+                                        <desc>VIAF</desc>
+                                    </valItem>-->
+                                <valItem ident="pnd">
+                                    <desc>GND</desc>
+                                </valItem>
+
+                            </valList>
+                        </attDef>
+
+                    </attList>
+                </elementSpec>
+
+
+                <!-- ##### -->
+                <!--   K   -->
+                <!-- ##### -->
+
+                <!-- keywords -->
+
+
+                <!-- ##### -->
+                <!--   L   -->
+                <!-- ##### -->
+
+                <!-- l -->
+
+                <elementSpec ident="l" module="core" mode="change">
+                    <attList>
+                        <attDef ident="rend" mode="change" usage="opt">
+                            <valList type="closed" mode="replace">
+                                <valItem ident="indent"/>
+                            </valList>
+                        </attDef>
+                        <attDef ident="part" mode="change" usage="opt">
+                            <valList>
+                                <valItem ident="F">
+                                    <desc/>
+                                </valItem>
+                                <valItem ident="I">
+                                    <desc/>
+                                </valItem>
+                                <valItem ident="M">
+                                    <desc/>
+                                </valItem>
+                            </valList>
+                        </attDef>
+                    </attList>
+                </elementSpec>
+
+                <!-- label -->
+                <elementSpec ident="label" module="core" mode="change">
+                    <content>
+                        <textNode/>
+                    </content>
+                </elementSpec>
+
+                <!-- lb -->
+
+                <!-- lg -->
+
+
+
+
+                <!-- licence -->
+                <elementSpec ident="licence" module="header" mode="change">
+                    <content>
+                        <sequence minOccurs="1" maxOccurs="1" preserveOrder="true">
+                            <elementRef key="ab" minOccurs="1" maxOccurs="1"/>
+                            <elementRef key="ref" minOccurs="1" maxOccurs="1"/>
+                        </sequence>
+                    </content>
+                </elementSpec>
+
+                <!-- listChange -->
+
+
+                <elementSpec ident="listChange" module="header" mode="change">
+                    <content>
+                        <elementRef key="change" minOccurs="1" maxOccurs="unbounded"/>
+                    </content>
+                </elementSpec>
+
+
+                <!-- listEvent! -->
+
+
+                <!-- listPerson -->
+                <!--  (att.global.source (@source)) att.typed (@type, @subtype) att.declarable (@default) att.sortable (@sortKey)
+                -->
+                <elementSpec ident="listPerson" module="namesdates" mode="change">
+                    <attList>
+                        <attDef ident="xml:id" mode="delete"/>
+                        <attDef ident="n" mode="delete"/>
+                        <attDef ident="xml:lang" mode="delete"/>
+                        <attDef ident="xml:base" mode="delete"/>
+                        <attDef ident="xml:space" mode="delete"/>
+                        <attDef ident="rend" mode="delete"/>
+                        <attDef ident="style" mode="delete"/>
+                        <attDef ident="rendition" mode="delete"/>
+                        <attDef ident="cert" mode="delete"/>
+                        <attDef ident="resp" mode="delete"/>
+                        <attDef ident="source" mode="delete"/>
+                        <attDef ident="sortKey" mode="delete"/>
+                        <attDef ident="type" mode="delete"/>
+                        <attDef ident="subtype" mode="delete"/>
+                        <attDef ident="default" mode="delete"/>
+                        <attDef ident="corresp" mode="delete"/>
+                        <attDef ident="synch" mode="delete"/>
+                        <attDef ident="sameAs" mode="delete"/>
+                        <attDef ident="copyOf" mode="delete"/>
+                        <attDef ident="next" mode="delete"/>
+                        <attDef ident="prev" mode="delete"/>
+                        <attDef ident="exclude" mode="delete"/>
+                        <attDef ident="select" mode="delete"/>
+                        <attDef ident="ana" mode="delete"/>
+                    </attList>
+                </elementSpec>
+
+                <!-- listRelation -->
+                <elementSpec ident="listRelation" module="namesdates" mode="change">
+                    <attList>
+
+                        <attDef ident="type" mode="change" usage="opt">
+                            <valList mode="replace" type="closed">
+                                <valItem ident="personal"/>
+                            </valList>
+                        </attDef>
+                        <attDef ident="subtype" mode="delete"/>
+                        <attDef ident="sortKey" mode="delete"/>
+                    </attList>
+                </elementSpec>
+
+
+                <!-- ##### -->
+                <!--   N   -->
+                <!-- ##### -->
+
+                <!-- name -->
+
+
+                <elementSpec ident="name" module="core" mode="change">
+                    <attList>
+
+                        <attDef ident="type" mode="replace" usage="opt">
+                            <valList type="closed">
+                                <valItem ident="variant">
+                                    <desc>Variant of a name</desc>
+                                </valItem>
+                            </valList>
+                        </attDef>
+                    </attList>
+                </elementSpec>
+
+                <!-- nameLink -->
+
+
+                <!-- note -->
+
+
+                <!-- ##### -->
+                <!--   P   -->
+                <!-- ##### -->
+
+                <!-- p -->
+
+
+                <!-- particDesc -->
+
+
+                <!-- pb -->
+
+                <!-- performance -->
+
+
+                <!-- persName -->
+
+                <elementSpec ident="persName" module="namesdates" mode="change">
+                    <attList>
+                        <attDef ident="type" mode="replace" usage="opt">
+                            <valList type="closed">
+                                <valItem ident="variant">
+                                    <desc>Variant of a name</desc>
+                                </valItem>
+                                <valItem ident="pen">
+                                    <desc>Pen name</desc>
+                                </valItem>
+                                <valItem ident="nobility">
+                                    <desc>Noble name</desc>
+                                </valItem>
+                                <valItem ident="pseudo">
+                                    <desc>Pseudonym</desc>
+                                </valItem>
+                            </valList>
+                        </attDef>
+                    </attList>
+                </elementSpec>
+
+                <!-- person -->
+                <!--
+            <attribute name="sex">
+                <value>MALE</value>
+                <value>FEMALE</value>
+                <value>UNKNOWN</value>
+            </attribute>
+            -->
+
+                <elementSpec ident="person" module="core" mode="change">
+                    <attList>
+                        <attDef ident="xml:id" mode="change" usage="req"/>
+                        <attDef ident="sex" mode="replace" usage="rec">
+                            <valList mode="replace" type="closed">
+                                <valItem ident="FEMALE"/>
+                                <valItem ident="MALE"/>
+                                <valItem ident="UNKNOWN"/>
+                            </valList>
+                        </attDef>
+                    </attList>
+                </elementSpec>
+
+                <!-- personGrp -->
+
+                <elementSpec ident="personGrp" module="namesdates" mode="change">
+                    <attList>
+                        <attDef ident="xml:id" mode="change">
+                            <datatype>
+                                <dataRef key="ID"/>
+                            </datatype>
+                        </attDef>
+                        <attDef ident="sex" mode="change">
+                            <valList mode="replace" type="closed">
+                                <valItem ident="FEMALE"/>
+                                <valItem ident="MALE"/>
+                                <valItem ident="UNKNOWN"/>
+                            </valList>
+                        </attDef>
+                    </attList>
+                </elementSpec>
+
+                <!-- profileDesc -->
+
+
+                <!-- publicationStmt -->
+
+
+
+                <!-- publisher -->
+
+
+                <!-- ##### -->
+                <!--   Q   -->
+                <!-- ##### -->
+
+                <!-- quote -->
+
+
+
+                <!-- ##### -->
+                <!--   R   -->
+                <!-- ##### -->
+
+                <!-- ref -->
+
+
+
+                <!-- relation -->
+                <elementSpec ident="relation" module="namesdates" mode="change">
+                    <attList>
+
+                        <attDef ident="name" mode="change">
+                            <valList mode="replace" type="closed">
+                                <valItem ident="parent_of">
+                                    <desc>Parent</desc>
+                                </valItem>
+                                <valItem ident="lover_of">
+                                    <desc>Lover of</desc>
+                                </valItem>
+                                <valItem ident="related_with">
+                                    <desc>Other family relations (e.g. uncles)</desc>
+                                </valItem>
+                                <valItem ident="associated_with">
+                                    <desc>For clearly associated characters (e.g., butlers)</desc>
+                                </valItem>
+                                <valItem ident="siblings">
+                                    <desc>Characters that have at least one parent in common</desc>
+                                </valItem>
+                                <valItem ident="spouses">
+                                    <desc>Characters in marriage (or engaged)</desc>
+                                </valItem>
+                                <valItem ident="friends">
+                                    <desc>Characters marked as being friends</desc>
+                                </valItem>
+                                <valItem ident="wikidata">
+                                    <desc>Wikidata</desc>
+                                    <remarks>
+                                        <ab>Used in the relation to link the play to the wikidata
+                                            entity</ab>
+                                    </remarks>
+                                </valItem>
+                            </valList>
+                        </attDef>
+                    </attList>
+                </elementSpec>
+
+                <!-- respStmt -->
+                <!-- resp -->
+
+                <!-- revisionDesc -->
+
+                <!-- roleDesc -->
+
+
+                <!-- role -->
+
+                <!-- ##### -->
+                <!--   S   -->
+                <!-- ##### -->
+
+                <!-- set -->
+
+
+                <!-- signed -->
+
+
+                <!-- sourceDesc -->
+
+
+                <!-- sp -->
+
+
+                <!-- speaker -->
+
+
+
+                <!-- spGrp -->
+
+
+                <!-- stage -->
+
+
+
+                <!-- standOff -->
+
+
+                <!-- surname -->
+                <elementSpec ident="surname" module="namesdates" mode="change">
+                    <attList>
+                        <attDef ident="sort" mode="change" usage="opt">
+                            <valList mode="replace" type="closed">
+                                <valItem ident="1">
+                                    <desc>sort on this</desc>
+                                </valItem>
+                            </valList>
+                        </attDef>
+                    </attList>
+                </elementSpec>
+
+                <!-- ##### -->
+                <!--   T   -->
+                <!-- ##### -->
+
+                <!-- TEI -->
+                <elementSpec ident="TEI" module="textstructure" mode="change">
+                    <!-- The API expects a structure of text/body/... only accepts
+                    a single text element, tei_all would allow multiple. 
+                    The only other element that is allowed is standOff -->
+                    <content>
+                        <sequence minOccurs="1" maxOccurs="1">
+                            <elementRef key="teiHeader" minOccurs="1" maxOccurs="1"/>
+                            <elementRef key="standOff" minOccurs="0" maxOccurs="1"/>
+                            <elementRef key="text" minOccurs="1" maxOccurs="1"/>
+                        </sequence>
+                    </content>
+                    <constraintSpec ident="only_allow_dracor_ids" scheme="schematron" mode="add">
+                        <constraint>
+                            <sch:rule context="tei:TEI">
+                                <sch:assert test="matches(./@xml:id,'^[a-z]+[0-9]{6}$')">
+                                    For DraCor IDs we recommend the pattern ^[a-z]+[0-9]{6}$
+                                </sch:assert>
+                            </sch:rule>
+                        </constraint>
+                    </constraintSpec>
+                    <attList>
+                        <attDef ident="xml:id" mode="change" usage="req">
+                            <datatype>
+                                <dataRef key="ID"/>
+                            </datatype>
+                            <remarks>
+                                <ab>Should contain the ID of the DraCor play, e.g.
+                                        <val>ger000171</val></ab>
+                            </remarks>
+                        </attDef>
+                        <attDef ident="xml:lang" mode="change" usage="opt">
+                            <remarks>
+                                <ab>Can encode the language of a corpus. Not the best idea in the
+                                    world, but this is the way it is done.</ab>
+                            </remarks>
+                        </attDef>
+                    </attList>
+                    <!-- This removes the default TEI-Examples -->
+                    <!-- <exemplum>
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples"></egXML>
+                    </exemplum> -->
+                </elementSpec>
+
+
+
+                <!-- teiHeader -->
+
+                <!-- term -->
+
+                <!-- text -->
+                <elementSpec ident="text" module="textstructure" mode="change">
+                    <content>
+                        <sequence>
+                            <classRef key="model.global" minOccurs="0" maxOccurs="unbounded"/>
+                            <sequence minOccurs="0">
+                                <elementRef key="front"/>
+                                <classRef key="model.global" minOccurs="0" maxOccurs="unbounded"/>
+                            </sequence>
+                            <!-- We only allow a single element <body> -->
+                            <!-- <alternate> -->
+                            <elementRef key="body" minOccurs="1" maxOccurs="1"/>
+                            <!-- <elementRef key="group"/> -->
+                            <!-- </alternate> -->
+                            <classRef key="model.global" minOccurs="0" maxOccurs="unbounded"/>
+                            <sequence minOccurs="0">
+                                <elementRef key="back"/>
+                                <classRef key="model.global" minOccurs="0" maxOccurs="unbounded"/>
+                            </sequence>
+                        </sequence>
+                    </content>
+                </elementSpec>
+
+
+
+                <!-- textClass -->
+
+
+
+                <!-- title -->
+
+                <elementSpec ident="title" module="core" mode="change">
+                    <attList>
+
+                        <!-- xml:lang -->
+
+                        <attDef ident="type" mode="replace">
+                            <valList mode="replace" type="closed">
+                                <valItem ident="main">
+                                    <desc>Main Title</desc>
+                                </valItem>
+                                <valItem ident="sub">
+                                    <desc>Subtitle</desc>
+                                </valItem>
+                            </valList>
+                        </attDef>
+
+                    </attList>
+
+                </elementSpec>
+
+                <!-- titlePage -->
+
+
+                <!-- titlePart -->
+                <elementSpec ident="titlePart" module="textstructure" mode="change">
+                    <attList>
+
+                        <attDef ident="type" mode="change">
+                            <valList type="closed">
+                                <valItem ident="main"/>
+                                <valItem ident="sub"/>
+                            </valList>
+                        </attDef>
+                    </attList>
+                </elementSpec>
+
+
+                <!-- titleStmt -->
+
+
+                <!-- trailer -->
+
+
+
+
+                <!-- /schema -->
+            </schemaSpec>
+        </body>
+
+    </text>
+</TEI>
