@@ -1,0 +1,2650 @@
+<?xml version="1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="en">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>DraCor Encoding Guidelines and Examples</title>
+            </titleStmt>
+            <publicationStmt>
+                <publisher>dracor.org</publisher>
+            </publicationStmt>
+            <sourceDesc>
+                <p>born digital</p>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            
+            <div xml:id="div_intro">
+                <head>Introduction</head>
+                <p>We are building drama corpora with files encoded following the guidelines of the
+                        <ref target="https://tei-c.org/release/doc/tei-p5-doc/en/html/index.html"
+                        >Text Encoding Initiative (TEI P5)</ref>, especially the Module <ref
+                        target="https://tei-c.org/release/doc/tei-p5-doc/en/html/DR.html"
+                        >Performance Texts</ref>. The encoded plays are suitable for the field of
+                    digital drama analysis, which manifests itself in a growing <ref
+                        target="https://dracor.org/doc/research">list of research</ref> done based
+                    on DraCor corpora and is especially facilitated by also hosting the corpora on
+                        <ref target="https://github.com/dracor-org">GitHub</ref> with an open
+                    license that allows for extensive re-use.</p>
+                <p>The encoded texts are the basis for <ref target="https://dracor.org">DraCor</ref>
+                    (Drama Corpora Platform). It is a multi-component system which realizes the
+                    concept of “Programmable Corpora” (<ref target="#fischer_et_al_2019">Fischer et
+                        al. 2019</ref>), understood as corpora that expose an open, transparently
+                    documented and (at least partly) research-driven API to make texts
+                    machine-actionable. (cf. <ref target="#boerner_trilcke_2023">Börner and Trilcke
+                        2023</ref>). The documentation of the DraCor API can be accessed at ; <ref
+                        target="https://dracor.org/doc/api">https://dracor.org/doc/api</ref>.</p>
+                <p> DraCor uses a TEI customization that contains only selected TEI elements
+                    supported by the wider DraCor system and restricts the use of XML attributes and
+                    its values (see <ref target="#div_schema">Schema</ref>). The customization is
+                    documented in this <ref
+                        target="https://github.com/dracor-org/dracor-schema/blob/main/odd/dracor.odd"
+                        >ODD</ref> from which a RelaxNG schema (<ref
+                        target="https://dracor.org/schema.rng">https://dracor.org/schema.rng</ref>)
+                    is generated, that is used to validate the encoding of the plays.</p>
+                <p>Although the corpora in DraCor have different sources, they are largely
+                    homogeneous both structurally and in terms of metadata. This homogeneity makes
+                    it possible, for example, to perform comparative research on the corpora or to
+                    perform processing operations (such as extracting information or counting) in a
+                    comparable way on the corpora. However, homogeneity is something that has to be
+                    created first, because even if corpora are available in the target format TEI,
+                    they often differ in the way TEI is applied.</p>
+                <p>The literary texts in the DraCor corpora have a basic structural markup and are
+                    ready for further analysis by various methods of Computational Literary Studies
+                    (CLS). They have been additionally enriched with a research-driven markup for
+                    the application of a specific method, the <hi rend="bold">network analysis of
+                        literary texts</hi> (<ref target="#trilcke_2013">Trilcke 2013</ref>).
+                    Therefore the encoding is tailored to allow for the extraction of co-presence
+                    networks relying on structural segmentation of a given play into acts and scenes
+                    and having uniquely identifiable speaking and acting characters. </p>
+                <p>The cast lists or <term>dramatis personae</term> that are contained in most
+                    dramatic texts are an insufficient source in this regard, because they tend to
+                    be incomplete. Speaker labels contained in the proper text are also often
+                    misleading, because they are often not stable enough to serve as an identifier. </p>
+                <p>Therefore the plays encoded for the DraCor plattform have an additional section
+                    in their metadata in the <gi>teiHeader</gi> that lists all characters as
+                        <gi>person</gi> elements in a <gi>listPerson</gi> and assigns them an unique
+                    identifier <att>xml:id</att>, that is then used in the attribute <att>who</att>
+                    to link the individual speech acts <gi>sp</gi> with their respective speakers.
+                    The co-presence network can then be extracted by a designated algorithm.<note>A
+                        more detailed explaination of the implementation in the DraCor system can be
+                        found in <ref target="#boerner_trilcke_2023">Börner/Trilcke
+                        (2023)</ref>.</note> While each distinct speaker represents a node in a
+                    network, a relation (edge) is established if the speeches <gi>sp</gi> of two or
+                    more speakers appear in the same segment <gi>div</gi> (normally a “scene”
+                    classified by the attribute <att>type</att>). It is important to note that this
+                    method of extracting networks from dramatic texts is only one possibility among
+                    many others and that the scope for interpretation is determined by this
+                    mechanism of extraction.</p>
+            </div>
+            <!-- /intro -->
+            <div xml:id="div_how-to">
+                <head>How to encode a play and make it DraCor-ready</head>
+                <div xml:id="div_file-formats">
+                    <head>File formats and copyright issues</head>
+                    <p>Depending on the source’s original format, you may follow one of these
+                        pipelines: <list>
+                            <item>If your text is already encoded in XML, it may be possible to
+                                write a XSLT or a Python script to adapt it to the DraCor
+                                format.</item>
+                            <item>If that is not possible, or your text is available in some other
+                                digital format (e.g. .txt, .csv, .docx), you’ll have to apply the
+                                markup yourself. If you’re working with OCR outputs, please remember
+                                we try to remain as close to the source as possible (i.e.
+                                reproducing the text as it is on the physical copy, including
+                                misprints).</item>
+                        </list>
+                    </p>
+                    <p rend="hint"> It is possible to convert a .txt file encoded in UTF-8 to a
+                        basic DraCor format through the experimental <ref
+                            target="https://github.com/dracor-org/ezdrama">EzDrama</ref> conversion
+                        tool (Python script). </p>
+                    <p> Please note that DraCor considers for publication only works which are
+                        either in the <hi rend="bold">public domain (CC BY 0)</hi> or released under
+                        an open <hi rend="bold">Creative Commons Attribution Licence (e.g. CC BY
+                            3.0)</hi>. According to German law, works become public domain after 70
+                        years from their author’s death. Even though it is possible to build
+                        copyright-protected corpora, they could be run only on a local DraCor
+                        instance built through Docker (procedure still under development; for hints
+                        on using DraCor with Docker see this <ref
+                            target="https://github.com/dracor-org/dracor-notebooks/blob/f72a7722a3ce9c3fa35ea856c81a108166c96f4d/docker/local-dracor-with-docker.ipynb"
+                            >Jupyter Notebook</ref>).</p>
+                </div>
+                <!-- /file formats -->
+                <div xml:id="div_overview">
+                    <head>Basic Structure</head>
+                    <p> The basic structure of a DraCor file requires a <gi>teiHeader</gi>,
+                        containing metadata on the play, and a <gi>text</gi> with the actual text.
+                        Between header and text there is a <gi>standOff</gi> element with some
+                        additional pieces of information. The structure of your final XML file
+                        should therefore look like this: <egXML
+                            xmlns="http://www.tei-c.org/ns/Examples">
+                            <TEI>
+                                <teiHeader>
+                                    <!-- contains Metadata -->
+                                </teiHeader>
+                                <standOff>
+                                    <!-- contains additional infos -->
+                                </standOff>
+                                <text>
+                                    <!-- The 'actual' Text: mandatory, if there is no <facsimile> and/or <sourceDoc> -->
+                                </text>
+                            </TEI>
+                        </egXML>
+                    </p>
+                    <p> You can apply markup to your plays simply by putting tags, consisting of the
+                        name of the tag in angle brackets around parts of the text. To do so, open
+                        your XML file with an XML editor. There are several options for efficient
+                        and non-cumbersome manual work with these files, but we recommend the <ref
+                            target="https://www.oxygenxml.com">Oxygen XML Editor</ref>, which has
+                        rich functionality and an author mode which minimizes the risk of breaking
+                        the markup structure. Oxygen is also a TEI-aware editor. You can get a
+                        30-day trial licence <ref
+                            target="https://www.oxygenxml.com/xml_editor/register.html">here</ref>.
+                        A good free-source alternative is Notepad++ (which now supports a <ref
+                            target="https://github.com/dracor-org/ezdrama/blob/main/Npp_ezdrama-UDL.xml"
+                            >user-defined Ezdrama language</ref>!). </p>
+                    <p rend="hint"> If you’re using Oxygen Editor, download the <ref
+                            target="https://github.com/dracor-org/dracor-oxygen-framework">DraCor
+                            Oxygen Framework</ref>. It will help you by checking many kinds of
+                        inconsistencies in the markup and validating your file against the DraCor
+                        schema. </p>
+                </div>
+                <!-- /overview -->
+                <div xml:id="div_encoding-header">
+                    <head>Metadata in the <gi>teiHeader</gi></head>
+                    <p>The header is composed of several sections: <gi>fileDesc</gi>,
+                            <gi>profileDesc</gi> and <gi>revisionDesc</gi>.</p>
+                    <div xml:id="div_file-desc">
+                        <head><gi>fileDesc</gi></head>
+                        <p>The basic metadata on the digital file are included in the
+                                <gi>fileDesc</gi>. It contains a title statement
+                            (<gi>titleStmt</gi>), a publication statement (<gi>publicationStmt</gi>)
+                            and and a description of the digital and original sources
+                                (<gi>sourceDesc</gi>). </p>
+                        <div xml:id="div_title_in_titleStmt">
+                            <head>Title</head>
+                            <p>The title is encoded using the element <gi>title</gi> in <gi>titleStmt</gi>. It can be
+                                further classified using the attribute <att>type</att> as main and
+                                subtitle: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                    <title type="main">Des Meeres und der Liebe Wellen</title>
+                                    <title type="sub">Trauerspiel in fünf Aufzügen</title>
+                                </egXML>
+                            </p>
+                            <p></p>
+                        </div>
+                        <!-- title -->
+                    </div>
+                    <!-- /file desc -->
+                    <div xml:id="div_profileDesc_particDesc">
+                        <head><gi>profileDesc</gi> (including <gi>particDesc</gi>)</head>
+                        <p> Fill this section after annotating the play. It lists the characters as
+                            given in the <att>who</att> of the <gi>person</gi> and
+                                <gi>personGrp</gi> elements used to encode the individual speech
+                            acts <gi>sp</gi> (see <ref target="#div_speech_acts">Speech Acts</ref>).
+                            The <gi>particDesc</gi> should follow this format: <egXML
+                                xmlns="http://www.tei-c.org/ns/Examples">
+                                <person xml:id="eleonora" sex="FEMALE">
+                                    <persName>Eleonora</persName>
+                                </person>
+                            </egXML>
+                        </p>
+                        <list>
+                            <item>
+                                <p>Individuals are to be marked with <gi>persName</gi>, groups (e.g.
+                                    “Chorus”, “Soldiers”) with <gi>persGrp</gi>.</p>
+                            </item>
+                            <item>
+                                <p>Gender could be marked as <val>FEMALE</val>, <val>MALE</val> or
+                                        <val>UNKOWN</val>. <list>
+                                        <item>
+                                            <p>Please mark as gendered only characters which appear
+                                                unequivocally as such in text. If they don’t have a
+                                                proper name, but are defined by their profession,
+                                                consider the play’s context (e.g. “soldier” will be
+                                                surely <val>MALE</val> in a Renaissance play).</p>
+                                        </item>
+                                        <item>
+                                            <p>The same applies to groups (“soldiers”, “weavers”).
+                                                If no specific gender hints are provided, mark them
+                                                as <val>UNKNOWN</val> (“nobles”, ”citizens”,
+                                                “servants”).</p>
+                                        </item>
+                                        <item>
+                                            <p>Abstract entities (“Time”, “Fame”, “Death” etc.)
+                                                should be marked as <val>UNKNOWN</val> unless they
+                                                are clearly gendered in text.</p>
+                                        </item>
+                                    </list>
+                                </p>
+                            </item>
+                            <item>
+                                <p>The content of <gi>persName</gi> or <gi>persGrp</gi> will appear
+                                    in the network as the labels of the nodes. For the sake of
+                                    visualisation, try to stick to name or name+surname, avoiding
+                                    too much extra info which will clutter the network. For example:
+                                    “Henry”, “King Henry” or “Henry VII Tudor” are fine, “Henry,
+                                    brother to the King of England” is not.</p>
+                            </item>
+                            <item>
+                                <p>For characters defined by numerals (“First Soldier, Second
+                                    Soldier”), please include the values of the attribute
+                                        <att>xml:id</att> as follows:
+                                        <code>xml:id="soldier_1"</code>.</p>
+                            </item>
+                        </list>
+                        <p>Optionally, you can encode the social relationship between the characters
+                            using the elements <gi>relation</gi> in a <gi>listRelation</gi>. Below
+                            is an example taken from the play <title>Emilia Galotti</title>
+                            <ref target="https://dracor.org/id/ger000088"/>: <egXML
+                                xmlns="http://www.tei-c.org/ns/Examples" source="#ger000088">
+                                <listRelation type="personal">
+                                    <relation name="parent_of" active="#odoardo #claudia"
+                                        passive="#emilia"/>
+                                    <relation name="associated_with" active="#marinelli"
+                                        passive="#der_prinz"/>
+                                    <relation name="associated_with" active="#camillo_rota"
+                                        passive="#der_prinz"/>
+                                </listRelation>
+                            </egXML>
+                        </p>
+                        <p>Within <gi>textClass</gi> you can also specify the genre of the drama.
+                        </p>
+                    </div>
+                    <!-- /div_profileDesc_particDesc -->
+                    <div xml:id="div_revisionDesc">
+                        <head><gi>revisionDesc</gi></head>
+                        <p>Lists revisions and revisers of the file. Update it after each editing.
+                        </p>
+                    </div>
+                    <!-- /div_revisionDesc -->
+                </div>
+                <!-- /encoding-header -->
+                <div xml:id="div_standOff">
+                    <head>Encoding additional metadata in the <gi>standOff</gi> element</head>
+                    <p>The <gi>standOff</gi> element usually includes dates (first written, first
+                        printed edition, premiere).</p>
+                </div>
+                <!-- /div_standOff -->
+                <div xml:id="div_drama_text_proper">
+                    <head>Encoding the text (<gi>text</gi>)</head>
+                    <p>The text of the play is usually composed of some paratextual elements (title
+                        page, dedication, preface, dramatis personae etc.) and of the body of the
+                        text. Enclose the first with the <gi>front</gi> tag and the second with the
+                            <gi>body</gi> tag.</p>
+                    <p>Most examples (with some adjustments) are taken from Mary Pix' drama
+                            <title>The Spanish Wives</title> (<ref
+                            target="https://dracor.org/id/ep000676">ep000676</ref>).</p>
+                    <div xml:id="div_paratexts">
+                        <head>Paratexts (<gi>front</gi>)</head>
+                        <p>Paratexts may be encoded with successive layers of complexity. The
+                            general rule is to enclose every section in a <gi>div</gi> with an
+                            attribute <att>type</att>. Prose text should be enclosed in paragraphs
+                            with <gi>p</gi>, lines of verse with <gi>l</gi>. In-text titles of
+                            sections may be marked with <gi>head</gi>. </p>
+                        <p>Some examples: <egXML xmlns="http://www.tei-c.org/ns/Examples"
+                                source="#ep000676">
+                                <front>
+
+                                    <div type="title_page">
+                                        <p> THE Spanish Wives. A FARCE, As it was Acted by His
+                                            MAJESTY's Servants, AT THE THEATRE in Dorset-Garden. </p>
+                                        <p> LONDON: Printed for R. Wellington, at the Sign of the
+                                            Lute in St. Paul's Church yard, 1696. </p>
+                                    </div>
+
+                                    <div type="prologue">
+                                        <head>PROLOGUE, Spoken by Mr. Penkethman, in a
+                                            Press-master's Habit.</head>
+                                        <l>WHat Chear, my Lads? Igad, I'm come to say, </l>
+                                        <l>I'll press to Sea all those who Damn this Play: </l>
+                                        [...] </div>
+                                </front>
+                            </egXML>
+                        </p>
+                        <p> Dramatis personae can be encoded using the element <gi>castList</gi>. <!-- Dramatis personae (the characters’ names, if required with their descriptions) can be rendered as a list with the following syntax (other variants are possible, e.g. substituting <item> with <desc>):  -->
+                            <!-- IB: Won't include this passage from the How-To, don't agree, . use <castList> instead!! -->
+                        </p>
+                    </div>
+                    <!-- /paratexts -->
+
+                </div>
+                <!-- /div_drama_text_proper -->
+                <div xml:id="div_body_elements">
+                    <head><gi>text</gi></head>
+                    <p>Mark the main elements in the play’s body <gi>body</gi> as follows: </p>
+                    <div xml:id="div_segments">
+                        <head>Segments (acts, scenes, etc.)</head>
+                        <p>Use the element <gi>div</gi> to encode segments of a dramatic text. The
+                            type of the segment ("act", "scene") should be given in the attribute
+                                <att>type</att>: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <div type="act">
+                                    <head>ACT I</head>
+                                    <div type="scene">
+                                        <head>SCENE I.</head>
+                                        <!-- ... -->
+                                    </div>
+                                </div>
+                            </egXML>
+                        </p>
+                    </div>
+                    <!-- /div_segments -->
+                    <div xml:id="div_stage_directions">
+                        <head>Stage Directions (non-diegetic elements)</head>
+                        <p>Use the element <gi>stage</gi> to mark stage directions: <egXML
+                                xmlns="http://www.tei-c.org/ns/Examples">
+                                <stage> Enter the Governour of Barcellona, and the Marquess of
+                                    Moncada.</stage>
+                                <stage> (taking the Stick, and putting on his Spectacles to view it)
+                                </stage>
+                            </egXML>
+                        </p>
+                        <p> Stage directions could be nested into speech acts! <egXML
+                                xmlns="http://www.tei-c.org/ns/Examples" source="#ep000676">
+                                <sp who="#ep000676-camillus">
+                                    <speaker>Cam. </speaker>
+                                    <p> Tell him, I am,-- and long to kiss his Hands.-- I like that
+                                        Gentleman, he appears brave <stage>Exit Servus. </stage> And
+                                        bold-- shou'd our Designs grow desperate: I dare believe he
+                                        would not scruple his Assistance. </p>
+                                </sp>
+                            </egXML>
+                        </p>
+                    </div>
+                    <!-- /div_stage_directions -->
+                    <div xml:id="div_speech_acts">
+                        <head>Speakers and Speech Acts</head>
+                        <list>
+                            <item>
+                                <p>Mark the speech act with enclosing it with the element
+                                        <gi>sp</gi>.</p>
+                            </item>
+                            <item>
+                                <p>Indicate which character listed in the <gi>particDesc</gi> is
+                                    speaking by including a reference to the character's
+                                        <att>xml:id</att> prefixed with a hash (#) in the
+                                        <att>who</att> attribute of the <gi>sp</gi> element:
+                                        <code>who="#id-of-the-speaker"</code>. Always use the same
+                                    who-tag, even if the in-text name of the speaker is abbreviated
+                                    or there are some aliases.</p>
+                            </item>
+                            <item>
+                                <p>Enclose the in-text name of the speaker with the element
+                                        <gi>speaker</gi>.</p>
+                            </item>
+                            <item>
+                                <p>Again, verse lines should be marked with <gi>l</gi>. Prose text
+                                    should be marked with the paragraph element <gi>p</gi>. </p>
+                            </item>
+                        </list>
+                        <p>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sp who="#eleonora">
+                                    <speaker>Elen.</speaker>
+                                    <p>Now my Desires are so near fulfilling, I begin to fear 'em--
+                                        yet I know Camillus is Honourable.</p>
+                                </sp>
+                            </egXML>
+                        </p>
+                        <p>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sp who="#camillus">
+                                    <speaker>Cam.</speaker>
+                                    <l>Greatness was the Attendant of my Birth; </l>
+                                    <l>But Love gives me Heaven upon Earth. </l>
+                                    <l>These Comforts my Elenora does impart: </l>
+                                    <l>Joy to my Eyes, sweet Raptures to my Heart. </l>
+                                </sp>
+                            </egXML>
+                        </p>
+                        <div xml:id="div_special_cases">
+                            <head>Special Cases</head>
+                            <div>
+                                <head>No explicit speaker in text</head>
+                                <p>If the speaker name is not explicitly given in-text, while e.g.
+                                    being wrapped into a stage direction, just create a normal
+                                        <gi>sp</gi> block and omit the <gi>speaker</gi> tag (don’t
+                                    forget the <att>who</att> attribute though). <egXML
+                                        xmlns="http://www.tei-c.org/ns/Examples">
+                                        <sp who="#governor">
+                                            <stage>Enter the Governor singing.</stage>
+                                            <l>If an old man has a beauteous Treasure,</l>
+                                            <l>Let her sing, and dance, and laugh without
+                                                measure,</l>
+                                            <l>And then she'l think of no other Pleasure.</l>
+                                        </sp>
+                                    </egXML>
+                                </p>
+                            </div>
+                            <!-- /no explicit speaker -->
+                            <div>
+                                <head>Speaker unknown</head>
+
+                                <!--<p>
+                                    In the remote case it is not possible to identify who is speaking, you can put the lines into a <gi>stage</gi> block.
+                                    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                        <stage>A Song.
+                                            <l>This is a simple-sample song </l>
+                                            <l>Written just to fill this cell,</l>
+                                            <l>What could possibly go wrong? </l>
+                                        </stage>
+                                    </egXML>
+                                </p>-->
+
+                                <!-- not sure about that, IB -->
+                            </div>
+                        </div>
+                        <!-- /div_special_cases -->
+                    </div>
+                    <!-- /div_speech_acts -->
+                </div>
+                <!-- /body elements -->
+
+                <div xml:id="characters">
+                    <head>Marking up characters and linking them to the particDesc</head>
+                    <p>
+                        Why are
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                            <castItem><role>Schmiede</role></castItem>
+                        </egXML>
+                        (Goethe: Pandora) not a group?
+                    </p>
+                </div>
+
+                <div xml:id="licensing">
+                    <head>Licensing</head>
+                </div>
+
+                <div xml:id="div_other_resources">
+                    <head>See also</head>
+                    <listBibl>
+                        <bibl>
+                            <title>Encoding hints in the GerDraCor Wiki on Github</title>
+                            <ref target="https://github.com/dracor-org/gerdracor/wiki"
+                                >https://github.com/dracor-org/gerdracor/wiki</ref>
+                        </bibl>
+                    </listBibl>
+                </div>
+            </div>
+            
+        
+            
+            <!-- Examples start here: -->
+            <div xml:id="div_examples">
+            
+            <!-- this must come form something -->
+                <schemaSpec ident="dracor-guidelines" docLang="en" prefix="tei_" xml:lang="en">
+                    <!-- maybe this needs to be changed radically by switching vom "include" to "exclude" -->
+                    <!-- I am not including anymore but take all elements that we have in tei_all probably, but only include the
+                    modules that we have examples for
+                    -->
+                    <moduleRef key="core" except=""/>
+                    <moduleRef key="tei" except=""/>
+                    <moduleRef key="header" except=""/>
+                    <moduleRef key="textstructure" except=""/>
+                    <moduleRef key="drama" except=""/>
+                    <moduleRef key="namesdates" except=""/>
+                    <moduleRef key="corpus" except=""/>
+                    <moduleRef key="linking" except=""/>
+                    <moduleRef key="figures" except=""/>
+                    <moduleRef key="analysis" except=""/>
+
+
+                    <!-- Change certain elements only, the one with examples -->
+
+                    <!-- Elements -->
+
+
+                    <!-- ##### -->
+                    <!--   A   -->
+                    <!-- ##### -->
+
+                    <!-- ab  -->
+                    <elementSpec ident="ab" module="linking" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <availability>
+                                    <licence>
+                                        <ab>CC0 1.0</ab>
+                                        <ref
+                                            target="https://creativecommons.org/publicdomain/zero/1.0/"
+                                            >Licence</ref>
+                                    </licence>
+                                </availability>
+                            </egXML>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- actor -->
+                    <elementSpec ident="actor" module="drama" mode="change">
+                        <exemplum source="#ger000057">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castList>
+                                    <head>Personen.</head>
+                                    <castItem>Sir John Smith, ein Podagrist, vormals ein reicher
+                                        Kaufmann. <actor>Rat Albaum.</actor></castItem>
+                                    <castItem>Mistriss Smith, seine Frau, ein deutsches Fräulein von
+                                        Geburt. <actor>Madam Höppener.</actor></castItem>
+                                    <!-- ... -->
+                                </castList>
+                            </egXML>
+                            <ab> Dramatis personae of the play <ref
+                                    target="https://dracor.org/id/ger000057">Kotzebue: Die Indianer
+                                    in England</ref>. </ab>
+                        </exemplum>
+                        <exemplum source="#rus000094">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castItem>
+                                    <role>Адам Карлович Либенталь, молодой немец<note place="foot"
+                                            >Слово «немец» было заменено в афише словом
+                                            «человек».</note>, не без резвости.</role>
+                                    <actor>Г. Марковецкий.</actor>
+                                </castItem>
+                            </egXML>
+                            <ab> A character in the dramatis personae of the play <ref
+                                    target="https://dracor.org/id/rus000094">Прутков:
+                                Фантазия</ref>. </ab>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- addName -->
+  
+                    <elementSpec ident="argument" module="textstructure" mode="change">
+                        <exemplum source="#ger000546">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <argument>
+                                    <head>Inhalt des trauer-spiels.</head>
+                                    <p>Michael Balbus, käyser Leonis Armenii oberster feldhauptmann,
+                                        nach dem er zu unterschiedenen mahlen wegen seiner untreu
+                                        und verleumbdungen angeklaget, verschweret sich wider den
+                                        käyser, welcher ihn durch Exabolium, seinen geheimesten
+                                        rath, offt von seiner leichtfertigkeit abzustehen ermahnet.
+                                        Weil aber Michael auf seinem vorsatz verharret, wird er
+                                        unversehens gefangen und von dem rath, in welchem der käyser
+                                        selbst kläger und richter, zu dem feuer verdammet.
+                                        <!-- ... --></p>
+                                    <p>Dieses trauerspiel beginnet den mittag vor dem heiligen
+                                        christtage, wehret durch die nacht und endet sich vor
+                                        auffgang der sonnen.</p>
+                                    <p>Der schauplatz ist Constantinopel und vornehmlich die
+                                        käyserliche burg.</p>
+                                </argument>
+                            </egXML>
+                            <ab>
+                                <ref target="https://dracor.org/id/ger000546">Andreas Gryphius: Leo
+                                    Armenius oder Fürsten-Mord</ref>
+                            </ab>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- author -->
+                    <elementSpec ident="author" module="core" mode="change">
+                        <exemplum source="#ger000546">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <author>
+                                    <persName>
+                                        <forename>Andreas</forename>
+                                        <surname>Gryphius</surname>
+                                    </persName>
+                                    <idno type="wikidata">Q77214</idno>
+                                    <idno type="pnd">118543032</idno>
+                                </author>
+                            </egXML>
+                            <ab> Encoding of the author "Andreas Gryphius" of the play <ref
+                                    target="https://dracor.org/id/ger000546">Leo Armenius oder
+                                    Fürsten-Mord</ref>. </ab>
+                        </exemplum>
+                        <exemplum source="#rus000205">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <author>
+                                    <persName>
+                                        <forename>Владимир</forename>
+                                        <forename type="patronym">Иванович</forename>
+                                        <surname>Бельский</surname>
+                                    </persName>
+                                    <persName xml:lang="eng">
+                                        <forename>Vladimir</forename>
+                                        <surname>Belsky</surname>
+                                    </persName>
+                                    <idno type="wikidata">Q1259652</idno>
+                                </author>
+                            </egXML>
+                            <ab>Encoding of the author "Владимир Иванович Бельский" of the play <ref
+                                    target="https://dracor.org/id/rus000205">Сказание о невидимом
+                                    граде Китеже и деве Февронии</ref>.</ab>
+                        </exemplum>
+                        <remarks>
+                            <ab>For additional information on the encoding of author names and the
+                                rationale also see the following GitHub issues:
+                                <list>
+                                    <item>
+                                        <ref type="githubissue"
+                                            target="https://github.com/dracor-org/dracor-api/issues/119"
+                                            >https://github.com/dracor-org/dracor-api/issues/119</ref>
+                                    </item>
+                                    <item>
+                                        <ref type="githubissue"
+                                            target="https://github.com/dracor-org/dracor-schema/issues/21"
+                                            >https://github.com/dracor-org/dracor-schema/issues/21</ref>
+                                    </item>
+                                </list>
+                            </ab>
+                        </remarks>
+                    </elementSpec>
+
+                    <!-- availability -->
+                    <elementSpec ident="availability" module="header" mode="change">
+                        <exemplum source="#ger000480">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <availability status="free">
+                                    <p>In the public domain.</p>
+                                </availability>
+                            </egXML>
+                            <ab>Copyright status of the digital source of <ref
+                                    target="https://dracor.org/id/ger000480">Karl Kraus: Die letzten
+                                    Tage der Menschheit</ref>.</ab>
+                        </exemplum>
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <availability>
+                                    <licence>
+                                        <ab>CC-BY-3.0</ab>
+                                        <ref
+                                            target="http://creativecommons.org/licenses/by/3.0/de/legalcode"
+                                            >Lizenzvertrag</ref>
+                                    </licence>
+                                </availability>
+                            </egXML>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- ##### -->
+                    <!--   B   -->
+                    <!-- ##### -->
+
+                    <!-- back -->
+                    <elementSpec ident="back" module="textstructure" mode="change">
+                        <exemplum source="#ger000428">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <back>
+                                    <div type="notes">
+                                        <head>[Anmerkung]</head>
+                                        <p>Dem zu Beginn des <emph>Actus quintus</emph> in freier
+                                            Weise verwendeten Zitate aus den Selbstbetrachtungen des
+                                            Marc Aurel liegt ein griechischer und lateinischer Text
+                                            des achtzehnten Jahrhunderts zugrunde. Bei der
+                                            Übersetzung ins Deutsche diente in einzelnen Wendungen
+                                            die Übersetzung von Otto Kiefer (Eugen Diederichs, Jena
+                                            1906) zum Vorbilde.</p>
+                                    </div>
+                                </back>
+                            </egXML>
+                            <ab>A note in the <gi>back</gi> of the play <ref
+                                    target="https://dracor.org/id/ger000428">Anton Wildgans: Dies
+                                    irae</ref>. Should maybe wrapped with a <gi>note</gi>
+                                element.</ab>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- bibl -->
+                    <elementSpec ident="bibl" module="core" mode="change">
+                        <remarks>
+                            <p>Will be reworked in the near future.</p>
+                        </remarks>
+                        <!-- <exemplum/> -->
+                    </elementSpec>
+                    
+                    <!-- biblScope -->
+                    <!-- no example -->
+
+                    <!-- body -->
+                    <elementSpec ident="body" module="textstructure" mode="change">
+                        <exemplum source="#ger000289">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <body>
+                                    <div type="act">
+                                        <head>Erster Akt.</head>
+                                        <stage>Scene: Elegantes Zimmer in Gustav's Hause.</stage>
+                                        <div type="scene">
+                                            <head>Erster Auftritt.</head>
+                                            <stage>Durch die Mittelthür kommen: Ehrenthal und
+                                                Dörthe.</stage>
+                                            <!-- ... -->
+                                        </div>
+                                    </div>
+                                    <!-- ... -->
+                                </body>
+                            </egXML>
+                            <ab>Common structure of the <gi>body</gi> element of a play. Example is
+                                taken from <ref target="https://dracor.org/id/ger000289">Karl von
+                                    Holtei: Ein Trauerspiel in Berlin</ref>.</ab>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- ##### -->
+                    <!--   C   -->
+                    <!-- ##### -->
+
+                    <!-- castGroup -->
+
+                    <elementSpec ident="castGroup" module="drama" mode="change">
+                        <exemplum source="#ger000442">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castGroup>
+                                    <castItem>Silva,</castItem>
+                                    <castItem>Gomez,</castItem>
+                                    <roleDesc>unter Alba dienend</roleDesc>
+                                </castGroup>
+                            </egXML>
+                            <ab>The characters are grouped and given a role in the in the "dramatis
+                                personae" in the play <ref target="https://dracor.org/id/ger000442"
+                                    >Goethe: Egmont</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000139">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castGroup rend="braced">
+                                    <castItem>Balthasar</castItem>
+                                    <castItem>Caspar</castItem>
+                                    <roleDesc>Jäger</roleDesc>
+                                </castGroup>
+                            </egXML>
+                            <ab>A group of characters in <ref
+                                    target="https://dracor.org/id/ger000139">Genoveva</ref>. In the
+                                source, they are marked with a curly bracket.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000575">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castGroup>
+                                    <castItem><role>Elpore,</role></castItem>
+                                    <castItem><role>Epimeleia,</role></castItem>
+                                    <roleDesc>Epimetheus' Töchter</roleDesc>
+                                </castGroup>
+                            </egXML>
+                            <ab>A group of characters with explicitly marked-up roles in <ref
+                                    target="https://dracor.org/id/ger000575">Goethe:
+                                Pandora</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000572">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castGroup>
+                                    <castItem><role>Magdalene,</role>
+                                        <roleDesc>Behrings Braut, 20 Jahre
+                                        alt,</roleDesc></castItem>
+                                    <castItem><role>Fritz,</role>
+                                        <roleDesc>12 Jahre alt,</roleDesc></castItem>
+                                    <roleDesc>beider Kinder.</roleDesc>
+                                </castGroup>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000572"
+                                    >Otto Ernst: Die größte Sünde</ref>.</ab>
+                        </exemplum>
+
+                    </elementSpec>
+
+                    <!-- castItem -->
+                    <elementSpec ident="castItem" module="drama" mode="change">
+                        <exemplum source="#ger000088">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castItem>Marinelli, Kammerherr des Prinzen.</castItem>
+                            </egXML>
+                            <ab>A character in the play <ref
+                                    target="https://dracor.org/id/ger000088">Lessing: Emilia
+                                    Galotti</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000546">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castItem><role>Leo Armenius,</role>
+                                    <roleDesc>käyser von Constantinopel.</roleDesc>
+                                </castItem>
+                            </egXML>
+                            <ab>A <gi>castItem</gi> in the play <ref
+                                    target="https://dracor.org/id/ger000546">Gryphius: Leo
+                                    Armenius</ref>. The name of the role and its description have
+                                been explicitly marked-up.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000575">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castItem><role>Dämonen</role></castItem>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000575"
+                                    >Goethe: Pandora</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000451">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castItem>Andreas Doria, Doge von Genua <roleDesc>Ehrwürdiger Greis
+                                        von achtzig Jahren, Spuren von Feuer. Ein Hauptzug: Gewicht
+                                        und strenge befehlende Kürze</roleDesc></castItem>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000451"
+                                    >Schiller: Die Verschwörung des Fiesco zu Genua</ref>.</ab>
+                        </exemplum>
+                        <!-- this is not valid: -->
+                        <!--<exemplum source="#ger000474">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castItem><emph>Volumnia</emph>, seine Gattin.</castItem>
+                            </egXML>
+                            <ab>Encoding of a character in <ref target="https://dracor.org/id/ger000474">Collin: Coriolan</ref>. Actually, there should be semantic markup, e.g. <gi>role</gi> and <gi>roleDesc</gi>.</ab>
+                        </exemplum>-->
+                        <!-- Elements, that currently occur in castItem: pb, emph, note, foreign, actor, lb: distinct-values(//castItem[*][not(role)][not(roleDesc)]/element()/name()) -->
+                    </elementSpec>
+
+
+                    <!-- castList -->
+                    <elementSpec ident="castList" module="drama" mode="change">
+                        <exemplum source="#ger000575">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castList>
+                                    <head> Personen.</head>
+                                    <castGroup>
+                                        <castItem><role>Prometheus,</role></castItem>
+                                        <castItem><role>Epimetheus,</role></castItem>
+                                        <roleDesc>Japetiden</roleDesc>
+                                    </castGroup>
+                                    <castItem><role>Phileros,</role>
+                                        <roleDesc>Prometheus' Sohn</roleDesc></castItem>
+                                    <!-- ... -->
+                                    <castItem><role>Dämonen</role></castItem>
+                                    <castItem><role>Helios</role></castItem>
+                                    <castItem><role>Schmiede</role></castItem>
+                                    <castItem><role>Hirten</role></castItem>
+                                    <!-- ... -->
+                                </castList>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000575"
+                                    >Goethe: Pandora</ref>.</ab>
+                        </exemplum>
+
+                        <exemplum>
+                            <p>Probably not the best example...</p>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castList>
+                                    <head>ЛИЦА:</head>
+                                    <castItem>Раиса Павловна Гурмыжская, вдова, лет 50-ти с
+                                        небольшим, очень богатая помещица, одевается скромно, почти
+                                        в трауре, постоянно с рабочим ящиком на руке.</castItem>
+                                    <castItem>Аксинья Даниловна (Аксюша), ее дальняя родственница,
+                                        бедная девушка лет 20-ти, одета чисто, но бедно, немного
+                                        лучше горничной.</castItem>
+                                    <castGroup>
+                                        <castItem>Евгений Аполлоныч Милонов, лет 45-ти, гладко
+                                            причесан, одет изысканно, в розовом галстуке.</castItem>
+                                        <castItem>Уар Кирилыч Бодаев, лет 60-ти, отставной
+                                            кавалерист, седой, гладко стриженный, с большими усами и
+                                            бакенбардами, в черном сюртуке, наглухо застегнутом, с
+                                            крестами и медалями по-солдатски, с костылем в руке,
+                                            немного глух.</castItem>
+                                        <roleDesc>Богатые соседи Гурмыжской.</roleDesc>
+                                    </castGroup>
+                                    <castItem>Иван Петров Восмибратов, купец, торгующий
+                                        лесом.</castItem>
+                                    <!-- ... -->
+                                </castList>
+                            </egXML>
+                        </exemplum>
+                    </elementSpec>
+
+
+                    <!-- change -->
+                    <elementSpec ident="change" module="header" mode="change">
+                        <exemplum source="#ger000030">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <revisionDesc>
+                                    <listChange>
+                                        <change when="2017-01-06">(dlina) file conversion from
+                                            source</change>
+                                        <change when="2017-08-04">(ff) structural cleanup</change>
+                                        <change when="2018-12-23">(ff) formalities</change>
+                                    </listChange>
+                                </revisionDesc>
+                            </egXML>
+                            <ab><gi>revisionDesc</gi> with <gi>change</gi> elements of the play <ref
+                                    target="https://dracor.org/id/ger000030">Scheerbart: Der alte
+                                    Petrus</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#rus000016">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <revisionDesc>
+                                    <listChange>
+                                        <change when="2017-05-23">(ds) convert from source</change>
+                                        <change when="2017-05-23">(ff) add metadata, insert
+                                            configuration changes</change>
+                                        <change when="2017-06-01">(zh) add dates, ids</change>
+                                        <change when="2017-06-03">(gg) gender info</change>
+                                        <change when="2017-12-03">(ff) formalities; delete duplicate
+                                            of poem; work on IDs</change>
+                                        <change when="2018-04-07">(zh) group tag</change>
+                                    </listChange>
+                                </revisionDesc>
+                            </egXML>
+                            <ab>Record of the changes in the file of the play <ref
+                                    target="https://dracor.org/id/rus000016">Александр Сергеевич
+                                    Пушкин: Сцены из рыцарских времен</ref>.</ab>
+                        </exemplum>
+
+                    </elementSpec>
+
+                    <!-- cit -->
+                    <elementSpec ident="cit" module="core" mode="change">
+                        <exemplum source="#ger000371">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <epigraph>
+                                    <cit>
+                                        <quote>
+                                            <l>Wie ist mir eine Stimme doch erklungen</l>
+                                            <l>Im tiefsten Innern,</l>
+                                            <l>Und hat mit einem Male mir verschlungen</l>
+                                            <l>All mein Erinnern.</l>
+                                        </quote>
+                                        <bibl>Adalbert von Chamisso</bibl>
+                                    </cit>
+                                </epigraph>
+                            </egXML>
+                            <ab>A citation in the epigraph to the play <ref
+                                    target="https://dracor.org/id/ger000371">Büchner: Leonce und
+                                    Lena</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#rus000021">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <epigraph>
+                                    <cit>
+                                        <quote>
+                                            <lg>
+                                                <l>Leporello. O statua gentilissima</l>
+                                                <l>Del gran' Commendatore!..</l>
+                                                <l>...Ah, Padrone!</l>
+                                            </lg>
+                                        </quote>
+                                    </cit>
+                                    <bibl>Don Giovanni.</bibl>
+                                </epigraph>
+                                <ab>Citation in the play <ref
+                                        target="https://dracor.org/id/rus000021">Пушкин: Каменный
+                                        гость</ref></ab>
+                            </egXML>
+                        </exemplum>
+                        <exemplum source="#ger000369">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <div type="epigraph">
+                                    <head>[Motto]</head>
+                                    <cit>
+                                        <quote>
+                                            <p>Introite, nam et heic Dii sunt!</p>
+                                        </quote>
+                                        <bibl>APUD GELLIUM</bibl>
+                                    </cit>
+                                    <pb n="206"/>
+                                </div>
+                            </egXML>
+                            <ab>Only one other example discovered using
+                                    <code>//cit[not(parent::epigraph)]</code>, but this is due to
+                                encoding – it's actually kind of an epigraph in the play <ref
+                                    target="https://dracor.org/id/ger000369">Lessing: Nathan der
+                                    Weise</ref></ab>
+                        </exemplum>
+                        <remarks>
+                            <p>In DraCor mostly used to mark citation in epigraphs, see
+                                examples.</p>
+                        </remarks>
+                    </elementSpec>
+
+                    <!-- classCode  -->
+                    <elementSpec ident="classCode" module="header" mode="change">
+                        <exemplum source="#ger000442">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <textClass>
+                                    <keywords>
+                                        <term type="genreTitle">Tragedy</term>
+                                    </keywords>
+                                    <classCode scheme="http://www.wikidata.org/entity/"
+                                        >Q80930</classCode>
+                                </textClass>
+                            </egXML>
+                            <ab>Genre classification of the play <ref
+                                    target="https://dracor.org/id/ger000442">Goethe:
+                                Egmont</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000150">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <classCode scheme="http://www.wikidata.org/entity/"
+                                    >Q40831</classCode>
+                            </egXML>
+                            <ab>The play <ref target="https://dracor.org/id/ger000150">Schnitzler:
+                                    Komtesse Mizzi</ref> is classified as a "comedy".</ab>
+                        </exemplum>
+                        <exemplum source="#ger000175">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <classCode scheme="http://www.wikidata.org/entity/"
+                                    >Q131084</classCode>
+                            </egXML>
+                            <ab>The "libretto" to the opera <ref
+                                    target="https://dracor.org/id/ger000175">Wagner:
+                                Lohengrin</ref>.</ab>
+                        </exemplum>
+                        <remarks>
+                            <p>Classifiaction of the genre of the play is done by re-using Wikidata
+                                entites.</p>
+                        </remarks>
+                    </elementSpec>
+
+                    <!-- ##### -->
+                    <!--   D   -->
+                    <!-- ##### -->
+
+                    <!-- date -->
+                    <!-- removed because not in use anymore, info is contained in standOff as a event -->
+
+
+                    <!-- dateline -->
+                    <elementSpec ident="dateline" module="textstructure" mode="change">
+                        <exemplum source="#ger000525">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <dateline>Offenbach am Mayn, gedruckt bey Ulrich Weiß,
+                                    1765.</dateline>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000525"
+                                    >André: Der Comödienfeind</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000523">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <dateline>Am verhängnißvollen 24sten Februar.</dateline>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000523"
+                                    >Castelli: Der Schicksalsstrumpf</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000008">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <dateline>Geschrieben in der Ostermesse. 1781.</dateline>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000008"
+                                    >Schiller: Die Räuber</ref></ab>
+                        </exemplum>
+                        <exemplum source="#rus000036">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <dateline>Между декабрем 1750 и ноябрем 1751</dateline>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/rus000036"
+                                    >Ломоносов: Демофонт</ref></ab>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- desc -->
+                    <elementSpec ident="desc" module="core" mode="change">
+                        <exemplum source="#ger000124">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <listEvent>
+                                    <event type="print" when="1745">
+                                        <desc/>
+                                    </event>
+                                    <event type="premiere" when="1745">
+                                        <desc/>
+                                    </event>
+                                </listEvent>
+                            </egXML>
+                            <ab>Empty <gi>desc</gi> elements in the <gi>standOff</gi> container of
+                                the play <ref target="https://dracor.org/id/ger000124">Gellert: Die
+                                    Betschwester</ref>. The dates of publication and the premiere
+                                are extracted from the <att>when</att> of the corresponding
+                                    <gi>event</gi>. If there is no more information available the
+                                    <gi>desc</gi> can be used as an empty element, but has to be
+                                included due to the default TEI content model of the parent
+                                element.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000480">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <listEvent>
+                                    <event type="print" when="1919">
+                                        <desc>"Erscheinen konnte das Werk erst nach Aufhebung der
+                                            Zensur. Noch am 13. Dezember 1918 erschien der Epilog
+                                            als Sonderheft der Fackel, weitere Teile (mit jeweils
+                                            zwei Akten) folgten im April, August und
+                                            (wahrscheinlich) September 1919." (Wikipedia)</desc>
+                                    </event>
+                                    <event type="premiere" when="1964">
+                                        <desc>"1964: Wiener Festwochen im Theater an der Wien
+                                            (Regie: Leopold Lindtberg). Erste szenische Aufführung
+                                            mit 42 Szenen des Dramas, nach einer Bühnenfassung von
+                                            Heinrich Fischer." (Wikipedia)</desc>
+                                    </event>
+                                    <event type="written" notBefore="1915" notAfter="1922">
+                                        <desc>"in den Jahren 1915–1922 entstanden"
+                                            (Wikipedia)</desc>
+                                    </event>
+                                </listEvent>
+                            </egXML>
+                            <ab>Descriptions of events in the <gi>standOff</gi> container of the
+                                play <ref target="https://dracor.org/id/ger000480">Kraus: Die
+                                    Letzten Tage der Menschheit</ref>.</ab>
+                        </exemplum>
+                    </elementSpec>
+
+
+                    <!-- div -->
+                    <elementSpec ident="div" module="textstructure" mode="change">
+                        <exemplum source="#ger000253">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <div type="scene">
+                                    <head>Fünfte Szene</head>
+                                    <sp who="#poniatowsky">
+                                        <speaker>PONIATOWSKY.</speaker>
+                                        <lg>
+                                            <l>Der alte Woiwode predigt gut,</l>
+                                            <l>Doch seine Weisheit kommt von seinen Haaren,</l>
+                                            <l>Ich lobe den, der aus der Kirche läuft.</l>
+                                        </lg>
+                                    </sp>
+                                </div>
+                            </egXML>
+                            <ab>A short "scene" in the play <ref
+                                    target="https://dracor.org/id/ger000253">Hebbel:
+                                Demetrius</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#rus000109">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <div type="scene">
+                                    <head>Явление 13</head>
+                                    <sp who="#zdravomyslov">
+                                        <speaker>Г. Здравомыслов.</speaker>
+                                        <p>Что это значит? Прогневать я не мог, я ни в чем не
+                                            проступился; но докучать не надо, ее нрав более
+                                            умягчается повиновением. На прекрасную ее племянницу
+                                            надежду свою полагаю; пойду, однако ж, постараюсь узнать
+                                            причину холодного сего приема.</p>
+                                    </sp>
+                                    <trailer>Конец четвертого действия.</trailer>
+                                </div>
+                            </egXML>
+                            <ab>The last "scene" of the fourth act of the play <ref
+                                    target="https://dracor.org/id/rus000109">Дашкова:
+                                    Тоисиоков</ref>.</ab>
+                        </exemplum>
+
+                    </elementSpec>
+
+                    <!-- docAuthor -->
+                    <elementSpec ident="docAuthor" module="textstructure" mode="change">
+                        <exemplum source="#ger000088">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <front>
+                                    <docAuthor>Gotthold Ephraim Lessing</docAuthor>
+                                    <docTitle>
+                                        <titlePart type="main">Emilia Galotti</titlePart>
+                                        <titlePart type="sub">Ein Trauerspiel in fünf
+                                            Aufzügen</titlePart>
+                                        <pb n="128"/>
+                                    </docTitle>
+                                    <!-- ... -->
+                                </front>
+                            </egXML>
+                            <ab>Used in <ref target="https://dracor.org/id/ger000088">Lessing:
+                                    Emilia Galotti</ref></ab>
+                        </exemplum>
+                        <remarks>
+                            <p>Used inconsitently throughout the corpora. Needs to be revised!</p>
+                        </remarks>
+                    </elementSpec>
+
+                    <!-- docImprint -->
+                    <!-- no longer in use -->
+                    <!--<elementSpec ident="docImprint" module="textstructure" mode="change">
+                        
+                    </elementSpec>-->
+
+                    <!-- docTitle -->
+                    <elementSpec ident="docTitle" module="textstructure" mode="change">
+                        <exemplum source="#ger000482">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <front>
+                                    <docTitle>
+                                        <titlePart type="main">Die beiden Billets.</titlePart>
+                                        <titlePart type="sub">Ein Lustspiel in einem Akt nach
+                                            Florian von Anton-Wall.</titlePart>
+                                    </docTitle>
+                                    <!-- ... -->
+                                </front>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000482"
+                                    >Heyne: Die beiden Billets</ref></ab>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- ##### -->
+                    <!--   E   -->
+                    <!-- ##### -->
+
+
+                    <elementSpec ident="editor" module="core" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <bibl type="originalSource">
+                                    <author>William Shakespeare</author>: <title level="a">Romeo und
+                                        Julia</title>. In: <title level="s">Sämtliche Werke in vier
+                                        Bänden</title>. Herausgegeben von <editor>Anselm
+                                        Schlösser</editor>. Band <biblScope unit="volume"
+                                        >4</biblScope>. <pubPlace>Berlin</pubPlace>:
+                                        <publisher>Aufbau</publisher>
+                                    <date>1975</date>, S. <biblScope unit="page" from="83" to="178"
+                                        >83–178</biblScope>. </bibl>
+                            </egXML>
+                            <ab>Example from GerShDraCor</ab>
+                        </exemplum>
+                    </elementSpec>
+
+
+                    <!-- emph -->
+                    <elementSpec ident="emph" module="core" mode="change">
+                        <exemplum source="#ger000083">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sp who="#titus">
+                                    <speaker>TITUS.</speaker>
+                                    <p>Oh, der Anzug hat nur zu viel Gärtnerartiges, er is übersä't
+                                        mit Fleck, er is <emph>aufgegangen</emph> bei die Ellbögen
+                                        und an verschiedenen Orten; weil ich nie ein Paraplü trag',
+                                        wird er auch häufig <emph>begossen</emph>, und wie er noch
+                                        in der Blüte war, hab' ich ihn oft wie eine Pflanze
+                                            <emph>versetzt</emph>.</p>
+                                </sp>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000083"
+                                    >Nestroy: Der Talisman</ref>.</ab>
+                        </exemplum>
+
+                    </elementSpec>
+
+                    <!-- epigraph -->
+                    <elementSpec ident="epigraph" module="textstructure" mode="change">
+                        <exemplum source="#ger000522">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <epigraph>
+                                    <p>Nichts gibt so sehr das Gefühl der Unendlichkeit als wie die
+                                        Dummheit.</p>
+                                </epigraph>
+                            </egXML>
+                            <ab>Epigraph of <ref target="https://dracor.org/id/ger000522">Horvath:
+                                    Geschichten aus dem Wiener Wald</ref></ab>
+                        </exemplum>
+                        <exemplum source="#ger000314">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <epigraph xml:lang="lat">
+                                    <cit>
+                                        <quote>
+                                            <l>Flectere si nequeo superos, acheronta movebo.</l>
+                                        </quote>
+                                    </cit>
+                                </epigraph>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000314"
+                                    >Benkowitz: Die Jubelfeier der Hölle, oder Faust der
+                                    jüngere</ref>.</ab>
+                        </exemplum>
+                    </elementSpec>
+
+
+                    <!-- event -->
+                    <elementSpec ident="event" module="namesdates" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <event type="written" when="1811">
+                                    <desc>geschrieben wahrscheinlich im Winter 1811</desc>
+                                </event>
+                            </egXML>
+                            <ab>Example see <ref
+                                    target="https://github.com/dracor-org/dracor-schema/issues/38"
+                                    >Github Issue</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000564">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <event type="written" notBefore="1836" notAfter="1837">
+                                    <label>1836–1837</label>
+                                </event>
+                            </egXML>
+                            <ab>Written date of the play <ref
+                                    target="https://dracor.org/id/ger000564">Büchner:
+                                Woyzeck</ref>.</ab>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- ##### -->
+                    <!--   F   -->
+                    <!-- ##### -->
+
+                    <!-- figure -->
+                    <elementSpec ident="figure" module="figures" mode="change">
+                        <exemplum source="#ger000104">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <figure>
+                                    <graphic
+                                        url="http://images.zeno.org/Literatur/I/big/haup0031.jpg"/>
+                                    <ab>Glumms große Kretschamstube.</ab>
+                                </figure>
+                            </egXML>
+                            <ab>A figure in <ref target="https://dracor.org/id/ger000104">Hauptmann:
+                                    Ephraims Breite</ref></ab>
+                        </exemplum>
+                        <exemplum source="#ger000191">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <figure>
+                                    <graphic
+                                        url="https://textgridlab.org/1.0/tgcrud/rest/textgrid:x3gp.0/data"
+                                    />
+                                </figure>
+                            </egXML>
+                            <ab>An image in <ref target="https://dracor.org/id/ger000191">Wedekind:
+                                    König Nicolo oder So ist das Leben</ref></ab>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- fileDesc -->
+                    <elementSpec ident="fileDesc" module="header" mode="change">
+                        <exemplum source="#ger000442">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <fileDesc>
+                                    <titleStmt>
+                                        <title type="main">Egmont</title>
+                                        <!-- ... -->
+                                    </titleStmt>
+                                    <publicationStmt>
+                                        <publisher xml:id="dracor">DraCor</publisher>
+                                        <!-- ... -->
+                                    </publicationStmt>
+                                    <sourceDesc>
+                                        <bibl type="digitalSource">
+                                            <name>TextGrid Repository</name>
+                                            <!-- ... -->
+                                            <bibl type="originalSource">
+                                                <title>Goethes Werke. <!-- ... --></title>
+                                            </bibl>
+                                        </bibl>
+                                    </sourceDesc>
+                                </fileDesc>
+                            </egXML>
+                            <ab>Example taken adapted from <ref
+                                    target="https://dracor.org/id/ger000442">Goethe:
+                                Egmont</ref>.</ab>
+                        </exemplum>
+
+                    </elementSpec>
+
+
+                    <!-- foreign -->
+                    <!-- xml:lang erlauben -->
+                    <elementSpec ident="foreign" module="core" mode="change">
+                        <exemplum source="#ger000581">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sp who="#baronesse_von_ehegestern">
+                                    <speaker>B. v. Ehegestern</speaker>
+                                    <stage>(für sich.)</stage>
+                                    <p><foreign xml:lang="fre">Mais, mon Dieu, qu'elle
+                                            confidence!</foreign>
+                                        <stage>(laut:)</stage> Nun es kann nicht lange <foreign
+                                            xml:lang="fre">Mystère</foreign> bleiben. <foreign
+                                            xml:lang="fre">Voilà une lettre.</foreign> Der Doktor
+                                        hat ihn abgegeben.</p>
+                                </sp>
+                            </egXML>
+                            <ab>
+                                <ref target="https://dracor.org/id/ger000581">Rambach: Die
+                                    Kuhpocken</ref>
+                            </ab>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- forename -->
+                    <elementSpec ident="forename" module="namesdates" mode="change">
+                        <exemplum source="#ger000565">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <persName>
+                                    <forename>Hermann</forename>
+                                    <surname>Bahr</surname>
+                                </persName>
+                            </egXML>
+                        </exemplum>
+                        <exemplum source="#ger000124">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <persName>
+                                    <forename>Christian</forename>
+                                    <forename>Fürchtegott</forename>
+                                    <surname>Gellert</surname>
+                                </persName>
+                            </egXML>
+                        </exemplum>
+                        <exemplum source="#rus000142">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <persName>
+                                    <forename>Евдокия</forename>
+                                    <forename type="patronym">Петровна</forename>
+                                    <surname>Ростопчина</surname>
+                                </persName>
+                            </egXML>
+                        </exemplum>
+                    </elementSpec>
+
+
+                    <!-- front -->
+                    <elementSpec ident="front" module="textstructure" mode="change">
+                        <!--TODO: THis example is not linked to a play! -->
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <front>
+                                    <titlePage>
+                                        <docAuthor>Gotthold Ephraim Lessing</docAuthor>
+                                        <docTitle>
+                                            <titlePart type="main">Emilia Galotti</titlePart>
+                                            <titlePart type="sub">Ein Trauerspiel in fünf
+                                                Aufzügen</titlePart>
+                                        </docTitle>
+                                    </titlePage>
+                                    <pb n="128"/>
+                                    <castList>
+                                        <head>Personen.</head>
+                                        <castItem>
+                                            <role>Emilia Galotti.</role>
+                                        </castItem>
+                                        <castGroup rend="braced">
+                                            <castItem>
+                                                <role>Odoardo,</role>
+                                            </castItem>
+                                            <castItem>
+                                                <role>Claudia Galotti,</role>
+                                            </castItem>
+                                            <roleDesc>Eltern der Emilia.</roleDesc>
+                                        </castGroup>
+                                        <castItem>
+                                            <role>Hettore Gonzaga,</role>
+                                            <roleDesc>Prinz von Guastalla.</roleDesc>
+                                        </castItem>
+                                        <castItem>
+                                            <role>Marinelli,</role>
+                                            <roleDesc>Kammerherr des Prinzen.</roleDesc>
+                                        </castItem>
+                                        <castItem>
+                                            <role>Camillo Rota,</role>
+                                            <roleDesc>einer von des Prinzen Räten.</roleDesc>
+                                        </castItem>
+                                        <castItem>
+                                            <role>Conti,</role>
+                                            <roleDesc>Maler.</roleDesc>
+                                        </castItem>
+                                        <castItem>
+                                            <role>Graf Appiani.</role>
+                                        </castItem>
+                                        <castItem>
+                                            <role>Gräfin Orsina.</role>
+                                        </castItem>
+                                        <castItem><role>Angelo,</role> und <role>einige
+                                            Bediente.</role></castItem>
+                                        <pb n="128"/>
+                                    </castList>
+                                </front>
+                            </egXML>
+                        </exemplum>
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <front>
+                                    <div type="front">
+                                        <head>Johann Nestroy</head>
+                                        <head>Der Talisman</head>
+                                        <head>Posse mit Gesang in drei Aufzügen</head>
+                                        <pb n="244"/>
+                                    </div>
+                                    <div type="Dramatis_Personae">
+                                        <castList>
+                                            <head>Personen.</head>
+                                            <castItem>Titus Feuerfuchs, ein vazierender
+                                                Barbiergeselle.</castItem>
+                                            <castItem>Frau von Cypressenburg, Witwe.</castItem>
+                                            <castItem>Emma, ihre Tochter.</castItem>
+                                            <!-- ... -->
+                                        </castList>
+                                    </div>
+                                    <set>
+                                        <p>Die Handlung spielt auf dem Gute der Frau von
+                                            Cypressenburg, nahe bei einer großen Stadt.</p>
+                                    </set>
+                                </front>
+                            </egXML>
+                            <ab>The frontmatter of the play <ref
+                                    target="https://dracor.org/id/ger000083">Nestroy: Der
+                                    Talisman</ref>. <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                    <div type="front">
+                                        <head>Johann Nestroy</head>
+                                        <head>Der Talisman</head>
+                                        <head>Posse mit Gesang in drei Aufzügen</head>
+                                        <pb n="244"/>
+                                    </div>
+                                </egXML> will be deprecated though and replaced with
+                                    <gi>titlePage</gi>.</ab>
+
+                        </exemplum>
+                    </elementSpec>
+
+
+                    <!-- ##### -->
+                    <!--   G   -->
+                    <!-- ##### -->
+
+                    <!-- genName -->
+                    <elementSpec ident="genName" mode="change" module="namesdates">
+                        <exemplum source="#rus000209">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <author>
+                                    <persName type="nobility">
+                                        <forename>Екатерина</forename>
+                                        <genName>II</genName>
+                                    </persName>
+                                    <persName>
+                                        <forename>София</forename>
+                                        <forename>Августа</forename>
+                                        <forename>Фредерика</forename>
+                                        <surname>Ангальт-Цербстская</surname>
+                                    </persName>
+                                    <persName xml:lang="eng">
+                                        <forename>Catherine</forename>
+                                        <genName>II</genName>
+                                    </persName>
+                                    <idno type="wikidata">Q36450</idno>
+                                </author>
+                            </egXML>
+                            <ab>Encoding of the name of the author "Catherine II" of the play <ref
+                                    target="https://dracor.org/id/rus000209">Расстроенная семья
+                                    острожками и подозрениями</ref>.</ab>
+                        </exemplum>
+                    </elementSpec>
+
+
+                    <!-- graphic -->
+                    <elementSpec ident="graphic" module="core" mode="change">
+                        <exemplum source="#ger000104">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <figure>
+                                    <graphic
+                                        url="http://images.zeno.org/Literatur/I/big/haup0031.jpg"/>
+                                    <ab>Glumms große Kretschamstube.</ab>
+                                </figure>
+                            </egXML>
+                            <ab>A figure in <ref target="https://dracor.org/id/ger000104">Hauptmann:
+                                    Ephraims Breite</ref></ab>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- ##### -->
+                    <!--   H   -->
+                    <!-- ##### -->
+
+                    <!-- head -->
+
+                    <elementSpec ident="head" module="core" mode="change">
+                        <exemplum source="#ger000083">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <div type="act">
+                                    <head>Erster Aufzug</head>
+                                    <stage>Die Bühne stellt einen Dorfplatz vor. In der Mitte gegen
+                                        den Hintergrund ein Brunnen, links eine Gartenmauer mit
+                                        einer kleinen, offenstehenden Tür, welche in den
+                                        Herrschaftsgarten führt.</stage>
+                                    <div type="scene">
+                                        <head>Erster Auftritt</head>
+                                        <stage>Bauernmädchen, darunter Hannerl, treten während dem
+                                            Ritornell des folgenden Chores aus dem Hintergrunde
+                                            links auf.</stage>
+                                        <stage>Chor.</stage>
+                                    </div>
+                                </div>
+                            </egXML>
+                            <ab>Headings of an act and a scene in <ref
+                                    target="https://dracor.org/id/ger000083">Nestroy: Der
+                                    Talisman</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000546">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <argument>
+                                    <head>Inhalt des trauer-spiels.</head>
+                                    <p>Michael Balbus, käyser Leonis Armenii oberster feldhauptmann,
+                                        nach dem er zu unterschiedenen mahlen wegen seiner untreu
+                                        und verleumbdungen angeklaget, verschweret sich wider den
+                                        käyser, welcher ihn durch Exabolium, seinen geheimesten
+                                        rath, offt von seiner leichtfertigkeit abzustehen
+                                        ermahnet.<!-- ... --></p>
+                                </argument>
+                            </egXML>
+                            <ab>
+                                <ref target="https://dracor.org/id/ger000546">Gryphius: Leo Armenius
+                                    oder Fürsten-Mord</ref>
+                            </ab>
+                        </exemplum>
+                        <exemplum source="#ger000562">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castList>
+                                    <head>In stummen Rollen</head>
+                                    <castGroup>
+                                        <castItem>Kardinal Dupin, Erzbischof von Paris</castItem>
+                                        <castItem>Minister</castItem>
+                                        <!-- ... -->
+                                    </castGroup>
+                                </castList>
+                            </egXML>
+                        </exemplum>
+
+
+                    </elementSpec>
+
+
+                    <!-- hi -->
+                    <!-- use <emph> instead! -->
+
+
+                    <!-- ##### -->
+                    <!--   I   -->
+                    <!-- ##### -->
+
+                    <!-- idno -->
+
+
+                    <elementSpec ident="idno" module="header" mode="change">
+                        <exemplum source="#ger000416">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <author>
+                                    <persName>
+                                        <forename>Ferdinand</forename>
+                                        <surname>Raimund</surname>
+                                    </persName>
+                                    <idno type="wikidata">Q45025</idno>
+                                    <idno type="pnd">118597914</idno>
+                                </author>
+                            </egXML>
+                            <ab>Identifiers of the author of the play <ref
+                                    target="https://dracor.org/id/ger000416">Raimund: Die gefesselte
+                                    Phantasie</ref></ab>
+                        </exemplum>
+                        <exemplum source="#ger000416">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <publicationStmt>
+                                    <publisher xml:id="dracor">DraCor</publisher>
+                                    <idno type="URL">https://dracor.org</idno>
+                                    <availability>
+                                        <licence>
+                                            <ab>CC0 1.0</ab>
+                                            <ref
+                                                target="https://creativecommons.org/publicdomain/zero/1.0/"
+                                                >Licence</ref>
+                                        </licence>
+                                    </availability>
+                                </publicationStmt>
+                            </egXML>
+                            <ab>Provide an identifier for DraCor (use the URL)</ab>
+                        </exemplum>
+                        <exemplum source="#ger000416">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <bibl type="digitalSource">
+                                    <name>TextGrid Repository</name>
+                                    <idno type="URL"
+                                        >http://www.textgridrep.org/textgrid:t97f.0</idno>
+                                    <!-- ... -->
+                                </bibl>
+                            </egXML>
+                            <ab>URL as an identifier of the digital source of the play <ref
+                                    target="https://dracor.org/id/ger000416">Raimund: Die gefesselte
+                                    Phantasie</ref></ab>
+                        </exemplum>
+                        <exemplum source="#rus000117">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sourceDesc>
+                                    <bibl type="digitalSource">
+                                        <name>Библиотека Максима Мошкова (lib.ru)</name>
+                                        <idno type="URL"
+                                            >http://az.lib.ru/p/plawilxshikow_p_a/text_0040.shtml</idno>
+                                        <availability status="free">
+                                            <p>In the public domain.</p>
+                                        </availability>
+                                        <bibl type="originalSource">
+                                            <title>Русская драматургия XVIII века. – М.:
+                                                Современник, 1986. – С. 445–460.</title>
+                                        </bibl>
+                                    </bibl>
+                                </sourceDesc>
+                            </egXML>
+                            <ab>
+                                <ref target="https://dracor.org/id/rus000117">Плавильщиков: Ермак,
+                                    покоритель Сибири</ref>
+                            </ab>
+                        </exemplum>
+                    </elementSpec>
+
+
+                    <!-- ##### -->
+                    <!--   K   -->
+                    <!-- ##### -->
+
+                    <!-- keywords -->
+
+                    <elementSpec ident="keywords" module="header" mode="change">
+                        <exemplum source="#ger000389">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <keywords>
+                                    <term type="genreTitle">Tragedy</term>
+                                </keywords>
+                            </egXML>
+                            <ab>Keywords used to classify genre of the play <ref
+                                    target="https://dracor.org/id/ger000389">Laube:
+                                Struensee</ref>.</ab>
+
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- ##### -->
+                    <!--   L   -->
+                    <!-- ##### -->
+
+                    <!-- l -->
+
+                    <elementSpec ident="l" module="core" mode="change">
+                        <exemplum source="#ger000083">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sp who="#chor_2-23">
+                                    <speaker>CHOR.</speaker>
+                                    <lg>
+                                        <l>'s ist nirgends so wie in dem Haus amüsant,</l>
+                                        <l>Denn hier sind die Karten und Würfel verbannt,</l>
+                                        <l>Bei Frau Von Cypressenburg in Soiree,</l>
+                                        <l>Da huldigt den Musen man nur und dem Tee.</l>
+                                    </lg>
+                                    <stage>Während dem Chor haben Bediente einen großen gedeckten
+                                        Teetisch gebracht und die Stühle gesetzt.</stage>
+                                </sp>
+                            </egXML>
+                            <ab>
+                                <ref target="https://dracor.org/id/ger000083">Nestroy: Der
+                                    Talisman</ref>
+                            </ab>
+                        </exemplum>
+                        <exemplum source="#rus000022">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sp who="#TretijMistik">
+                                    <speaker>Третий мистик</speaker>
+                                    <l part="F">Наступит событие.</l>
+                                </sp>
+                                <sp who="#Pero">
+                                    <speaker>Пьеро</speaker>
+                                    <l>О, вечный ужас, вечный мрак!</l>
+                                </sp>
+                                <sp who="#PervyjMistik">
+                                    <speaker>Первый мистик</speaker>
+                                    <l part="I">Ты ждешь?</l>
+                                </sp>
+                                <sp who="#VtorojMistik">
+                                    <speaker>Второй мистик</speaker>
+                                    <l part="M">Я жду.</l>
+                                </sp>
+                                <sp who="#TretijMistik">
+                                    <speaker>Третий мистик</speaker>
+                                    <l part="F">Уж близко прибытие:</l>
+                                    <l>За окном нам ветер подал знак.</l>
+                                </sp>
+                            </egXML>
+                            <ab><ref target="https://dracor.org/id/rus000022">Блок: Балаганчик</ref>
+                                to illustrate usage of <att>part</att>; would need the source as
+                                well.</ab>
+
+                        </exemplum>
+                        <exemplum source="#rus000018">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sp who="#rusalki">
+                                    <speaker>Русалки</speaker>
+                                    <lg>
+                                        <l rend="indent">Веселой толпою</l>
+                                        <l rend="indent">С глубокого дна</l>
+                                        <l rend="indent">Мы ночью всплываем,</l>
+                                        <l rend="indent">Нас греет луна.</l>
+                                        <l>Любо нам порой ночною</l>
+                                        <l>Дно речное покидать,</l>
+                                        <l>Любо вольной головою</l>
+                                        <l>Высь речную разрезать,</l>
+                                        <l>Подавать друг дружке голос,</l>
+                                        <l>Воздух звонкий раздражать,</l>
+                                        <l>И зеленый, влажный волос</l>
+                                        <l>В нем сушить и отряхать.</l>
+                                    </lg>
+                                </sp>
+                            </egXML>
+                            <ab>Indented lines in the play <ref
+                                    target="https://dracor.org/id/rus000018">Пушкин:
+                                Русалка</ref>.</ab>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- label -->
+                    <elementSpec ident="label" module="core" mode="change">
+                        <exemplum source="#ger000549">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <event type="written" notBefore="1647" notAfter="1650">
+                                    <label>1647–1650</label>
+                                </event>
+                            </egXML>
+                            <ab>Encoding of the written date of <ref
+                                    target="https://dracor.org/id/ger000549">Gryphius:
+                                    Horribilicribrifax Teutsch</ref>.</ab>
+                        </exemplum>
+                        <remarks>
+                            <p>In DraCor <gi>label</gi> is used exclusively to attach a non-iso
+                                date/date string to an event.</p>
+                        </remarks>
+                    </elementSpec>
+
+                    <!-- lb -->
+
+
+                    <elementSpec ident="lb" module="core" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <div type="dedication">
+                                    <head>[Widmung]</head>
+                                    <p>Ihrer Königlichen Hoheit<lb/> der Prinzessin<lb/> Amalie
+                                        Marie Anne<lb/> Gemahlin des Prinzen Wilhelm von
+                                        Preußen<lb/> Bruders Sr. Majestät des Königs <lb/>geborne
+                                        Prinzessin von Hessen-Homburg.</p>
+
+                                </div>
+                            </egXML>
+                        </exemplum>
+
+                        <remarks>
+                            <p>Rarely used. Consider dropping it altogether?</p>
+                        </remarks>
+                    </elementSpec>
+
+
+                    <!-- lg -->
+
+                    <elementSpec ident="lg" module="core" mode="change">
+                        <exemplum source="#ger000083">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sp who="#flora #salome">
+                                    <speaker>FLORA, SALOME.</speaker>
+                                    <lg>
+                                        <l>'s laßt sich drüber nix sag'n</l>
+                                        <l>Mit ein'm orndlichen Mag'n.</l>
+                                        <pb n="312"/>
+                                    </lg>
+                                </sp>
+                            </egXML>
+                            <ab>Grouping of lines in <ref target="https://dracor.org/id/ger000083"
+                                    >Nestroy: Der Talisman</ref>.</ab>
+                        </exemplum>
+                    </elementSpec>
+
+
+                    <!-- licence -->
+                    <elementSpec ident="licence" module="header" mode="change">
+                        <exemplum source="#ger000010">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <publicationStmt>
+                                    <publisher xml:id="dracor">DraCor</publisher>
+                                    <idno type="URL">https://dracor.org</idno>
+                                    <availability>
+                                        <licence>
+                                            <ab>CC0 1.0</ab>
+                                            <ref
+                                                target="https://creativecommons.org/publicdomain/zero/1.0/"
+                                                >Licence</ref>
+                                        </licence>
+                                    </availability>
+                                </publicationStmt>
+                                <!-- ... -->
+                                <sourceDesc>
+                                    <bibl type="digitalSource">
+                                        <name>TextGrid Repository</name>
+                                        <idno type="URL"
+                                            >http://www.textgridrep.org/textgrid:npsg.0</idno>
+                                        <availability>
+                                            <licence>
+                                                <ab>CC-BY-3.0</ab>
+                                                <ref
+                                                  target="http://creativecommons.org/licenses/by/3.0/de/legalcode"
+                                                  >Lizenzvertrag</ref>
+                                            </licence>
+                                        </availability>
+                                        <bibl type="originalSource">
+                                            <title>Franz Grillparzer: Sämtliche Werke. Ausgewählte
+                                                Briefe, Gespräche, Berichte. Herausgegeben von Peter
+                                                Frank und Karl Pörnbacher, München: Hanser,
+                                                [1960–1965].</title>
+                                        </bibl>
+                                    </bibl>
+                                </sourceDesc>
+                            </egXML>
+                            <ab>The text of the play <ref target="https://dracor.org/id/ger000010"
+                                    >Grillparzer: Des Meeres und der Liebe Wellen</ref> is in the
+                                public domain and thus licensed under a CC0 licence, as is the
+                                encoding by DraCor. The digital source is also contained in Textgrid
+                                and was licensed under a CC BY 3.0 licence.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000082">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <licence>
+                                    <ab>CC-BY-3.0</ab>
+                                    <ref
+                                        target="http://creativecommons.org/licenses/by/3.0/de/legalcode"
+                                        >Lizenzvertrag</ref>
+                                </licence>
+                            </egXML>
+                            <ab>The digital source of the play <ref
+                                    target="https://dracor.org/id/ger000082">Goethe: Torquato
+                                    Tasso</ref> distributed by Textgrid is licensed under a CC-BY
+                                3.0 licence.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000485">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <licence>
+                                    <ab>CC BY-NC 3.0</ab>
+                                    <ref target="http://creativecommons.org/licenses/by-nc/3.0/de/"
+                                        >Lizenzvertrag</ref>
+                                </licence>
+                            </egXML>
+                            <ab>The digital source of the play <ref
+                                    target="https://dracor.org/id/ger000485">Kotzebue: Der
+                                    Schutzgeist</ref> distributed by the DTA is licensed under a
+                                CC-BY-NC 3.0 licence.</ab>
+                        </exemplum>
+                        <exemplum source="rus000042">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <licence>
+                                    <ab>CC BY-SA 3.0</ab>
+                                    <ref
+                                        target="https://creativecommons.org/licenses/by-sa/3.0/deed.ru"
+                                        >Licence</ref>
+                                </licence>
+                            </egXML>
+                            <ab>The digital source of the play <ref
+                                    target="https://dracor.org/id/rus000042">Pushkin: Boris
+                                    Godunov</ref> is licensed by Wikisource under a CC BY-SA 3.0
+                                license.</ab>
+                        </exemplum>
+                        <remarks>
+                            <!-- overwrite the default tei's remarks -->
+                            <ab/>
+                        </remarks>
+                    </elementSpec>
+
+                    <!-- listChange -->
+
+
+                    <elementSpec ident="listChange" module="header" mode="change">
+                        <exemplum source="#ger000262">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <revisionDesc>
+                                    <listChange>
+                                        <change when="2017-01-06">(dlina) file conversion from
+                                            source</change>
+                                        <change when="2017-08-04">(ff) structural cleanup</change>
+                                        <change when="2018-09-25">(ff) formalities, IDs</change>
+                                    </listChange>
+                                </revisionDesc>
+                            </egXML>
+                            <ab>List of changes in the <gi>revisionDesc</gi> of the play <ref
+                                    target="https://dracor.org/id/ger000262">Engel: Eid und
+                                    Pflicht</ref>.</ab>
+                        </exemplum>
+                    </elementSpec>
+
+
+                    <!-- listEvent! -->
+                    <elementSpec ident="listEvent" module="namesdates" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <listEvent>
+                                    <event type="print" when="1813"><desc/></event>
+                                    <event type="premiere" when="1811"><desc/></event>
+                                    <event type="written" when="1811">
+                                        <desc>geschrieben wahrscheinlich im Winter 1811</desc>
+                                    </event>
+                                </listEvent>
+                            </egXML>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- listPerson -->
+                    <!--  (att.global.source (@source)) att.typed (@type, @subtype) att.declarable (@default) att.sortable (@sortKey)
+                -->
+                    <elementSpec ident="listPerson" module="namesdates" mode="change">
+                        <exemplum source="#ger000304">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <profileDesc>
+                                    <particDesc>
+                                        <listPerson>
+                                            <person xml:id="michl" sex="MALE">
+                                                <persName>Michl</persName>
+                                            </person>
+                                            <person xml:id="loisl" sex="MALE">
+                                                <persName>Loisl</persName>
+                                            </person>
+                                            <person xml:id="veit" sex="MALE">
+                                                <persName>Veit</persName>
+                                            </person>
+                                            <person xml:id="martin" sex="MALE">
+                                                <persName>Martin</persName>
+                                            </person>
+                                            <personGrp xml:id="die_bursche" sex="MALE">
+                                                <name>Die Bursche</name>
+                                                <name type="variant">Alle Bursche</name>
+                                            </personGrp>
+                                            <!-- ... -->
+                                        </listPerson>
+                                    </particDesc>
+                                </profileDesc>
+                            </egXML>
+                            <ab>Characters listed in the <gi>particDesc</gi> of the play <ref
+                                    target="https://dracor.org/id/ger000304">Anzengruber: Die
+                                    Kreuzelschreiber</ref>.</ab>
+                        </exemplum>
+                        <remarks>
+                            <p>//Explain why <gi>listPerson</gi> in addition to <gi>castList</gi>.
+                                Use the same drama as example; probably an example, where speaker is
+                                not in castList</p>
+                        </remarks>
+                    </elementSpec>
+
+                    <!-- listRelation -->
+                    <elementSpec ident="listRelation" module="namesdates" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <listRelation>
+                                    <relation active="https://dracor.org/entity/ger000171"
+                                        passive="http://www.wikidata.org/entity/Q42187688"
+                                        name="wikidata"/>
+                                </listRelation>
+                            </egXML>
+                            <ab>Connect a DraCor play to Wikidata (Work).</ab>
+                        </exemplum>
+                    </elementSpec>
+
+
+                    <!-- ##### -->
+                    <!--   N   -->
+                    <!-- ##### -->
+
+                    <!-- name -->
+
+
+                    <elementSpec ident="name" module="core" mode="change">
+                        <exemplum source="#ger000304">
+                            <p>Use <gi>name</gi> if encoding a group of characters with
+                                    <gi>personGrp</gi>. <att>type</att> can be used, if more
+                                variants are present:</p>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <personGrp xml:id="die_bursche" sex="MALE">
+                                    <name>Die Bursche</name>
+                                    <name type="variant">Alle Bursche</name>
+                                </personGrp>
+                            </egXML>
+                            <ab>Encoding of the name of a group of characters in the play <ref
+                                    target="https://dracor.org/id/ger000304">Anzengruber: Die
+                                    Kreuzelschreiber</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000526">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <bibl type="digitalSource">
+                                    <name>Google Books</name>
+                                    <idno type="URL"
+                                        >https://books.google.com/books?id=q1PDO0ko1mcC&amp;pg=PA51</idno>
+                                    <!-- ... -->
+                                </bibl>
+                            </egXML>
+                            <ab>Encoding of the name of the digital source of the play <ref
+                                    target="https://dracor.org/id/ger000526">Solbrig: Die
+                                    Dorfschule</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000258">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="false">
+                                <person xml:id="fausts_vater" sex="MALE">
+                                    <persName>Fausts Vater</persName>
+                                    <name type="variant">Vater</name>
+                                </person>
+                            </egXML>
+                            <ab>This might be unintentional/an error in <ref
+                                    target="https://dracor.org/id/ger000258">Voss: Faust</ref>.
+                                Element <gi>name</gi> should not appear in a <gi>person</gi>.</ab>
+                        </exemplum>
+
+                        <remarks>
+                            <p>Think about, why there is a need for <gi>persName</gi> and
+                                    <gi>name</gi>.</p>
+                        </remarks>
+                    </elementSpec>
+
+                    <!-- nameLink -->
+                    <!-- 
+                        <elementSpec ident="nameLink" module="namesdates" mode="change">
+                        
+                    </elementSpec> -->
+
+                    <!-- note -->
+                    <elementSpec ident="note" module="core" mode="change">
+                        <exemplum source="#ger000069">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <stage>Hinter der Szene lautes Schreien und Rufen; Gäste, Herren,
+                                    und Damen kommen lebhaft miteinander sprechend auf die <pb
+                                        n="62"/> Bühne, indem sie sich ängstlich umblicken, hinter
+                                    ihnen Bernhardy mit zwei jungen Leoparden,<note place="foot"
+                                        >Ausgestopften natürlich.</note> die er, in jeder Hand
+                                    einen, im Genick hält.</stage>
+                            </egXML>
+                            <ab>A footnote in a stage direction in the play <ref
+                                    target="https://dracor.org/id/ger000069">Carl Laufs u. Wilhelm
+                                    Jacoby: Pension Schöller</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000039">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sp who="#thomas">
+                                    <speaker>THOMAS.</speaker>
+                                    <p><!-- ... -->Na<note place="foot">Na = nein.</note>! Gelten
+                                        S'! – Kommen S', Frau Schwägerin!</p>
+                                    <stage>Während er Herminen den Arm reicht, fällt der
+                                        Zwischenvorhang.</stage>
+                                </sp>
+                            </egXML>
+                            <ab>A note in <ref target="https://dracor.org/id/ger000039">Ludwig
+                                    Anzengruber: Heimg'funden</ref> that is rendered as a footnote
+                                in the source.</ab>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- ##### -->
+                    <!--   P   -->
+                    <!-- ##### -->
+
+                    <!-- p -->
+
+                    <elementSpec ident="p" module="core" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sp who="#flora">
+                                    <speaker>FLORA.</speaker>
+                                    <p>Schad', daß du mit deiner Langsamkeit kein Stellwag'n worden
+                                        bist.</p>
+                                </sp>
+                                <sp who="#plutzerkern">
+                                    <speaker>PLUTZERKERN.</speaker>
+                                    <p>Dazu fehlet mir die Pfiffigkeit. Ein Stellwagen is das
+                                        pfiffigste Wesen auf der Welt, weil er ohne Unterschied des
+                                        Standes jeden Menschen aufsitzen laßt.</p>
+                                </sp>
+                            </egXML>
+
+                        </exemplum>
+
+
+                    </elementSpec>
+
+
+
+                    <!-- particDesc -->
+
+                    <elementSpec ident="particDesc" module="corpus" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <profileDesc>
+                                    <particDesc>
+                                        <listPerson>
+                                            <person xml:id="michl" sex="MALE">
+                                                <persName>Michl</persName>
+                                            </person>
+                                            <person xml:id="loisl" sex="MALE">
+                                                <persName>Loisl</persName>
+                                            </person>
+                                            <person xml:id="veit" sex="MALE">
+                                                <persName>Veit</persName>
+                                            </person>
+                                            <person xml:id="martin" sex="MALE">
+                                                <persName>Martin</persName>
+                                            </person>
+                                            <personGrp xml:id="die_bursche" sex="MALE">
+                                                <name>Die Bursche</name>
+                                                <name type="variant">Alle Bursche</name>
+                                            </personGrp>
+                                            <person xml:id="steinklopferhanns" sex="MALE">
+                                                <persName>Steinklopferhanns</persName>
+                                            </person>
+                                            <person xml:id="sepp" sex="MALE">
+                                                <persName>Sepp</persName>
+                                            </person>
+                                            <person xml:id="marthe" sex="FEMALE">
+                                                <persName>Marthe</persName>
+                                            </person>
+                                            <person xml:id="anton" sex="MALE">
+                                                <persName>Anton</persName>
+                                            </person>
+                                            <person xml:id="liesel" sex="FEMALE">
+                                                <persName>Liesel</persName>
+                                            </person>
+                                        </listPerson>
+                                    </particDesc>
+                                </profileDesc>
+                            </egXML>
+
+                        </exemplum>
+                        <remarks>
+                            <p>Explain, why we need <gi>particDesc</gi> and <gi>castList</gi></p>
+                        </remarks>
+
+                    </elementSpec>
+
+
+                    <!-- pb -->
+
+
+
+                    <elementSpec ident="pb" module="core" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sp who="#anton">
+                                    <speaker>ANTON</speaker>
+                                    <stage>
+                                        <hi>steht gleichfalls auf.</hi>
+                                    </stage>
+                                    <p>Vor einer Stund habn s' 'n tot ausn Wildbach zogn. Weißt ja,
+                                        er hat gestern noch nach Grundldorf wolln; nachm Ort schon
+                                        zu, bei der Wegbeug, wo 's Ufer so hoch ansteigt und schroff
+                                        gegen 's Wasser abfallt, dort habn s' 'n gfunden.
+                                            <hi>Gewichtig.</hi> Du warst dabei, du mußt's wissen.
+                                        Steinklopfer, wie der alte Mon gestern gredt hat, ich hab
+                                        mer's nur verzähln lassen. – Er hat nit viel gtrunken und is
+                                        noch rüstig ausgschritten, und a Nacht <pb n="54"/> war
+                                        auch, so klar, daß man jed Blattel auf die Bäum hätt zähln
+                                        können – fehltreten is er nit! Er wird halt 'n Steig
+                                        zwischen die Büsch fortgangen sein – und wer weiß, wie ihm
+                                        dabei ums Herz war –, bis er auf einmal dort in die Lichtung
+                                        treten is, dort steht mer eh knapp am Rand – unten rauscht
+                                        's Wasser, und gradüber am entern Ufer liegt unser Dörfel
+                                        und nah, mir meint, mer könnt's greifen, 's letzte Häusel
+                                        davon, 'm Brenninger seins. Dort hat er halt 'm Weg a End
+                                        gmacht!</p>
+                                </sp>
+                            </egXML>
+
+                        </exemplum>
+
+
+                    </elementSpec>
+
+                    <!-- performance -->
+                    <!-- <elementSpec ident="performance" module="drama" mode="change">
+                        
+                    </elementSpec> -->
+
+
+                    <!-- persName -->
+
+                    <elementSpec ident="persName" module="namesdates" mode="change">
+                        <exemplum>
+                            <p>Use <gi>name</gi> if encoding a group of characters with
+                                    <gi>personGrp</gi>. <att>type</att> can be used, if more
+                                variants are present:</p>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <listPerson>
+                                    <person xml:id="Vorotynskij" sex="MALE">
+                                        <persName>Воротынский</persName>
+                                        <persName xml:lang="de">Vorotynskij</persName>
+                                    </person>
+                                    <person xml:id="Shujskij" sex="MALE">
+                                        <persName>Шуйский</persName>
+                                        <persName xml:lang="de">Šujskij</persName>
+                                    </person>
+                                    <person xml:id="OdinIzNaroda_1" sex="MALE">
+                                        <persName>Один (Красная площадь)</persName>
+                                        <persName xml:lang="de">Einer (Roter Platz)</persName>
+                                    </person>
+                                    <!-- ... -->
+                                </listPerson>
+                            </egXML>
+
+                        </exemplum>
+                        <exemplum source="#ger000451">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="false">
+                                <personGrp xml:id="verschworene" sex="MALE">
+                                    <name>Verschworene</name>
+                                    <persName type="variant">Alle</persName>
+                                    <persName type="variant">Einige Verschworene</persName>
+                                </personGrp>
+                            </egXML>
+                            <ab>Wrong usage of <gi>persName</gi> in a <gi>personGrp</gi> in the play
+                                    <ref target="https://dracor.org/id/ger000451">Schiller: Die
+                                    Verschwörung des Fiesco zu Genua</ref>.</ab>
+                        </exemplum>
+
+                        <remarks>
+                            <p>Think about, why there is a need for <gi>persName</gi> and
+                                    <gi>name</gi>.</p>
+                        </remarks>
+
+
+                    </elementSpec>
+
+                    <!-- person -->
+                    <!--
+            <attribute name="sex">
+                <value>MALE</value>
+                <value>FEMALE</value>
+                <value>UNKNOWN</value>
+            </attribute>
+            -->
+
+                    <elementSpec ident="person" module="core" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <person xml:id="sepp" sex="MALE">
+                                    <persName>Sepp</persName>
+                                </person>
+                                <person xml:id="marthe" sex="FEMALE">
+                                    <persName>Marthe</persName>
+                                </person>
+                                <person xml:id="anton" sex="MALE">
+                                    <persName>Anton</persName>
+                                </person>
+                                <person xml:id="liesel" sex="FEMALE">
+                                    <persName>Liesel</persName>
+                                </person>
+                            </egXML>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- personGrp -->
+                    <!-- 
+                    <elementSpec ident="personGrp" module="namesdates" mode="change">
+                    </elementSpec> -->
+
+                    <!-- profileDesc -->
+                    <!-- 
+                    <elementSpec ident="profileDesc" module="header" mode="change">
+                        
+                    </elementSpec> -->
+
+
+                    <!-- publicationStmt -->
+
+                    <!-- <elementSpec ident="publicationStmt" module="header" mode="change">
+                        
+                    </elementSpec> -->
+
+                    <!-- publisher -->
+                    <!-- <elementSpec ident="publisher" module="core" mode="change">
+                        
+                    </elementSpec> -->
+
+                    <!-- ##### -->
+                    <!--   Q   -->
+                    <!-- ##### -->
+
+                    <!-- quote -->
+                    <!-- <elementSpec ident="quote" module="core" mode="change">
+                        
+                    </elementSpec> -->
+
+
+                    <!-- ##### -->
+                    <!--   R   -->
+                    <!-- ##### -->
+
+                    <!-- ref -->
+                    <!-- <elementSpec ident="ref" module="core" mode="change">
+                        
+                    </elementSpec> -->
+
+
+                    <!-- relation -->
+                    <!-- <elementSpec ident="relation" module="namesdates" mode="change">
+                        
+                    </elementSpec> -->
+
+                    <!-- respStmt -->
+                    <!-- resp -->
+
+                    <!-- revisionDesc -->
+                    <!-- <elementSpec ident="revisionDesc" module="header" mode="change">
+                        
+                    </elementSpec> -->
+
+                    <!-- roleDesc -->
+                    <!-- <elementSpec ident="roleDesc" mode="change" module="drama">
+                        
+                    </elementSpec> -->
+
+                    <!-- role -->
+                    <!-- <elementSpec ident="role" module="drama" mode="change">
+                        
+                    </elementSpec> -->
+
+
+
+
+                    <!-- ##### -->
+                    <!--   S   -->
+                    <!-- ##### -->
+
+                    <!-- set -->
+                    <!-- <elementSpec ident="set" module="drama" mode="change">
+                        
+                    </elementSpec> -->
+
+                    <!-- signed -->
+                    <!-- <elementSpec ident="signed" module="textstructure" mode="change">
+                        
+                    </elementSpec> -->
+
+                    <!-- sourceDesc -->
+                    <!-- <elementSpec ident="sourceDesc" module="header" mode="change">
+                        
+                    </elementSpec> -->
+
+                    <!-- sp -->
+
+                    <!-- <elementSpec ident="sp" module="core" mode="change">
+                        
+                    </elementSpec> -->
+
+                    <!-- speaker -->
+
+                    <!-- <elementSpec ident="speaker" module="core" mode="change">
+                        
+                    </elementSpec> -->
+
+                    <!-- spGrp -->
+                    <!-- <elementSpec ident="spGrp" module="drama" mode="change">
+                        
+                    </elementSpec> -->
+
+                    <!-- stage -->
+
+                    <!-- <elementSpec ident="stage" module="core" mode="change">
+                        
+                    </elementSpec> -->
+
+                    <!-- standOff -->
+                    <elementSpec ident="standOff" module="linking" mode="change">   
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <standOff>
+                                    <listEvent>
+                                        <event type="print" when="1813"><desc/></event>
+                                        <event type="premiere" when="1811"><desc/></event>
+                                        <event type="written" when="1811">
+                                            <desc>geschrieben wahrscheinlich im Winter 1811</desc>
+                                        </event>
+                                    </listEvent>
+                                    <listRelation>
+                                        <relation active="https://dracor.org/entity/ger000171"
+                                            passive="http://www.wikidata.org/entity/Q42187688"
+                                            name="wikidata"/>
+                                    </listRelation>
+                                </standOff>
+                            </egXML>
+                            <ab> Discussion see <ref
+                                    target="https://github.com/dracor-org/dracor-schema/issues/38"
+                                    >Github Issue.</ref>
+                            </ab>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- surname -->
+                    <!-- <elementSpec ident="surname" module="namesdates" mode="change">
+                        
+                    </elementSpec> -->
+
+                    <!-- ##### -->
+                    <!--   T   -->
+                    <!-- ##### -->
+
+                    <!-- TEI -->
+                    <elementSpec ident="TEI" module="textstructure" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <TEI xml:id="ger000171" xml:lang="ger">
+                                    <!-- ... -->
+                                </TEI>
+                            </egXML>
+                            <ab>The TEI namespace <val>http://www.tei-c.org/ns/1.0</val> should also
+                                be added to the root TEI element in the attribute
+                                <att>xmlns</att>.</ab>
+                        </exemplum>
+                    </elementSpec>
+
+
+
+                    <!-- teiHeader -->
+
+                    <!-- <elementSpec ident="teiHeader" module="header" mode="change">
+                        
+                    </elementSpec> -->
+
+                    <!-- term -->
+
+
+                    <!-- <elementSpec ident="term" module="core" mode="change">
+                        
+                    </elementSpec> -->
+
+
+                    <!-- text -->
+                    <!-- <elementSpec ident="text" module="textstructure" mode="change">
+                        
+                    </elementSpec> -->
+
+
+                    <!-- textClass -->
+                    <!-- <elementSpec ident="textClass" module="header" mode="change">
+                        
+                    </elementSpec> -->
+
+
+                    <!-- title -->
+
+                    <elementSpec ident="title" module="core" mode="change">
+                        <exemplum source="#ger000010">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <title type="main">Des Meeres und der Liebe Wellen</title>
+                            </egXML>
+                            <ab>Main title of the play <ref target="https://dracor.org/id/ger000010">Grillparzer: "Des Meeres und der Liebe Wellen"</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000010">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <title type="sub">Trauerspiel in fünf Aufzügen</title>
+                            </egXML>
+                            <ab>Subtitle of the play <ref target="https://dracor.org/id/ger000010">Grillparzer: "Des Meeres und der Liebe Wellen"</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#rus000054">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <title type="main">Ревизор</title>
+                                <title type="main" xml:lang="eng">The Government Inspector</title>
+                                <title type="sub">Комедия в пяти действиях</title>
+                                <title type="sub" xml:lang="eng">A Comedy in Five Acts</title>
+                            </egXML>
+                            <ab>Main and subtitle of <ref target="https://dracor.org/id/rus000054">Gogol': Revisor</ref> in the original (Russian) and Eglish languages.</ab>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- titlePage -->
+                    <elementSpec ident="titlePage" module="textstructure" mode="change">
+                        <exemplum source="#ger000304">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <titlePage>
+                                    <docAuthor>Ludwig Anzengruber</docAuthor>
+                                    <docTitle>
+                                        <titlePart type="main">Die Kreuzelschreiber</titlePart>
+                                        <titlePart type="sub">Bauernkomödie mit Gesang in drei
+                                            Akten</titlePart>
+                                    </docTitle>
+                                </titlePage>
+                            </egXML>
+                            <ab>Encoding of the title page of the play <ref
+                                    target="https://dracor.org/id/ger000304">Anzengruber: Die
+                                    Kreuzelschreiber</ref>.</ab>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- titlePart -->
+                    <!-- <elementSpec ident="titlePart" module="textstructure" mode="change">
+                        
+                    </elementSpec> -->
+
+
+                    <!-- titleStmt -->
+                    <elementSpec ident="titleStmt" module="header" mode="change">
+                        <exemplum source="#ger000010">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <titleStmt>
+                                    <title type="main">Des Meeres und der Liebe Wellen</title>
+                                    <title type="sub">Trauerspiel in fünf Aufzügen</title>
+                                    <author>
+                                        <persName>
+                                            <forename>Franz</forename>
+                                            <surname>Grillparzer</surname>
+                                        </persName>
+                                        <idno type="wikidata">Q154438</idno>
+                                        <idno type="pnd">118542192</idno>
+                                    </author>
+                                </titleStmt>
+                            </egXML>
+                            <ab><gi>titleStmt</gi> of the play <ref target="https://dracor.org/id/ger000010">"Des Meeres und der Liebe Wellen"</ref> by
+                                Franz Grillparzer. The author has an entry on Wikidata which is
+                                identified by the URI <ref
+                                    target="http://www.wikidata.org/entity/Q154438"
+                                    >http://www.wikidata.org/entity/Q154438</ref>. In the
+                                "Gemeinsame Normdatei" (GND) the author is identified by the
+                                URI <ref target="https://d-nb.info/gnd/11854219">https://d-nb.info/gnd/11854219</ref>. The identifiers are included in the <gi>idno</gi> elements.</ab>
+                        </exemplum>
+                        <exemplum source="#rus000054">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <titleStmt>
+                                    <title type="main">Ревизор</title>
+                                    <title type="main" xml:lang="eng">The Government Inspector</title>
+                                    <title type="sub">Комедия в пяти действиях</title>
+                                    <title type="sub" xml:lang="eng">A Comedy in Five Acts</title>
+                                    <author>
+                                        <persName>
+                                            <forename>Николай</forename>
+                                            <forename type="patronym">Васильевич</forename>
+                                            <surname>Гоголь</surname>
+                                        </persName>
+                                        <persName xml:lang="eng">
+                                            <forename>Nikolai</forename>
+                                            <surname>Gogol</surname>
+                                        </persName>
+                                        <idno type="wikidata">Q43718</idno>
+                                    </author>
+                                </titleStmt>
+                            </egXML>
+                            <ab><gi>titleStmt</gi> of <ref target="https://dracor.org/id/rus000054">Gogol: Revizor</ref>. Titles and author names are given both in Russian and English.</ab>
+                        </exemplum>
+                    </elementSpec>
+
+                    <!-- trailer -->
+                    <!-- <elementSpec ident="trailer" module="textstructure" mode="change">
+                        
+                    </elementSpec> -->
+
+                </schemaSpec>
+            <!-- /schema -->
+            </div>
+        </body>
+    </text>
+</TEI>
