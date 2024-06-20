@@ -303,152 +303,720 @@
 
                 <div xml:id="div_play_features">
                     <head>Play features</head>
-                    
+
                     <div xml:id="play_corpus_name">
                         <head>Name of the Corpus a Play is part of</head>
-                        <p>Feature <idno type="feature-no">P1</idno> <idno type="feature-id">play_corpus_name</idno>: Name/Identifier "corpusname" (Feature C1) of the corpus the play is contained in.</p></div>
-                    
+                        <p>Feature <idno type="feature-no">P1</idno>
+                            <idno type="feature-id">play_corpus_name</idno>: Name/Identifier
+                            "corpusname" (Feature C1) of the corpus the play is contained in.</p>
+                    </div>
+
                     <div xml:id="play_id">
                         <head>Play ID</head>
-                        <p>Feature <idno type="feature-no">P2</idno> <idno type="feature-id">play_id</idno>: <name>DraCor ID</name> of the play, e.g. <val>ger000171</val>.</p>
-                        <p>In the TEI source file the <name>DraCor ID</name> is contained in the attribute <att>xml:id</att> on the root element <gi>TEI</gi>.</p>
-                        <p>The identifier SHOULD match the Regular Expression <val>^[a-z]+[0-9]{6}$</val>.</p>
+                        <p>Feature <idno type="feature-no">P2</idno>
+                            <idno type="feature-id">play_id</idno>: <name>DraCor ID</name> of the
+                            play, e.g. <val>ger000171</val>.</p>
+                        <p>In the TEI source file the <name>DraCor ID</name> is contained in the
+                            attribute <att>xml:id</att> on the root element <gi>TEI</gi>.</p>
+                        <p>The identifier SHOULD match the Regular Expression
+                                <val>^[a-z]+[0-9]{6}$</val>.</p>
                     </div>
-                    
+
                     <div xml:id="play_uri">
                         <head>Play URI</head>
-                        <p>Feature <idno type="feature-no">P65</idno> <idno type="feature-id">play_uri</idno>: URI of the play. It is equal to the the full URL of the /corpora/{corpusname}/plays/{playname} endpoint.</p></div>
-                    
+                        <p>Feature <idno type="feature-no">P65</idno>
+                            <idno type="feature-id">play_uri</idno>: URI of the play. It is equal to
+                            the the full URL of the /corpora/{corpusname}/plays/{playname}
+                            endpoint.</p>
+                    </div>
+
                     <div xml:id="play_name">
                         <head>Play Name</head>
-                        <p>Feature <idno type="feature-no">P3</idno> <idno type="feature-id">play_name</idno>: Identifier "playname". Normally a combination of the name of the author and the title of the play, e.g. <val>lessing-emilia-galotti</val>.</p>
-                        <p>It MUST be unique across a single corpus. This identifier is normally used as path parameters in requests to the DraCor API.</p>
-                        <p>It is recommended that the file name of a document SHOULD be equal to the play name identifier.</p></div>
-                    
+                        <p>Feature <idno type="feature-no">P3</idno>
+                            <idno type="feature-id">play_name</idno>: Identifier "playname".
+                            Normally a combination of the name of the author and the title of the
+                            play, e.g. <val>lessing-emilia-galotti</val>.</p>
+                        <p>It MUST be unique across a single corpus. This identifier is normally
+                            used as path parameters in requests to the DraCor API.</p>
+                        <p>It is recommended that the file name of a document SHOULD be equal to the
+                            play name identifier.</p>
+                    </div>
+
                     <div xml:id="play_wikidata_id">
                         <head>Play Wikidata Identifier</head>
-                        <p>Feature <idno type="feature-no">P4</idno> <idno type="feature-id">play_wikidata_id</idno>: Wikidata ID of the play. The value is the "Q-Number" of the item on Wikidata, e.g. <val>Q466333</val>.</p>
-                        <p>In the TEI source document the information is contained in the <gi>standOff</gi> element as a <gi>relation</gi> element with the value <val>wikidata</val> of the attribute <att>name</att> as the full URI, e.g. <val>http://www.wikidata.org/entity/Q466333</val>.</p></div>
-                    
+                        <p>Feature <idno type="feature-no">P4</idno>
+                            <idno type="feature-id">play_wikidata_id</idno>: Wikidata ID of the
+                            play. The value is the "Q-Number" of the item on Wikidata, e.g.
+                                <val>Q466333</val>.</p>
+                        <p>In the TEI source document the information is contained in the
+                                <gi>standOff</gi> element as a <gi>relation</gi> element with the
+                            value <val>wikidata</val> of the attribute <att>name</att> as the full
+                            URI, e.g. <val>http://www.wikidata.org/entity/Q466333</val>.</p>
+                    </div>
+
                     <div xml:id="play_title">
                         <head>Play Title</head>
-                        <p>Feature <idno type="feature-no">P5</idno> <idno type="feature-id">play_title</idno>: (Main) title of the play. Normally, the title is in the language of the corpus. The respective function extracts the text of the first element <gi>title</gi> in the <gi>titleStmt</gi> in the <gi>teiHeader</gi>.</p></div>
-                    
-                    <!-- 
-                    <div xml:id="play_subtitle"><head/><p>Feature <idno type="feature-no">P6</idno> <idno type="feature-id">play_subtitle</idno>: Subtitle of the play. Normally, the subtitle is in the language of the corpus. The respective function extracts the text of the first element &lt;tei:title&gt; in &lt;tei:titleStmt&gt; in the &lt;tei:teiHeader&gt; that carries an attribute @type with the value 'sub'.</p></div>
-                    
-                    <div xml:id="play_title_en"><head/><p>Feature <idno type="feature-no">P7</idno> <idno type="feature-id">play_title_en</idno>: English translation of the original main title of the play. Extracts the text of the element &lt;tei:title&gt; with 'eng' as the attribute's @xml:lang value.</p></div>
-                    
-                    <div xml:id="play_subtitle_en"><head/><p>Feature <idno type="feature-no">P8</idno> <idno type="feature-id">play_subtitle_en</idno>: English translation of the original subtitle of the play. Extracts the text of the element &lt;tei:title&gt; with the value of the attribute @type being 'sub' and 'eng' as the attribute's @xml:lang value.</p></div>
-                    
-                    <div xml:id="play_author_name"><head/><p>Feature <idno type="feature-no">P9</idno> <idno type="feature-id">play_author_name</idno>: Name of the author of the play in the format '{surname}, {forename}', e.g. 'Shakespeare, William', 'Гоголь, Николай Васильевич'. The value can be used for sorting. The function takes the contents of the elements &lt;tei:persName&gt; or &lt;tei:name&gt; from the element &lt;tei:author&gt; in the &lt;tei:titleStmt&gt; and applies some processing logic: If the constituents are marked up with the special elements &lt;tei:surname&gt; and &lt;tei:forname&gt;, they are arranged in the order surname, forname. The optional attribute @sort on the element &lt;tei:surname&gt; is evaluated as well to distinguish the order of &lt;tei:surname&gt; elements. If no additional markup is present, the contents of the &lt;tei:name&gt; or &lt;tei:persName&gt; element is used.</p></div>
-                    
-                    <div xml:id="play_author_name_en"><head/><p>Feature <idno type="feature-no">P10</idno> <idno type="feature-id">play_author_name_en</idno>: English name of the author of a play in the format '{surname}, {forename}', e.g. 'Gogol, Nikolai' (in this case the value of 'author_name' is Гоголь, Николай Васильевич' including the patronym). </p></div>
-                    
-                    <div xml:id="play_author_fullname"><head/><p>Feature <idno type="feature-no">P11</idno> <idno type="feature-id">play_author_fullname</idno>: Full name of the author of the play including patronyms and other name constituents as encoded in the TEI source file in the element &lt;tei:persName&gt; or &lt;tei:name&gt; in &lt;tei:author&gt;. E.g. 'Николай Васильевич Гоголь', 'William Shakespeare'.</p></div>
-                    
-                    <div xml:id="play_author_fullname_en"><head/><p>Feature <idno type="feature-no">P12</idno> <idno type="feature-id">play_author_fullname_en</idno>: Full english name of the author of the play, e.g. 'Nikolai Gogol'.</p></div>
-                    
-                    <div xml:id="play_author_shortname"><head/><p>Feature <idno type="feature-no">P13</idno> <idno type="feature-id">play_author_shortname</idno>: Short name of the author of a play. Normally, the value is the author's surname only, e.g. 'Shakespeare' ,'Гоголь'.</p></div>
-                    
-                    <div xml:id="play_author_shortname_en"><head/><p>Feature <idno type="feature-no">P14</idno> <idno type="feature-id">play_author_shortname_en</idno>: English short name of the author of a play. Normally, it is the value of the author's surname only, e.g. 'Gogol'.</p></div>
-                    
-                    <div xml:id="play_first_author_shortname"><head/><p>Feature <idno type="feature-no">P16</idno> <idno type="feature-id">play_first_author_shortname</idno>: Short name of the first author of a play.</p></div>
-                    
-                    <div xml:id="play_author_also_known_as"><head/><p>Feature <idno type="feature-no">P18</idno> <idno type="feature-id">play_author_also_known_as</idno>: Alternative name of the author of a play, e.g. 'Titus Maccius Plautus' in case of the author 'Plautus'. In the source TEI file alternative names are encoded as additional elements &lt;tei:persName&gt;.</p></div>
-                    
-                    <div xml:id="play_author_ref_external_id"><head/><p>Feature <idno type="feature-no">P19</idno> <idno type="feature-id">play_author_ref_external_id</idno>: ID of the author in an external reference resource. This for example can be the 'Q-Number' of Wikidata.</p></div>
-                    
-                    <div xml:id="play_author_ref_type"><head/><p>Feature <idno type="feature-no">P20</idno> <idno type="feature-id">play_author_ref_type</idno>: Type of the ID of the author in an external reference resource, e.g. 'wikidata'.</p></div>
-                    
-                    <div xml:id="play_num_of_co_authors"><head/><p>Feature <idno type="feature-no">P21</idno> <idno type="feature-id">play_num_of_co_authors</idno>: Number of co-authors of a play. The value is the number of all authors of a play minus one.</p></div>
-                    
-                    <div xml:id="play_genre_normalized"><head/><p>Feature <idno type="feature-no">P22</idno> <idno type="feature-id">play_genre_normalized</idno>: Normalized genre of a play. The function performs a lookup using a Wikidata identifier provided in the element &lt;tei:classCode&gt; in &lt;tei:textClass&gt;. The normalized values can be 'Comedy', 'Tagedy', 'Tragicomedy', 'Satyr play'.</p></div>
-                    
-                    <div xml:id="play_is_libretto"><head/><p>Feature <idno type="feature-no">P23</idno> <idno type="feature-id">play_is_libretto</idno>: Indicates if a play is a libretto. The function performs a lookup using a Wikidata identifier provided in the element &lt;tei:classCode&gt; in &lt;tei:textClass&gt;. If the returned value is 'Libretto' the value of this property is 'true', otherwise 'false'.</p></div>
-                    
-                    <div xml:id="play_year_written"><head/><p>Feature <idno type="feature-no">P24</idno> <idno type="feature-id">play_year_written</idno>: Year of the creation of the play / year when the play was written.</p></div>
-                    
-                    <div xml:id="play_year_printed"><head/><p>Feature <idno type="feature-no">P25</idno> <idno type="feature-id">play_year_printed</idno>: Year the play was published / year of first printing.</p></div>
-                    
-                    <div xml:id="play_year_premiered"><head/><p>Feature <idno type="feature-no">P26</idno> <idno type="feature-id">play_year_premiered</idno>: Year the Play was premiered</p></div>
-                    
-                    <div xml:id="play_date_premiered"><head/><p>Feature <idno type="feature-no">P66</idno> <idno type="feature-id">play_date_premiered</idno>: Date the play was premiered. This is only available when the exact date of the premiere in ISO format (YYYY-MM-DD) is specified in element &lt;tei:standOff&gt;. This feature was added later and is not included in the 'Report on Programmable Corpora'.</p></div>
-                    
-                    <div xml:id="play_year_normalized"><head/><p>Feature <idno type="feature-no">P27</idno> <idno type="feature-id">play_year_normalized</idno>: Aus allen vorhandenen Datumsangaben (Entstehung, Veröffentlichung, Erstaufführung) wird
-                        ein normalisiertes Jahr ausgewählt; entweder das jüngere Datum von Veröffentlichung und Erstaufführung oder das Jahr
-                        der Entstehung, wenn die Veröffentlichung mehr als 10 Jahre danach stattgefunden hat. Normalized Year. Of all avaliable years (written, printed, premiered) a so-called 'normalized year' is selected; It is either the earlier on of printing or premiered or, if a work was published or performed much later (more than 10 years) after its creation, the year of its creation is taken as »Normalized Year« (if it is a range of years, the last of them is taken).</p></div>
-                    
-                    <div xml:id="play_digital_source_name"><head/><p>Feature <idno type="feature-no">P28</idno> <idno type="feature-id">play_digital_source_name</idno>: Name of the digital source of a play. Normally it is the name of the repository or project that provides a digital version of the play, e.g. 'Google Books', 'Wikisource', 'TextGrid Repository'.</p></div>
-                    
-                    <div xml:id="play_digital_source_url"><head/><p>Feature <idno type="feature-no">P29</idno> <idno type="feature-id">play_digital_source_url</idno>: URL of the digital source of a play.</p></div>
-                    
-                    <div xml:id="play_original_source_full_citation"><head/><p>Feature <idno type="feature-no">P30</idno> <idno type="feature-id">play_original_source_full_citation</idno>: Full citation of the play's original (print publication) source. In the TEI file the citation is contained in the element &lt;tei:bibl&gt; with the value 'originalSource' of the attribute @type inside the &lt;tei:sourceDesc&gt;.</p></div>
-                    
-                    <div xml:id="play_original_source_publisher"><head/><p>Feature <idno type="feature-no">P31</idno> <idno type="feature-id">play_original_source_publisher</idno>: Publisher of the print publication that was used as the original source. In the TEI data the content of the element &lt;tei:publisher&gt; in the &lt;tei:bibl&gt; representing the original source is extracted.</p></div>
-                    
-                    <div xml:id="play_original_source_publication_place"><head/><p>Feature <idno type="feature-no">P32</idno> <idno type="feature-id">play_original_source_publication_place</idno>: Place of publication of the print publication that was used as the original source. In the TEI data the content of the element &lt;tei:pubPlace&gt; in the &lt;tei:bibl&gt; representing the original source is extracted. If there are multiple places annotated, they are joined to a single string separated by ','.</p></div>
-                    
-                    <div xml:id="play_original_source_publication_year"><head/><p>Feature <idno type="feature-no">P33</idno> <idno type="feature-id">play_original_source_publication_year</idno>: Year of publication of the print publication that was used as the original source.</p></div>
-                    
-                    <div xml:id="play_original_source_num_of_pages"><head/><p>Feature <idno type="feature-no">P34</idno> <idno type="feature-id">play_original_source_num_of_pages</idno>: Extent of the original source in number of pages derived from the bibliographic reference. In the TEI file the element &lt;tei:biblScope&gt; holds a page range encoded in the attribute @from and @to. The value is calculated by taking the value of @to and substracting the value of @from and adding 1.</p></div>
-                    
-                    <div xml:id="play_num_of_wikipedia_links"><head/><p>Feature <idno type="feature-no">P35</idno> <idno type="feature-id">play_num_of_wikipedia_links</idno>: Number of Wikipedia links of a play. The links are counted upon ingest of the TEI file into the system using the Wikidata Query Service. The query looks for connections based on the property 'schema:about' (?sitelink schema:about wd:' || $id || ' .) and filters the results with the regular expression '[.]wikipedia[.]org'.</p></div>
-                    
-                    <div xml:id="play_num_of_segments"><head/><p>Feature <idno type="feature-no">P37</idno> <idno type="feature-id">play_num_of_segments</idno>: Number of segments (e.g. scenes) of a play. Usually &lt;tei:div&gt; elements inside &lt;tei:body&gt; are considered a segment if they contain a speech marked up by an element &lt;tei:sp&gt;. However, also 'empty scenes' with no speaking characters are considered a segment, e.g. elements &lt;tei:div&gt; that consist of stage directions (&lt;tei:stage&gt;) only.</p></div>
-                    
-                    <div xml:id="play_num_of_acts"><head/><p>Feature <idno type="feature-no">P38</idno> <idno type="feature-id">play_num_of_acts</idno>: Number of acts of a play. In the TEI file acts are elements &lt;tei:div&gt; with an attribute @type value of 'act'. The function extracting the information returns the number of such &lt;tei:div&gt; elements.</p></div>
-                    
-                    <div xml:id="play_num_of_paragraphs"><head/><p>Feature <idno type="feature-no">P39</idno> <idno type="feature-id">play_num_of_paragraphs</idno>: </p></div>
-                    
-                    <div xml:id="play_num_of_verse_lines"><head/><p>Feature <idno type="feature-no">P40</idno> <idno type="feature-id">play_num_of_verse_lines</idno>: </p></div>
-                    
-                    <div xml:id="play_num_of_word_tokens_in_text_elements"><head/><p>Feature <idno type="feature-no">P41</idno> <idno type="feature-id">play_num_of_word_tokens_in_text_elements</idno>: </p></div>
-                    
-                    <div xml:id="play_num_of_word_tokens_in_sp"><head/><p>Feature <idno type="feature-no">P42</idno> <idno type="feature-id">play_num_of_word_tokens_in_sp</idno>: </p></div>
-                    
-                    <div xml:id="play_num_of_word_tokens_in_stage"><head/><p>Feature <idno type="feature-no">P43</idno> <idno type="feature-id">play_num_of_word_tokens_in_stage</idno>: </p></div>
-                    
-                    <div xml:id="play_num_of_speakers"><head/><p>Feature <idno type="feature-no">P45</idno> <idno type="feature-id">play_num_of_speakers</idno>: Number of Speakers of a Play</p></div>
-                    
-                    <div xml:id="play_num_of_speakers_gender_female"><head/><p>Feature <idno type="feature-no">P46</idno> <idno type="feature-id">play_num_of_speakers_gender_female</idno>: </p></div>
-                    
-                    <div xml:id="play_num_of_speakers_gender_male"><head/><p>Feature <idno type="feature-no">P47</idno> <idno type="feature-id">play_num_of_speakers_gender_male</idno>: </p></div>
-                    
-                    <div xml:id="play_num_of_speakers_gender_unknown"><head/><p>Feature <idno type="feature-no">P48</idno> <idno type="feature-id">play_num_of_speakers_gender_unknown</idno>: </p></div>
-                    
-                    <div xml:id="play_num_of_person_groups"><head/><p>Feature <idno type="feature-no">P49</idno> <idno type="feature-id">play_num_of_person_groups</idno>: </p></div>
-                    
-                    <div xml:id="play_all_in_segment"><head/><p>Feature <idno type="feature-no">P50</idno> <idno type="feature-id">play_all_in_segment</idno>: </p></div>
-                    
-                    <div xml:id="play_all_in_index"><head/><p>Feature <idno type="feature-no">P51</idno> <idno type="feature-id">play_all_in_index</idno>: </p></div>
-                    
-                    <div xml:id="play_network_data_csv_url"><head/><p>Feature <idno type="feature-no">P53</idno> <idno type="feature-id">play_network_data_csv_url</idno>: </p></div>
-                    
-                    <div xml:id="play_network_size"><head/><p>Feature <idno type="feature-no">P55</idno> <idno type="feature-id">play_network_size</idno>: </p></div>
-                    
-                    <div xml:id="play_network_num_edges"><head/><p>Feature <idno type="feature-no">P56</idno> <idno type="feature-id">play_network_num_edges</idno>: </p></div>
-                    
-                    <div xml:id="play_network_average_degree"><head/><p>Feature <idno type="feature-no">P57</idno> <idno type="feature-id">play_network_average_degree</idno>: Average Degree of the Network representing a Play</p></div>
-                    
-                    <div xml:id="play_network_density"><head/><p>Feature <idno type="feature-no">P58</idno> <idno type="feature-id">play_network_density</idno>: Density of a Network representing a Play</p></div>
-                    
-                    <div xml:id="play_network_diameter"><head/><p>Feature <idno type="feature-no">P59</idno> <idno type="feature-id">play_network_diameter</idno>: </p></div>
-                    
-                    <div xml:id="play_network_average_path_length"><head/><p>Feature <idno type="feature-no">P60</idno> <idno type="feature-id">play_network_average_path_length</idno>: Average Path Length of a Network representing a Play</p></div>
-                    
-                    <div xml:id="play_network_average_clustering"><head/><p>Feature <idno type="feature-no">P61</idno> <idno type="feature-id">play_network_average_clustering</idno>: </p></div>
-                    
-                    <div xml:id="play_network_num_connected_components"><head/><p>Feature <idno type="feature-no">P62</idno> <idno type="feature-id">play_network_num_connected_components</idno>: </p></div>
-                    
-                    <div xml:id="play_network_max_degree"><head/><p>Feature <idno type="feature-no">P63</idno> <idno type="feature-id">play_network_max_degree</idno>: </p></div>
-                    
-                    <div xml:id=""><head/><p>Feature <idno type="feature-no"/> <idno type="feature-id"/>: ID of the character with the highest degree value in a network representing a play. In the report
-                        'On programmable corpora' the corresponding feature is 'P64'.</p></div>
-                    -->
+                        <p>Feature <idno type="feature-no">P5</idno>
+                            <idno type="feature-id">play_title</idno>: (Main) title of the play.
+                            Normally, the title is in the language of the corpus. The respective
+                            function extracts the text of the first element <gi>title</gi> in the
+                                <gi>titleStmt</gi> in the <gi>teiHeader</gi>.</p>
+                    </div>
 
-                    
-                </div> <!-- /play feature -->
+
+                    <div xml:id="play_subtitle">
+                        <head>Play Subtitle</head>
+                        <p>Feature <idno type="feature-no">P6</idno>
+                            <idno type="feature-id">play_subtitle</idno>: Subtitle of the play.</p>
+                        <p>Normally, the subtitle is in the language of the corpus. The respective
+                            function extracts the text of the first element <gi>title</gi> in
+                                <gi>titleStmt</gi> in the <gi>teiHeader</gi> that carries an
+                            attribute <att>type</att> with the value <val>sub</val>.</p>
+                    </div>
+
+                    <div xml:id="play_title_en">
+                        <head>Play English Title</head>
+                        <p>Feature <idno type="feature-no">P7</idno>
+                            <idno type="feature-id">play_title_en</idno>: English translation of the
+                            original main title of the play.</p>
+                        <p>The respective function extracts the text of the element <gi>title</gi>
+                            with <val>eng</val> as the attribute's <att>xml:lang</att> value.</p>
+                    </div>
+
+                    <div xml:id="play_subtitle_en">
+                        <head>Play English Title</head>
+                        <p>Feature <idno type="feature-no">P8</idno>
+                            <idno type="feature-id">play_subtitle_en</idno>: English translation of
+                            the original subtitle of the play.</p>
+                        <p>The respective function extracts the text of the element <gi>title</gi>
+                            with the value of the attribute <att>type</att> being <val>sub</val> and
+                                <val>eng</val> as the attribute's <att>xml:lang</att> value.</p>
+                    </div>
+
+
+                    <div xml:id="play_author_name">
+                        <head>Play Author Name</head>
+                        <p>Feature <idno type="feature-no">P9</idno>
+                            <idno type="feature-id">play_author_name</idno>: Name of the author of
+                            the play in the format '{surname}, {forename}', e.g. 'Shakespeare,
+                            William', 'Гоголь, Николай Васильевич'.</p>
+                        <p>The value can be used for sorting. The respective function takes the
+                            contents of the elements <gi>persName</gi> or <gi>name</gi> from the
+                            element <gi>author</gi> in the <gi>titleStmt</gi> and applies some
+                            processing logic: If the constituents are marked up with the special
+                            elements <gi>surname</gi> and <gi>forname</gi>, they are arranged in the
+                            order "surname, forname". The optional attribute <att>sort</att> on the
+                            element <gi>surname</gi> is evaluated as well to distinguish the order
+                            of <gi>surname</gi> elements. If no additional markup is present, the
+                            contents of the <gi>name</gi> or <gi>persName</gi> element is used.</p>
+                    </div>
+
+
+                    <div xml:id="play_author_name_en">
+                        <head>Play English Transliteration/Translation of Author Name</head>
+                        <p>Feature <idno type="feature-no">P10</idno>
+                            <idno type="feature-id">play_author_name_en</idno>: English name of the
+                            author of a play in the format '{surname}, {forename}', e.g. 'Gogol,
+                            Nikolai' (in this case the value of 'author_name' is Гоголь, Николай
+                            Васильевич' including the patronym).</p>
+                    </div>
+
+
+                    <div xml:id="play_author_fullname">
+                        <head>Play Author Full Name</head>
+                        <p>Feature <idno type="feature-no">P11</idno>
+                            <idno type="feature-id">play_author_fullname</idno>: Full name of the
+                            author of the play including patronyms and other name constituents as
+                            encoded in the TEI source file in the element <gi>persName</gi> or
+                                <gi>name</gi> in <gi>author</gi>author. E.g. 'Николай Васильевич
+                            Гоголь', 'William Shakespeare'.</p>
+                    </div>
+
+                    <div xml:id="play_author_fullname_en">
+                        <head>Play English Transliteration/Translation of the Author Full
+                            Name</head>
+                        <p>Feature <idno type="feature-no">P12</idno>
+                            <idno type="feature-id">play_author_fullname_en</idno>: Full english
+                            name of the author of the play, e.g. 'Nikolai Gogol'.</p>
+                    </div>
+
+                    <div xml:id="play_author_shortname">
+                        <head>Play Author Shortname</head>
+                        <p>Feature <idno type="feature-no">P13</idno>
+                            <idno type="feature-id">play_author_shortname</idno>: Short name of the
+                            author of a play.</p>
+                        <p>Normally, the value is the author's surname only, e.g. 'Shakespeare'
+                            ,'Гоголь'.</p>
+                    </div>
+
+                    <div xml:id="play_author_shortname_en">
+                        <head>Play English Transliteration/Translation of the Author
+                            Shortname</head>
+                        <p>Feature <idno type="feature-no">P14</idno>
+                            <idno type="feature-id">play_author_shortname_en</idno>: English short
+                            name of the author of a play.</p>
+                        <p>Normally, it is the value of the author's surname only, e.g. 'Gogol'.</p>
+                    </div>
+
+                    <div xml:id="play_first_author_shortname">
+                        <head>Play Shortname of First Author</head>
+                        <p>Feature <idno type="feature-no">P16</idno>
+                            <idno type="feature-id">play_first_author_shortname</idno>: Short name
+                            of the first author of a play.</p>
+                    </div>
+
+                    <div xml:id="play_author_also_known_as">
+                        <head>Play Author Also Known As</head>
+                        <p>Feature <idno type="feature-no">P18</idno>
+                            <idno type="feature-id">play_author_also_known_as</idno>: Alternative
+                            name of the author of a play, e.g. 'Titus Maccius Plautus' in case of
+                            the author 'Plautus'.</p>
+                        <p>In the source TEI file alternative names are encoded as additional
+                            elements <gi>persName</gi>.</p>
+                    </div>
+
+                    <div xml:id="play_author_ref_external_id">
+                        <head>Play Autor ID in External Reference Ressource</head>
+                        <p>Feature <idno type="feature-no">P19</idno>
+                            <idno type="feature-id">play_author_ref_external_id</idno>: ID of the
+                            author in an external reference resource.</p>
+                        <p>This for example can be the 'Q-Number' of Wikidata.</p>
+                    </div>
+
+                    <div xml:id="play_author_ref_type">
+                        <head>Play Author Type of ID in External Reference Ressource</head>
+                        <p>Feature <idno type="feature-no">P20</idno>
+                            <idno type="feature-id">play_author_ref_type</idno>: Type of the ID of
+                            the author in an external reference resource, e.g.
+                            <val>wikidata</val>.</p>
+                    </div>
+
+                    <div xml:id="play_num_of_co_authors">
+                        <head>Play Number of Co-Authors</head>
+                        <p>Feature <idno type="feature-no">P21</idno>
+                            <idno type="feature-id">play_num_of_co_authors</idno>: Number of
+                            co-authors of a play. The value is the number of all authors of a play
+                            minus one.</p>
+                    </div>
+
+                    <div xml:id="play_genre_normalized">
+                        <head>Play Genre Normalized</head>
+                        <p>Feature <idno type="feature-no">P22</idno>
+                            <idno type="feature-id">play_genre_normalized</idno>: Normalized genre
+                            of a play.</p>
+                        <p>The function performs a lookup using a Wikidata identifier provided in
+                            the element <gi>classCode</gi> in <gi>textClass</gi>. The normalized
+                            values can be <val>Comedy</val>, <val>Tagedy</val>,
+                                <val>Tragicomedy</val>, <val>Satyr play</val>.</p>
+                    </div>
+
+                    <div xml:id="play_is_libretto">
+                        <head>Play is Libretto</head>
+                        <p>Feature <idno type="feature-no">P23</idno>
+                            <idno type="feature-id">play_is_libretto</idno>: Indicates if a play is
+                            a libretto.</p>
+                        <p>The function performs a lookup using a Wikidata identifier provided in
+                            the element <gi>classCode</gi> in <gi>textClass</gi>. If the returned
+                            value is <val>Libretto</val> the value of this property is
+                                <val>true</val>, otherwise <val>false</val>.</p>
+                    </div>
+
+                    <div xml:id="play_year_written">
+                        <head>Play Year Written</head>
+                        <p>Feature <idno type="feature-no">P24</idno>
+                            <idno type="feature-id">play_year_written</idno>: Year of the creation
+                            of the play / year when the play was written.</p>
+                    </div>
+
+                    <div xml:id="play_year_printed">
+                        <head>Play Year Printed</head>
+                        <p>Feature <idno type="feature-no">P25</idno>
+                            <idno type="feature-id">play_year_printed</idno>: Year the play was
+                            published / year of first printing.</p>
+                    </div>
+
+                    <div xml:id="play_year_premiered">
+                        <head>Play Year Premiered</head>
+                        <p>Feature <idno type="feature-no">P26</idno>
+                            <idno type="feature-id">play_year_premiered</idno>: Year the Play was
+                            premiered</p>
+                    </div>
+
+                    <div xml:id="play_date_premiered">
+                        <head>Play Date Premiered</head>
+                        <p>Feature <idno type="feature-no">P66</idno>
+                            <idno type="feature-id">play_date_premiered</idno>: Date the play was
+                            premiered. This is only available when the exact date of the premiere in
+                            ISO format (YYYY-MM-DD) is specified in element <gi>standOff</gi>.</p>
+                        <p>This feature was added later and is not included in the 'Report on
+                            Programmable Corpora'.</p>
+                    </div>
+
+                    <div xml:id="play_year_normalized">
+                        <head>Play Year Normalized</head>
+                        <p>Feature <idno type="feature-no">P27</idno>
+                            <idno type="feature-id">play_year_normalized</idno>: Aus allen
+                            vorhandenen Datumsangaben (Entstehung, Veröffentlichung, Erstaufführung)
+                            wird ein normalisiertes Jahr ausgewählt; entweder das jüngere Datum von
+                            Veröffentlichung und Erstaufführung oder das Jahr der Entstehung, wenn
+                            die Veröffentlichung mehr als 10 Jahre danach stattgefunden hat.
+                            Normalized Year. Of all avaliable years (written, printed, premiered) a
+                            so-called 'normalized year' is selected; It is either the earlier on of
+                            printing or premiered or, if a work was published or performed much
+                            later (more than 10 years) after its creation, the year of its creation
+                            is taken as »Normalized Year« (if it is a range of years, the last of
+                            them is taken).</p>
+                    </div>
+
+                    <div xml:id="play_digital_source_name">
+                        <head>Play Digital Source Name</head>
+                        <p>Feature <idno type="feature-no">P28</idno>
+                            <idno type="feature-id">play_digital_source_name</idno>: Name of the
+                            digital source of a play. Normally it is the name of the repository or
+                            project that provides a digital version of the play, e.g. <val>Google
+                                Books</val>, <val>Wikisource</val>, <val>TextGrid
+                            Repository</val>.</p>
+                    </div>
+
+                    <div xml:id="play_digital_source_url">
+                        <head>Play Digital Source URL</head>
+                        <p>Feature <idno type="feature-no">P29</idno>
+                            <idno type="feature-id">play_digital_source_url</idno>: URL of the
+                            digital source of a play.</p>
+                    </div>
+
+                    <div xml:id="play_original_source_full_citation">
+                        <head>Play Original Source Full Citation</head>
+                        <p>Feature <idno type="feature-no">P30</idno>
+                            <idno type="feature-id">play_original_source_full_citation</idno>: Full
+                            citation of the play's original (print publication) source.</p>
+                        <p>In the TEI file the citation is contained in the element <gi>bibl</gi>
+                            with the value <val>originalSource</val> of the attribute
+                                <att>type</att> inside the <gi>sourceDesc</gi>.</p>
+                    </div>
+
+                    <div xml:id="play_original_source_publisher">
+                        <head>Play Original Source Publisher</head>
+                        <p>Feature <idno type="feature-no">P31</idno>
+                            <idno type="feature-id">play_original_source_publisher</idno>: Publisher
+                            of the print publication that was used as the original source.</p>
+                        <p>From the TEI data the content of the element <gi>publisher</gi> in the
+                                <gi>bibl</gi> representing the original source is extracted.</p>
+                    </div>
+
+                    <div xml:id="play_original_source_publication_place">
+                        <head>Play Original Source Publication Place</head>
+                        <p>Feature <idno type="feature-no">P32</idno>
+                            <idno type="feature-id">play_original_source_publication_place</idno>:
+                            Place of publication of the print publication that was used as the
+                            original source.</p>
+                        <p>In the TEI data the content of the element <gi>pubPlace</gi> in the
+                                <gi>bibl</gi> representing the original source is extracted. If
+                            there are multiple places annotated, they are joined to a single string
+                            separated by ','.</p>
+                    </div>
+
+                    <div xml:id="play_original_source_publication_year">
+                        <head>Play Original Source Publication Year</head>
+                        <p>Feature <idno type="feature-no">P33</idno>
+                            <idno type="feature-id">play_original_source_publication_year</idno>:
+                            Year of publication of the print publication that was used as the
+                            original source.</p>
+                    </div>
+
+                    <div xml:id="play_original_source_num_of_pages">
+                        <head>Play Original Source Number of Pages</head>
+                        <p>Feature <idno type="feature-no">P34</idno>
+                            <idno type="feature-id">play_original_source_num_of_pages</idno>: Extent
+                            of the original source in number of pages derived from the bibliographic
+                            reference.</p>
+                        <p>In the TEI file the element <gi>biblScope</gi> holds a page range encoded
+                            in the attribute <att>from</att> and <att>to</att>. The value is
+                            calculated by taking the value of <att>to</att> and substracting the
+                            value of <att>from</att> and adding 1.</p>
+                    </div>
+
+                    <div xml:id="play_num_of_wikipedia_links">
+                        <head>Play Number of Wikipedia Links</head>
+                        <p>Feature <idno type="feature-no">P35</idno>
+                            <idno type="feature-id">play_num_of_wikipedia_links</idno>: Number of
+                            Wikipedia links of a play.</p>
+                        <p>The links are counted in regular intervals
+                            <!-- Clarify: CRON Job runs daily? --> using the Wikidata Query Service.
+                            The query looks for connections based on the property 'schema:about'
+                            (?sitelink schema:about wd:' || $id || ' .) and filters the results with
+                            the regular expression '[.]wikipedia[.]org'.</p>
+                    </div>
+
+                    <div xml:id="play_num_of_segments">
+                        <head>Play Number of Segments</head>
+                        <p>Feature <idno type="feature-no">P37</idno>
+                            <idno type="feature-id">play_num_of_segments</idno>: Number of segments
+                            (e.g. scenes) of a play.</p>
+                        <p>Usually <gi>div</gi> elements inside <gi>body</gi> are considered a
+                            segment if they contain a speech marked up by an element
+                            <gi>sp</gi>.</p>
+                        <p>However, also "empty scenes" with no speaking characters are considered a
+                            segment, e.g. elements <gi>div</gi> that consist of stage directions
+                                (<gi>stage</gi>) only.</p>
+                    </div>
+
+                    <div xml:id="play_num_of_acts">
+                        <head>Play Number of Acts</head>
+                        <p>Feature <idno type="feature-no">P38</idno>
+                            <idno type="feature-id">play_num_of_acts</idno>: Number of acts of a
+                            play.</p>
+                        <p>In the TEI file acts are elements <gi>div</gi> with an attribute
+                                <att>type</att> value of <val>act</val>. The function extracting the
+                            information returns the number of such <gi>div</gi> elements.</p>
+                    </div>
+
+                    <div xml:id="play_num_of_paragraphs">
+                        <head>Play Number of Paragraphs</head>
+                        <p>Feature <idno type="feature-no">P39</idno>
+                            <idno type="feature-id">play_num_of_paragraphs</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="play_num_of_verse_lines">
+                        <head>Play Number of Verse Lines</head>
+                        <p>Feature <idno type="feature-no">P40</idno>
+                            <idno type="feature-id">play_num_of_verse_lines</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="play_num_of_word_tokens_in_text_elements">
+                        <head>Play Number of Word Tokens in Text Elements</head>
+                        <p>Feature <idno type="feature-no">P41</idno>
+                            <idno type="feature-id">play_num_of_word_tokens_in_text_elements</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="play_num_of_word_tokens_in_sp">
+                        <head>Play Number of Word Tokens in Speech Acts</head>
+                        <p>Feature <idno type="feature-no">P42</idno>
+                            <idno type="feature-id">play_num_of_word_tokens_in_sp</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="play_num_of_word_tokens_in_stage">
+                        <head>Play Number of Word Tokens in Stage Directions</head>
+                        <p>Feature <idno type="feature-no">P43</idno>
+                            <idno type="feature-id">play_num_of_word_tokens_in_stage</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="play_num_of_speakers">
+                        <head>Play Number of Speaking Characters</head>
+                        <p>Feature <idno type="feature-no">P45</idno>
+                            <idno type="feature-id">play_num_of_speakers</idno>: Number of Speakers
+                            of a Play</p>
+                    </div>
+
+                    <div xml:id="play_num_of_speakers_gender_female">
+                        <head>Play Number of Speaking Female Characters</head>
+                        <p>Feature <idno type="feature-no">P46</idno>
+                            <idno type="feature-id">play_num_of_speakers_gender_female</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="play_num_of_speakers_gender_male">
+                        <head>Play Number of Speaking Male Characters</head>
+                        <p>Feature <idno type="feature-no">P47</idno>
+                            <idno type="feature-id">play_num_of_speakers_gender_male</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="play_num_of_speakers_gender_unknown">
+                        <head>Play Number of Speaking Characters with Unknown Gender</head>
+                        <p>Feature <idno type="feature-no">P48</idno>
+                            <idno type="feature-id">play_num_of_speakers_gender_unknown</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="play_num_of_person_groups">
+                        <head>Play Number of Person Groups</head>
+                        <p>Feature <idno type="feature-no">P49</idno>
+                            <idno type="feature-id">play_num_of_person_groups</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="play_all_in_segment">
+                        <head>Play All In Segment</head>
+                        <p>Feature <idno type="feature-no">P50</idno>
+                            <idno type="feature-id">play_all_in_segment</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="play_all_in_index">
+                        <head>Play All In Index</head>
+                        <p>Feature <idno type="feature-no">P51</idno>
+                            <idno type="feature-id">play_all_in_index</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="play_network_data_csv_url">
+                        <head>Play Network Data CSV URL</head>
+                        <p>Feature <idno type="feature-no">P53</idno>
+                            <idno type="feature-id">play_network_data_csv_url</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="play_network_size">
+                        <head>Play Network Size</head>
+                        <p>Feature <idno type="feature-no">P55</idno>
+                            <idno type="feature-id">play_network_size</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="play_network_num_edges">
+                        <head>Play Number of Edges in the Network</head>
+                        <p>Feature <idno type="feature-no">P56</idno>
+                            <idno type="feature-id">play_network_num_edges</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="play_network_average_degree">
+                        <head>Play Average Degree of the Network</head>
+                        <p>Feature <idno type="feature-no">P57</idno>
+                            <idno type="feature-id">play_network_average_degree</idno>: Average
+                            Degree of the Network representing a Play</p>
+                    </div>
+
+                    <div xml:id="play_network_density">
+                        <head>Play Density of the Network</head>
+                        <p>Feature <idno type="feature-no">P58</idno>
+                            <idno type="feature-id">play_network_density</idno>: Density of a
+                            Network representing a Play</p>
+                    </div>
+
+                    <div xml:id="play_network_diameter">
+                        <head>Play Diameter of the Network</head>
+                        <p>Feature <idno type="feature-no">P59</idno>
+                            <idno type="feature-id">play_network_diameter</idno>: </p>
+                    </div>
+
+                    <div xml:id="play_network_average_path_length">
+                        <head>Play Average Path Length of the Network</head>
+                        <p>Feature <idno type="feature-no">P60</idno>
+                            <idno type="feature-id">play_network_average_path_length</idno>: Average
+                            Path Length of a Network representing a Play</p>
+                    </div>
+
+                    <div xml:id="play_network_average_clustering">
+                        <head>Play Average Clustering Coefficient of the Network</head>
+                        <p>Feature <idno type="feature-no">P61</idno>
+                            <idno type="feature-id">play_network_average_clustering</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="play_network_num_connected_components">
+                        <head>Play Number of Connected Components of the Network</head>
+                        <p>Feature <idno type="feature-no">P62</idno>
+                            <idno type="feature-id">play_network_num_connected_components</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="play_network_max_degree">
+                        <head>Play Maximum Degree of the Network</head>
+                        <p>Feature <idno type="feature-no">P63</idno>
+                            <idno type="feature-id">play_network_max_degree</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="play_network_max_degree_character_id">
+                        <head>Play IDs of the Character with Maximum Degree in the Network</head>
+                        <p>Feature <idno type="feature-no"/>
+                            <idno type="feature-id"/>: ID of the character with the highest degree
+                            value in a network representing a play. In the report 'On programmable
+                            corpora' the corresponding feature is 'P64'.</p>
+                    </div>
+
+                </div>
+                <!-- /play feature -->
+
+                <!-- Segment Features -->
+                <div xml:id="div_segment_features">
+                    <head>Segment features</head>
+
+                    <div xml:id="segment_type">
+                        <head>Segment Type</head>
+                        <p>Feature <idno type="feature-no">S1</idno>
+                            <idno type="feature-id">segment_type</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="segment_number">
+                        <head>Segment Number</head>
+                        <p>Feature <idno type="feature-no">S2</idno>
+                            <idno type="feature-id">segment_number</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="segment_title">
+                        <head>Segment Title</head>
+                        <p>Feature <idno type="feature-no">S3</idno>
+                            <idno type="feature-id">segment_title</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="segment_speaking_characters">
+                        <head>Segment Speaking Characters</head>
+                        <p>Feature <idno type="feature-no">S4</idno>
+                            <idno type="feature-id">segment_speaking_characters</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                </div>
+                <!-- /Segment Features -->
+
+                <div xml:id="div_character_features">
+                    <head>Character features</head>
+
+                    <div xml:id="character_id">
+                        <head>Character ID</head>
+                        <p>Feature <idno type="feature-no">Ch1</idno>
+                            <idno type="feature-id">character_id</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="character_name">
+                        <head>Character Name</head>
+                        <p>Feature <idno type="feature-no">Ch2</idno>
+                            <idno type="feature-id">character_name</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="character_is_group">
+                        <head>Character Is Group</head>
+                        <p>Feature <idno type="feature-no">Ch3</idno>
+                            <idno type="feature-id">character_is_group</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="character_gender">
+                        <head>Character Gender</head>
+                        <p>Feature <idno type="feature-no">Ch4</idno>
+                            <idno type="feature-id">character_gender</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="character_wikidata_id">
+                        <head>Character Wikidata ID</head>
+                        <p>Feature <idno type="feature-no">Ch5</idno>
+                            <idno type="feature-id">character_wikidata_id</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="character_node_betweenness">
+                        <head>Character Node Betweenness</head>
+                        <p>Feature <idno type="feature-no">Ch6</idno>
+                            <idno type="feature-id">character_node_betweenness</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="character_node_degree">
+                        <head>Character Node Degree</head>
+                        <p>Feature <idno type="feature-no">Ch7</idno>
+                            <idno type="feature-id">character_node_degree</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="character_node_closeness">
+                        <head>Character Node Closeness</head>
+                        <p>Feature <idno type="feature-no">Ch8</idno>
+                            <idno type="feature-id">character_node_closeness</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="character_node_eigenvector">
+                        <head>Character Node Eigenvector</head>
+                        <p>Feature <idno type="feature-no">Ch9</idno>
+                            <idno type="feature-id">character_node_eigenvector</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="character_node_weighted_degree">
+                        <head>Character Node Weighted Degree</head>
+                        <p>Feature <idno type="feature-no">Ch10</idno>
+                            <idno type="feature-id">character_node_weighted_degree</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="character_num_of_segments">
+                        <head>Character Number of Segments</head>
+                        <p>Feature <idno type="feature-no">Ch11</idno>
+                            <idno type="feature-id">character_num_of_segments</idno>: Number of
+                            Segments a Character appears in</p>
+                    </div>
+
+                    <div xml:id="character_num_of_sp">
+                        <head>Character Number of Speech Acts</head>
+                        <p>Feature <idno type="feature-no">Ch12</idno>
+                            <idno type="feature-id">character_num_of_sp</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="character_num_of_word_tokens">
+                        <head>Character Number of Word Tokens</head>
+                        <p>Feature <idno type="feature-no">Ch13</idno>
+                            <idno type="feature-id">character_num_of_word_tokens</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                    <div xml:id="character_role">
+                        <head>Character Role</head>
+                        <p>Feature <idno type="feature-no"/>
+                            <idno type="feature-id"/>: Character Roles. Feature 'Ch14' in the report
+                            'On Programmable Corpora'.</p>
+                    </div>
+
+                    <div xml:id="character_spoken_text">
+                        <head>Character Spoken Text</head>
+                        <p>Feature <idno type="feature-no">Ch15</idno>
+                            <idno type="feature-id">character_spoken_text</idno>:
+                            <!-- TODO here is something missing! --></p>
+                    </div>
+
+                </div>
+                <!-- /character features -->
+
+                <div xml:id="div_character_relation_features">
+                    <head>Character relation features</head>
+
+                    <div xml:id="character_relation_is_directed">
+                        <head>Character Relation Is Directed</head>
+                        <p>Feature <idno type="feature-no"/>
+                            <idno type="feature-id">character_relation_is_directed</idno>: Indicates
+                            if a relation is directed (true).</p>
+                    </div>
+
+                    <div xml:id="character_relation_type">
+                        <head>Character Relation Type</head>
+                        <p>Feature <idno type="feature-no"/>
+                            <idno type="feature-id">character_relation_type</idno>: Type of social
+                            relation: 'parent_of', 'lover_of', 'related_with', 'associated_with',
+                            'siblings', 'spouses', 'friends'.</p>
+                    </div>
+
+                    <div xml:id="character_relation_from">
+                        <head>Character Relation From</head>
+                        <p>Feature <idno type="feature-no"/>
+                            <idno type="feature-id">character_relation_from</idno>: Contains the
+                            ID/name of a character that is the 'source' of the relation.</p>
+                    </div>
+
+                    <div xml:id="character_relation_to">
+                        <head>Character Relation To</head>
+                        <p>Feature <idno type="feature-no"/>
+                            <idno type="feature-id">character_relation_to</idno>: Contains the
+                            ID/name of a character that is the 'target' of the relation.</p>
+                    </div>
+
+
+                </div>
+                <!-- /character relation features -->
+
             </div>
             <!-- /API features -->
 
@@ -1359,8 +1927,10 @@
                         </content>
                         <constraintSpec ident="valid_dracor_ids_on_root_tei_element"
                             scheme="schematron" mode="add" corresp="#play_id">
-                            <desc>DraCor identifiers should consist of lower case letters followed by a six-digit number. The value is returned as feature
-                            <ref target="#play_id">play_id</ref> in the API response object.</desc>
+                            <desc>DraCor identifiers should consist of lower case letters followed
+                                by a six-digit number. The value is returned as feature <ref
+                                    target="#play_id">play_id</ref> in the API response
+                                object.</desc>
                             <constraint>
                                 <sch:rule context="tei:TEI" role="warning">
                                     <sch:assert test="matches(./@xml:id,'^[a-z]+[0-9]{6}$')"> For
