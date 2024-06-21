@@ -320,6 +320,13 @@
                             attribute <att>xml:id</att> on the root element <gi>TEI</gi>.</p>
                         <p>The identifier SHOULD match the Regular Expression
                                 <val>^[a-z]+[0-9]{6}$</val>.</p>
+                        
+                        <!-- Wird das berücksichtigt? -->
+                        <!-- NO, move this down again!!! -->
+                        <elementSpec xml:id="TEI-changed" ident="TEI" module="textstructure" mode="change">
+                            
+                        </elementSpec>
+                        
                     </div>
 
                     <div xml:id="play_uri">
@@ -1914,6 +1921,7 @@
                     <!-- ##### -->
 
                     <!-- TEI -->
+                    
                     <elementSpec ident="TEI" module="textstructure" mode="change">
                         <!-- The API expects a structure of text/body/... only accepts
                     a single text element, tei_all would allow multiple. 
@@ -1957,10 +1965,11 @@
                             </attDef>
                         </attList>
                         <!-- This removes the default TEI-Examples -->
-                        <!-- <exemplum>
+                        <exemplum>
                         <egXML xmlns="http://www.tei-c.org/ns/Examples"></egXML>
-                    </exemplum> -->
+                    </exemplum>
                     </elementSpec>
+                    
 
 
 
