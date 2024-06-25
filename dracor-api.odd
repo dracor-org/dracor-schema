@@ -1251,7 +1251,9 @@
                                 single stage direction <gi>stage</gi>.</desc>
                             <constraint>
                                 <sch:rule context="tei:body[not(.//tei:sp)]" role="warning">
-                                    <sch:assert test=".//tei:stage" role="warning">A drama that does not contain a speech-act 'sp', SHOULD at least contain a stage direction 'stage'.</sch:assert>
+                                    <sch:assert test=".//tei:stage" role="warning">A drama that does
+                                        not contain a speech-act 'sp', SHOULD at least contain a
+                                        stage direction 'stage'.</sch:assert>
                                 </sch:rule>
                             </constraint>
                         </constraintSpec>
@@ -2039,7 +2041,7 @@
                     <!-- sourceDesc -->
                     <elementSpec ident="sourceDesc" module="header" mode="change">
 
-                        <!-- TODO: This needs to be reworked -->
+                        <!-- TODO: This needs to be reworked; link to feature!! -->
                         <constraintSpec ident="digital_source_in_sourceDesc" scheme="schematron"
                             mode="add">
                             <desc>Checks if a digital source is present in the
@@ -2067,6 +2069,39 @@
 
 
                     <!-- sp -->
+                    <elementSpec ident="sp" module="core" mode="change">
+                        <constraintSpec ident="network_sp_with_who_attr" scheme="schematron"
+                            corresp="#div_network_data">
+                            <desc>Only speech acts <gi>sp</gi> with <att>who</att> attributes are
+                                used when extracting a network.</desc>
+                            <constraint>
+                                <sch:rule context="tei:sp" role="warning">
+                                    <sch:assert test="@who">A speech 'sp' without an attribute
+                                        '@who' is not used when extracting the network. SHOULD
+                                        consider linking the speech act to a speaking character
+                                        ('person') in the 'particDesc'.</sch:assert>
+                                </sch:rule>
+                            </constraint>
+                        </constraintSpec>
+
+                        <constraintSpec ident="network_unlinked_sp" scheme="schematron"
+                            corresp="#div_network_data">
+                            <desc>Speech acts <gi>sp</gi> SHOULD be linked to characters
+                                    (<gi>person</gi> or <gi>personGrp</gi> elements in
+                                    <gi>particDesc</gi>) by supplying the character's identifier in
+                                the attribute <att>who</att> as a pointer. A pointer is constructed
+                                by prepending the character ID with a hash '#'.</desc>
+                            <constraint>
+                                <!-- can not check multiple character ids as values of @who at the moment -->
+                                <sch:rule context="tei:sp[@who[not(contains(.,' '))]]" role="warning">
+                                    <sch:let name="localID" value="replace(@who/string(),'#','')"/>
+                                    <sch:assert test="ancestor::tei:TEI//tei:particDesc//(tei:person|tei:personGrp)[@xml:id eq $localID]" role="warning">A speech act SHOULD link to a 'person' or 'personGrp' element in 'particDesc'. Use a valid character ID and provide it as a pointer by prepending it with a hash '#'."</sch:assert>
+                                </sch:rule>
+                            </constraint>
+                        </constraintSpec>
+                        <!-- TODO: check for sp that link to several characters! The IDs should link to person/personGrp elements -->
+
+                    </elementSpec>
 
 
                     <!-- speaker -->
