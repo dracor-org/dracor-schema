@@ -82,12 +82,68 @@
                 endpoint because the information on a single entity is available in different
                 serializations or structured with a different focus or probable use case in
                 mind.</p>
-            <p>The following sections list the <soCalled>features</soCalled>. The tables X in the
-                annex provide an overview how these features are dispersed over the response objects
-                of the various endopoints.</p>
+
+            <div xml:id="div_network_data">
+                <head>Encoding for Network Analysis</head>
+                <p>The literary texts in the DraCor corpora are enriched with a research-driven
+                    markup for the application of a specific method, the network analysis of
+                    literary texts (Trilcke 2013). Therefore, the encoding is tailored to allow for
+                    the extraction of <soCalled>co- presence networks</soCalled> relying on
+                    structural segmentation of a given play into acts and scenes and having uniquely
+                    identifiable speaking and acting characters. The cast lists (encoded as
+                        <gi>castList</gi>) or dramatis personae that are contained in most dramatic
+                    texts are an insufficient source in this regard, because they tend to be
+                    incomplete. Speaker labels (encoded as <gi>speaker</gi>) contained in the proper
+                    text are also often misleading, because they are often not stable enough to
+                    serve as an identifier. Therefore, the plays encoded for the DraCor plattform
+                    have an additional section in their metadata in the <gi>teiHeader</gi> that
+                    lists all characters as <gi>person</gi> or <gi>personGrp</gi> elements in a
+                        <gi>listPerson</gi> and assigns them a unique identifier (attribute
+                        <att>xml:id</att>), that is then used in the attribute <att>who</att> to
+                    link the individual speech acts <gi>sp</gi> with their respective speakers.</p>
+                <p>While each distinct speaker represents a <soCalled>node</soCalled> in a network,
+                    a relation (<soCalled>edge</soCalled>) is established if the speeches
+                        <gi>sp</gi> of two or more speakers appear in the same segment <gi>div</gi>
+                    (normally a “scene” classified by the attribute <att>type</att>).</p>
+                <p>The co-presence network can then be extracted by a designated algorithm which is
+                    implemented in XQuery: The function of the DraCor API <name type="api-function"
+                        >metrics:get-network-metrics</name> extracts the segments (element
+                        <gi>div</gi>) of a given TEI file using the function <name
+                        type="api-function">dutil:get-segments</name> and for each of these segments
+                    gets the distinct speakers with the function <name type="api-function"
+                        >dutil:distinct-speakers</name>. The network metrics are calculated based on
+                    these extracted features with the “DraCor Metrics Service” using the Python
+                    package <name type="package">networkx</name>. </p>
+                <p>The schema derived from this ODD includes some schematron rules that allow for
+                    checking if networks can be extracted from the TEI files: <list
+                        xml:id="check_network_extraction">
+                        <item>The text of the play in <gi>body</gi> is structured into segments
+                                (<gi>div</gi>);</item>
+                        <item>The TEI file includes a <gi>particDesc</gi> containing <gi>person</gi>
+                            and/or <gi>personGrp</gi> elements.</item>
+                        <item>Each speech act <gi>sp</gi> is linked via the <att>who</att> attribute
+                            to at least one <gi>person</gi> or <gi>personGrp</gi> inside the
+                                <gi>particDesc</gi>.</item>
+                    </list>
+                </p>
+                <!-- 
+                We assume that this is checked via the conformance to the RelaxNG schema:
+                
+                <rule id="drama-struct-1" context="tei:TEI">
+                <assert id="drama-struct-1-1" test=".//tei:text" role="fatal">A drama MUST have a text.</assert>
+                 <assert id="drama-struct-1-2" test=".//tei:text/tei:body" role="fatal">A drama MUST have a text body.</assert>
+                </rule
+                -->
+            </div>
+
+
 
             <div xml:id="div_api_features">
                 <head>API features</head>
+
+                <p>The following sections list the <soCalled>features</soCalled>. The tables X in
+                    the annex provide an overview how these features are dispersed over the response
+                    objects of the various endopoints.</p>
 
                 <div xml:id="div_corpus_features">
                     <head>Corpus features</head>
@@ -320,13 +376,7 @@
                             attribute <att>xml:id</att> on the root element <gi>TEI</gi>.</p>
                         <p>The identifier SHOULD match the Regular Expression
                                 <val>^[a-z]+[0-9]{6}$</val>.</p>
-                        
-                        <!-- Wird das berücksichtigt? -->
-                        <!-- NO, move this down again!!! -->
-                        <elementSpec xml:id="TEI-changed" ident="TEI" module="textstructure" mode="change">
-                            
-                        </elementSpec>
-                        
+
                     </div>
 
                     <div xml:id="play_uri">
@@ -1029,7 +1079,8 @@
 
             <div xml:id="div_schema">
                 <head>Schema</head>
-                <schemaSpec ident="dracor-api" docLang="en" prefix="tei_" xml:lang="en" start="TEI">
+                <schemaSpec ident="dracor-api" docLang="en" prefix="tei_" xml:lang="en"
+                    start="TEI teiCorpus">
 
                     <!-- modules included in the tei_drama ODD:
                 header, core, tei, textstructure, linking, drama
@@ -1093,6 +1144,7 @@
                         <attList>
                             <!-- globally removes xml:space and xml:base -->
                             <attDef ident="xml:space" usage="opt" mode="delete"/>
+                            <!-- xml:base is needed for the idno in the corpus.xml -->
                             <attDef ident="xml:base" usage="opt" mode="delete"/>
                         </attList>
                     </classSpec>
@@ -1517,12 +1569,42 @@
 
 
                     <elementSpec ident="idno" module="header" mode="change">
+                        <!-- TODO: is the xml:base attribute somehow relevant for the extractor in the xQuery? -->
+                        <constraintSpec ident="xml_base_required_on_indno_type_URI_in_corpus_xml"
+                            scheme="schematron" mode="add" corresp="#corpus_name">
+                            <desc>In the corpus.xml (root element <gi>teiCorpus</gi>) the identifier
+                                    <gi>indo</gi> containing the corpus name (see Feature <ref
+                                    target="#corpus_name">corpus_name</ref>) SHOULD have an
+                                    <att>xml:base</att> attribute with the value
+                                    <val>https://dracor.org/</val>.</desc>
+                            <constraint>
+                                <sch:rule
+                                    context="tei:idno[@type eq 'URI' and parent::tei:publicationStmt and ancestor::tei:teiCorpus]"
+                                    role="warning">
+                                    <sch:assert test="@xml:base/string() eq 'https://dracor.org/'"
+                                        >The idno element in publicationStmt in the teiCorpus SHOULD
+                                        have an xml:base attribute with the value 'https://dracor.org/'.</sch:assert>
+                                </sch:rule>
+                            </constraint>
+                        </constraintSpec>
 
                         <attList>
-
+                            <attDef ident="xml:base" mode="add" usage="opt">
+                                <desc>provides a base URI reference with which applications can
+                                    resolve relative URI references into absolute URI
+                                    references.</desc>
+                                <datatype>
+                                    <dataRef key="teidata.pointer"/>
+                                </datatype>
+                                <remarks>
+                                    <p> In DraCor this is only used on the element <gi>idno</gi>
+                                        that contians the <ref target="#corpus_name">corpus
+                                            name</ref> in the corpus.xml. </p>
+                                </remarks>
+                            </attDef>
                             <attDef ident="type" mode="change" usage="req">
                                 <desc>Classifies the identifier</desc>
-                                <valList type="closed" mode="replace">
+                                <valList type="open" mode="replace">
                                     <!--<valItem ident="dracor">
                                         <desc>DraCor-Identifier</desc>
                                     </valItem>-->
@@ -1538,7 +1620,12 @@
                                     <valItem ident="pnd">
                                         <desc>GND</desc>
                                     </valItem>
-
+                                    <valItem ident="URI">
+                                        <desc>URI</desc>
+                                    </valItem>
+                                    <valItem ident="repo">
+                                        <desc>URL of the (GitHub) Repository of a Corpus</desc>
+                                    </valItem>
                                 </valList>
                             </attDef>
 
@@ -1598,12 +1685,16 @@
 
                     <!-- licence -->
                     <elementSpec ident="licence" module="header" mode="change">
+                        <!-- the dracor-legacy odd was strict on the element included -->
+                        <!-- 
                         <content>
                             <sequence minOccurs="1" maxOccurs="1" preserveOrder="true">
                                 <elementRef key="ab" minOccurs="1" maxOccurs="1"/>
                                 <elementRef key="ref" minOccurs="1" maxOccurs="1"/>
                             </sequence>
                         </content>
+                        -->
+                        <!-- TODO: add schematron here to check if the licence info can be retrieved -->
                     </elementSpec>
 
                     <!-- listChange -->
@@ -1775,6 +1866,49 @@
 
 
                     <!-- publicationStmt -->
+                    <elementSpec ident="publicationStmt" module="header" mode="change">
+                        <!-- 
+                        in corpus.xml, two identifiers are required!
+                        
+                        <idno type="URI" xml:base="https://dracor.org/">ger</idno>
+                        <idno type="repo">https://github.com/dracor-org/gerdracor</idno>
+                        -->
+
+                        <constraintSpec ident="identifier_corpus_name_in_corpus_xml"
+                            scheme="schematron" mode="add" corresp="#corpus_name">
+                            <!-- TODO: check in the code if it is MUST or SHOULD (required to work at all) -->
+                            <desc>Identifier 'corpus name' (see Feature <ref target="#corpus_name"
+                                    >corpus_name</ref>) of the corpus MUST <!-- or: SHOULD --> be
+                                included as an element <gi>idno</gi> with the value <val>URI</val>
+                                of the attribute <att>type</att>.</desc>
+                            <constraint>
+                                <sch:rule context="tei:publicationStmt[ancestor::tei:teiCorpus]"
+                                    role="critical">
+                                    <sch:assert test="tei:idno[@type eq 'URI']">The identifier
+                                        'corpus name' of the corpus MUST be included as an element
+                                        idno with the value 'URI' of the attribute 'type'.</sch:assert>
+                                </sch:rule>
+                            </constraint>
+                        </constraintSpec>
+                        
+                        <constraintSpec ident="corpus_repository_url_in_corpus_xml"
+                            scheme="schematron" mode="add" corresp="#corpus_repository">
+                            <!-- TODO: check in the code if it is MUST or SHOULD (required to work at all) -->
+                            <desc>The URL of the corpus repository (see Feature <ref target="#corpus_repository"
+                                >corpus_repository</ref>) of the corpus SHOULD <!-- or: SHOULD --> be
+                                included as an element <gi>idno</gi> with the value <val>repo</val>
+                                of the attribute <att>type</att>.</desc>
+                            <constraint>
+                                <sch:rule context="tei:publicationStmt[ancestor::tei:teiCorpus]"
+                                    role="warning">
+                                    <sch:assert test="tei:idno[@type eq 'repo']">The URL of the
+                                        corpus repository on GitHub SHOULD be included as an element
+                                        idno with the value 'repo' of the attribute 'type'.</sch:assert>
+                                </sch:rule>
+                            </constraint>
+                        </constraintSpec>
+
+                    </elementSpec>
 
 
 
@@ -1860,6 +1994,8 @@
 
                     <!-- sourceDesc -->
                     <elementSpec ident="sourceDesc" module="header" mode="change">
+
+                        <!-- TODO: This needs to be reworked -->
                         <constraintSpec ident="digital_source_in_sourceDesc" scheme="schematron"
                             mode="add">
                             <desc>Checks if a digital source is present in the
@@ -1921,7 +2057,7 @@
                     <!-- ##### -->
 
                     <!-- TEI -->
-                    
+
                     <elementSpec ident="TEI" module="textstructure" mode="change">
                         <!-- The API expects a structure of text/body/... only accepts
                     a single text element, tei_all would allow multiple. 
@@ -1930,6 +2066,7 @@
                             <sequence minOccurs="1" maxOccurs="1">
                                 <elementRef key="teiHeader" minOccurs="1" maxOccurs="1"/>
                                 <elementRef key="standOff" minOccurs="0" maxOccurs="1"/>
+                                <!-- this makes sure that there is a text included -->
                                 <elementRef key="text" minOccurs="1" maxOccurs="1"/>
                             </sequence>
                         </content>
@@ -1966,10 +2103,10 @@
                         </attList>
                         <!-- This removes the default TEI-Examples -->
                         <exemplum>
-                        <egXML xmlns="http://www.tei-c.org/ns/Examples"></egXML>
-                    </exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
+                        </exemplum>
                     </elementSpec>
-                    
+
 
 
 
