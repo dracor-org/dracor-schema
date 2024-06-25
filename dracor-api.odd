@@ -1216,6 +1216,46 @@
                     </elementSpec>
 
                     <!-- body -->
+                    <elementSpec ident="body" module="textstructure" mode="change">
+                        <!-- to be able to extract networks the DraCor API needs structure in the body element -->
+                        <constraintSpec ident="network_check_basic_play_structure_div"
+                            scheme="schematron" corresp="#div_network_data">
+                            <desc>A network can only be extracted from a play if there is some basic
+                                structure. The API expects that there is at least a single
+                                    <gi>div</gi> present.</desc>
+                            <constraint>
+                                <sch:rule context="tei:body" role="warning">
+                                    <sch:assert test="tei:div">A play SHOULD at least have one
+                                        structural division 'div' for the API to be able to extract
+                                        a network.</sch:assert>
+                                </sch:rule>
+                            </constraint>
+                        </constraintSpec>
+                        <constraintSpec ident="network_check_basic_play_structure_sp"
+                            scheme="schematron" corresp="#div_network_data">
+                            <desc>The network is extracted based on speech acts which SHOULD be
+                                encoded using the element <gi>sp</gi>.</desc>
+                            <constraint>
+                                <sch:rule context="tei:body" role="warning">
+                                    <sch:assert test=".//tei:sp">A play SHOULD be structured in
+                                        speech-acts using the element 'sp' for the API to be able to
+                                        extract a network.</sch:assert>
+                                </sch:rule>
+                            </constraint>
+                        </constraintSpec>
+                        <!-- special case: no speaking characters, e.g. in a pantomime -->
+                        <constraintSpec ident="network_play_without_speaking_characters"
+                            scheme="schematron" corresp="#div_network_data">
+                            <desc>In the edge case of a play without speaking characters and no
+                                speech acts <gi>sp</gi> it is expected that there is at least a
+                                single stage direction <gi>stage</gi>.</desc>
+                            <constraint>
+                                <sch:rule context="tei:body[not(.//tei:sp)]" role="warning">
+                                    <sch:assert test=".//tei:stage" role="warning">A drama that does not contain a speech-act 'sp', SHOULD at least contain a stage direction 'stage'.</sch:assert>
+                                </sch:rule>
+                            </constraint>
+                        </constraintSpec>
+                    </elementSpec>
 
 
                     <!-- ##### -->
@@ -1583,7 +1623,8 @@
                                     role="warning">
                                     <sch:assert test="@xml:base/string() eq 'https://dracor.org/'"
                                         >The idno element in publicationStmt in the teiCorpus SHOULD
-                                        have an xml:base attribute with the value 'https://dracor.org/'.</sch:assert>
+                                        have an xml:base attribute with the value
+                                        'https://dracor.org/'.</sch:assert>
                                 </sch:rule>
                             </constraint>
                         </constraintSpec>
@@ -1886,24 +1927,27 @@
                                     role="critical">
                                     <sch:assert test="tei:idno[@type eq 'URI']">The identifier
                                         'corpus name' of the corpus MUST be included as an element
-                                        idno with the value 'URI' of the attribute 'type'.</sch:assert>
+                                        idno with the value 'URI' of the attribute
+                                        'type'.</sch:assert>
                                 </sch:rule>
                             </constraint>
                         </constraintSpec>
-                        
+
                         <constraintSpec ident="corpus_repository_url_in_corpus_xml"
                             scheme="schematron" mode="add" corresp="#corpus_repository">
                             <!-- TODO: check in the code if it is MUST or SHOULD (required to work at all) -->
-                            <desc>The URL of the corpus repository (see Feature <ref target="#corpus_repository"
-                                >corpus_repository</ref>) of the corpus SHOULD <!-- or: SHOULD --> be
-                                included as an element <gi>idno</gi> with the value <val>repo</val>
-                                of the attribute <att>type</att>.</desc>
+                            <desc>The URL of the corpus repository (see Feature <ref
+                                    target="#corpus_repository">corpus_repository</ref>) of the
+                                corpus SHOULD <!-- or: SHOULD --> be included as an element
+                                    <gi>idno</gi> with the value <val>repo</val> of the attribute
+                                    <att>type</att>.</desc>
                             <constraint>
                                 <sch:rule context="tei:publicationStmt[ancestor::tei:teiCorpus]"
                                     role="warning">
                                     <sch:assert test="tei:idno[@type eq 'repo']">The URL of the
                                         corpus repository on GitHub SHOULD be included as an element
-                                        idno with the value 'repo' of the attribute 'type'.</sch:assert>
+                                        idno with the value 'repo' of the attribute
+                                        'type'.</sch:assert>
                                 </sch:rule>
                             </constraint>
                         </constraintSpec>
