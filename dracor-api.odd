@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+<TEI xmlns="http://www.tei-c.org/ns/1.0" 
+    xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xml:lang="en">
     <teiHeader>
         <fileDesc>
@@ -2092,14 +2094,23 @@
                                 the attribute <att>who</att> as a pointer. A pointer is constructed
                                 by prepending the character ID with a hash '#'.</desc>
                             <constraint>
-                                <!-- can not check multiple character ids as values of @who at the moment -->
+                                
+                                <!-- this works only for @who attributes that contain a single character only -->
                                 <sch:rule context="tei:sp[@who[not(contains(.,' '))]]" role="warning">
                                     <sch:let name="localID" value="replace(@who/string(),'#','')"/>
                                     <sch:assert test="ancestor::tei:TEI//tei:particDesc//(tei:person|tei:personGrp)[@xml:id eq $localID]" role="warning">A speech act SHOULD link to a 'person' or 'personGrp' element in 'particDesc'. Use a valid character ID and provide it as a pointer by prepending it with a hash '#'."</sch:assert>
                                 </sch:rule>
+                                
+                                <!-- the following rule can detect the cases where there are multiple character ids in the who attribute -->
+                                <sch:rule context="tei:sp[contains(@who,' ')]">
+                                    <sch:let name="allIDs" value="./ancestor::tei:TEI//tei:particDesc//(tei:person|tei:personGrp)/@xml:id/string()"/>
+                                    <sch:let name="localIDs" value="tokenize(@who/string(),'\s+')"/>
+                                    <sch:assert test="every $i in $localIDs satisfies replace($i,'#','') = $allIDs" role="warning">At least one character ID provided as the value of the attribute who '<xsl:value-of select="@who/string()"/>' has not been declared. A speech act SHOULD link to a 'person' or 'personGrp' element in 'particDesc'.</sch:assert>
+                                </sch:rule>
+                                
                             </constraint>
                         </constraintSpec>
-                        <!-- TODO: check for sp that link to several characters! The IDs should link to person/personGrp elements -->
+                        
 
                     </elementSpec>
 
