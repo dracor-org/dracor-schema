@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" 
+    xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:sch="http://purl.oclc.org/dsdl/schematron"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
     xml:lang="en">
     <teiHeader>
         <fileDesc>
@@ -1758,34 +1760,7 @@
                     <!-- listPerson -->
                     <!--  (att.global.source (@source)) att.typed (@type, @subtype) att.declarable (@default) att.sortable (@sortKey)
                 -->
-                    <elementSpec ident="listPerson" module="namesdates" mode="change">
-                        <attList>
-                            <attDef ident="xml:id" mode="delete"/>
-                            <attDef ident="n" mode="delete"/>
-                            <attDef ident="xml:lang" mode="delete"/>
-                            <attDef ident="xml:base" mode="delete"/>
-                            <attDef ident="xml:space" mode="delete"/>
-                            <attDef ident="rend" mode="delete"/>
-                            <attDef ident="style" mode="delete"/>
-                            <attDef ident="rendition" mode="delete"/>
-                            <attDef ident="cert" mode="delete"/>
-                            <attDef ident="resp" mode="delete"/>
-                            <attDef ident="source" mode="delete"/>
-                            <attDef ident="sortKey" mode="delete"/>
-                            <attDef ident="type" mode="delete"/>
-                            <attDef ident="subtype" mode="delete"/>
-                            <attDef ident="default" mode="delete"/>
-                            <attDef ident="corresp" mode="delete"/>
-                            <attDef ident="synch" mode="delete"/>
-                            <attDef ident="sameAs" mode="delete"/>
-                            <attDef ident="copyOf" mode="delete"/>
-                            <attDef ident="next" mode="delete"/>
-                            <attDef ident="prev" mode="delete"/>
-                            <attDef ident="exclude" mode="delete"/>
-                            <attDef ident="select" mode="delete"/>
-                            <attDef ident="ana" mode="delete"/>
-                        </attList>
-                    </elementSpec>
+                    
 
                     <!-- listRelation -->
                     <elementSpec ident="listRelation" module="namesdates" mode="change">
@@ -2094,23 +2069,33 @@
                                 the attribute <att>who</att> as a pointer. A pointer is constructed
                                 by prepending the character ID with a hash '#'.</desc>
                             <constraint>
-                                
                                 <!-- this works only for @who attributes that contain a single character only -->
-                                <sch:rule context="tei:sp[@who[not(contains(.,' '))]]" role="warning">
+                                <sch:rule context="tei:sp[@who[not(contains(.,' '))]]"
+                                    role="warning">
                                     <sch:let name="localID" value="replace(@who/string(),'#','')"/>
-                                    <sch:assert test="ancestor::tei:TEI//tei:particDesc//(tei:person|tei:personGrp)[@xml:id eq $localID]" role="warning">A speech act SHOULD link to a 'person' or 'personGrp' element in 'particDesc'. Use a valid character ID and provide it as a pointer by prepending it with a hash '#'."</sch:assert>
+                                    <sch:assert
+                                        test="ancestor::tei:TEI//tei:particDesc//(tei:person|tei:personGrp)[@xml:id eq $localID]"
+                                        role="warning">A speech act SHOULD link to a 'person' or
+                                        'personGrp' element in 'particDesc'. Use a valid character
+                                        ID and provide it as a pointer by prepending it with a hash
+                                        '#'."</sch:assert>
                                 </sch:rule>
-                                
                                 <!-- the following rule can detect the cases where there are multiple character ids in the who attribute -->
                                 <sch:rule context="tei:sp[contains(@who,' ')]">
-                                    <sch:let name="allIDs" value="./ancestor::tei:TEI//tei:particDesc//(tei:person|tei:personGrp)/@xml:id/string()"/>
+                                    <sch:let name="allIDs"
+                                        value="./ancestor::tei:TEI//tei:particDesc//(tei:person|tei:personGrp)/@xml:id/string()"/>
                                     <sch:let name="localIDs" value="tokenize(@who/string(),'\s+')"/>
-                                    <sch:assert test="every $i in $localIDs satisfies replace($i,'#','') = $allIDs" role="warning">At least one character ID provided as the value of the attribute who '<xsl:value-of select="@who/string()"/>' has not been declared. A speech act SHOULD link to a 'person' or 'personGrp' element in 'particDesc'.</sch:assert>
+                                    <sch:assert
+                                        test="every $i in $localIDs satisfies replace($i,'#','') = $allIDs"
+                                        role="warning">At least one character ID provided as the
+                                        value of the attribute who '<xsl:value-of
+                                            select="@who/string()"/>' has not been declared. A
+                                        speech act SHOULD link to a 'person' or 'personGrp' element
+                                        in 'particDesc'.</sch:assert>
                                 </sch:rule>
-                                
                             </constraint>
                         </constraintSpec>
-                        
+
 
                     </elementSpec>
 
@@ -2174,6 +2159,7 @@
                                 </sch:rule>
                             </constraint>
                         </constraintSpec>
+                      
                         <attList>
                             <attDef ident="xml:id" mode="change" usage="req">
                                 <datatype>
@@ -2275,10 +2261,145 @@
 
 
                     <!-- titleStmt -->
+                    <elementSpec ident="titleStmt" module="header" mode="change">
+                        <!-- expect a title type=main feature play_title -->
+                        <constraintSpec ident="play_main_title" scheme="schematron"
+                            corresp="#play_title">
+                            <desc>The title of the play (see Feature <ref target="#play_title"
+                                    >play_title</ref>) is retrieved from the first element
+                                    <gi>title</gi> with the value <val>main</val> of the attribute
+                                    <att>type</att>.</desc>
+                            <constraint>
+                                <sch:rule context="tei:titleStmt" role="warning">
+                                    <sch:assert test="tei:title[@type eq 'main']">For the DraCor API to include the title of the play in the response an element 'title' with the type-attribute value 'main' SHOULD be included.</sch:assert>
+                                </sch:rule>
+                            </constraint>
+                        </constraintSpec>
+                                             
+                    </elementSpec>
 
 
                     <!-- trailer -->
-
+                    
+                    <!-- SCHEMATRON RULES THAT EXPLICITLY REPORT IMPLEMENTED API FEATURES -->
+                    <!-- Feature Checks: Corpus Features  -->
+                    
+                    <!-- Corpus Features -->
+                    <!-- C1	corpus_name -->
+                    <!-- C2	corpus_uri -->
+                    <!-- C3	corpus_title -->
+                    <!-- C4	corpus_acronym -->
+                    <!-- C5	corpus_description -->
+                    <!-- C6	corpus_repository -->
+                    <!-- C7	corpus_licence -->
+                    <!-- C8	corpus_licence_url -->
+                    <!-- C9	corpus_num_of_plays -->
+                    <!-- C10	corpus_num_of_characters -->
+                    <!-- C11	corpus_num_of_characters_male -->
+                    <!-- C12	corpus_num_of_characters_female -->
+                    <!-- C13	corpus_num_of_tei_text_elements -->
+                    <!-- C14	corpus_num_of_sp -->
+                    <!-- C15	corpus_num_of_stage -->
+                    <!-- C16	corpus_num_of_word_tokens_in_text_elements -->
+                    <!-- C17	corpus_num_of_word_tokens_in_sp -->
+                    <!-- C18	corpus_num_of_word_tokens_in_stage -->
+                    <!-- C19	corpus_metrics_date_updated -->
+                    <!-- C20	corpus_play_objects -->
+                    
+                    
+                    <!-- Feature Checks: Play Features -->
+                    <!-- P1	play_corpus_name -->
+                    <!-- P2	play_id -->
+                    <!-- P3	play_name -->
+                    <!-- P4	play_wikidata_id -->
+                    
+                    <!-- P5	play_title -->
+                    <constraintSpec ident="play_title" scheme="schematron" type="api_feature_check" corresp="#play_title">
+                        <desc>Feature-Check: <ref target="#play_title">P5 play_title</ref></desc>
+                        <constraint>
+                            <sch:rule context="/" role="information" see="https://lod.dracor.org/api-ontology/play_title">
+                                <sch:let name="play_title" value="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[not(@type = 'sub') and not(@xml:lang or ./ancestor::tei:TEI/@xml:lang = @xml:lang)]/normalize-space()"/>
+                                <sch:report test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[not(@type = 'sub') and not(@xml:lang or ./ancestor::tei:TEI/@xml:lang = @xml:lang)]">Supported API feature: play_title [value: <sch:value-of select="$play_title"/>]</sch:report>
+                            </sch:rule>
+                        </constraint>
+                    </constraintSpec>
+                    
+                    <!-- P6	play_subtitle -->
+                    <constraintSpec ident="play_subtitle" scheme="schematron" type="api_feature_check" corresp="#play_subtitle">
+                        <desc>Feature-Check: <ref target="#play_subtitle">P6 play_subtitle</ref></desc>
+                        <constraint>
+                            <sch:rule context="/" role="information" see="https://lod.dracor.org/api-ontology/play_subtitle">
+                                <sch:let name="play_subtitle" value="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type = 'sub' and not(@xml:lang or ./ancestor::tei:TEI/@xml:lang = @xml:lang)]/normalize-space()"/>
+                                <sch:report test="tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='sub']">Supported API feature: play_subtitle [value: <sch:value-of select="$play_subtitle"/>]</sch:report>
+                            </sch:rule>
+                        </constraint>
+                    </constraintSpec>
+                    
+                    <!-- P7	play_title_en -->
+                    <!-- P8	play_subtitle_en -->
+                    <!-- P9	play_author_name -->
+                    <!-- P10	play_author_name_en -->
+                    <!-- P11	play_author_fullname -->
+                    <!-- P12	play_author_fullname_en -->
+                    <!-- P13	play_author_shortname -->
+                    <!-- P14	play_author_shortname_en -->
+                    <!-- P15	play_first_author_name -->
+                    <!-- P16	play_first_author_shortname -->
+                    <!-- P17	play_first_author_deprecation_warning -->
+                    <!-- P18	play_author_also_known_as -->
+                    <!-- P19	play_author_ref_external_id -->
+                    <!-- P20	play_author_ref_type -->
+                    <!-- P21	play_num_of_co_authors -->
+                    <!-- P22	play_genre_normalized -->
+                    <!-- P23	play_is_libretto -->
+                    <!-- P24	play_year_written -->
+                    <!-- P25	play_year_printed -->
+                    <!-- P26	play_year_premiered -->
+                    <!-- P27	play_year_normalized -->
+                    <!-- P28	play_digital_source_name -->
+                    <!-- P29	play_digital_source_url -->
+                    <!-- P30	play_original_source_full_citation -->
+                    <!-- P31	play_original_source_publisher -->
+                    <!-- P32	play_original_source_publication_place -->
+                    <!-- P33	play_original_source_publication_year -->
+                    <!-- P34	play_original_source_num_of_pages -->
+                    <!-- P35	play_num_of_wikipedia_links -->
+                    <!-- P36	play_segments -->
+                    <!-- P37	play_num_of_segments -->
+                    <!-- P38	play_num_of_acts -->
+                    <!--P39	play_num_of_paragraphs-->
+                    <!--P40	play_num_of_verse_lines-->
+                    <!--P41	play_num_of_word_tokens_in_text_elements-->
+                    <!--P42	play_num_of_word_tokens_in_sp-->
+                    <!--P43	play_num_of_word_tokens_in_stage-->
+                    <!--P44	play_characters-->
+                    <!--P45	play_num_of_speakers-->
+                    <!--P46	play_num_of_speakers_gender_female-->
+                    <!--P47	play_num_of_speakers_gender_male-->
+                    <!--P48	play_num_of_speakers_gender_unknown-->
+                    <!--P49	play_num_of_person_groups-->
+                    <!--P50	play_all_in_segment-->
+                    <!--P51	play_all_in_index-->
+                    <!--P52	play_character_relations-->
+                    <!--P53	play_network_data_csv_url-->
+                    <!--P54	play_network_nodes-->
+                    <!--P55	play_network_size-->
+                    <!--P56	play_network_num_edges-->
+                    <!--P57	play_network_average_degree-->
+                    <!--P58	play_network_density-->
+                    <!--P59	play_network_diameter-->
+                    <!--P60	play_network_average_path_length-->
+                    <!--P61	play_network_average_clustering-->
+                    <!--P62	play_network_num_connected_components-->
+                    <!--P63	play_network_max_degree-->
+                    <!--P64	play_network_max_degree_character_ids-->
+                    
+                    
+                    
+                    <!--  -->
+                   
+                    
+                    
                     <!-- /schema -->
                 </schemaSpec>
             </div>
