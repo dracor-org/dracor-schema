@@ -2309,7 +2309,18 @@
                     
                     <!-- Feature Checks: Play Features -->
                     <!-- P1	play_corpus_name -->
+                    
                     <!-- P2	play_id -->
+                    <constraintSpec ident="play_id" scheme="schematron" type="api_feature_check" corresp="#play_id">
+                        <desc>Feature-Check: <ref target="#play_id">P2 play_id</ref></desc>
+                        <constraint>
+                            <sch:rule context="/" role="information" see="https://lod.dracor.org/api-ontology/play_id">
+                                <sch:let name="play_id" value="/tei:TEI/@xml:id/string()"/>
+                                <sch:report test="/tei:TEI/@xml:id">Supported API feature: play_id [value: <sch:value-of select="$play_id"/>]</sch:report>
+                            </sch:rule>
+                        </constraint>
+                    </constraintSpec>
+                    
                     <!-- P3	play_name -->
                     <!-- P4	play_wikidata_id -->
                     
