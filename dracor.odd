@@ -8,11 +8,23 @@
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>DraCor API Customization</title>
+                <title>DraCor ODD</title>
                 <respStmt>
                     <resp>TEI Customization/ODD developed by</resp>
                     <name xml:id="ib">Ingo Boerner</name>
                     <name xml:id="cmil">Carsten Milling</name>
+                </respStmt>
+                <respStmt>
+                    <resp>Encoding Guidelines by</resp>
+                    <name corresp="#ib">Ingo Börner</name>
+                    <name xml:id="ff">Frank Fischer</name>
+                    <name xml:id="lg">Luca Giovannini</name>
+                    <name xml:id="ds">Daniil Skorinkin</name>
+                    <name xml:id="pt">Peer Trilcke</name>
+                </respStmt>
+                <respStmt>
+                    <resp>Contributions by</resp>
+                    <name xml:id="ah">Angelika Hechtl</name>
                 </respStmt>
             </titleStmt>
             <publicationStmt>
@@ -25,124 +37,548 @@
                 <p>born digital</p>
             </sourceDesc>
         </fileDesc>
-        <!-- Example of how the features could be formally defined within a TEI Document; not sure if these really produces added value 
-            because this part of the ODD would not be rendered (the table below is included, though). The formal definition of the features is done in the
-            ontology. It might be an option to define them here and generate the API ontlogy, but this would involve a lot of tinkering.
-            One problem is that I can not link to the features in the <remarks> in the <elementSpec>. Thus it is somewhat useless to define them here.
-            -->
-        <!-- 
-        <encodingDesc>
-            <fsdDecl>
-                <fsDecl type="corpus">
-                    <fsDescr>Corpus features</fsDescr>
-                    <fDecl name="corpus_name" targetDatcat="https://dracor.org/ontology/dracor-api-ontology#corpus_name">
-                        <fDescr>Identifier "corpusname"</fDescr>
-                        <vRange>
-                            <string/>
-                        </vRange>
-                    </fDecl>
-                </fsDecl>
-                <fsDecl type="play">
-                    <fsDescr>Play features</fsDescr>
-                    <fDecl name="play_corpus_name" targetDatcat="https://dracor.org/ontology/dracor-api-ontology#play_corpus_name">
-                        <fDescr>Identifier "corpusname" of the corpus the play is included in</fDescr>
-                        <vRange>
-                            <string/>
-                        </vRange>
-                    </fDecl>
-                </fsDecl>
-            </fsdDecl>
-        </encodingDesc>
-        -->
+        <revisionDesc>
+            <change who="#ib" when="2024-10-23">incorporate "API features" described in the CLS D7.1 'Report on Programmable Corpora'; Schematron rules to check for features</change>
+            <change who="#ib" when="2024-06-01">Started to substantially rework ODD and base it on the tei-drama customization</change>
+            <change who="#ib">added documentation based on Luca Giovannini's Quick-Start Tutorial
+                and CLS D7.1 'Report on Programmable Corpora'</change>
+            <change who="#ib" when="2022-06-10">add standOff, restructrue sourceDesc; explicitly
+                include elements in schemaSpec</change>
+            <change who="#ib" when="2019-12-10">add relations</change>
+            <change who="#ib" when="2019-09-05">reworked for new encoding of DraCor corpora</change>
+            <change who="#ib" when="2018-12">finished at the Hackathon in Potsdam</change>
+            <change who="#ah #ib" when="2018-04-02">created using ROMA and extended manually in
+                Oxygen</change>
+        </revisionDesc>
     </teiHeader>
     <text>
+        <front>
+            <titlePage>
+                <titlePart type="main">Drama Corpora | dracor.org</titlePart>
+                <titlePart type="sub">TEI Customization and Documentation</titlePart>
+                <docDate>2024</docDate>
+            </titlePage>
+            <divGen type="toc"/>
+        </front>
         <body>
+            <head>TEI Customization for Drama Corpora (dracor.org)</head>
+            <!-- Encoding Guidelines -->
+            <div xml:id="div_intro">
+                <head>Introduction</head>
+                <p>We are building drama corpora with files encoded following the guidelines of the
+                    <ref target="https://tei-c.org/release/doc/tei-p5-doc/en/html/index.html"
+                        >Text Encoding Initiative (TEI P5)</ref>, especially the Module <ref
+                            target="https://tei-c.org/release/doc/tei-p5-doc/en/html/DR.html"
+                            >Performance Texts</ref>. The encoded plays are suitable for the field of
+                    digital drama analysis, which manifests itself in a growing <ref
+                        target="https://dracor.org/doc/research">list of research</ref> done based
+                    on DraCor corpora and is especially facilitated by also hosting the corpora on
+                    <ref target="https://github.com/dracor-org">GitHub</ref> with an open
+                    license that allows for extensive re-use.</p>
+                <p>The encoded texts are the basis for <ref target="https://dracor.org">DraCor</ref>
+                    (Drama Corpora Platform). It is a multi-component system which realizes the
+                    concept of “Programmable Corpora” (<ref target="#fischer_et_al_2019">Fischer et
+                        al. 2019</ref>), understood as corpora that expose an open, transparently
+                    documented and (at least partly) research-driven API to make texts
+                    machine-actionable. (cf. <ref target="#boerner_trilcke_2023">Börner and Trilcke
+                        2023</ref>). The documentation of the DraCor API can be accessed at ; <ref
+                            target="https://dracor.org/doc/api">https://dracor.org/doc/api</ref>.</p>
+                <p>This customization restricts the use of TEI Guidelines to allow a smooth integration
+                    into the DraCor system. It is originally based on the <ref
+                        target="https://tei-c.org/release/xml/tei/custom/odd/tei_drama.odd">TEI ODD for
+                        Drama</ref> and was was extended with the TEI elements that were already
+                    included in the legacy DraCor ODD.</p>
+                <p>Using the TEI Stylesheets a RelaxNG schema (<ref
+                        target="https://dracor.org/schema.rng">https://dracor.org/schema.rng</ref>) with embedded Schematron rules
+                    is generated, that can used to validate the encoding of the DraCor files.</p>
+                <p>Although the corpora in DraCor have different sources, they are largely
+                    homogeneous both structurally and in terms of metadata. This homogeneity makes
+                    it possible, for example, to perform comparative research on the corpora or to
+                    perform processing operations (such as extracting information or counting) in a
+                    comparable way on the corpora. However, homogeneity is something that has to be
+                    created first, because even if corpora are available in the target format TEI,
+                    they often differ in the way TEI is applied.</p>
+                <p>The literary texts in the DraCor corpora have a basic structural markup and are
+                    ready for further analysis by various methods of Computational Literary Studies
+                    (CLS). They have been additionally enriched with a research-driven markup for
+                    the application of a specific method, the <hi rend="bold">network analysis of
+                        literary texts</hi> (<ref target="#trilcke_2013">Trilcke 2013</ref>).
+                    Therefore the encoding is tailored to allow for the extraction of co-presence
+                    networks relying on structural segmentation of a given play into acts and scenes
+                    and having uniquely identifiable speaking and acting characters. </p>
+                <p>The cast lists or <term>dramatis personae</term> that are contained in most
+                    dramatic texts are an insufficient source in this regard, because they tend to
+                    be incomplete. Speaker labels contained in the proper text are also often
+                    misleading, because they are often not stable enough to serve as an identifier. </p>
+                <p>Therefore the plays encoded for the DraCor plattform have an additional section
+                    in their metadata in the <gi>teiHeader</gi> that lists all characters as
+                    <gi>person</gi> elements in a <gi>listPerson</gi> and assigns them an unique
+                    identifier <att>xml:id</att>, that is then used in the attribute <att>who</att>
+                    to link the individual speech acts <gi>sp</gi> with their respective speakers.
+                    The co-presence network can then be extracted by a designated algorithm.<note>A
+                        more detailed explaination of the implementation in the DraCor system can be
+                        found in <ref target="#boerner_trilcke_2023">Börner/Trilcke
+                            (2023)</ref>.</note> While each distinct speaker represents a node in a
+                    network, a relation (edge) is established if the speeches <gi>sp</gi> of two or
+                    more speakers appear in the same segment <gi>div</gi> (normally a “scene”
+                    classified by the attribute <att>type</att>). It is important to note that this
+                    method of extracting networks from dramatic texts is only one possibility among
+                    many others and that the scope for interpretation is determined by this
+                    mechanism of extraction.</p>
+            </div> <!-- End  Intro-->
+        
+            
+            <div xml:id="div_how-to">
+                <head>How to encode a play and make it DraCor-ready</head>
+                <div xml:id="div_file-formats">
+                    <head>File formats and copyright issues</head>
+                    <p>Depending on the source’s original format, you may follow one of these
+                        pipelines: <list>
+                            <item>If your text is already encoded in XML, it may be possible to
+                                write a XSLT or a Python script to adapt it to the DraCor
+                                format.</item>
+                            <item>If that is not possible, or your text is available in some other
+                                digital format (e.g. .txt, .csv, .docx), you’ll have to apply the
+                                markup yourself. If you’re working with OCR outputs, please remember
+                                we try to remain as close to the source as possible (i.e.
+                                reproducing the text as it is on the physical copy, including
+                                misprints).</item>
+                        </list>
+                    </p>
+                    <p rend="hint"> It is possible to convert a .txt file encoded in UTF-8 to a
+                        basic DraCor format through the experimental <ref
+                            target="https://github.com/dracor-org/ezdrama">EzDrama</ref> conversion
+                        tool (Python script). </p>
+                    <p> Please note that DraCor considers for publication only works which are
+                        either in the <hi rend="bold">public domain (CC BY 0)</hi> or released under
+                        an open <hi rend="bold">Creative Commons Attribution Licence (e.g. CC BY
+                            3.0)</hi>. According to German law, works become public domain after 70
+                        years from their author’s death. Even though it is possible to build
+                        copyright-protected corpora, they could be run only on a local DraCor
+                        instance built through Docker (procedure still under development; for hints
+                        on using DraCor with Docker see this <ref
+                            target="https://github.com/dracor-org/dracor-notebooks/blob/f72a7722a3ce9c3fa35ea856c81a108166c96f4d/docker/local-dracor-with-docker.ipynb"
+                            >Jupyter Notebook</ref>).</p>
+                </div>
+                <!-- /file formats -->
+                <div xml:id="div_overview">
+                    <head>Basic Structure</head>
+                    <p> The basic structure of a DraCor file requires a <gi>teiHeader</gi>,
+                        containing metadata on the play, and a <gi>text</gi> with the actual text.
+                        Between header and text there is a <gi>standOff</gi> element with some
+                        additional pieces of information. The structure of your final XML file
+                        should therefore look like this: <egXML
+                            xmlns="http://www.tei-c.org/ns/Examples">
+                            <TEI>
+                                <teiHeader>
+                                    <!-- contains Metadata -->
+                                </teiHeader>
+                                <standOff>
+                                    <!-- contains additional infos -->
+                                </standOff>
+                                <text>
+                                    <!-- The 'actual' Text: mandatory, if there is no <facsimile> and/or <sourceDoc> -->
+                                </text>
+                            </TEI>
+                        </egXML>
+                    </p>
+                    <p> You can apply markup to your plays simply by putting tags, consisting of the
+                        name of the tag in angle brackets around parts of the text. To do so, open
+                        your XML file with an XML editor. There are several options for efficient
+                        and non-cumbersome manual work with these files, but we recommend the <ref
+                            target="https://www.oxygenxml.com">Oxygen XML Editor</ref>, which has
+                        rich functionality and an author mode which minimizes the risk of breaking
+                        the markup structure. Oxygen is also a TEI-aware editor. You can get a
+                        30-day trial licence <ref
+                            target="https://www.oxygenxml.com/xml_editor/register.html">here</ref>.
+                        A good free-source alternative is Notepad++ (which now supports a <ref
+                            target="https://github.com/dracor-org/ezdrama/blob/main/Npp_ezdrama-UDL.xml"
+                            >user-defined Ezdrama language</ref>!). </p>
+                    <p rend="hint"> If you’re using Oxygen Editor, download the <ref
+                            target="https://github.com/dracor-org/dracor-oxygen-framework">DraCor
+                            Oxygen Framework</ref>. It will help you by checking many kinds of
+                        inconsistencies in the markup and validating your file against the DraCor
+                        schema. </p>
+                </div>
+                <!-- /overview -->
+                <div xml:id="div_encoding-header">
+                    <head>Metadata in the <gi>teiHeader</gi></head>
+                    <p>The header is composed of several sections: <gi>fileDesc</gi>,
+                            <gi>profileDesc</gi> and <gi>revisionDesc</gi>.</p>
+                    <div xml:id="div_file-desc">
+                        <head><gi>fileDesc</gi></head>
+                        <p>The basic metadata on the digital file are included in the
+                                <gi>fileDesc</gi>. It contains a title statement
+                            (<gi>titleStmt</gi>), a publication statement (<gi>publicationStmt</gi>)
+                            and and a description of the digital and original sources
+                                (<gi>sourceDesc</gi>). </p>
+                        <div xml:id="div_title_in_titleStmt">
+                            <head>Title</head>
+                            <p>The title is encoded using the element <gi>title</gi> in <gi>titleStmt</gi>. It can be
+                                further classified using the attribute <att>type</att> as main and
+                                subtitle: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                    <title type="main">Des Meeres und der Liebe Wellen</title>
+                                    <title type="sub">Trauerspiel in fünf Aufzügen</title>
+                                </egXML>
+                            </p>
+                            <p></p>
+                        </div>
+                        <!-- title -->
+                    </div>
+                    <!-- /file desc -->
+                    <div xml:id="div_profileDesc_particDesc">
+                        <head><gi>profileDesc</gi> (including <gi>particDesc</gi>)</head>
+                        <p> Fill this section after annotating the play. It lists the characters as
+                            given in the <att>who</att> of the <gi>person</gi> and
+                                <gi>personGrp</gi> elements used to encode the individual speech
+                            acts <gi>sp</gi> (see <ref target="#div_speech_acts">Speech Acts</ref>).
+                            The <gi>particDesc</gi> should follow this format: <egXML
+                                xmlns="http://www.tei-c.org/ns/Examples">
+                                <person xml:id="eleonora" sex="FEMALE">
+                                    <persName>Eleonora</persName>
+                                </person>
+                            </egXML>
+                        </p>
+                        <list>
+                            <item>
+                                <p>Individuals are to be marked with <gi>persName</gi>, groups (e.g.
+                                    “Chorus”, “Soldiers”) with <gi>persGrp</gi>.</p>
+                            </item>
+                            <item>
+                                <p>Gender could be marked as <val>FEMALE</val>, <val>MALE</val> or
+                                        <val>UNKOWN</val>. <list>
+                                        <item>
+                                            <p>Please mark as gendered only characters which appear
+                                                unequivocally as such in text. If they don’t have a
+                                                proper name, but are defined by their profession,
+                                                consider the play’s context (e.g. “soldier” will be
+                                                surely <val>MALE</val> in a Renaissance play).</p>
+                                        </item>
+                                        <item>
+                                            <p>The same applies to groups (“soldiers”, “weavers”).
+                                                If no specific gender hints are provided, mark them
+                                                as <val>UNKNOWN</val> (“nobles”, ”citizens”,
+                                                “servants”).</p>
+                                        </item>
+                                        <item>
+                                            <p>Abstract entities (“Time”, “Fame”, “Death” etc.)
+                                                should be marked as <val>UNKNOWN</val> unless they
+                                                are clearly gendered in text.</p>
+                                        </item>
+                                    </list>
+                                </p>
+                            </item>
+                            <item>
+                                <p>The content of <gi>persName</gi> or <gi>persGrp</gi> will appear
+                                    in the network as the labels of the nodes. For the sake of
+                                    visualisation, try to stick to name or name+surname, avoiding
+                                    too much extra info which will clutter the network. For example:
+                                    “Henry”, “King Henry” or “Henry VII Tudor” are fine, “Henry,
+                                    brother to the King of England” is not.</p>
+                            </item>
+                            <item>
+                                <p>For characters defined by numerals (“First Soldier, Second
+                                    Soldier”), please include the values of the attribute
+                                        <att>xml:id</att> as follows:
+                                        <code>xml:id="soldier_1"</code>.</p>
+                            </item>
+                        </list>
+                        <p>Optionally, you can encode the social relationship between the characters
+                            using the elements <gi>relation</gi> in a <gi>listRelation</gi>. Below
+                            is an example taken from the play <title>Emilia Galotti</title>
+                            <ref target="https://dracor.org/id/ger000088"/>: <egXML
+                                xmlns="http://www.tei-c.org/ns/Examples" source="#ger000088">
+                                <listRelation type="personal">
+                                    <relation name="parent_of" active="#odoardo #claudia"
+                                        passive="#emilia"/>
+                                    <relation name="associated_with" active="#marinelli"
+                                        passive="#der_prinz"/>
+                                    <relation name="associated_with" active="#camillo_rota"
+                                        passive="#der_prinz"/>
+                                </listRelation>
+                            </egXML>
+                        </p>
+                        <p>Within <gi>textClass</gi> you can also specify the genre of the drama.
+                        </p>
+                    </div>
+                    <!-- /div_profileDesc_particDesc -->
+                    <div xml:id="div_revisionDesc">
+                        <head><gi>revisionDesc</gi></head>
+                        <p>Lists revisions and revisers of the file. Update it after each editing.
+                        </p>
+                    </div>
+                    <!-- /div_revisionDesc -->
+                </div>
+                <!-- /encoding-header -->
+                <div xml:id="div_standOff">
+                    <head>Encoding additional metadata in the <gi>standOff</gi> element</head>
+                    <p>The <gi>standOff</gi> element usually includes dates (first written, first
+                        printed edition, premiere).</p>
+                </div>
+                <!-- /div_standOff -->
+                <div xml:id="div_drama_text_proper">
+                    <head>Encoding the text (<gi>text</gi>)</head>
+                    <p>The text of the play is usually composed of some paratextual elements (title
+                        page, dedication, preface, dramatis personae etc.) and of the body of the
+                        text. Enclose the first with the <gi>front</gi> tag and the second with the
+                            <gi>body</gi> tag.</p>
+                    <p>Most examples (with some adjustments) are taken from Mary Pix' drama
+                            <title>The Spanish Wives</title> (<ref
+                            target="https://dracor.org/id/ep000676">ep000676</ref>).</p>
+                    <div xml:id="div_paratexts">
+                        <head>Paratexts (<gi>front</gi>)</head>
+                        <p>Paratexts may be encoded with successive layers of complexity. The
+                            general rule is to enclose every section in a <gi>div</gi> with an
+                            attribute <att>type</att>. Prose text should be enclosed in paragraphs
+                            with <gi>p</gi>, lines of verse with <gi>l</gi>. In-text titles of
+                            sections may be marked with <gi>head</gi>. </p>
+                        <p>Some examples: <egXML xmlns="http://www.tei-c.org/ns/Examples"
+                                source="#ep000676">
+                                <front>
 
-            <p>This customization restricts the use of TEI Guidelines to allow a smooth integration
-                into the DraCor system. It is originally based on the <ref
-                    target="https://tei-c.org/release/xml/tei/custom/odd/tei_drama.odd">TEI ODD for
-                    Drama</ref> and was was extended with the TEI elements that were already
-                included in the legacy DraCor ODD.</p>
-            <!-- TODO: Adapt D71 API part and include here -->
-            <p>The DraCor API is designed with a domain model of digital drama analysis in mind and
-                thus organizes the API functionality around the two core entities “corpus” and
-                theater “play”, thus following the assumption already mentioned above that corpora
-                are the central epistemic objects of Computational Literary Studies (cf. Gavin 2023:
-                4).</p>
-            <p>
-                <!--The endpoints grouped under “public” tag in the OpenAPI specification of the DraCor
-                API are providing information on <list>
-                    <item>a single-language corpus,</item>
-                    <item>a single play in a corpus,</item>
-                    <item>data on the key constituents of a play, i.e. , <list>
-                            <item>segments,</item>
-                            <item>characters,</item>
-                            <item>the spoken text and</item>
-                            <item>stage directions, as well as</item>
-                        </list></item>
-                    <item>derived network data on a single play, its characters, and their
-                        relations.</item>
-                </list>  --> These aspects are seldom fully covered by a single
-                endpoint because the information on a single entity is available in different
-                serializations or structured with a different focus or probable use case in
-                mind.</p>
+                                    <div type="title_page">
+                                        <p> THE Spanish Wives. A FARCE, As it was Acted by His
+                                            MAJESTY's Servants, AT THE THEATRE in Dorset-Garden. </p>
+                                        <p> LONDON: Printed for R. Wellington, at the Sign of the
+                                            Lute in St. Paul's Church yard, 1696. </p>
+                                    </div>
 
-            <div xml:id="div_network_data">
-                <head>Encoding for Network Analysis</head>
-                <p>The literary texts in the DraCor corpora are enriched with a research-driven
-                    markup for the application of a specific method, the network analysis of
-                    literary texts (Trilcke 2013). Therefore, the encoding is tailored to allow for
-                    the extraction of <soCalled>co- presence networks</soCalled> relying on
-                    structural segmentation of a given play into acts and scenes and having uniquely
-                    identifiable speaking and acting characters. The cast lists (encoded as
+                                    <div type="prologue">
+                                        <head>PROLOGUE, Spoken by Mr. Penkethman, in a
+                                            Press-master's Habit.</head>
+                                        <l>WHat Chear, my Lads? Igad, I'm come to say, </l>
+                                        <l>I'll press to Sea all those who Damn this Play: </l>
+                                        [...] </div>
+                                </front>
+                            </egXML>
+                        </p>
+                        <p> Dramatis personae can be encoded using the element <gi>castList</gi>. <!-- Dramatis personae (the characters’ names, if required with their descriptions) can be rendered as a list with the following syntax (other variants are possible, e.g. substituting <item> with <desc>):  -->
+                            <!-- IB: Won't include this passage from the How-To, don't agree, . use <castList> instead!! -->
+                        </p>
+                    </div>
+                    <!-- /paratexts -->
+
+                </div>
+                <!-- /div_drama_text_proper -->
+                <div xml:id="div_body_elements">
+                    <head><gi>text</gi></head>
+                    <p>Mark the main elements in the play’s body <gi>body</gi> as follows: </p>
+                    <div xml:id="div_segments">
+                        <head>Segments (acts, scenes, etc.)</head>
+                        <p>Use the element <gi>div</gi> to encode segments of a dramatic text. The
+                            type of the segment ("act", "scene") should be given in the attribute
+                                <att>type</att>: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <div type="act">
+                                    <head>ACT I</head>
+                                    <div type="scene">
+                                        <head>SCENE I.</head>
+                                        <!-- ... -->
+                                    </div>
+                                </div>
+                            </egXML>
+                        </p>
+                    </div>
+                    <!-- /div_segments -->
+                    <div xml:id="div_stage_directions">
+                        <head>Stage Directions (non-diegetic elements)</head>
+                        <p>Use the element <gi>stage</gi> to mark stage directions: <egXML
+                                xmlns="http://www.tei-c.org/ns/Examples">
+                                <stage> Enter the Governour of Barcellona, and the Marquess of
+                                    Moncada.</stage>
+                                <stage> (taking the Stick, and putting on his Spectacles to view it)
+                                </stage>
+                            </egXML>
+                        </p>
+                        <p> Stage directions could be nested into speech acts! <egXML
+                                xmlns="http://www.tei-c.org/ns/Examples" source="#ep000676">
+                                <sp who="#ep000676-camillus">
+                                    <speaker>Cam. </speaker>
+                                    <p> Tell him, I am,-- and long to kiss his Hands.-- I like that
+                                        Gentleman, he appears brave <stage>Exit Servus. </stage> And
+                                        bold-- shou'd our Designs grow desperate: I dare believe he
+                                        would not scruple his Assistance. </p>
+                                </sp>
+                            </egXML>
+                        </p>
+                    </div>
+                    <!-- /div_stage_directions -->
+                    <div xml:id="div_speech_acts">
+                        <head>Speakers and Speech Acts</head>
+                        <list>
+                            <item>
+                                <p>Mark the speech act with enclosing it with the element
+                                        <gi>sp</gi>.</p>
+                            </item>
+                            <item>
+                                <p>Indicate which character listed in the <gi>particDesc</gi> is
+                                    speaking by including a reference to the character's
+                                        <att>xml:id</att> prefixed with a hash (#) in the
+                                        <att>who</att> attribute of the <gi>sp</gi> element:
+                                        <code>who="#id-of-the-speaker"</code>. Always use the same
+                                    who-tag, even if the in-text name of the speaker is abbreviated
+                                    or there are some aliases.</p>
+                            </item>
+                            <item>
+                                <p>Enclose the in-text name of the speaker with the element
+                                        <gi>speaker</gi>.</p>
+                            </item>
+                            <item>
+                                <p>Again, verse lines should be marked with <gi>l</gi>. Prose text
+                                    should be marked with the paragraph element <gi>p</gi>. </p>
+                            </item>
+                        </list>
+                        <p>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sp who="#eleonora">
+                                    <speaker>Elen.</speaker>
+                                    <p>Now my Desires are so near fulfilling, I begin to fear 'em--
+                                        yet I know Camillus is Honourable.</p>
+                                </sp>
+                            </egXML>
+                        </p>
+                        <p>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sp who="#camillus">
+                                    <speaker>Cam.</speaker>
+                                    <l>Greatness was the Attendant of my Birth; </l>
+                                    <l>But Love gives me Heaven upon Earth. </l>
+                                    <l>These Comforts my Elenora does impart: </l>
+                                    <l>Joy to my Eyes, sweet Raptures to my Heart. </l>
+                                </sp>
+                            </egXML>
+                        </p>
+                        <div xml:id="div_special_cases">
+                            <head>Special Cases</head>
+                            <div>
+                                <head>No explicit speaker in text</head>
+                                <p>If the speaker name is not explicitly given in-text, while e.g.
+                                    being wrapped into a stage direction, just create a normal
+                                        <gi>sp</gi> block and omit the <gi>speaker</gi> tag (don’t
+                                    forget the <att>who</att> attribute though). <egXML
+                                        xmlns="http://www.tei-c.org/ns/Examples">
+                                        <sp who="#governor">
+                                            <stage>Enter the Governor singing.</stage>
+                                            <l>If an old man has a beauteous Treasure,</l>
+                                            <l>Let her sing, and dance, and laugh without
+                                                measure,</l>
+                                            <l>And then she'l think of no other Pleasure.</l>
+                                        </sp>
+                                    </egXML>
+                                </p>
+                            </div>
+                            <!-- /no explicit speaker -->
+                            <div>
+                                <head>Speaker unknown</head>
+
+                                <!--<p>
+                                    In the remote case it is not possible to identify who is speaking, you can put the lines into a <gi>stage</gi> block.
+                                    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                        <stage>A Song.
+                                            <l>This is a simple-sample song </l>
+                                            <l>Written just to fill this cell,</l>
+                                            <l>What could possibly go wrong? </l>
+                                        </stage>
+                                    </egXML>
+                                </p>-->
+
+                                <!-- not sure about that, IB -->
+                            </div>
+                        </div>
+                        <!-- /div_special_cases -->
+                    </div>
+                    <!-- /div_speech_acts -->
+                </div>
+                <!-- /body elements -->
+
+                <div xml:id="characters">
+                    <head>Marking up characters and linking them to the particDesc</head>
+                    <p>
+                        Why are
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                            <castItem><role>Schmiede</role></castItem>
+                        </egXML>
+                        (Goethe: Pandora) not a group?
+                    </p>
+                </div>
+
+                <div xml:id="licensing">
+                    <head>Licensing</head>
+                </div>
+
+                <div xml:id="div_other_resources">
+                    <head>See also</head>
+                    <listBibl>
+                        <bibl>
+                            <title>Encoding hints in the GerDraCor Wiki on Github</title>
+                            <ref target="https://github.com/dracor-org/gerdracor/wiki"
+                                >https://github.com/dracor-org/gerdracor/wiki</ref>
+                        </bibl>
+                    </listBibl>
+                </div>
+            </div>
+            <!-- End of How to -->
+            
+            <!-- Section on Network analysis: In the draft of the designated API ODD I added a more detailed section on Network Analysis which I include here
+                It still needs to be consolidated with the information on Network analysis that is included in the introduction above            
+            -->
+                <div xml:id="div_network_data">
+                    <head>Encoding for Network Analysis</head>
+                    <p>The literary texts in the DraCor corpora are enriched with a research-driven
+                        markup for the application of a specific method, the network analysis of
+                        literary texts (Trilcke 2013). Therefore, the encoding is tailored to allow for
+                        the extraction of <soCalled>co-presence networks</soCalled> relying on
+                        structural segmentation of a given play into acts and scenes and having uniquely
+                        identifiable speaking and acting characters. The cast lists (encoded as
                         <gi>castList</gi>) or dramatis personae that are contained in most dramatic
-                    texts are an insufficient source in this regard, because they tend to be
-                    incomplete. Speaker labels (encoded as <gi>speaker</gi>) contained in the proper
-                    text are also often misleading, because they are often not stable enough to
-                    serve as an identifier. Therefore, the plays encoded for the DraCor plattform
-                    have an additional section in their metadata in the <gi>teiHeader</gi> that
-                    lists all characters as <gi>person</gi> or <gi>personGrp</gi> elements in a
+                        texts are an insufficient source in this regard, because they tend to be
+                        incomplete. Speaker labels (encoded as <gi>speaker</gi>) contained in the proper
+                        text are also often misleading, because they are often not stable enough to
+                        serve as an identifier. Therefore, the plays encoded for the DraCor plattform
+                        have an additional section in their metadata in the <gi>teiHeader</gi> that
+                        lists all characters as <gi>person</gi> or <gi>personGrp</gi> elements in a
                         <gi>listPerson</gi> and assigns them a unique identifier (attribute
                         <att>xml:id</att>), that is then used in the attribute <att>who</att> to
-                    link the individual speech acts <gi>sp</gi> with their respective speakers.</p>
-                <p>While each distinct speaker represents a <soCalled>node</soCalled> in a network,
-                    a relation (<soCalled>edge</soCalled>) is established if the speeches
+                        link the individual speech acts <gi>sp</gi> with their respective speakers.</p>
+                    <p>While each distinct speaker represents a <soCalled>node</soCalled> in a network,
+                        a relation (<soCalled>edge</soCalled>) is established if the speeches
                         <gi>sp</gi> of two or more speakers appear in the same segment <gi>div</gi>
-                    (normally a “scene” classified by the attribute <att>type</att>).</p>
-                <p>The co-presence network can then be extracted by a designated algorithm which is
-                    implemented in XQuery: The function of the DraCor API <name type="api-function"
-                        >metrics:get-network-metrics</name> extracts the segments (element
+                        (normally a “scene” classified by the attribute <att>type</att>).</p>
+                    <p>The co-presence network can then be extracted by a designated algorithm which is
+                        implemented in XQuery: The function of the DraCor API <name type="api-function"
+                            >metrics:get-network-metrics</name> extracts the segments (element
                         <gi>div</gi>) of a given TEI file using the function <name
-                        type="api-function">dutil:get-segments</name> and for each of these segments
-                    gets the distinct speakers with the function <name type="api-function"
-                        >dutil:distinct-speakers</name>. The network metrics are calculated based on
-                    these extracted features with the “DraCor Metrics Service” using the Python
-                    package <name type="package">networkx</name>. </p>
-                <p>The schema derived from this ODD includes some schematron rules that allow for
-                    checking if networks can be extracted from the TEI files: <list
-                        xml:id="check_network_extraction">
-                        <item>The text of the play in <gi>body</gi> is structured into segments
+                            type="api-function">dutil:get-segments</name> and for each of these segments
+                        gets the distinct speakers with the function <name type="api-function"
+                            >dutil:distinct-speakers</name>. The network metrics are calculated based on
+                        these extracted features with the “DraCor Metrics Service” using the Python
+                        package <name type="package">networkx</name>. </p>
+                    <p>The schema derived from this ODD includes some schematron rules that allow for
+                        checking if networks can be extracted from the TEI files: <list
+                            xml:id="check_network_extraction">
+                            <item>The text of the play in <gi>body</gi> is structured into segments
                                 (<gi>div</gi>);</item>
-                        <item>The TEI file includes a <gi>particDesc</gi> containing <gi>person</gi>
-                            and/or <gi>personGrp</gi> elements.</item>
-                        <item>Each speech act <gi>sp</gi> is linked via the <att>who</att> attribute
-                            to at least one <gi>person</gi> or <gi>personGrp</gi> inside the
+                            <item>The TEI file includes a <gi>particDesc</gi> containing <gi>person</gi>
+                                and/or <gi>personGrp</gi> elements.</item>
+                            <item>Each speech act <gi>sp</gi> is linked via the <att>who</att> attribute
+                                to at least one <gi>person</gi> or <gi>personGrp</gi> inside the
                                 <gi>particDesc</gi>.</item>
-                    </list>
-                </p>
-                <!-- 
-                We assume that this is checked via the conformance to the RelaxNG schema:
-                
-                <rule id="drama-struct-1" context="tei:TEI">
-                <assert id="drama-struct-1-1" test=".//tei:text" role="fatal">A drama MUST have a text.</assert>
-                 <assert id="drama-struct-1-2" test=".//tei:text/tei:body" role="fatal">A drama MUST have a text body.</assert>
-                </rule
-                -->
+                        </list>
+                    </p>
             </div>
-
-
-
-            <div xml:id="div_api_features">
+            
+            <!-- DraCor API part -->
+            <div xml:id="div_dracor-api">
+                <p>The DraCor API is at the core of the whole DraCor system. It is designed with a domain model of digital drama analysis in mind and
+                    thus organizes the API functionality around the two core entities “corpus” and
+                    theater “play”, thus following the assumption already mentioned above that corpora
+                    are the central epistemic objects of Computational Literary Studies (cf. Gavin 2023:
+                    4).</p>
+                <p>The machine-readable documentation of the DraCor-API can be accessed at <ref target="https://dracor.org/doc/api">https://dracor.org/doc/api</ref>. The underlying OpenAPI specification defines the schemas of the response objects. The following section accompanies the OpenAPI specification and provides additional documentation of the available values.</p>
+            
+                <!-- TODO: Adapt D71 API part and include here -->
+                
+                <!-- Features -->
+                <div xml:id="div_api_features">
                 <head>API features</head>
 
                 <p>The following sections list the <soCalled>features</soCalled>. The tables X in
@@ -1080,6 +1516,11 @@
 
             </div>
             <!-- /API features -->
+            
+            </div>
+            <!-- End of API chapter -->
+            
+            
 
             <div xml:id="div_schema">
                 <head>Schema</head>
@@ -2868,6 +3309,30 @@
 
             </div>
             <!-- /div_feature_tables -->
+            
+            <div xml:id="bibliography">
+                <head>Bibliography</head>
+                <listBibl>
+                    <bibl xml:id="boerner_trilcke_2023"> Börner, I., &amp; Trilcke, P. (2023). CLS
+                        INFRA D7.1 On Programmable Corpora. <ref
+                            target="https://doi.org/10.5281/zenodo.7664964">doi:
+                            10.5281/zenodo.7664964</ref>
+                    </bibl>
+                    <bibl xml:id="fischer_et_al_2019">Fischer, F., Börner, I., Göbel, M., Hechtl,
+                        A., Kittel, C., Milling, C., &amp; Trilcke, P. (2019). Programmable Corpora:
+                        Introducing DraCor, an Infrastructure for the Research on European Drama.
+                        DH2019: »Complexities«. 9–12 July 2019. Book of Abstracts.
+                        DH2019 »Complexities«, Utrecht. <ref
+                            target="https://doi.org/10.5281/ZENODO.4284002">doi:
+                            10.5281/ZENODO.4284002</ref>
+                    </bibl>
+                    <bibl xml:id="trilcke_2013">Trilcke, P. (2013). Social Network Analysis (SNA)
+                        als Methode einer textempirischen Literaturwissenschaft. In P. Ajouri, K.
+                        Mellmann, &amp; C. Rauen (Eds.), Empirie in der Literaturwissenschaft (S.
+                        201–247). Mentis </bibl>
+                </listBibl>
+            </div>
+            <!-- /bibliography -->
         </back>
 
     </text>
