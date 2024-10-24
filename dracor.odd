@@ -1998,7 +1998,11 @@
 
                     <!-- body -->
                     <elementSpec ident="body" module="textstructure" mode="change">
+                       
                         <!-- to be able to extract networks the DraCor API needs structure in the body element -->
+                        <!-- can be tested with:
+                            - tst000005: WRONG - There is nothing in the body at all
+                        -->
                         <constraintSpec ident="network_check_basic_play_structure_div"
                             scheme="schematron" corresp="#div_network_data">
                             <desc>A network can only be extracted from a play if there is some basic
@@ -2012,6 +2016,10 @@
                                 </sch:rule>
                             </constraint>
                         </constraintSpec>
+                        
+                        <!-- There should be <sp> elements to be able to extract networks
+                            can be tested with:
+                            - tst000009: WRONG - There are no <sp> elements -->
                         <constraintSpec ident="network_check_basic_play_structure_sp"
                             scheme="schematron" corresp="#div_network_data">
                             <desc>The network is extracted based on speech acts which SHOULD be
@@ -2025,6 +2033,8 @@
                             </constraint>
                         </constraintSpec>
                         <!-- special case: no speaking characters, e.g. in a pantomime -->
+                        <!-- to test this:
+                         - tst000010: There is only the Warning about the missing <sp> elements. -->
                         <constraintSpec ident="network_play_without_speaking_characters"
                             scheme="schematron" corresp="#div_network_data">
                             <desc>In the edge case of a play without speaking characters and no
@@ -2038,6 +2048,26 @@
                                 </sch:rule>
                             </constraint>
                         </constraintSpec>
+                        <exemplum source="#ger000289">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <body>
+                                    <div type="act">
+                                        <head>Erster Akt.</head>
+                                        <stage>Scene: Elegantes Zimmer in Gustav's Hause.</stage>
+                                        <div type="scene">
+                                            <head>Erster Auftritt.</head>
+                                            <stage>Durch die Mittelthür kommen: Ehrenthal und
+                                                Dörthe.</stage>
+                                            <!-- ... -->
+                                        </div>
+                                    </div>
+                                    <!-- ... -->
+                                </body>
+                            </egXML>
+                            <ab>Common structure of the <gi>body</gi> element of a play. Example is
+                                taken from <ref target="https://dracor.org/id/ger000289">Karl von
+                                    Holtei: Ein Trauerspiel in Berlin</ref>.</ab>
+                        </exemplum>
                     </elementSpec>
 
 
@@ -2049,7 +2079,12 @@
 
                     <elementSpec ident="castGroup" module="drama" mode="change">
                         <attList>
-                            <attDef ident="rend" mode="change">
+                            <!-- rend is probably not available in the TEI Drama Customization. It is added here. -->
+                            <!-- to test: 
+                                - tst000011 - CORRECT encoding
+                                - tst000012 - WRONG encoding
+                            -->
+                            <attDef ident="rend" mode="add">
                                 <valList mode="replace" type="closed">
                                     <valItem ident="braced">
                                         <desc>braced</desc>
@@ -2067,6 +2102,56 @@
                                 </remarks>
                             </attDef>
                         </attList>
+                        <exemplum source="#ger000442">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castGroup>
+                                    <castItem>Silva,</castItem>
+                                    <castItem>Gomez,</castItem>
+                                    <roleDesc>unter Alba dienend</roleDesc>
+                                </castGroup>
+                            </egXML>
+                            <ab>The characters are grouped and given a role in the in the "dramatis
+                                personae" in the play <ref target="https://dracor.org/id/ger000442"
+                                    >Goethe: Egmont</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000139">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castGroup rend="braced">
+                                    <castItem>Balthasar</castItem>
+                                    <castItem>Caspar</castItem>
+                                    <roleDesc>Jäger</roleDesc>
+                                </castGroup>
+                            </egXML>
+                            <ab>A group of characters in <ref
+                                target="https://dracor.org/id/ger000139">Genoveva</ref>. In the
+                                source, they are marked with a curly bracket.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000575">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castGroup>
+                                    <castItem><role>Elpore,</role></castItem>
+                                    <castItem><role>Epimeleia,</role></castItem>
+                                    <roleDesc>Epimetheus' Töchter</roleDesc>
+                                </castGroup>
+                            </egXML>
+                            <ab>A group of characters with explicitly marked-up roles in <ref
+                                target="https://dracor.org/id/ger000575">Goethe:
+                                Pandora</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000572">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castGroup>
+                                    <castItem><role>Magdalene,</role>
+                                        <roleDesc>Behrings Braut, 20 Jahre
+                                            alt,</roleDesc></castItem>
+                                    <castItem><role>Fritz,</role>
+                                        <roleDesc>12 Jahre alt,</roleDesc></castItem>
+                                    <roleDesc>beider Kinder.</roleDesc>
+                                </castGroup>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000572"
+                                >Otto Ernst: Die größte Sünde</ref>.</ab>
+                        </exemplum>
                     </elementSpec>
 
                     <!-- castItem -->
@@ -2083,6 +2168,41 @@
                                 </remarks>
                             </attDef>
                         </attList>
+                        <exemplum source="#ger000088">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castItem>Marinelli, Kammerherr des Prinzen.</castItem>
+                            </egXML>
+                            <ab>A character in the play <ref
+                                target="https://dracor.org/id/ger000088">Lessing: Emilia
+                                Galotti</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000546">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castItem><role>Leo Armenius,</role>
+                                    <roleDesc>käyser von Constantinopel.</roleDesc>
+                                </castItem>
+                            </egXML>
+                            <ab>A <gi>castItem</gi> in the play <ref
+                                target="https://dracor.org/id/ger000546">Gryphius: Leo
+                                Armenius</ref>. The name of the role and its description have
+                                been explicitly marked-up.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000575">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castItem><role>Dämonen</role></castItem>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000575"
+                                >Goethe: Pandora</ref>.</ab>
+                        </exemplum>
+                        <exemplum source="#ger000451">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castItem>Andreas Doria, Doge von Genua <roleDesc>Ehrwürdiger Greis
+                                    von achtzig Jahren, Spuren von Feuer. Ein Hauptzug: Gewicht
+                                    und strenge befehlende Kürze</roleDesc></castItem>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000451"
+                                >Schiller: Die Verschwörung des Fiesco zu Genua</ref>.</ab>
+                        </exemplum>
                     </elementSpec>
 
 
