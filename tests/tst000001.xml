@@ -68,6 +68,7 @@ There should be a warning.
             </event>
         </listEvent>
         <listRelation>
+            <!-- We expect a warning here: -->
             <relation name="wikidata" active="https://dracor.org/entity/tst000001" passive="https://www.wikidata.org/wiki/Q41567"/>
         </listRelation>
     </standOff>
