@@ -2207,6 +2207,58 @@
 
 
                     <!-- castList -->
+                    <elementSpec ident="castList" module="drama" mode="change">
+                        <exemplum source="#ger000575">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castList>
+                                    <head> Personen.</head>
+                                    <castGroup>
+                                        <castItem><role>Prometheus,</role></castItem>
+                                        <castItem><role>Epimetheus,</role></castItem>
+                                        <roleDesc>Japetiden</roleDesc>
+                                    </castGroup>
+                                    <castItem><role>Phileros,</role>
+                                        <roleDesc>Prometheus' Sohn</roleDesc></castItem>
+                                    <!-- ... -->
+                                    <castItem><role>Dämonen</role></castItem>
+                                    <castItem><role>Helios</role></castItem>
+                                    <castItem><role>Schmiede</role></castItem>
+                                    <castItem><role>Hirten</role></castItem>
+                                    <!-- ... -->
+                                </castList>
+                            </egXML>
+                            <ab>Example taken from <ref target="https://dracor.org/id/ger000575"
+                                >Goethe: Pandora</ref>.</ab>
+                        </exemplum>
+                        
+                        <exemplum>
+                            <p>Probably not the best example...</p>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <castList>
+                                    <head>ЛИЦА:</head>
+                                    <castItem>Раиса Павловна Гурмыжская, вдова, лет 50-ти с
+                                        небольшим, очень богатая помещица, одевается скромно, почти
+                                        в трауре, постоянно с рабочим ящиком на руке.</castItem>
+                                    <castItem>Аксинья Даниловна (Аксюша), ее дальняя родственница,
+                                        бедная девушка лет 20-ти, одета чисто, но бедно, немного
+                                        лучше горничной.</castItem>
+                                    <castGroup>
+                                        <castItem>Евгений Аполлоныч Милонов, лет 45-ти, гладко
+                                            причесан, одет изысканно, в розовом галстуке.</castItem>
+                                        <castItem>Уар Кирилыч Бодаев, лет 60-ти, отставной
+                                            кавалерист, седой, гладко стриженный, с большими усами и
+                                            бакенбардами, в черном сюртуке, наглухо застегнутом, с
+                                            крестами и медалями по-солдатски, с костылем в руке,
+                                            немного глух.</castItem>
+                                        <roleDesc>Богатые соседи Гурмыжской.</roleDesc>
+                                    </castGroup>
+                                    <castItem>Иван Петров Восмибратов, купец, торгующий
+                                        лесом.</castItem>
+                                    <!-- ... -->
+                                </castList>
+                            </egXML>
+                        </exemplum>
+                    </elementSpec>
 
 
                     <!-- change -->
