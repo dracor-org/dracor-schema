@@ -1626,8 +1626,12 @@
                         </attList>
                     </classSpec>
 
-                    <!-- Elements that are specificially changed to make the extraction of information for
-                    the API work-->
+                    <!-- The following list should include all elements that are added because the 
+                    customization is based on TEI drama. Normally we remove the examples and add a note to the 
+                    element if it is normally not used within the wider DraCor context. 
+                    If an element is used but in a more restricted way than the TEI Drama Customization allows it
+                    we will add a constraint with a schematron rule that displays warnings to alert an ecoder that he or she is using
+                    an element in a way that it might not be processed by the API in the expected way. An encoder may still ignore the warning.-->
 
 
                     <!-- ##### -->
@@ -1641,13 +1645,260 @@
                         <content>
                             <textNode/>
                         </content>
+                        <constraintSpec type="encoding-hint" ident="encoding-hint_ab_used_somewhere_else" scheme="schematron">
+                            <desc>In DraCor we discourage the use of the element <gi>ab</gi> anywhere else than to mark the human-readable label of the licence in <gi>availability</gi>.</desc>
+                            <!-- This constraint can be tested with the file tst000004 -->
+                            <constraint>
+                                <sch:rule context="tei:ab" role="warning" see="https://dracor.org/doc/odd#TEI.ab">
+                                    <sch:assert test="./parent::tei:licence">In DraCor the element 'ab' should only be used to mark the label of the licence in the teiHeader.</sch:assert>
+                                </sch:rule>
+                            </constraint>
+                        </constraintSpec>
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <availability>
+                                    <licence>
+                                        <ab>CC0 1.0</ab>
+                                        <ref
+                                            target="https://creativecommons.org/publicdomain/zero/1.0/"
+                                            >Licence</ref>
+                                    </licence>
+                                </availability>
+                            </egXML>
+                        </exemplum>
+                        <remarks>
+                            <p>In DraCor the element <gi>ab</gi> is normally used to encode the name
+                                of the licence used.</p>
+                        </remarks>
+                    </elementSpec>
+                    
+                    <!-- abbr -->
+                    <elementSpec ident="abbr" module="core" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
+                            <ab>No example in DraCor</ab>
+                        </exemplum>
+                        <remarks><p>Although this element is allowed by the TEI Drama Customization there is currently no known usage of this element within DraCor corpora.</p></remarks>
+                    </elementSpec>
+                    
+                    <!-- abstract -->
+                    <elementSpec ident="abstract" module="header" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
+                            <ab>No example in DraCor</ab>
+                        </exemplum>
+                        <remarks><p>Although this element is allowed by the TEI Drama Customization there is currently no known usage of this element within DraCor corpora.</p></remarks>
+                    </elementSpec>
+                    
+                    <!-- actor -->
+                    <elementSpec ident="actor" module="drama" mode="change">
+                        <remarks>
+                            <p>According to the TEI Guidelines this element should be used only to mark the name of the actor as given in the source. Chapter 13. Names, Dates, People, and Places discusses ways of marking the components of names, and also of associating names with biographical information about a person.</p>
+                            <p>There is currently no known usage of this element within DraCor corpora. The example is taken from the TEI Guidelines.</p>
+                        </remarks>
+                    </elementSpec>
+                    
+                    <!-- add -->
+                    <elementSpec ident="add" module="core" mode="change" >
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
+                            <ab>No example in DraCor</ab>
+                        </exemplum>
+                        <remarks><p>Although this element is allowed by the TEI Drama Customization there is currently no known usage of this element within DraCor corpora.</p></remarks>
+                    </elementSpec>
+                    
+                    <!-- addrLine -->
+                    <elementSpec ident="addrLine" module="core" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
+                            <ab>No example in DraCor</ab>
+                        </exemplum>
+                        <remarks><p>Although this element is allowed by the TEI Drama Customization there is currently no known usage of this element within DraCor corpora.</p></remarks>
+                    </elementSpec>
+                    
+                    <!-- address -->
+                    <elementSpec ident="address" module="core" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
+                            <ab>No example in DraCor</ab>
+                        </exemplum>
+                        <remarks><p>Although this element is allowed by the TEI Drama Customization there is currently no known usage of this element within DraCor corpora.</p></remarks>
+                    </elementSpec>
+                    
+                    <!-- alt -->
+                    <elementSpec ident="alt" module="linking" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
+                            <ab>No example in DraCor</ab>
+                        </exemplum>
+                        <remarks><p>Although this element is allowed by the TEI Drama Customization there is currently no known usage of this element within DraCor corpora.</p></remarks>
+                    </elementSpec>
+                    
+                    <!-- altGrp -->
+                    <elementSpec ident="altGrp" module="linking" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
+                            <ab>No example in DraCor</ab>
+                        </exemplum>
+                        <remarks><p>Although this element is allowed by the TEI Drama Customization there is currently no known usage of this element within DraCor corpora.</p></remarks>
+                    </elementSpec>
+                    
+                    <!-- analytic -->
+                    <!-- THis might acutally be in use... -->
+                    
+                    <!-- anchor -->
+                    <elementSpec ident="anchor" module="linking" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
+                            <ab>No example in DraCor</ab>
+                        </exemplum>
+                        <remarks><p>Although this element is allowed by the TEI Drama Customization there is currently no known usage of this element within DraCor corpora.</p></remarks>
+                    </elementSpec>
+                    
+                    <!-- annotation -->
+                    <elementSpec ident="annotation" module="linking" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
+                            <ab>No example in DraCor</ab>
+                        </exemplum>
+                        <remarks><p>Although this element is allowed by the TEI Drama Customization there is currently no known usage of this element within DraCor corpora.</p></remarks>
+                    </elementSpec>
+                    
+                    <!-- appInfo -->
+                    <elementSpec ident="appInfo" module="header" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
+                            <ab>No example in DraCor</ab>
+                        </exemplum>
+                        <remarks><p>Although this element is allowed by the TEI Drama Customization there is currently no known usage of this element within DraCor corpora.</p></remarks>
+                    </elementSpec>
+                    
+                    <!-- application -->
+                    <elementSpec ident="application" module="header" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
+                            <ab>No example in DraCor</ab>
+                        </exemplum>
+                        <remarks><p>Although this element is allowed by the TEI Drama Customization there is currently no known usage of this element within DraCor corpora.</p></remarks>
+                    </elementSpec>
+                    
+                    <!-- argument -->
+                    <elementSpec ident="argument" module="textstructure" mode="change">
+                        <exemplum source="#ger000546">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <argument>
+                                    <head>Inhalt des trauer-spiels.</head>
+                                    <p>Michael Balbus, käyser Leonis Armenii oberster feldhauptmann,
+                                        nach dem er zu unterschiedenen mahlen wegen seiner untreu
+                                        und verleumbdungen angeklaget, verschweret sich wider den
+                                        käyser, welcher ihn durch Exabolium, seinen geheimesten
+                                        rath, offt von seiner leichtfertigkeit abzustehen ermahnet.
+                                        Weil aber Michael auf seinem vorsatz verharret, wird er
+                                        unversehens gefangen und von dem rath, in welchem der käyser
+                                        selbst kläger und richter, zu dem feuer verdammet.
+                                        <!-- ... --></p>
+                                    <p>Dieses trauerspiel beginnet den mittag vor dem heiligen
+                                        christtage, wehret durch die nacht und endet sich vor
+                                        auffgang der sonnen.</p>
+                                    <p>Der schauplatz ist Constantinopel und vornehmlich die
+                                        käyserliche burg.</p>
+                                </argument>
+                            </egXML>
+                            <ab>
+                                <ref target="https://dracor.org/id/ger000546">Andreas Gryphius: Leo
+                                    Armenius oder Fürsten-Mord</ref>
+                            </ab>
+                        </exemplum>
                     </elementSpec>
 
-                    <!-- argument -->
-
                     <!-- author -->
+                    <elementSpec ident="author" module="core" mode="change">
+                        <exemplum source="#ger000546">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <author>
+                                    <persName>
+                                        <forename>Andreas</forename>
+                                        <surname>Gryphius</surname>
+                                    </persName>
+                                    <idno type="wikidata">Q77214</idno>
+                                    <idno type="pnd">118543032</idno>
+                                </author>
+                            </egXML>
+                            <ab> Encoding of the author "Andreas Gryphius" of the play <ref
+                                    target="https://dracor.org/id/ger000546">Leo Armenius oder
+                                    Fürsten-Mord</ref>. </ab>
+                        </exemplum>
+                        <exemplum source="#rus000205">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <author>
+                                    <persName>
+                                        <forename>Владимир</forename>
+                                        <forename type="patronym">Иванович</forename>
+                                        <surname>Бельский</surname>
+                                    </persName>
+                                    <persName xml:lang="eng">
+                                        <forename>Vladimir</forename>
+                                        <surname>Belsky</surname>
+                                    </persName>
+                                    <idno type="wikidata">Q1259652</idno>
+                                </author>
+                            </egXML>
+                            <ab>Encoding of the author "Владимир Иванович Бельский" of the play <ref
+                                    target="https://dracor.org/id/rus000205">Сказание о невидимом
+                                    граде Китеже и деве Февронии</ref>.</ab>
+                        </exemplum>
+                        <remarks>
+                            <ab>For additional information on the encoding of author names and the
+                                rationale also see the following GitHub issues: <list>
+                                    <item>
+                                        <ref type="githubissue"
+                                            target="https://github.com/dracor-org/dracor-api/issues/119"
+                                            >https://github.com/dracor-org/dracor-api/issues/119</ref>
+                                    </item>
+                                    <item>
+                                        <ref type="githubissue"
+                                            target="https://github.com/dracor-org/dracor-schema/issues/21"
+                                            >https://github.com/dracor-org/dracor-schema/issues/21</ref>
+                                    </item>
+                                </list>
+                            </ab>
+                        </remarks>
+                    </elementSpec>
+                    
+                    <!-- authority -->
+                    <elementSpec ident="authority" module="header" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
+                            <ab>No example in DraCor</ab>
+                        </exemplum>
+                        <remarks><p>Although this element is allowed by the TEI Drama Customization there is currently no known usage of this element within DraCor corpora.</p></remarks>
+                    </elementSpec>
 
                     <!-- availability -->
+                    <elementSpec ident="availability" module="header" mode="change">
+                        <exemplum source="#ger000480">
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <availability status="free">
+                                    <p>In the public domain.</p>
+                                </availability>
+                            </egXML>
+                            <ab>Copyright status of the digital source of <ref
+                                target="https://dracor.org/id/ger000480">Karl Kraus: Die letzten
+                                Tage der Menschheit</ref>.</ab>
+                        </exemplum>
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <availability>
+                                    <licence>
+                                        <ab>CC-BY-3.0</ab>
+                                        <ref
+                                            target="http://creativecommons.org/licenses/by/3.0/de/legalcode"
+                                            >Lizenzvertrag</ref>
+                                    </licence>
+                                </availability>
+                            </egXML>
+                        </exemplum>
+                    </elementSpec>
 
                     <!-- ##### -->
                     <!--   B   -->
@@ -2789,7 +3040,8 @@
                     <!-- P2	play_id -->
                     <constraintSpec ident="play_id" scheme="schematron" type="api_feature_check"
                         corresp="#play_id">
-                        <desc>Feature-Check: <name type="api_feature"><ref target="#play_id">P2 play_id</ref></name></desc>
+                        <desc>Feature-Check: <name type="api_feature"><ref target="#play_id">P2
+                                    play_id</ref></name></desc>
                         <constraint>
                             <sch:rule context="/" role="information"
                                 see="https://dracor.org/doc/odd#play_id">
@@ -2805,8 +3057,9 @@
                     <!-- P4	play_wikidata_id -->
                     <constraintSpec ident="play_wikidata_id" scheme="schematron"
                         type="api_feature_check" corresp="#play_wikidata_id">
-                        <desc>Feature-Check: <name type="api_feature"><ref target="#play_wikidata_id">P4
-                                play_wikidata_id</ref></name></desc>
+                        <desc>Feature-Check: <name type="api_feature"><ref
+                                    target="#play_wikidata_id">P4
+                            play_wikidata_id</ref></name></desc>
                         <constraint>
                             <sch:rule context="/" role="information"
                                 see="https://dracor.org/doc/odd#play_wikidata_id">
@@ -2825,7 +3078,8 @@
                     <!-- P5	play_title -->
                     <constraintSpec ident="play_title" scheme="schematron" type="api_feature_check"
                         corresp="#play_title">
-                        <desc>Feature-Check: <name type="api_feature"><ref target="#play_title">P5 play_title</ref></name></desc>
+                        <desc>Feature-Check: <name type="api_feature"><ref target="#play_title">P5
+                                    play_title</ref></name></desc>
                         <constraint>
                             <sch:rule context="/" role="information"
                                 see="https://dracor.org/doc/odd#play_title">
@@ -2842,8 +3096,8 @@
                     <!-- P6	play_subtitle -->
                     <constraintSpec ident="play_subtitle" scheme="schematron"
                         type="api_feature_check" corresp="#play_subtitle">
-                        <desc>Feature-Check: <name type="api_feature"><ref target="#play_subtitle">P6
-                            play_subtitle</ref></name></desc>
+                        <desc>Feature-Check: <name type="api_feature"><ref target="#play_subtitle"
+                                    >P6 play_subtitle</ref></name></desc>
                         <constraint>
                             <sch:rule context="/" role="information"
                                 see="https://dracor.org/doc/odd#play_subtitle">
@@ -2931,15 +3185,13 @@
                     Because it is not so easy to decide where to put it, I put them here.
                     -->
 
-                    <!-- The constraint P4	play_wikidata_id already checks if a Wikidata ID provided can be processed
+                    <!-- The constraint "P4 play_wikidata_id" already checks if a Wikidata ID provided can be processed
                     but there are still some mistakes when adding the ID because the encoding (using relation and @active and @passive is overly complex-->
 
                     <constraintSpec ident="encoding-hint_play_wikidata_id" scheme="schematron"
                         type="encoding-hint">
-                        <desc>
-                            Encoding Hint: <name>Wikidata Identifier</name>
-                            There are some common errors when connecting a play to the respective
-                            entity on Wikidata: <list>
+                        <desc> Encoding Hint: <name>Wikidata Identifier</name> There are some common
+                            errors when connecting a play to the respective entity on Wikidata: <list>
                                 <item>Use the wrong base-URI of the Wikidata entity. MUST be
                                     http://www.wikidata.org/entity/{QID} NOT
                                     https://www.wikidata.org/wiki/{QID}</item>
@@ -2955,13 +3207,13 @@
                                 context="tei:TEI/tei:standOff/tei:listRelation/tei:relation[@name eq 'wikidata']"
                                 role="warning" see="https://dracor.org/doc/odd#div_play_wikidata">
                                 <sch:let name="expected_play_uri"
-                                    value="concat('https://dracor.org/entity/',./ancestor::tei:TEI/@xml:id/string())"
-                                />
+                                    value="concat('https://dracor.org/entity/',./ancestor::tei:TEI/@xml:id/string())"/>
                                 <!-- expects a correct Wikidata URI pattern in @passiv
                                 Test with:
                                 - WRONG: tst0000001: Here the URI is https://.../wiki/
                                 - CORRECT: tst000002: Here the correct URI is used in @passive 
-                                --> <sch:assert
+                                -->
+                                <sch:assert
                                     test="starts-with(./@passive/string(),'http://www.wikidata.org/entity/')"
                                     >The value of the attribute '@passive' MUST start with
                                     "http://www.wikidata.org/entity/" to be a valid Wikidata
@@ -2984,9 +3236,6 @@
                 </schemaSpec>
             </div>
             <!-- /schema -->
-
-
-
 
         </body>
         <back>
