@@ -1824,30 +1824,10 @@
                     </elementSpec>
 
                     <!-- abbr -->
-                    <elementSpec ident="abbr" module="core" mode="change">
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
-                            <ab>No example in DraCor</ab>
-                        </exemplum>
-                        <remarks>
-                            <p>Although this element is allowed by the TEI Drama Customization there
-                                is currently no known usage of this element within DraCor
-                                corpora.</p>
-                        </remarks>
-                    </elementSpec>
+               
 
                     <!-- abstract -->
-                    <elementSpec ident="abstract" module="header" mode="change">
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
-                            <ab>No example in DraCor</ab>
-                        </exemplum>
-                        <remarks>
-                            <p>Although this element is allowed by the TEI Drama Customization there
-                                is currently no known usage of this element within DraCor
-                                corpora.</p>
-                        </remarks>
-                    </elementSpec>
+                   
 
                     <!-- actor -->
                     <elementSpec ident="actor" module="drama" mode="change">
@@ -1863,124 +1843,31 @@
                     </elementSpec>
 
                     <!-- add -->
-                    <elementSpec ident="add" module="core" mode="change">
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
-                            <ab>No example in DraCor</ab>
-                        </exemplum>
-                        <remarks>
-                            <p>Although this element is allowed by the TEI Drama Customization there
-                                is currently no known usage of this element within DraCor
-                                corpora.</p>
-                        </remarks>
-                    </elementSpec>
+                    
 
                     <!-- addrLine -->
-                    <elementSpec ident="addrLine" module="core" mode="change">
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
-                            <ab>No example in DraCor</ab>
-                        </exemplum>
-                        <remarks>
-                            <p>Although this element is allowed by the TEI Drama Customization there
-                                is currently no known usage of this element within DraCor
-                                corpora.</p>
-                        </remarks>
-                    </elementSpec>
+                    
 
                     <!-- address -->
-                    <elementSpec ident="address" module="core" mode="change">
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
-                            <ab>No example in DraCor</ab>
-                        </exemplum>
-                        <remarks>
-                            <p>Although this element is allowed by the TEI Drama Customization there
-                                is currently no known usage of this element within DraCor
-                                corpora.</p>
-                        </remarks>
-                    </elementSpec>
+                    
 
                     <!-- alt -->
-                    <elementSpec ident="alt" module="linking" mode="change">
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
-                            <ab>No example in DraCor</ab>
-                        </exemplum>
-                        <remarks>
-                            <p>Although this element is allowed by the TEI Drama Customization there
-                                is currently no known usage of this element within DraCor
-                                corpora.</p>
-                        </remarks>
-                    </elementSpec>
+                    
 
                     <!-- altGrp -->
-                    <elementSpec ident="altGrp" module="linking" mode="change">
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
-                            <ab>No example in DraCor</ab>
-                        </exemplum>
-                        <remarks>
-                            <p>Although this element is allowed by the TEI Drama Customization there
-                                is currently no known usage of this element within DraCor
-                                corpora.</p>
-                        </remarks>
-                    </elementSpec>
 
                     <!-- analytic -->
-                    <!-- THis might acutally be in use... -->
+
 
                     <!-- anchor -->
-                    <elementSpec ident="anchor" module="linking" mode="change">
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
-                            <ab>No example in DraCor</ab>
-                        </exemplum>
-                        <remarks>
-                            <p>Although this element is allowed by the TEI Drama Customization there
-                                is currently no known usage of this element within DraCor
-                                corpora.</p>
-                        </remarks>
-                    </elementSpec>
 
                     <!-- annotation -->
-                    <elementSpec ident="annotation" module="linking" mode="change">
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
-                            <ab>No example in DraCor</ab>
-                        </exemplum>
-                        <remarks>
-                            <p>Although this element is allowed by the TEI Drama Customization there
-                                is currently no known usage of this element within DraCor
-                                corpora.</p>
-                        </remarks>
-                    </elementSpec>
-
+                    
                     <!-- appInfo -->
-                    <elementSpec ident="appInfo" module="header" mode="change">
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
-                            <ab>No example in DraCor</ab>
-                        </exemplum>
-                        <remarks>
-                            <p>Although this element is allowed by the TEI Drama Customization there
-                                is currently no known usage of this element within DraCor
-                                corpora.</p>
-                        </remarks>
-                    </elementSpec>
+                    
 
                     <!-- application -->
-                    <elementSpec ident="application" module="header" mode="change">
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
-                            <ab>No example in DraCor</ab>
-                        </exemplum>
-                        <remarks>
-                            <p>Although this element is allowed by the TEI Drama Customization there
-                                is currently no known usage of this element within DraCor
-                                corpora.</p>
-                        </remarks>
-                    </elementSpec>
+                    
 
                     <!-- argument -->
                     <elementSpec ident="argument" module="textstructure" mode="change">
@@ -2066,17 +1953,7 @@
                     </elementSpec>
 
                     <!-- authority -->
-                    <elementSpec ident="authority" module="header" mode="change">
-                        <exemplum>
-                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
-                            <ab>No example in DraCor</ab>
-                        </exemplum>
-                        <remarks>
-                            <p>Although this element is allowed by the TEI Drama Customization there
-                                is currently no known usage of this element within DraCor
-                                corpora.</p>
-                        </remarks>
-                    </elementSpec>
+                    
 
                     <!-- availability -->
                     <elementSpec ident="availability" module="header" mode="change">
