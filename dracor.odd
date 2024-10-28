@@ -535,6 +535,19 @@
                         </bibl>
                     </listBibl>
                 </div>
+                
+                <!-- List with Elements used in DraCor files -->
+                <div xml:id="div_list_used_elems">
+                    <head>Elements used in Dra</head>
+                    <list>
+                        <head>Elements in use in DraCor Files</head>
+                        <item>castList</item>
+                        <item>castItem</item>
+                        <item>...</item>
+                    </list>
+                </div>
+                <!-- /List with E... -->
+ 
             </div>
             <!-- End of How to -->
 
@@ -2142,7 +2155,8 @@
                     <!-- ##### -->
                     <!--   C   -->
                     <!-- ##### -->
-
+                    
+                    
                     <!-- castGroup -->
 
                     <elementSpec ident="castGroup" module="drama" mode="change">
@@ -2791,6 +2805,22 @@
                             <attDef ident="subtype" mode="delete"/>
                             <attDef ident="sortKey" mode="delete"/>
                         </attList>
+                    </elementSpec>
+                    
+                    <!-- ##### -->
+                    <!--   M   -->
+                    <!-- ##### -->
+                    
+                    
+                    <elementSpec ident="move" module="drama" mode="change">
+                        <exemplum>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
+                            <ab>No example in DraCor</ab>
+                        </exemplum>
+                        <!-- TODO: Muss man noch anpassen -->
+                        <remarks><p>Das Element ist bei uns nicht in Verwendung.</p>
+                            <p>see <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-move.html">TEI Guidelines</ref></p>
+                        </remarks>
                     </elementSpec>
 
 
