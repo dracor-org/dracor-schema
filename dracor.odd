@@ -300,7 +300,7 @@
                                         <code>xml:id="soldier_1"</code>.</p>
                             </item>
                         </list>
-                        
+
                         <p>Optionally, you can encode the social relationship between the characters
                             using the elements <gi>relation</gi> in a <gi>listRelation</gi>. Below
                             is an example taken from the play <title>Emilia Galotti</title>
@@ -535,19 +535,111 @@
                         </bibl>
                     </listBibl>
                 </div>
-                
+
                 <!-- List with Elements used in DraCor files -->
                 <div xml:id="div_list_used_elems">
-                    <head>Elements used in Dra</head>
-                    <list>
-                        <head>Elements in use in DraCor Files</head>
-                        <item>castList</item>
-                        <item>castItem</item>
-                        <item>...</item>
+                    <head>Elements used in DraCor files</head>
+                    <p>Only a small subset of the elements available in the TEI Drama Customization
+                        are actually used in DraCor corpora. The elements included in the following
+                        list are relevant. In the documentation below (section Schema) you can find
+                        additial information on the elements and examples of their use in DraCor
+                        files. If you are using additional elements that are valid in the TEI Drama
+                        Customization bear in mind that there can be unexpected results when using
+                        the API (e.g. counting of word tokens, extraction of metadata values, ...)
+                        or issues when displaying your files in the front-end (e.g. text not being
+                        displayed, ...). If you think that a certain element should be included in
+                        the core elements below and thus be better supported by the DraCor system
+                        please open an <ref
+                            target="https://github.com/dracor-org/dracor-schema/issues">issue</ref>
+                        in the <ref target="https://github.com/dracor-org/dracor-schema"
+                            >dracor-schema repository</ref> on GitHub and describe your usecase.</p>
+                    <list xml:id="dracor-tei-elements">
+                        <item><gi>TEI</gi></item>
+                        <item><gi>ab</gi></item>
+                        <item><gi>actor</gi></item>
+                        <item><gi>argument</gi></item>
+                        <item><gi>author</gi></item>
+                        <item><gi>availability</gi></item>
+                        <item><gi>back</gi></item>
+                        <item><gi>bibl</gi></item>
+                        <item><gi>body</gi></item>
+                        <item><gi>castGroup</gi></item>
+                        <item><gi>castItem</gi></item>
+                        <item><gi>castList</gi></item>
+                        <item><gi>change</gi></item>
+                        <item><gi>cit</gi></item>
+                        <item><gi>classCode</gi></item>
+                        <item><gi>dateline</gi></item>
+                        <item><gi>desc</gi></item>
+                        <item><gi>div</gi></item>
+                        <item><gi>docAuthor</gi></item>
+                        <item><gi>docTitle</gi></item>
+                        <item><gi>editor</gi></item>
+                        <item><gi>emph</gi></item>
+                        <item><gi>epigraph</gi></item>
+                        <item><gi>event</gi></item>
+                        <item><gi>figure</gi></item>
+                        <item><gi>fileDesc</gi></item>
+                        <item><gi>foreign</gi></item>
+                        <item><gi>forename</gi></item>
+                        <item><gi>front</gi></item>
+                        <item><gi>genName</gi></item>
+                        <item><gi>graphic</gi></item>
+                        <item><gi>head</gi></item>
+                        <item><gi>idno</gi></item>
+                        <item><gi>keywords</gi></item>
+                        <item><gi>l</gi></item>
+                        <item><gi>label</gi></item>
+                        <item><gi>lb</gi></item>
+                        <item><gi>lg</gi></item>
+                        <item><gi>licence</gi></item>
+                        <item><gi>listChange</gi></item>
+                        <item><gi>listEvent</gi></item>
+                        <item><gi>listPerson</gi></item>
+                        <item><gi>listRelation</gi></item>
+                        <item><gi>name</gi></item>
+                        <item><gi>nameLink</gi></item>
+                        <item><gi>note</gi></item>
+                        <item><gi>p</gi></item>
+                        <item><gi>particDesc</gi></item>
+                        <item><gi>pb</gi></item>
+                        <item><gi>performance</gi></item>
+                        <item><gi>persName</gi></item>
+                        <item><gi>person</gi></item>
+                        <item><gi>personGrp</gi></item>
+                        <item><gi>profileDesc</gi></item>
+                        <item><gi>publicationStmt</gi></item>
+                        <item><gi>publisher</gi></item>
+                        <item><gi>quote</gi></item>
+                        <item><gi>ref</gi></item>
+                        <item><gi>relation</gi></item>
+                        <item><gi>resp</gi></item>
+                        <item><gi>respStmt</gi></item>
+                        <item><gi>revisionDesc</gi></item>
+                        <item><gi>role</gi></item>
+                        <item><gi>roleDesc</gi></item>
+                        <item><gi>set</gi></item>
+                        <item><gi>signed</gi></item>
+                        <item><gi>sourceDesc</gi></item>
+                        <item><gi>sp</gi></item>
+                        <item><gi>spGrp</gi></item>
+                        <item><gi>speaker</gi></item>
+                        <item><gi>stage</gi></item>
+                        <item><gi>standOff</gi></item>
+                        <item><gi>surname</gi></item>
+                        <item><gi>teiHeader</gi></item>
+                        <item><gi>term</gi></item>
+                        <item><gi>text</gi></item>
+                        <item><gi>textClass</gi></item>
+                        <item><gi>title</gi></item>
+                        <item><gi>titlePage</gi></item>
+                        <item><gi>titlePart</gi></item>
+                        <item><gi>titleStmt</gi></item>
+                        <item><gi>trailer</gi></item>
                     </list>
                 </div>
-                <!-- /List with E... -->
- 
+                <!-- /List with Elemets used in DraCor files -->
+
             </div>
             <!-- End of How to -->
 
@@ -2155,8 +2247,8 @@
                     <!-- ##### -->
                     <!--   C   -->
                     <!-- ##### -->
-                    
-                    
+
+
                     <!-- castGroup -->
 
                     <elementSpec ident="castGroup" module="drama" mode="change">
@@ -2806,20 +2898,23 @@
                             <attDef ident="sortKey" mode="delete"/>
                         </attList>
                     </elementSpec>
-                    
+
                     <!-- ##### -->
                     <!--   M   -->
                     <!-- ##### -->
-                    
-                    
+
+
                     <elementSpec ident="move" module="drama" mode="change">
                         <exemplum>
                             <egXML xmlns="http://www.tei-c.org/ns/Examples"/>
                             <ab>No example in DraCor</ab>
                         </exemplum>
                         <!-- TODO: Muss man noch anpassen -->
-                        <remarks><p>Das Element ist bei uns nicht in Verwendung.</p>
-                            <p>see <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-move.html">TEI Guidelines</ref></p>
+                        <remarks>
+                            <p>Das Element ist bei uns nicht in Verwendung.</p>
+                            <p>see <ref
+                                    target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-move.html"
+                                    >TEI Guidelines</ref></p>
                         </remarks>
                     </elementSpec>
 
