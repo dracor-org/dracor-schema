@@ -1721,10 +1721,9 @@
                     <moduleRef key="corpus" include="particDesc"/>
                     <moduleRef key="figures" include="figure"/>
 
-                    <!-- The module analysis was originally included to have the analysis attributes; 
-                they might become available by including module classes below-->
-                    <!-- <moduleRef key="analysis"/> -->
-
+                    <!-- The module analysis was originally included to have the analysis attributes -->
+                    <moduleRef key="analysis"/>
+                    
                     <!-- global changes to the class system introduced by tei-drama -->
 
                     <!-- removed "linking" adaptions for for DraCor: -->
@@ -1751,7 +1750,8 @@
                     <attDef ident="select" usage="opt" mode="delete"/>
                 </attList>     
             </classSpec> -->
-
+                    
+                   
                     <classSpec module="tei" xml:id="GLOBAL" type="atts" ident="att.global"
                         mode="change">
                         <desc xml:lang="en" versionDate="2014-01-12">provides a set of attributes
@@ -1768,12 +1768,41 @@
                             <attDef ident="xml:space" usage="opt" mode="delete"/>
                             <!-- xml:base is needed for the idno in the corpus.xml -->
                             <attDef ident="xml:base" usage="opt" mode="delete"/>
+                            <!-- There is a problem with @ana, which I don't seem to have att the moment -->
                         </attList>
                     </classSpec>
-
+                    
+                    <!-- delete "att.datable.custom" and "att.datable.iso" attributes (on module core) -->
+                    <!-- this will only leave (att.datable.w3c (@when, @notBefore, @notAfter, @from, @to) to record dates -->
+                    <classSpec module="core" type="atts" ident="att.datable.custom" mode="delete"/>
+                    <classSpec module="core" type="atts" ident="att.datable.iso" mode="delete"/>
+                    
+                    <!-- Elements like add, del, ... and the like are very unlikely to be used, I leave the
+                    elements in but kick the attribute classes out to have less attributes to worry about-->
+                    
+                    <!-- delete the atttributes used in manuscript, e.g. @hand -->
+                    <classSpec type="atts" ident="att.written" mode="delete"/>
+                    <classSpec type="atts" ident="att.transcriptional" mode="delete"/>
+                    <classSpec type="atts" ident="att.editLike" mode="delete"/>
+                    
+                    <!-- other attribute classes removed -->
+                    <classSpec type="atts" ident="att.declaring" mode="delete"/>
+                    <classSpec type="atts" ident="att.declarable" mode="delete"/>
+                    <classSpec type="atts" ident="att.docStatus" mode="delete"/>
+                    
+                    
+                    <!-- remove attribute @subtype globally -->
+                    <classSpec type="atts" ident="att.typed" mode="change">
+                        <attList>
+                            <attDef ident="subtype" mode="delete"/>
+                        </attList>
+                    </classSpec>
+                    
+                 
+                    
                     <!-- The following list should include all elements that are added because the 
-                    customization is based on TEI drama. Normally we remove the examples and add a note to the 
-                    element if it is normally not used within the wider DraCor context. 
+                    customization is based on TEI drama. Normally we will leave elements as they are 
+                    but don't display them on the frontend if they are not used in DraCor files. We link to the TEI all documentation instead. 
                     If an element is used but in a more restricted way than the TEI Drama Customization allows it
                     we will add a constraint with a schematron rule that displays warnings to alert an ecoder that he or she is using
                     an element in a way that it might not be processed by the API in the expected way. An encoder may still ignore the warning.-->
