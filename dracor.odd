@@ -113,35 +113,16 @@
                     networks relying on structural segmentation of a given play into acts and scenes
                     and having uniquely identifiable speaking and acting characters (cf. <ref
                         target="#section_network_data">Encoding for Network Analysis</ref>).</p>
-                <!-- Moved/included this to an extra section -->
-                <!-- 
-                <p>The cast lists or <term>dramatis personae</term> that are contained in most
-                    dramatic texts are an insufficient source in this regard, because they tend to
-                    be incomplete. Speaker labels contained in the proper text are also often
-                    misleading, because they are often not stable enough to serve as an identifier. </p>
-                <p>Therefore the plays encoded for the DraCor plattform have an additional section
-                    in their metadata in the <gi>teiHeader</gi> that lists all characters as
-                    <gi>person</gi> elements in a <gi>listPerson</gi> and assigns them an unique
-                    identifier <att>xml:id</att>, that is then used in the attribute <att>who</att>
-                    to link the individual speech acts <gi>sp</gi> with their respective speakers.
-                    The co-presence network can then be extracted by a designated algorithm.<note>A
-                        more detailed explaination of the implementation in the DraCor system can be
-                        found in <ref target="#boerner_trilcke_2023">Börner/Trilcke
-                            (2023)</ref>.</note> While each distinct speaker represents a node in a
-                    network, a relation (edge) is established if the speeches <gi>sp</gi> of two or
-                    more speakers appear in the same segment <gi>div</gi> (normally a “scene”
-                    classified by the attribute <att>type</att>). It is important to note that this
-                    method of extracting networks from dramatic texts is only one possibility among
-                    many others and that the scope for interpretation is determined by this
-                    mechanism of extraction.</p> -->
             </div>
             <!-- End  Intro-->
 
 
-            <div xml:id="section_how-to">
-                <head>How to encode a play and make it DraCor-ready</head>
+            <div xml:id="section_encoding-guidelines">
+                <head>Encoding Guidelines</head>
+                <p>This section describes how to encode a play and make it DraCor-ready. It is still
+                    work in progress.</p>
                 <div xml:id="section_file-formats">
-                    <head>File formats and copyright issues</head>
+                    <head>File Formats and Copyright Issues</head>
                     <p>Depending on the source’s original format, you may follow one of these
                         pipelines: <list>
                             <item>If your text is already encoded in XML, it may be possible to
@@ -157,19 +138,20 @@
                     </p>
                     <p rend="hint"> It is possible to convert a .txt file encoded in UTF-8 to a
                         basic DraCor format through the experimental <ref
-                            target="https://github.com/dracor-org/ezdrama">EzDrama</ref> conversion
-                        tool (Python script). </p>
+                            target="https://github.com/dracor-org/ezdrama">EzDrama</ref>
+                        <!-- TODO: add citation here; maybe Daniil's TEI paper --> conversion tool
+                        (Python script).</p>
                     <p> Please note that DraCor considers for publication only works which are
                         either in the <hi rend="bold">public domain (CC BY 0)</hi> or released under
                         an open <hi rend="bold">Creative Commons Attribution Licence (e.g. CC BY
                             3.0)</hi>. According to German law, works become public domain after 70
                         years from their author’s death. Even though it is possible to build
                         copyright-protected corpora, they could be run only on a local DraCor
-                        instance built through Docker (procedure still under development; for hints
-                        on using DraCor with Docker see this <ref
-                            target="https://github.com/dracor-org/dracor-notebooks/blob/f72a7722a3ce9c3fa35ea856c81a108166c96f4d/docker/local-dracor-with-docker.ipynb"
-                            >Jupyter Notebook</ref>).</p>
-                    <!-- TODO: should point to the Report on Versioning Programmable Corpora istead -->
+                        instance built through Docker. Fort hints on how to do this see the <ref
+                            target="https://clsinfra.io">CLS INFRA</ref> Report <ref
+                            target="https://versioning-living-corpora.clsinfra.io/4_dockerizing_dracor.html"
+                            >On Versioning Living and Programmable Corpora</ref> (<ref
+                            target="#boerner_trilcke_2024">Boerner/Trilcke 2024</ref>).</p>
                 </div>
                 <!-- /file formats -->
                 <div xml:id="section_overview">
@@ -205,25 +187,70 @@
                         A good free-source alternative is Notepad++ (which now supports a <ref
                             target="https://github.com/dracor-org/ezdrama/blob/main/Npp_ezdrama-UDL.xml"
                             >user-defined Ezdrama language</ref>!). </p>
-                    <p rend="hint"> If you’re using Oxygen Editor, download the <ref
+                    <p rend="hint"> If you’re using Oxygen Editor, you can download and try the
+                        experimental <ref
                             target="https://github.com/dracor-org/dracor-oxygen-framework">DraCor
                             Oxygen Framework</ref>. It will help you by checking many kinds of
                         inconsistencies in the markup and validating your file against the DraCor
-                        schema. </p>
+                        schema.</p>
                 </div>
                 <!-- /overview -->
                 <div xml:id="section_encoding-header">
                     <head>Metadata in the <gi>teiHeader</gi></head>
                     <p>The header is composed of several sections: <gi>fileDesc</gi>,
                             <gi>profileDesc</gi> and <gi>revisionDesc</gi>.</p>
-                    <div xml:id="section_file-desc">
-                        <head><gi>fileDesc</gi></head>
+                    <p>
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                            <teiHeader>
+                                <fileDesc>
+                                    <titleStmt>
+                                        <!-- ... -->
+                                    </titleStmt>
+                                    <publicationStmt>
+                                        <!-- ... -->
+                                    </publicationStmt>
+                                    <sourceDesc>
+                                        <!-- ... -->
+                                    </sourceDesc>
+                                </fileDesc>
+                                <profileDesc>
+                                    <!-- ... -->
+                                </profileDesc>
+                                <revisionDesc>
+                                    <!-- ... -->
+                                </revisionDesc>
+                            </teiHeader>
+                        </egXML>
+                    </p>
+
+                    <div xml:id="section_bibliographic_metadata">
+                        <head>Bibliographic Metadata of a Play</head>
                         <p>The basic metadata on the digital file are included in the
                                 <gi>fileDesc</gi>. It contains a title statement
                             (<gi>titleStmt</gi>), a publication statement (<gi>publicationStmt</gi>)
                             and and a description of the digital and original sources
                                 (<gi>sourceDesc</gi>). </p>
-                        <div xml:id="section_title_in_titleStmt">
+                        <p>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <fileDesc>
+                                    <titleStmt>
+                                        <!-- ... -->
+                                    </titleStmt>
+                                    <publicationStmt>
+                                        <!-- ... -->
+                                    </publicationStmt>
+                                    <sourceDesc>
+                                        <!-- ... -->
+                                    </sourceDesc>
+                                </fileDesc>
+                            </egXML>
+                        </p>
+                        <p> In the following sections, we will discuss those parts in which
+                            important information is encoded. However, we do not strictly follow the
+                            hierarchy of the elements in the teiHeader. It is therefore important to
+                            observe the structure given in the example above.</p>
+                        <!-- title -->
+                        <div xml:id="section_title">
                             <head>Title</head>
                             <p>The title is encoded using the element <gi>title</gi> in
                                     <gi>titleStmt</gi>. It can be further classified using the
@@ -233,12 +260,249 @@
                                     <title type="sub">Trauerspiel in fünf Aufzügen</title>
                                 </egXML>
                             </p>
-                            <p/>
                         </div>
-                        <!-- title -->
+                        <!-- / title -->
+                        <div xml:id="section_author_information">
+                            <head>Author(s)</head>
+                            <p>An author of a play is encoded unsing the element <gi>author</gi> in
+                                    <gi>titleStmt</gi>. If there are multiple authors of a play add
+                                and element <gi>author</gi> for each of them.</p>
+                            <p><egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                    <author>
+                                        <persName>
+                                            <forename>Gotthold</forename>
+                                            <forename>Ephraim</forename>
+                                            <surname>Lessing</surname>
+                                        </persName>
+                                        <idno type="wikidata">Q34628</idno>
+                                        <idno type="pnd">118572121</idno>
+                                    </author>
+                                </egXML></p>
+
+                            <div xml:id="section_author-name">
+                                <head>Author Name(s)</head>
+                                <p> The author's name is enclosed in the element <gi>persName</gi>
+                                    and can be additionally structured using the designated elements
+                                        <gi>forename</gi> and <gi>surname</gi>.</p>
+                                <p>The element <gi>nameLink</gi> can be used to mark-up connecting
+                                    phrases in a name, like such as <q>van der</q> or <q>of</q>.
+                                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                        <persName>
+                                            <forename>Achim</forename>
+                                            <nameLink>von</nameLink>
+                                            <surname>Arnim</surname>
+                                        </persName>
+                                    </egXML>
+                                </p>
+                                <p>Other special elements for marking up ame constituents are
+                                    available in the TEI Guidelines but bear in mind that not
+                                    everything that is available is actually supported by the DraCor
+                                    API.</p>
+                                <p>In some cases it makes sense to include only the literal string
+                                    value of the name as <gi>persName</gi>.</p>
+                                <p>It is possible to include multiple names for an author, e.g. a
+                                    pen name or a (english) transliteration of an author's name in a
+                                    corpus with non-latin script.</p>
+                                <p>There are some special types of <soCalled>names</soCalled> that
+                                    are supported and marked by using the attribute
+                                    <att>type</att>.</p>
+                                <!-- TODO: add examples to <persName>! -->
+                                <p>For additional examles on encodig names see the documentation of
+                                    the element <gi>persName</gi>. There are also some GitHub issues
+                                    in which the encoding of names was discussed, e.g. <ref
+                                        target="https://github.com/dracor-org/dracor-api/issues/119"
+                                        >Refactor author information</ref>. If you encounter issues
+                                    with how names are displayed on DraCor or have questions
+                                    regarding edge cases please open an issue on <ref
+                                        target="https://github.com/dracor-org/dracor-api/issues"
+                                        >GitHub</ref>.</p>
+                            </div>
+                            <!-- /author name -->
+
+                            <div xml:id="section_author_external_id">
+                                <head>IDs in External Reference Ressources</head>
+                                <p>Authors should be linked to external reference ressources, e.g.
+                                        <ref target="https://www.wikidata.org">Wikidata</ref>. This
+                                    for example allows to fetch additional data about a person not
+                                    explicitly included in the TEI file and display it on the
+                                    front-end: If a Wikidata Identifier (QID) is provided
+                                    information about the date and place of birth and death of an
+                                    author and a picture will be displayed.</p>
+                                <p>To record an external ID use the element <gi>idno</gi> and
+                                    provide the type of identifier in the attribute
+                                    <att>type</att>:</p>
+                                <p>
+                                    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                        <idno type="wikidata">Q692</idno>
+                                    </egXML>
+                                </p>
+                                <p>The URI of the author in the example above can be constructed by
+                                    prepending the base-URI of Wikidata
+                                        <val>http://www.wikidata.org/entity/</val> to the QID
+                                    resuting in <ref target="http://www.wikidata.org/entity/Q692"
+                                        >http://www.wikidata.org/entity/Q692</ref>.</p>
+                                <p> There are other types of eternal identifiers available. Please
+                                    refer to the documentation of the element <gi>idno</gi> for
+                                    supported type values and additional examples. </p>
+                            </div>
+                            <!-- /external ids for autors -->
+
+                            <!-- Editors -->
+                            <div xml:id="section_contributor_roles">
+                                <head>Additional Contributors</head>
+                                <p>There can be other roles in which a person contributes to the
+                                    creation of a play. In DraCor we currently do not support
+                                    providing explicit information on the role of an individual
+                                    creator, but add them as authors in <gi>author</gi>. See the
+                                    example of the <ref target="https://dracor.org/gersh">German
+                                        Shakespeare Corpus</ref> below:</p>
+                                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                    <titleStmt>
+                                        <title>Hamlet. Prinz von Dänemark</title>
+                                        <author>
+                                            <persName>
+                                                <forename>William</forename>
+                                                <surname>Shakespeare</surname>
+                                            </persName>
+                                            <!-- ... -->
+                                        </author>
+                                        <author>
+                                            <persName>
+                                                <forename>August</forename>
+                                                <forename>Wilhelm</forename>
+                                                <surname>Schlegel</surname>
+                                            </persName>
+                                            <!-- ... -->
+                                        </author>
+                                        <respStmt>
+                                            <resp>This digital edition was prepared by</resp>
+                                            <name ref="https://orcid.org/0000-0003-2419-6629">Frank
+                                                Fischer</name>
+                                        </respStmt>
+                                    </titleStmt>
+                                </egXML>
+                                <p>This might change in the future. See the GitHub issue on <ref
+                                        target="https://github.com/dracor-org/dracor-schema/issues/71"
+                                        >Contributor roles</ref>.</p>
+                            </div>
+
+                        </div>
+                        <!-- /author information -->
                     </div>
-                    <!-- /file desc -->
+                    <div xml:id="section_sources">
+                        <head>Sources</head>
+                        <p>The sources of a play are included in the <gi>sourceDesc</gi> in the
+                                <gi>fileDesc</gi>. In most cases files in DraCor are not create from
+                            scratch, i.e. there is no scanning and OCR or any manual transcription
+                            of a printed source involved. Instead we use already available digital
+                            files that are digitizations of a certain printed edition. This fact is
+                            expressed with two nested elements <gi>bibl</gi> that are classified by
+                            their attributs <att>type</att>: the original print publication
+                                (<val>originalSource</val>) is described inside the bibliographic
+                            record of the digital surogate (<val>digitalSource</val>).</p>
+                        <p>
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <sourceDesc>
+                                    <bibl type="digitalSource">
+                                        <!-- .... -->
+                                        <bibl type="originalSource">
+                                            <!-- ... -->
+                                        </bibl>
+                                    </bibl>
+                                </sourceDesc>
+                            </egXML>
+                        </p>
+                        <div xml:id="section_digital_source">
+                            <head>Digital Source</head>
+                            <p> The information on <soCalled>digital source</soCalled> should
+                                include the name of the source, e.g. the <q>Project Gutenberg</q>
+                                and an identifier of the document within the source collection as
+                                    <gi>idno</gi>. The identifier can be a URL from which the
+                                document can be retieved. In the best case there is some persistend
+                                identifier that unambigously identifies the digital document used as
+                                the source for the DraCor file.</p>
+                            <p>The information on the licence under which the digital source file is
+                                distributed should be included in <gi>availability</gi> (see
+                                <!-- TODO --> section on encoding "Licence information" TBD).</p>
+                            <p>
+                                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                    <bibl type="digitalSource">
+                                        <name>TextGrid Repository</name>
+                                        <idno type="URL"
+                                            >http://www.textgridrep.org/textgrid:11f78.0</idno>
+                                        <availability>
+                                            <licence>
+                                                <ab>CC-BY-3.0</ab>
+                                                <ref
+                                                  target="http://creativecommons.org/licenses/by/3.0/de/legalcode"
+                                                  >Lizenzvertrag</ref>
+                                            </licence>
+                                        </availability>
+                                    </bibl>
+                                </egXML>
+                            </p>
+                            <p>For an exemplary analysis of sources of a corpus see chapter <ref
+                                    target="https://versioning-living-corpora.clsinfra.io/3-2_gerdracor_corpus_archeology.html#a-living-corpus-growing"
+                                    >An Algorithmic Archaeology of a Living Corpus: GerDraCor as a
+                                    Dynamic Epistemic Object</ref> in the report "On Versioning
+                                Living and Programmable Corpora" (<ref
+                                    target="#boerner_trilcke_2024">Boerner/Trilcke 2024</ref>)</p>
+                        </div>
+                        <!-- /digitalSource -->
+                        <div xml:id="section_original_source">
+                            <head>Original Source</head>
+                            <p>The original print publication that was the basis of the digital
+                                source is included as a bibliographic reference in an element
+                                    <gi>bibl</gi>.</p>
+                            <p>It is possible to use designated elements to explicitly mark-up the
+                                parts of the bibliographic reference, as in the following example:
+                                    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                    <bibl type="originalSource">
+                                        <author>Jakob Ayrer</author>: <title level="a">Tragedia
+                                            Thesei, des zehenten Königs zu Athen, von den vierzehen
+                                            Tributkindern, mit 41 Personen, hat 8 Actus</title>. In:
+                                            <title level="s">Ayrers Dramen</title>. Herausgegeben
+                                        von <editor>Adelbert von Keller</editor>. <biblScope
+                                            unit="volume">Zweiter</biblScope> Band.
+                                            <pubPlace>Stuttgart</pubPlace>:
+                                            <publisher>Litterarischer Verein</publisher>
+                                        <date>1865</date>, S. <biblScope unit="page" from="1207"
+                                            to="1303">1207–1303</biblScope>.</bibl>
+                                </egXML>
+                            </p>
+                            <p>As an alternative the bibliographic reference can only consist of an
+                                element <gi>title</gi> (see also GitHub <ref
+                                    target="https://github.com/dracor-org/dracor-schema/issues/73"
+                                    >issue</ref> on the single element <gi>title</gi> in the
+                                unstructured <gi>bibl</gi> element).</p>
+                            <p>
+                                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                    <bibl type="originalSource">
+                                        <title>Goethes Werke. Hamburger Ausgabe in 14 Bänden.
+                                            Textkritisch durchgesehen und mit Anmerkungen versehen
+                                            von Erich Trunz, Hamburg: Christian Wegener, 1948 ff.
+                                            [Seitenkonkordanz zu einer Mischauflage aus den Jahren
+                                            1959 und 1960.]</title>
+                                    </bibl>
+                                </egXML>
+                            </p>
+                            
+                        </div>
+                    </div>
+                    <!-- /sources -->
+                    
+                    <div xml:id="section_analytic_header_data">
+                        <head>Analytic or Research-driven Data in the <gi>teiHeader</gi></head>
+                        <p>
+                            There is analytic or research-driven data in the <gi>profileDesc</gi> of the <gi>teiHeader</gi>: Information on the characters and the (sub-)genre of a play. 
+                        </p>
+                        <!-- HIER -->
+                        <p>TBD (include)</p>
+                        
+                    </div> <!-- Analytic Data in the teiHeader -->
+                    
                     <div xml:id="section_profileDesc_particDesc">
+                        <!-- need to find better title -->
                         <head><gi>profileDesc</gi> (including <gi>particDesc</gi>)</head>
                         <p> Fill this section after annotating the play. It lists the characters as
                             given in the <att>who</att> of the <gi>person</gi> and
@@ -328,6 +592,7 @@
                     <!-- /section_revisionDesc -->
                 </div>
                 <!-- /encoding-header -->
+                
                 <div xml:id="section_standOff">
                     <head>Encoding additional metadata in the <gi>standOff</gi> element</head>
                     <p>The <gi>standOff</gi> element usually includes dates (first written, first
@@ -521,22 +786,9 @@
                         </egXML> (Goethe: Pandora) not a group? </p>
                 </div>
 
-                <div xml:id="licensing">
-                    <head>Licensing</head>
-                </div>
 
-                <div xml:id="section_other_resources">
-                    <head>See also</head>
-                    <listBibl>
-                        <bibl>
-                            <title>Encoding hints in the GerDraCor Wiki on Github</title>
-                            <ref target="https://github.com/dracor-org/gerdracor/wiki"
-                                >https://github.com/dracor-org/gerdracor/wiki</ref>
-                        </bibl>
-                    </listBibl>
-                </div>
 
-                <!-- List with Elements used in DraCor files -->
+                <!-- List of Elements used in DraCor files -->
                 <div xml:id="section_list_used_elems">
                     <head>Elements used in DraCor files</head>
                     <p>Only a small subset of the elements available in the TEI Drama Customization
@@ -1723,7 +1975,7 @@
 
                     <!-- The module analysis was originally included to have the analysis attributes -->
                     <moduleRef key="analysis"/>
-                    
+
                     <!-- global changes to the class system introduced by tei-drama -->
 
                     <!-- removed "linking" adaptions for for DraCor: -->
@@ -1750,8 +2002,8 @@
                     <attDef ident="select" usage="opt" mode="delete"/>
                 </attList>     
             </classSpec> -->
-                    
-                   
+
+
                     <classSpec module="tei" xml:id="GLOBAL" type="atts" ident="att.global"
                         mode="change">
                         <desc xml:lang="en" versionDate="2014-01-12">provides a set of attributes
@@ -1771,35 +2023,35 @@
                             <!-- There is a problem with @ana, which I don't seem to have att the moment -->
                         </attList>
                     </classSpec>
-                    
+
                     <!-- delete "att.datable.custom" and "att.datable.iso" attributes (on module core) -->
                     <!-- this will only leave (att.datable.w3c (@when, @notBefore, @notAfter, @from, @to) to record dates -->
                     <classSpec module="core" type="atts" ident="att.datable.custom" mode="delete"/>
                     <classSpec module="core" type="atts" ident="att.datable.iso" mode="delete"/>
-                    
+
                     <!-- Elements like add, del, ... and the like are very unlikely to be used, I leave the
                     elements in but kick the attribute classes out to have less attributes to worry about-->
-                    
+
                     <!-- delete the atttributes used in manuscript, e.g. @hand -->
                     <classSpec type="atts" ident="att.written" mode="delete"/>
                     <classSpec type="atts" ident="att.transcriptional" mode="delete"/>
                     <classSpec type="atts" ident="att.editLike" mode="delete"/>
-                    
+
                     <!-- other attribute classes removed -->
                     <classSpec type="atts" ident="att.declaring" mode="delete"/>
                     <classSpec type="atts" ident="att.declarable" mode="delete"/>
                     <classSpec type="atts" ident="att.docStatus" mode="delete"/>
-                    
-                    
+
+
                     <!-- remove attribute @subtype globally -->
                     <classSpec type="atts" ident="att.typed" mode="change">
                         <attList>
                             <attDef ident="subtype" mode="delete"/>
                         </attList>
                     </classSpec>
-                    
-                 
-                    
+
+
+
                     <!-- The following list should include all elements that are added because the 
                     customization is based on TEI drama. Normally we will leave elements as they are 
                     but don't display them on the frontend if they are not used in DraCor files. We link to the TEI all documentation instead. 
@@ -5447,6 +5699,29 @@
             </div>
             <!-- /section_feature_tables -->
 
+            <div xml:id="other_encoding_guides">
+                <head>Additional Ressources on Encoding of DraCor files</head>
+                <p>Use these materials with care. The proposed solutions on how to encode might be
+                    outdated.</p>
+                <listBibl>
+                    <bibl><ref target="https://github.com/dracor-org/dracor-schema/issues"
+                            >Issues</ref> in the <ref
+                            target="https://github.com/dracor-org/dracor-schema">dracor-schema</ref>
+                        repository</bibl>
+                    <bibl>Fischer, F. (2019). RusDraCor Wiki.<ref
+                            target="https://github.com/dracor-org/rusdracor/wiki"
+                            >https://github.com/dracor-org/rusdracor/wiki</ref></bibl>
+                    <bibl> Fischer, F. (2023). GerDraCor Wiki. <ref
+                            target="https://github.com/dracor-org/gerdracor/wiki"
+                            >https://github.com/dracor-org/gerdracor/wiki</ref>
+                    </bibl>
+                    <bibl> Giovannini, L. (2022). DraCor Quick-start Tutorial. <ref
+                            target="https://docs.google.com/document/d/1oZDa5ofvAUZSca9FwQ3vXuYIRkel3QGqbaUq88auS9E"
+                            >https://docs.google.com/document/d/1oZDa5ofvAUZSca9FwQ3vXuYIRkel3QGqbaUq88auS9E</ref>
+                    </bibl>
+                </listBibl>
+            </div>
+
             <div xml:id="bibliography">
                 <head>Bibliography</head>
                 <listBibl>
@@ -5455,9 +5730,11 @@
                             target="https://doi.org/10.5281/zenodo.7664964">doi:
                             10.5281/zenodo.7664964</ref>
                     </bibl>
-                    <bibl xml:id="gavin_2023">Gavin, Michael. Literary mathematics: quantitative
-                        theory for textual studies. Stanford text technologies. Stanford,
-                        California: Stanford University Press, 2023.</bibl>
+                    <bibl xml:id="boerner_trilcke_2024">Börner, I., &amp; Trilcke, P. (2024) CLS
+                        INFRA D7.3 On Versioning Living and Programmable Corpora: (Executable)
+                        Report and Prototypes for Reproducible Research. <ref
+                            target="https://doi.org/10.5281/ZENODO.11081934"
+                            >https://doi.org/10.5281/ZENODO.11081934</ref>. </bibl>
                     <bibl xml:id="fischer_et_al_2019">Fischer, F., Börner, I., Göbel, M., Hechtl,
                         A., Kittel, C., Milling, C., &amp; Trilcke, P. (2019). Programmable Corpora:
                         Introducing DraCor, an Infrastructure for the Research on European Drama.
@@ -5466,6 +5743,9 @@
                             target="https://doi.org/10.5281/ZENODO.4284002">doi:
                             10.5281/ZENODO.4284002</ref>
                     </bibl>
+                    <bibl xml:id="gavin_2023">Gavin, M. (2023) Literary mathematics. Quantitative
+                        theory for textual studies. Stanford text technologies. Stanford,
+                        California: Stanford University Press</bibl>
                     <bibl xml:id="trilcke_2013">Trilcke, P. (2013). Social Network Analysis (SNA)
                         als Methode einer textempirischen Literaturwissenschaft. In P. Ajouri, K.
                         Mellmann, &amp; C. Rauen (Eds.), Empirie in der Literaturwissenschaft (S.
