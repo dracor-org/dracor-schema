@@ -611,7 +611,11 @@
                                             attribute <att>xml:id</att> as follows:
                                                 <code>xml:id="soldier_1"</code>.</p>
                                     </item>
-                                <item>TBD: Order of the characters in order of appearance <!-- check with ff! --></item>
+                                    <item>TBD: Order of the characters in order of appearance
+                                        <!-- check with ff! --></item>
+                                    <item>TBD: Relation to <gi>castList</gi>; it is not a 1:1
+                                        comparison! They are not connected by any means of encoding,
+                                        unfortunately.</item>
                                 </list>
                             </p>
                         </div>
@@ -636,14 +640,12 @@
                                     </listPerson>
                                 </egXML>
                             </p>
-                            <p>Social relations among characters are encoded unsing
-                                elements <gi>relation</gi> in a <gi>listRelation</gi> with the value
+                            <p>Social relations among characters are encoded unsing elements
+                                    <gi>relation</gi> in a <gi>listRelation</gi> with the value
                                     <val>personal</val> of the attribute <att>type</att>.</p>
-                            <p> Below is an example taken from the play <title>Emilia
-                                    Galotti</title>
-                                <ref target="https://dracor.org/id/ger000088"/>: 
-                                
-                                <egXML
+                            <p> Below is an example taken from the play <ref
+                                    target="https://dracor.org/id/ger000088"><title>Emilia
+                                        Galotti</title></ref>: <egXML
                                     xmlns="http://www.tei-c.org/ns/Examples" source="#ger000088">
                                     <listRelation type="personal">
                                         <relation name="parent_of" active="#odoardo #claudia"
@@ -655,6 +657,48 @@
                                     </listRelation>
                                 </egXML>
                             </p>
+                            <p>It is recommended <!-- required, check with ff?! --> to include only
+                                such relations that are ground on textual evidence, e.g. notes on
+                                the relation of characters in the dramatis personae included in the
+                                text proper as <gi>castList</gi>. In the <gi>castList</gi> of the
+                                play used as an example above the characters "Odoardo" and "Claudia"
+                                are marked as a group with a curly bracket and it is noted that they
+                                are the parents of the character "Emilia" ("Eltern der Emilia") (in
+                                the example see element <gi>roleDesc</gi>):</p>
+                            <p>
+                                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                    <castList>
+                                        <castItem><role>Emilia Galotti.</role></castItem>
+                                        <castGroup rend="braced">
+                                            <castItem><role>Odoardo,</role></castItem>
+                                            <castItem><role>Claudia Galotti,</role></castItem>
+                                            <roleDesc>Eltern der Emilia.</roleDesc>
+                                        </castGroup>
+                                        <!-- ... -->
+                                    </castList>
+                                </egXML>
+                            </p>
+                            <p>This textual finding results in the following encoding of the
+                                character relation <q>parent_of</q>: <egXML
+                                    xmlns="http://www.tei-c.org/ns/Examples">
+                                    <relation name="parent_of" active="#odoardo #claudia"
+                                        passive="#emilia"/>
+                                </egXML>
+                            </p>
+                            <p>In this case being a parent of someone is a directed relationship.
+                                Therefore the <gi>relation</gi> with the value <val>parent_of</val>
+                                of the attribute <att>name</att> has two additional attributes that
+                                denote the source (<att>active</att>) and the target
+                                    (<att>passive</att>) of the relation. The values of these
+                                attributes are pointers (hence starting with '#') to the elements
+                                    <gi>person</gi> identified with the corresponding attribute
+                                values of <att>xml:id</att>.</p>
+                            <p>The possible relations identified by the attribute values of
+                                    <att>name</att> that are supported by the DraCor system can be
+                                found in the documentation of the <gi>relation</gi> element. The
+                                original method of identifying these relationships in the German
+                                Drama Corpus was developed by <ref target="wiedmer_2020">Wiedmer et
+                                    al. (2020)</ref>.</p>
                         </div>
                         <!-- /character relations -->
 
@@ -668,7 +712,7 @@
 
 
 
-                        
+
                         <p>Within <gi>textClass</gi> you can also specify the genre of the drama.
                         </p>
                     </div>
@@ -5839,6 +5883,10 @@
                         als Methode einer textempirischen Literaturwissenschaft. In P. Ajouri, K.
                         Mellmann, &amp; C. Rauen (Eds.), Empirie in der Literaturwissenschaft (S.
                         201–247). Mentis </bibl>
+                    <bibl xml:id="wiedmer_2020"> Wiedmer, N., Pagel J., Reiter, N. (2020). "Romeo, Freund Des Mercutio:
+                        Semi- Automatische Extraktion von Beziehungen zwischen Dramatischen
+                        Figuren." DHd2020. Book of Abstracts. Paderborn, p. 194–200.
+                        https://doi.org/10.5281/zenodo.4621778. </bibl>
                 </listBibl>
             </div>
             <!-- /bibliography -->
