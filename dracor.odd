@@ -702,21 +702,49 @@
                         </div>
                         <!-- /character relations -->
 
+                        <!-- is there an encoding in the particDesc to support roles? -->
+                        <!-- 
+                        <div xml:id="section_character_roles">
+                            <head>Character Roles</head>
+                            <p>TBD</p>
+                        </div>
+                         -->
+                        <div xml:id="section_character_concept_realizations">
+                            <head>External Reference Ressource for Characters</head>
+                            <p>If a character in a play is an actualization of a character
+                                archetype, e.g. a mythologic figure or a historic person it is
+                                possible to provide a link to the entity on Wikidata by including
+                                the full URI in the attribute <att>ana</att>.</p>
+                            <p>
+                                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                    <person xml:id="medea" sex="FEMALE"
+                                        ana="http://www.wikidata.org/entity/Q174278">
+                                        <persName>Medea</persName>
+                                    </person>
+                                </egXML>
+                                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                    <person xml:id="napoleon" sex="MALE"
+                                        ana="http://www.wikidata.org/entity/Q517">
+                                        <persName>Napoleon</persName>
+                                    </person>
+                                </egXML>
+                            </p>
+                        </div>
+                        <!-- /character realizations -->
+
+                        <div xml:id="section_genre">
+                            <head>Gere</head>
+                            <p>Within <gi>textClass</gi> in the <gi>profileDesc</gi> the genre of
+                                the drama can be specified.</p>
+                        </div>
+                        <!-- Genre -->
+
 
                     </div>
                     <!-- Analytic Data in the teiHeader -->
 
-                    <div xml:id="section_profileDesc_particDesc">
 
 
-
-
-
-
-                        <p>Within <gi>textClass</gi> you can also specify the genre of the drama.
-                        </p>
-                    </div>
-                    <!-- /section_profileDesc_particDesc -->
                     <div xml:id="section_revisionDesc">
                         <head><gi>revisionDesc</gi></head>
                         <p>Lists revisions and revisers of the file. Update it after each editing.
@@ -1035,20 +1063,21 @@
                 <head>Encoding for Network Analysis</head>
                 <p>The literary texts in the DraCor corpora are enriched with a research-driven
                     markup for the application of a specific method, the network analysis of
-                    literary texts (Trilcke 2013). Therefore, the encoding is tailored to allow for
-                    the extraction of <soCalled>co-presence networks</soCalled> relying on
-                    structural segmentation of a given play into acts and scenes and having uniquely
-                    identifiable speaking and acting characters. The cast lists (encoded as
-                        <gi>castList</gi>) or dramatis personae that are contained in most dramatic
-                    texts are an insufficient source in this regard, because they tend to be
-                    incomplete. Speaker labels (encoded as <gi>speaker</gi>) contained in the proper
-                    text are also often misleading, because they are often not stable enough to
-                    serve as an identifier. Therefore, the plays encoded for the DraCor plattform
-                    have an additional section in their metadata in the <gi>teiHeader</gi> that
-                    lists all characters as <gi>person</gi> or <gi>personGrp</gi> elements in a
-                        <gi>listPerson</gi> and assigns them a unique identifier (attribute
-                        <att>xml:id</att>), that is then used in the attribute <att>who</att> to
-                    link the individual speech acts <gi>sp</gi> with their respective speakers.</p>
+                    literary texts (<ref target="#trilcke_2013">Trilcke 2013</ref>). Therefore, the
+                    encoding is tailored to allow for the extraction of <soCalled>co-presence
+                        networks</soCalled> relying on structural segmentation of a given play into
+                    acts and scenes and having uniquely identifiable speaking and acting characters.
+                    The cast lists (encoded as <gi>castList</gi>) or dramatis personae that are
+                    contained in most dramatic texts are an insufficient source in this regard,
+                    because they tend to be incomplete. Speaker labels (encoded as <gi>speaker</gi>)
+                    contained in the proper text are also often misleading, because they are often
+                    not stable enough to serve as an identifier. Therefore, the plays encoded for
+                    the DraCor plattform have an additional section in their metadata in the
+                        <gi>teiHeader</gi> that lists all characters as <gi>person</gi> or
+                        <gi>personGrp</gi> elements in a <gi>listPerson</gi> and assigns them a
+                    unique identifier (attribute <att>xml:id</att>), that is then used in the
+                    attribute <att>who</att> to link the individual speech acts <gi>sp</gi> with
+                    their respective speakers.</p>
                 <p>While each distinct speaker represents a <soCalled>node</soCalled> in a network,
                     a relation (<soCalled>edge</soCalled>) is established if the speeches
                         <gi>sp</gi> of two or more speakers appear in the same segment <gi>div</gi>
@@ -5883,9 +5912,9 @@
                         als Methode einer textempirischen Literaturwissenschaft. In P. Ajouri, K.
                         Mellmann, &amp; C. Rauen (Eds.), Empirie in der Literaturwissenschaft (S.
                         201–247). Mentis </bibl>
-                    <bibl xml:id="wiedmer_2020"> Wiedmer, N., Pagel J., Reiter, N. (2020). "Romeo, Freund Des Mercutio:
-                        Semi- Automatische Extraktion von Beziehungen zwischen Dramatischen
-                        Figuren." DHd2020. Book of Abstracts. Paderborn, p. 194–200.
+                    <bibl xml:id="wiedmer_2020"> Wiedmer, N., Pagel J., Reiter, N. (2020). "Romeo,
+                        Freund Des Mercutio: Semi- Automatische Extraktion von Beziehungen zwischen
+                        Dramatischen Figuren." DHd2020. Book of Abstracts. Paderborn, p. 194–200.
                         https://doi.org/10.5281/zenodo.4621778. </bibl>
                 </listBibl>
             </div>
