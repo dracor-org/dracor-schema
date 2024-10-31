@@ -486,100 +486,189 @@
                                     </bibl>
                                 </egXML>
                             </p>
-                            
+
                         </div>
                     </div>
                     <!-- /sources -->
-                    
+
                     <div xml:id="section_analytic_header_data">
                         <head>Analytic or Research-driven Data in the <gi>teiHeader</gi></head>
+                        <p> There is analytic or research-driven data in the <gi>profileDesc</gi> of
+                            the <gi>teiHeader</gi>: Information on the characters in the
+                                <gi>particDesc</gi> and the (sub-)genre of a play in
+                                <gi>textClass</gi>.</p>
                         <p>
-                            There is analytic or research-driven data in the <gi>profileDesc</gi> of the <gi>teiHeader</gi>: Information on the characters and the (sub-)genre of a play. 
+                            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                <profileDesc>
+                                    <particDesc>
+                                        <!-- ... -->
+                                    </particDesc>
+                                    <textClass>
+                                        <!-- ... -->
+                                    </textClass>
+                                </profileDesc>
+                            </egXML>
                         </p>
-                        <!-- HIER -->
-                        <p>TBD (include)</p>
-                        
-                    </div> <!-- Analytic Data in the teiHeader -->
-                    
-                    <div xml:id="section_profileDesc_particDesc">
-                        <!-- need to find better title -->
-                        <head><gi>profileDesc</gi> (including <gi>particDesc</gi>)</head>
-                        <p> Fill this section after annotating the play. It lists the characters as
-                            given in the <att>who</att> of the <gi>person</gi> and
-                                <gi>personGrp</gi> elements used to encode the individual speech
-                            acts <gi>sp</gi> (see <ref target="#section_speech_acts">Speech
-                                Acts</ref>). The <gi>particDesc</gi> should follow this format:
+                        <!-- characters -->
+                        <div xml:id="section_characters">
+                            <head>Characters</head>
+                            <p>Information on the characters of a play is included in a
+                                    <gi>listPerson</gi> in the <gi>particDesc</gi>. Fill this
+                                section after annotating the text proper of the play (see also
+                                section on <ref target="#section_network_data">Encoding for Network
+                                    Analysis</ref>).</p>
+                            <p>The <gi>listPerson</gi> includes the characters speaking in the text
+                                proper as elements <gi>person</gi> or <gi>personGrp</gi>. Each
+                                element is assigned an unique identifier as the value of the
+                                attribute <att>xml:id</att>. Additional information on a character
+                                can be recorded in attributes, e.g. the attribute <att>sex</att> is
+                                used to encode the gender of a character.</p>
+                            <p>The following example shows the encoding of a single female character
+                                called "Eleonora":</p>
+                            <p>
                                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                                <person xml:id="eleonora" sex="FEMALE">
-                                    <persName>Eleonora</persName>
-                                </person>
-                            </egXML>
-                        </p>
-                        <list>
-                            <item>
-                                <p>Individuals are to be marked with <gi>persName</gi>, groups (e.g.
-                                    “Chorus”, “Soldiers”) with <gi>persGrp</gi>.</p>
-                            </item>
-                            <item>Each item must have a unique identifier in the attribute
-                                    <att>xml:id</att>. Use letters of the latin alphabet and numbers
-                                for these IDs; don't use any special characters apart from dash "-"
-                                and underscore "_". If your play is written in a non-latin script
-                                use a tranliteration of the character name as the identifier.</item>
-                            <item>
-                                <p>Gender could be marked as <val>FEMALE</val>, <val>MALE</val> or
-                                        <val>UNKNOWN</val>. <list>
-                                        <item>
-                                            <p>Please mark as gendered only characters which appear
-                                                unequivocally as such in text. If they don’t have a
-                                                proper name, but are defined by their profession,
-                                                consider the play’s context (e.g. “soldier” will be
-                                                surely <val>MALE</val> in a Renaissance play).</p>
-                                        </item>
-                                        <item>
-                                            <p>The same applies to groups (“soldiers”, “weavers”).
-                                                If no specific gender hints are provided, mark them
-                                                as <val>UNKNOWN</val> (“nobles”, ”citizens”,
-                                                “servants”).</p>
-                                        </item>
-                                        <item>
-                                            <p>Abstract entities (“Time”, “Fame”, “Death” etc.)
-                                                should be marked as <val>UNKNOWN</val> unless they
-                                                are clearly gendered in text.</p>
-                                        </item>
-                                    </list>
-                                </p>
-                            </item>
-                            <item>
-                                <p>The content of <gi>persName</gi> or <gi>persGrp</gi> will appear
-                                    in the network as the labels of the nodes. For the sake of
-                                    visualisation, try to stick to name or name+surname, avoiding
-                                    too much extra info which will clutter the network. For example:
-                                    “Henry”, “King Henry” or “Henry VII Tudor” are fine, “Henry,
-                                    brother to the King of England” is not.</p>
-                            </item>
-                            <item>
-                                <p>For characters defined by numerals (“First Soldier, Second
-                                    Soldier”), please include the values of the attribute
-                                        <att>xml:id</att> as follows:
-                                        <code>xml:id="soldier_1"</code>.</p>
-                            </item>
-                        </list>
+                                    <person xml:id="eleonora" sex="FEMALE">
+                                        <persName>Eleonora</persName>
+                                    </person>
+                                </egXML>
+                            </p>
+                            <p>A group of three supposedly male devils ("Drei Teufel") is encoded as
+                                follows: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                    <personGrp xml:id="drei_teufel" sex="MALE">
+                                        <name>Drei Teufel</name>
+                                    </personGrp>
+                                </egXML>
+                            </p>
+                            <p>When adding character information the following general rules apply: <list>
+                                    <item>
+                                        <p>Individuals are to be marked with <gi>person</gi>, groups
+                                            (e.g. “Chorus”, “Soldiers”) with <gi>personGrp</gi>.</p>
+                                    </item>
+                                    <item><p>Each item must have a unique identifier in the
+                                            attribute <att>xml:id</att>. As a general rule use
+                                            letters of the latin alphabet and numbers for these IDs;
+                                            don't use any special characters apart from dash "-" and
+                                            underscore "_". If your play is written in a non-latin
+                                            script use a tranliteration of the character name as the
+                                            identifier.</p>
+                                        <p>On a more technical level: The values of the attribute
+                                                <att>xml:id</att> need to be so-called
+                                                <soCalled>Nmtokens</soCalled> which cannot contain
+                                            space characters among others (see full spec at <ref
+                                                target="https://www.w3.org/TR/REC-xml/#NT-Name"
+                                                >https://www.w3.org/TR/REC-xml/#NT-Name</ref>).
+                                            Although they can consist of characters from various
+                                            scripts, in the case of DraCor we follow the convention
+                                            to use only ASCII characters. The reason being that IDs
+                                            may be used to construct URLs and anything beyond the
+                                            ASCII range would have to be URI encoded which would
+                                            make the URLs less readable (cf. <ref
+                                                target="https://github.com/dracor-org/georgdracor/issues/1"
+                                                >this GitHub issue</ref>.)</p>
+                                    </item>
+                                    <item>
+                                        <p>Gender could be marked as <val>FEMALE</val>,
+                                                <val>MALE</val> or <val>UNKNOWN</val>. </p>
+                                        <list>
+                                            <item>
+                                                <p>Please mark as gendered only characters which
+                                                  appear unequivocally as such in text. If they
+                                                  don’t have a proper name, but are defined by their
+                                                  profession, consider the play’s context (e.g.
+                                                  “soldier” will be surely <val>MALE</val> in a
+                                                  Renaissance play).</p>
+                                            </item>
+                                            <item>
+                                                <p>The same applies to groups (“soldiers”,
+                                                  “weavers”). If no specific gender hints are
+                                                  provided, mark them as <val>UNKNOWN</val>
+                                                  (“nobles”, ”citizens”, “servants”).</p>
+                                            </item>
+                                            <item>
+                                                <p>Abstract entities (“Time”, “Fame”, “Death” etc.)
+                                                  should be marked as <val>UNKNOWN</val> unless they
+                                                  are clearly gendered in text.</p>
+                                            </item>
+                                        </list><!-- /gender rules list -->
+                                    </item>
+                                    <!-- /gender item -->
+                                    <item>
+                                        <p>The content of <gi>persName</gi> in the case of
+                                            individual characters marked up with the element
+                                                <gi>person</gi> or <gi>name</gi> in the case of
+                                            character groups (<gi>personGrp</gi>) will, for example
+                                            appear in the network rendering in the frontend as the
+                                            labels of the nodes. For the sake of visualisation, try
+                                            to stick to name or name+surname, avoiding too much
+                                            extra information which will clutter the network. For
+                                            example: “Henry”, “King Henry” or “Henry VII Tudor” are
+                                            fine, “Henry, brother to the King of England” is
+                                            not.</p>
+                                    </item>
+                                    <item>
+                                        <p>For characters defined by numerals (“First Soldier,
+                                            Second Soldier”), please include the values of the
+                                            attribute <att>xml:id</att> as follows:
+                                                <code>xml:id="soldier_1"</code>.</p>
+                                    </item>
+                                <item>TBD: Order of the characters in order of appearance <!-- check with ff! --></item>
+                                </list>
+                            </p>
+                        </div>
+                        <!-- character relations -->
+                        <div xml:id="section_character_relations">
+                            <head>Social Relations of Characters</head>
+                            <p>Optionally, you can encode the social relationship between the
+                                characters at the end inside the <gi>listPerson</gi>. <egXML
+                                    xmlns="http://www.tei-c.org/ns/Examples">
+                                    <listPerson>
+                                        <person xml:id="charater1">
+                                            <persName>First Character</persName>
+                                        </person>
+                                        <!-- ... -->
+                                        <personGrp xml:id="group99">
+                                            <name>A Group of Characters</name>
+                                        </personGrp>
+                                        <!-- after the last character item include: -->
+                                        <listRelation type="personal">
+                                            <!-- Character relations go here -->
+                                        </listRelation>
+                                    </listPerson>
+                                </egXML>
+                            </p>
+                            <p>Social relations among characters are encoded unsing
+                                elements <gi>relation</gi> in a <gi>listRelation</gi> with the value
+                                    <val>personal</val> of the attribute <att>type</att>.</p>
+                            <p> Below is an example taken from the play <title>Emilia
+                                    Galotti</title>
+                                <ref target="https://dracor.org/id/ger000088"/>: 
+                                
+                                <egXML
+                                    xmlns="http://www.tei-c.org/ns/Examples" source="#ger000088">
+                                    <listRelation type="personal">
+                                        <relation name="parent_of" active="#odoardo #claudia"
+                                            passive="#emilia"/>
+                                        <relation name="associated_with" active="#marinelli"
+                                            passive="#der_prinz"/>
+                                        <relation name="associated_with" active="#camillo_rota"
+                                            passive="#der_prinz"/>
+                                    </listRelation>
+                                </egXML>
+                            </p>
+                        </div>
+                        <!-- /character relations -->
 
-                        <p>Optionally, you can encode the social relationship between the characters
-                            using the elements <gi>relation</gi> in a <gi>listRelation</gi>. Below
-                            is an example taken from the play <title>Emilia Galotti</title>
-                            <ref target="https://dracor.org/id/ger000088"/>: <egXML
-                                xmlns="http://www.tei-c.org/ns/Examples" source="#ger000088">
-                                <listRelation type="personal">
-                                    <relation name="parent_of" active="#odoardo #claudia"
-                                        passive="#emilia"/>
-                                    <relation name="associated_with" active="#marinelli"
-                                        passive="#der_prinz"/>
-                                    <relation name="associated_with" active="#camillo_rota"
-                                        passive="#der_prinz"/>
-                                </listRelation>
-                            </egXML>
-                        </p>
+
+                    </div>
+                    <!-- Analytic Data in the teiHeader -->
+
+                    <div xml:id="section_profileDesc_particDesc">
+
+
+
+
+
+                        
                         <p>Within <gi>textClass</gi> you can also specify the genre of the drama.
                         </p>
                     </div>
@@ -592,14 +681,14 @@
                     <!-- /section_revisionDesc -->
                 </div>
                 <!-- /encoding-header -->
-                
+
                 <div xml:id="section_standOff">
                     <head>Encoding additional metadata in the <gi>standOff</gi> element</head>
                     <p>The <gi>standOff</gi> element usually includes dates (first written, first
                         printed edition, premiere).</p>
 
                     <div xml:id="section_play_wikidata">
-                        <head>Wikidata QID of a play</head>
+                        <head>Wikidata QID of a Play</head>
                         <p>TBD</p>
                     </div>
 
