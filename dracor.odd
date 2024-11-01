@@ -737,7 +737,7 @@
 
 
                         <div xml:id="section_genre">
-                            <head>Gere</head>
+                            <head>Genre</head>
                             <p>Within <gi>textClass</gi> in the <gi>profileDesc</gi> the genre of
                                 the drama can be specified.</p>
                             <p>
