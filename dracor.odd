@@ -2254,12 +2254,7 @@
                     <!-- ##### -->
 
                     <!-- ab  -->
-                    <!-- Restriction: ab should only include strings; 
-                        maybe no need to restrict that but it was in the legacy-ODD -->
                     <elementSpec ident="ab" module="linking" mode="change">
-                        <content>
-                            <textNode/>
-                        </content>
                         <constraintSpec type="encoding-hint"
                             ident="encoding-hint_ab_used_somewhere_else" scheme="schematron">
                             <desc>In DraCor we discourage the use of the element <gi>ab</gi>
