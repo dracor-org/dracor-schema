@@ -89,7 +89,8 @@
                         2023</ref>). The documentation of the DraCor API can be accessed at <ref
                         target="https://dracor.org/doc/api">https://dracor.org/doc/api</ref>. For
                     additional information on the API and a documetation of the attributes returned
-                    in the JSON responses see section <ref target="#section-dracor-api">API</ref>.</p>
+                    in the JSON responses see section <ref target="#section-dracor-api"
+                    >API</ref>.</p>
                 <p>This customization restricts the use of TEI Guidelines to allow a smooth
                     integration into the DraCor system. It is originally based on the <ref
                         target="https://tei-c.org/release/xml/tei/custom/odd/tei_drama.odd">TEI ODD
@@ -754,14 +755,13 @@
                             <p>The content of the element <gi>term</gi> in the section
                                     <gi>keywords</gi> is considered the human-readable lable for the
                                 classification contained in <gi>classCode</gi>. The value should be
-                                the QID of the respective concept on Wikidata. The following values are suppored by the API:
-                                <!-- TODO: add codes according to the implementation -->
-                            <list>
-                                <item>
-                                    <label>Q80930</label><gloss>Tragedy</gloss>
-                                </item>
-                            </list>
-                
+                                the QID of the respective concept on Wikidata. The following values
+                                are suppored by the API: <!-- TODO: add codes according to the implementation -->
+                                <list>
+                                    <item>
+                                        <label>Q80930</label><gloss>Tragedy</gloss>
+                                    </item>
+                                </list>
                             </p>
                         </div>
                         <!-- Genre -->
@@ -2176,12 +2176,12 @@
                         <!-- IB: There was an issue not to make these global changes, see issue #69: 
                                 https://github.com/dracor-org/dracor-schema/issues/69 -->
                         <!-- if we like it this way, we can remove the uncommented parts altogether -->
-                        <!-- <attList> -->   
-                            <!-- globally removes xml:space and xml:base -->
-                            <!-- <attDef ident="xml:space" usage="opt" mode="delete"/> -->
-                            <!-- xml:base is needed for the idno in the corpus.xml -->
-                            <!-- <attDef ident="xml:base" usage="opt" mode="delete"/> -->
-                            <!-- There is a problem with @ana, which I don't seem to have att the moment -->
+                        <!-- <attList> -->
+                        <!-- globally removes xml:space and xml:base -->
+                        <!-- <attDef ident="xml:space" usage="opt" mode="delete"/> -->
+                        <!-- xml:base is needed for the idno in the corpus.xml -->
+                        <!-- <attDef ident="xml:base" usage="opt" mode="delete"/> -->
+                        <!-- There is a problem with @ana, which I don't seem to have att the moment -->
                         <!-- </attList> -->
                     </classSpec>
 
@@ -3057,9 +3057,18 @@
                     <!-- div -->
                     <elementSpec ident="div" module="textstructure" mode="change">
                         <attList>
-                            <attDef ident="type" mode="replace" usage="req">
+                            <attDef ident="type" mode="replace" usage="rec">
                                 <desc>Classifies the segment</desc>
-                                <valList type="closed">
+
+                                <!-- cmil:
+                                This list looks very heterogeneous to me to a point where I would say it doesn't make sense to enforce this as a finite list. Some of the values, like the ones used for Nestroy, only make sense in that context and shouldn't be use anywhere else. Others like "configuration" or "variant" lack a clear definition. And some might be completely redundant (e.g. "front" or "Dramatis_Personae" which on top of that runs against the predominant spelling convention). 
+                                Except for "act" and "scene" none of the values has any meaning for the API code.
+                                -->
+
+                                <datatype>
+                                    <dataRef key="teidata.text"/>
+                                </datatype>
+                                <valList type="semi">
 
                                     <!--
                         intermission
@@ -3068,112 +3077,82 @@
                                     <valItem ident="act">
                                         <desc>Act, also "Aufzug", "Auftritt"</desc>
                                     </valItem>
-                                    <valItem ident="Dramatis_Personae">
-                                        <!-- normalize spelling of value? -->
-                                        <desc>Dramatis personae</desc>
-                                    </valItem>
+
                                     <valItem ident="scene">
                                         <desc>Scene</desc>
                                     </valItem>
-                                    <valItem ident="subscene">
-                                        <desc>Subscene</desc>
-                                    </valItem>
-                                    <valItem ident="dedication">
-                                        <desc>Dedication</desc>
-                                    </valItem>
-                                    <valItem ident="preface">
-                                        <desc>Preface</desc>
-                                    </valItem>
-                                    <valItem ident="postface">
-                                        <desc>Postface</desc>
-                                    </valItem>
 
-                                    <valItem ident="prologue">
-                                        <desc>Prologue</desc>
-                                    </valItem>
-                                    <valItem ident="epilogue">
-                                        <desc>Prologue</desc>
-                                    </valItem>
-                                    <valItem ident="interlude">
-                                        <desc>Interlude, auch: Zwischenspiel</desc>
-                                    </valItem>
-                                    <valItem ident="entracte">
-                                        <desc>Entracte</desc>
-                                    </valItem>
-                                    <valItem ident="ouverture">
-                                        <desc>Ouverture</desc>
-                                    </valItem>
-                                    <valItem ident="location">
-                                        <desc>Location change</desc>
-                                    </valItem>
-                                    <valItem ident="configuration">
-                                        <desc>Change of character constellation, which is not marked
-                                            as scene change</desc>
-                                    </valItem>
-                                    <valItem ident="part">
-                                        <desc>Part</desc>
-                                    </valItem>
-                                    <valItem ident="appendix">
-                                        <desc>Appendix</desc>
-                                    </valItem>
-                                    <valItem ident="tableau">
-                                        <desc>Tableau, auch: Kartina</desc>
-                                    </valItem>
-                                    <valItem ident="dictionary">
-                                        <desc>Dictionary</desc>
-                                    </valItem>
-                                    <valItem ident="variant">
-                                        <desc>Variant</desc>
-                                    </valItem>
-                                    <valItem ident="front">
-                                        <desc>Front [Title, Author,...]</desc>
-                                    </valItem>
-                                    <valItem ident="epigraph">
-                                        <desc>Epigraph</desc>
-                                    </valItem>
-                                    <valItem ident="review">
-                                        <desc>Review?</desc>
-                                    </valItem>
-                                    <valItem ident="set">
-                                        <desc>Setting</desc>
-                                    </valItem>
-                                    <valItem ident="notes">
-                                        <desc>Notes</desc>
-                                    </valItem>
-
-                                    <!-- Sonderformen aus Nestroy-Stücken-->
-                                    <valItem ident="unten">
-                                        <desc>"unten"</desc>
-                                        <remarks>
-                                            <p>Only used in a play of Johann Nestroy</p>
-                                        </remarks>
-                                    </valItem>
-                                    <valItem ident="oben">
-                                        <desc>"oben"</desc>
-                                    </valItem>
-                                    <valItem ident="cholerisch">
-                                        <desc>"cholerisch"</desc>
-                                    </valItem>
-                                    <valItem ident="phlegmatisch">
-                                        <desc>"phlegmatisch"</desc>
-                                    </valItem>
-                                    <valItem ident="melancholisch">
-                                        <desc>"melancholisch"</desc>
-                                    </valItem>
-                                    <valItem ident="sanguinisch">
-                                        <desc>"sanguinisch"</desc>
-                                    </valItem>
                                 </valList>
-                            </attDef>
-                            <attDef ident="n" mode="replace">
-                                <desc>Number of act or scene</desc>
-                                <datatype>
-                                    <dataRef key="teidata.text"/>
-                                </datatype>
                                 <remarks>
-                                    <p>Used to number acts/scenes??? Don't know if datatype is
-                                        correct</p>
+                                    <p>Although global usage of values of this attribute is not
+                                        restricted, the API evaluates the values <val>act</val> and
+                                            <val>scene</val> on the <gi>div</gi> elments in the text
+                                        proper. If applicable these attribute values should be used
+                                        to classify the segments.</p>
+                                    <p>Other values of <att>type</att> that are used (in GerDraCor
+                                        and RusDraCor) to classify non-act or -scene divisions are: <list>
+                                            <item><label>appendix</label>:
+                                                <gloss>Appendix</gloss></item>
+                                            <item><label>configuration</label>: <p>Change of
+                                                  character constellation, which is not marked as
+                                                  scene change</p></item>
+                                            <item><label>dedication</label>:
+                                                  <gloss>Dedication</gloss></item>
+                                            <item><label>dictionary</label><p>Was in use at some
+                                                  point in time but not anymore</p></item>
+                                            <item>
+                                                <label>Dramatis_Personae</label>: <gloss>Dramatis
+                                                  personae</gloss>. <p>Element <gi>castList</gi> is
+                                                  sometimes wrapped in a <gi>div</gi> with this
+                                                  type. The spelling of the value is problematic
+                                                  though, because it differs from the spelling of
+                                                  other type values.</p>
+                                            </item>
+                                            <item><label>entracte</label></item>
+                                            <item><label>epigraph</label></item>
+                                            <item><label>epilogue</label></item>
+                                            <item><label>front</label></item>
+                                            <item><label>interlude</label>: auch
+                                                  <gloss>Zwischenspiel</gloss></item>
+                                            <item><label>location</label>: <gloss>Location
+                                                  change</gloss></item>
+                                            <item><label>notes</label></item>
+                                            <item><label>ouverture</label></item>
+                                            <item><label>part</label></item>
+                                            <item><label>postface</label></item>
+                                            <item><label>preface</label></item>
+                                            <item><label>prologue</label></item>
+                                            <item><label>review</label></item>
+                                            <item><label>set</label>: <gloss>Setting</gloss>. Could
+                                                use the designated element <gi>set</gi>
+                                                instead.</item>
+                                            <item>
+                                                <label>subscene</label>: <gloss>Subscene</gloss>
+                                            </item>
+                                            <item><label>tableau</label>: Tableau, auch:
+                                                Kartina</item>
+                                            <item><label>variant</label></item>
+                                        </list> There are some values that are used in some plays of
+                                        Johann Nestroy exclusively: <list>
+                                            <item>unten</item>
+                                            <item>oben</item>
+                                            <item>cholerisch</item>
+                                            <item>phlegmatisch</item>
+                                            <item>melancholisch</item>
+                                            <item>sanguinisch</item>
+                                        </list> In general it is desired that encoders list and
+                                        define the additional values used in the attribute
+                                            <att>type</att> on <gi>div</gi> at some other place.
+                                        [Instructions: TBD] </p>
                                 </remarks>
+                            </attDef>
+                            <attDef ident="n" mode="change">
+                                <desc>Number of act or scene</desc>
+                                <!-- 
+                                    <datatype>
+                                    <dataRef key="teidata.text"/>
+                                </datatype> 
+                                -->
                             </attDef>
                         </attList>
                         <exemplum source="https://dracor.org/id/ger000253">
