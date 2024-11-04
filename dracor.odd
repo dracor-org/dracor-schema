@@ -68,7 +68,7 @@
             <head>TEI Customization for Drama Corpora (dracor.org)</head>
             <p>WORK IN PROGRESS!</p>
             <!-- Encoding Guidelines -->
-            <div xml:id="section_intro">
+            <div xml:id="section-intro">
                 <head>Introduction</head>
                 <p>We are building drama corpora with files encoded following the guidelines of the
                         <ref target="https://tei-c.org/release/doc/tei-p5-doc/en/html/index.html"
@@ -89,7 +89,7 @@
                         2023</ref>). The documentation of the DraCor API can be accessed at <ref
                         target="https://dracor.org/doc/api">https://dracor.org/doc/api</ref>. For
                     additional information on the API and a documetation of the attributes returned
-                    in the JSON responses see section <ref target="#section_dracor-api">API</ref>.</p>
+                    in the JSON responses see section <ref target="#section-dracor-api">API</ref>.</p>
                 <p>This customization restricts the use of TEI Guidelines to allow a smooth
                     integration into the DraCor system. It is originally based on the <ref
                         target="https://tei-c.org/release/xml/tei/custom/odd/tei_drama.odd">TEI ODD
@@ -112,16 +112,16 @@
                     Therefore the encoding is tailored to allow for the extraction of co-presence
                     networks relying on structural segmentation of a given play into acts and scenes
                     and having uniquely identifiable speaking and acting characters (cf. <ref
-                        target="#section_network_data">Encoding for Network Analysis</ref>).</p>
+                        target="#section-network-data">Encoding for Network Analysis</ref>).</p>
             </div>
             <!-- End  Intro-->
 
 
-            <div xml:id="section_encoding-guidelines">
+            <div xml:id="section-encoding-guidelines">
                 <head>Encoding Guidelines</head>
                 <p>This section describes how to encode a play and make it DraCor-ready. It is still
                     work in progress.</p>
-                <div xml:id="section_file-formats">
+                <div xml:id="section-file-formats">
                     <head>File Formats and Copyright Issues</head>
                     <p>Depending on the source’s original format, you may follow one of these
                         pipelines: <list>
@@ -154,7 +154,7 @@
                             target="#boerner_trilcke_2024">Boerner/Trilcke 2024</ref>).</p>
                 </div>
                 <!-- /file formats -->
-                <div xml:id="section_overview">
+                <div xml:id="section-overview">
                     <head>Basic Structure</head>
                     <p> The basic structure of a DraCor file requires a <gi>teiHeader</gi>,
                         containing metadata on the play, and a <gi>text</gi> with the actual text.
@@ -195,7 +195,7 @@
                         schema.</p>
                 </div>
                 <!-- /overview -->
-                <div xml:id="section_encoding-header">
+                <div xml:id="section-encoding-header">
                     <head>Metadata in the <gi>teiHeader</gi></head>
                     <p>The header is composed of several sections: <gi>fileDesc</gi>,
                             <gi>profileDesc</gi> and <gi>revisionDesc</gi>.</p>
@@ -223,7 +223,7 @@
                         </egXML>
                     </p>
 
-                    <div xml:id="section_bibliographic_metadata">
+                    <div xml:id="section-bibliographic_metadata">
                         <head>Bibliographic Metadata of a Play</head>
                         <p>The basic metadata on the digital file are included in the
                                 <gi>fileDesc</gi>. It contains a title statement
@@ -250,7 +250,7 @@
                             hierarchy of the elements in the teiHeader. It is therefore important to
                             observe the structure given in the example above.</p>
                         <!-- title -->
-                        <div xml:id="section_title">
+                        <div xml:id="section-title">
                             <head>Title</head>
                             <p>The title is encoded using the element <gi>title</gi> in
                                     <gi>titleStmt</gi>. It can be further classified using the
@@ -262,7 +262,7 @@
                             </p>
                         </div>
                         <!-- / title -->
-                        <div xml:id="section_author_information">
+                        <div xml:id="section-author-information">
                             <head>Author(s)</head>
                             <p>An author of a play is encoded unsing the element <gi>author</gi> in
                                     <gi>titleStmt</gi>. If there are multiple authors of a play add
@@ -279,7 +279,7 @@
                                     </author>
                                 </egXML></p>
 
-                            <div xml:id="section_author-name">
+                            <div xml:id="section-author-name">
                                 <head>Author Name(s)</head>
                                 <p> The author's name is enclosed in the element <gi>persName</gi>
                                     and can be additionally structured using the designated elements
@@ -319,7 +319,7 @@
                             </div>
                             <!-- /author name -->
 
-                            <div xml:id="section_author_external_id">
+                            <div xml:id="section-author-external-id">
                                 <head>IDs in External Reference Ressources</head>
                                 <p>Authors should be linked to external reference ressources, e.g.
                                         <ref target="https://www.wikidata.org">Wikidata</ref>. This
@@ -348,7 +348,7 @@
                             <!-- /external ids for autors -->
 
                             <!-- Editors -->
-                            <div xml:id="section_contributor_roles">
+                            <div xml:id="section-contributor-roles">
                                 <head>Additional Contributors</head>
                                 <p>There can be other roles in which a person contributes to the
                                     creation of a play. In DraCor we currently do not support
@@ -389,7 +389,7 @@
                         </div>
                         <!-- /author information -->
                     </div>
-                    <div xml:id="section_sources">
+                    <div xml:id="section-sources">
                         <head>Sources</head>
                         <p>The sources of a play are included in the <gi>sourceDesc</gi> in the
                                 <gi>fileDesc</gi>. In most cases files in DraCor are not create from
@@ -412,7 +412,7 @@
                                 </sourceDesc>
                             </egXML>
                         </p>
-                        <div xml:id="section_digital_source">
+                        <div xml:id="section-digital-source">
                             <head>Digital Source</head>
                             <p> The information on <soCalled>digital source</soCalled> should
                                 include the name of the source, e.g. the <q>Project Gutenberg</q>
@@ -449,7 +449,7 @@
                                     target="#boerner_trilcke_2024">Boerner/Trilcke 2024</ref>)</p>
                         </div>
                         <!-- /digitalSource -->
-                        <div xml:id="section_original_source">
+                        <div xml:id="section-original-source">
                             <head>Original Source</head>
                             <p>The original print publication that was the basis of the digital
                                 source is included as a bibliographic reference in an element
@@ -491,7 +491,7 @@
                     </div>
                     <!-- /sources -->
 
-                    <div xml:id="section_analytic_header_data">
+                    <div xml:id="section-analytic-header-data">
                         <head>Analytic or Research-driven Data in the <gi>teiHeader</gi></head>
                         <p> There is analytic or research-driven data in the <gi>profileDesc</gi> of
                             the <gi>teiHeader</gi>: Information on the characters in the
@@ -510,12 +510,12 @@
                             </egXML>
                         </p>
                         <!-- characters -->
-                        <div xml:id="section_characters">
+                        <div xml:id="section-characters">
                             <head>Characters</head>
                             <p>Information on the characters of a play is included in a
                                     <gi>listPerson</gi> in the <gi>particDesc</gi>. Fill this
                                 section after annotating the text proper of the play (see also
-                                section on <ref target="#section_network_data">Encoding for Network
+                                section on <ref target="#section-network-data">Encoding for Network
                                     Analysis</ref>).</p>
                             <p>The <gi>listPerson</gi> includes the characters speaking in the text
                                 proper as elements <gi>person</gi> or <gi>personGrp</gi>. Each
@@ -549,7 +549,7 @@
                                     unfortunately.</item>
                             </list>
 
-                            <div xml:id="section_character_name">
+                            <div xml:id="section-character-name">
                                 <head>Character Name</head>
                                 <p>Use <gi>persName</gi> to provide the character name. In the case
                                     of a group of characters use the element <gi>name</gi>
@@ -561,7 +561,7 @@
                                     “Henry”, “King Henry” or “Henry VII Tudor” are fine, “Henry,
                                     brother to the King of England” is not.</p>
                             </div>
-                            <div xml:id="section_character_id">
+                            <div xml:id="section-character-id">
                                 <head>Character Identifier</head>
                                 <p>Each item must have a unique identifier in the attribute
                                         <att>xml:id</att>. As a general rule use letters of the
@@ -588,7 +588,7 @@
                                         <code>xml:id="soldier_1"</code>.</p>
                             </div>
                             <!-- /character ID -->
-                            <div xml:id="section_character_gender">
+                            <div xml:id="section-character-gender">
                                 <head>Character Gender</head>
                                 <p>Gender could be marked as <val>FEMALE</val>, <val>MALE</val> or
                                         <val>UNKNOWN</val> in the attribute <att>sex</att>.</p>
@@ -618,7 +618,7 @@
                             <!-- /gender -->
 
                             <!-- character relations -->
-                            <div xml:id="section_character_relations">
+                            <div xml:id="section-character-relations">
                                 <head>Social Relations of Characters</head>
                                 <p>Optionally, you can encode the social relationship between the
                                     characters at the end inside the <gi>listPerson</gi>. <egXML
@@ -701,7 +701,7 @@
                                         >Wiedmer et al. (2020)</ref>.</p>
                             </div>
                             <!-- /character relations -->
-                            <div xml:id="section_character_concept_realizations">
+                            <div xml:id="section-character-concept-realizations">
                                 <head>Characters as Realizations of Concepts</head>
                                 <p>If a character in a play is an actualization of a character
                                     archetype, e.g. a mythologic figure or a historic person it is
@@ -736,7 +736,7 @@
                         <!-- /character -->
 
 
-                        <div xml:id="section_genre">
+                        <div xml:id="section-genre">
                             <head>Genre</head>
                             <p>Within <gi>textClass</gi> in the <gi>profileDesc</gi> the genre of
                                 the drama can be specified.</p>
@@ -772,7 +772,7 @@
 
 
 
-                    <div xml:id="section_revisionDesc">
+                    <div xml:id="section-revisionDesc">
                         <head><gi>revisionDesc</gi></head>
                         <p>Lists revisions and revisers of the file. Update it after each editing.
                         </p>
@@ -781,19 +781,19 @@
                 </div>
                 <!-- /encoding-header -->
 
-                <div xml:id="section_standOff">
+                <div xml:id="section-standOff">
                     <head>Encoding additional metadata in the <gi>standOff</gi> element</head>
                     <p>The <gi>standOff</gi> element usually includes dates (first written, first
                         printed edition, premiere).</p>
 
-                    <div xml:id="section_play_wikidata">
+                    <div xml:id="section-play-wikidata">
                         <head>Wikidata QID of a Play</head>
                         <p>TBD</p>
                     </div>
 
                 </div>
                 <!-- /section_standOff -->
-                <div xml:id="section_drama_text_proper">
+                <div xml:id="section-drama-text-proper">
                     <head>Encoding the text (<gi>text</gi>)</head>
                     <p>The text of the play is usually composed of some paratextual elements (title
                         page, dedication, preface, dramatis personae etc.) and of the body of the
@@ -837,7 +837,7 @@
 
                 </div>
                 <!-- /section_drama_text_proper -->
-                <div xml:id="section_body_elements">
+                <div xml:id="section-body-elements">
                     <head><gi>text</gi></head>
                     <p>Mark the main elements in the play’s body <gi>body</gi> as follows: </p>
                     <div xml:id="section_segments">
@@ -856,7 +856,7 @@
                         </p>
                     </div>
                     <!-- /section_segments -->
-                    <div xml:id="section_stage_directions">
+                    <div xml:id="section-stage-directions">
                         <head>Stage Directions (non-diegetic elements)</head>
                         <p>Use the element <gi>stage</gi> to mark stage directions: <egXML
                                 xmlns="http://www.tei-c.org/ns/Examples">
@@ -879,7 +879,7 @@
                         </p>
                     </div>
                     <!-- /section_stage_directions -->
-                    <div xml:id="section_speech_acts">
+                    <div xml:id="section-speech-acts">
                         <head>Speakers and Speech Acts</head>
                         <list>
                             <item>
@@ -967,17 +967,8 @@
                 </div>
                 <!-- /body elements -->
 
-                <div xml:id="characters">
-                    <head>Marking up characters and linking them to the particDesc</head>
-                    <p> Why are <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                            <castItem><role>Schmiede</role></castItem>
-                        </egXML> (Goethe: Pandora) not a group? </p>
-                </div>
-
-
-
                 <!-- List of Elements used in DraCor files -->
-                <div xml:id="section_list_used_elems">
+                <div xml:id="section-list-used-elems">
                     <head>Elements used in DraCor files</head>
                     <p>Only a small subset of the elements available in the TEI Drama Customization
                         are actually used in DraCor corpora. The elements included in the following
@@ -1086,7 +1077,7 @@
             <!-- Section on Network analysis: In the draft of the designated API ODD I added a more detailed section on Network Analysis which I include here
                 It still needs to be consolidated with the information on Network analysis that is included in the introduction above            
             -->
-            <div xml:id="section_network_data">
+            <div xml:id="section-network-data">
                 <head>Encoding for Network Analysis</head>
                 <p>The literary texts in the DraCor corpora are enriched with a research-driven
                     markup for the application of a specific method, the network analysis of
@@ -1120,7 +1111,7 @@
                     package <name type="package">networkx</name>. </p>
                 <p>The schema derived from this ODD includes some schematron rules that allow for
                     checking if networks can be extracted from the TEI files: <list
-                        xml:id="check_network_extraction">
+                        xml:id="check-network-extraction">
                         <item>The text of the play in <gi>body</gi> is structured into segments
                                 (<gi>div</gi>);</item>
                         <item>The TEI file includes a <gi>particDesc</gi> containing <gi>person</gi>
@@ -1133,7 +1124,7 @@
             </div>
 
             <!-- DraCor API part -->
-            <div xml:id="section_dracor-api">
+            <div xml:id="section-dracor-api">
                 <head>DraCor API</head>
                 <p>The DraCor API is at the core of the whole DraCor system. It is designed with a
                     domain model of digital drama analysis in mind and thus organizes the API
@@ -1153,14 +1144,14 @@
                 <!-- TODO: Adapt D71 API part and include here -->
 
                 <!-- Features -->
-                <div xml:id="section_api_features">
+                <div xml:id="section-api-features">
                     <head>API features</head>
 
                     <p>The following sections list the <soCalled>features</soCalled>. The tables in
                         the annex provide an overview how these features are dispersed over the
                         response objects of the various endopoints.</p>
 
-                    <div xml:id="section_corpus_features">
+                    <div xml:id="section-corpus-features">
                         <head>Corpus features</head>
 
                         <div xml:id="corpus_name">
@@ -1375,7 +1366,7 @@
                     <!-- /corpus features -->
 
 
-                    <div xml:id="section_play_features">
+                    <div xml:id="section-play-features">
                         <head>Play features</head>
 
                         <div xml:id="play_corpus_name">
@@ -1951,7 +1942,7 @@
                     <!-- /play feature -->
 
                     <!-- Segment Features -->
-                    <div xml:id="section_segment_features">
+                    <div xml:id="section-segment-features">
                         <head>Segment features</head>
 
                         <div xml:id="segment_type">
@@ -1985,7 +1976,7 @@
                     </div>
                     <!-- /Segment Features -->
 
-                    <div xml:id="section_character_features">
+                    <div xml:id="section-character-features">
                         <head>Character features</head>
 
                         <div xml:id="character_id">
@@ -2096,7 +2087,7 @@
                     </div>
                     <!-- /character features -->
 
-                    <div xml:id="section_character_relation_features">
+                    <div xml:id="section-character-relation-features">
                         <head>Character relation features</head>
 
                         <div xml:id="character_relation_is_directed">
@@ -2140,7 +2131,7 @@
 
 
 
-            <div xml:id="section_schema">
+            <div xml:id="schema">
                 <head>Schema</head>
                 <schemaSpec ident="dracor-api" docLang="en" prefix="tei_" xml:lang="en"
                     start="TEI teiCorpus">
@@ -2566,7 +2557,7 @@
                             - tst000005: WRONG - There is nothing in the body at all
                         -->
                         <constraintSpec ident="network_check_basic_play_structure_div"
-                            scheme="schematron" corresp="#section_network_data">
+                            scheme="schematron" corresp="#section-network-data">
                             <desc>A network can only be extracted from a play if there is some basic
                                 structure. The API expects that there is at least a single
                                     <gi>div</gi> present.</desc>
@@ -2583,7 +2574,7 @@
                             can be tested with:
                             - tst000009: WRONG - There are no <sp> elements -->
                         <constraintSpec ident="network_check_basic_play_structure_sp"
-                            scheme="schematron" corresp="#section_network_data">
+                            scheme="schematron" corresp="#section-network-data">
                             <desc>The network is extracted based on speech acts which SHOULD be
                                 encoded using the element <gi>sp</gi>.</desc>
                             <constraint>
@@ -2598,7 +2589,7 @@
                         <!-- to test this:
                          - tst000010: There is only the Warning about the missing <sp> elements. -->
                         <constraintSpec ident="network_play_without_speaking_characters"
-                            scheme="schematron" corresp="#section_network_data">
+                            scheme="schematron" corresp="#section-network-data">
                             <desc>In the edge case of a play without speaking characters and no
                                 speech acts <gi>sp</gi> it is expected that there is at least a
                                 single stage direction <gi>stage</gi>.</desc>
@@ -4793,7 +4784,7 @@
                     <!-- sp -->
                     <elementSpec ident="sp" module="core" mode="change">
                         <constraintSpec ident="network_sp_with_who_attr" scheme="schematron"
-                            corresp="#section_network_data">
+                            corresp="#section-network-data">
                             <desc>Only speech acts <gi>sp</gi> with <att>who</att> attributes are
                                 used when extracting a network.</desc>
                             <constraint>
@@ -4807,7 +4798,7 @@
                         </constraintSpec>
 
                         <constraintSpec ident="network_unlinked_sp" scheme="schematron"
-                            corresp="#section_network_data">
+                            corresp="#section-network-data">
                             <desc>Speech acts <gi>sp</gi> SHOULD be linked to characters
                                     (<gi>person</gi> or <gi>personGrp</gi> elements in
                                     <gi>particDesc</gi>) by supplying the character's identifier in
@@ -5393,7 +5384,7 @@
                                 <item>The value of the attribute <att>passive</att> is NOT the
                                     self-URI of the play following the pattern
                                     "https://dracor.org/entity/{play_id}"</item>
-                            </list> See also <ref target="#section_play_wikidata">Wikidata QID of a
+                            </list> See also <ref target="#section-play-wikidata">Wikidata QID of a
                                 play</ref> for details on how to correctly assign a Wikidata
                             Identifier (QID). The equivalent API Feature that relies on the correct
                             encoding is <ref target="#play_wikidata_id">play_wikidata_id</ref>. </desc>
@@ -5401,7 +5392,7 @@
                             <sch:rule
                                 context="tei:TEI/tei:standOff/tei:listRelation/tei:relation[@name eq 'wikidata']"
                                 role="warning"
-                                see="https://dracor.org/doc/odd#section_play_wikidata">
+                                see="https://dracor.org/doc/odd#section-play-wikidata">
                                 <sch:let name="expected_play_uri"
                                     value="concat('https://dracor.org/entity/',./ancestor::tei:TEI/@xml:id/string())"/>
                                 <!-- expects a correct Wikidata URI pattern in @passiv
@@ -5435,14 +5426,14 @@
 
         </body>
         <back>
-            <div xml:id="section_d71_feature_tables">
+            <div xml:id="section-d71-feature-tables">
                 <head>Feature Tables</head>
                 <p>In the <title>Report on Programmable Corpora</title> (<ref
                         target="https://zenodo.org/records/7664964"
                         >https://zenodo.org/records/7664964</ref>) we identified
                         <soCalled>features</soCalled> that are returned by the DraCor API. We
                     include the adapted tables here for reference.</p>
-                <div xml:id="section_corpus_feature_table">
+                <div xml:id="section-corpus-feature-table">
                     <head>Corpus Features</head>
                     <table>
                         <row>
@@ -5527,7 +5518,7 @@
                         </row>
                     </table>
                 </div>
-                <div xml:id="section_play_feature_table">
+                <div xml:id="section-play-feature-table">
                     <head>Play Features</head>
                     <table>
 
@@ -5790,7 +5781,7 @@
                     </table>
                 </div>
 
-                <div xml:id="section_segment_feature_table">
+                <div xml:id="section-segment-feature-table">
                     <head>Segment Features</head>
                     <table>
                         <row>
@@ -5812,7 +5803,7 @@
                     </table>
                 </div>
 
-                <div xml:id="table_character_features">
+                <div xml:id="section-character-feature-table">
                     <head>Character Features</head>
                     <table>
                         <row>
@@ -5883,7 +5874,7 @@
             </div>
             <!-- /section_feature_tables -->
 
-            <div xml:id="other_encoding_guides">
+            <div xml:id="section-other-encoding-guides">
                 <head>Additional Ressources on Encoding of DraCor files</head>
                 <p>Use these materials with care. The proposed solutions on how to encode might be
                     outdated.</p>
