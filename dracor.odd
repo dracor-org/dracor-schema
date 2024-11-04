@@ -3315,38 +3315,36 @@
 
                     <!-- event -->
                     <elementSpec ident="event" module="namesdates" mode="change">
+
                         <attList>
-                            <!-- 2do: find out, what the API/eXist app supports -->
                             <attDef ident="when" mode="change" usage="opt">
-                                <desc>supplies the value of the date</desc>
-                                <datatype>
-                                    <dataRef key="gYear"/>
-                                </datatype>
                                 <remarks>
-                                    <p>use only year here</p>
+                                    <p>The value of this attribute can be evaluated by the DraCor
+                                        API. Use it to indicate date the event
+                                        took place. The value can be a year only.</p>
                                 </remarks>
                             </attDef>
-                            <!-- have to allow these two -->
+
                             <attDef ident="notBefore" mode="change" usage="opt">
-                                <desc>supplies the value of the date</desc>
-                                <datatype>
-                                    <dataRef key="gYear"/>
-                                </datatype>
                                 <remarks>
-                                    <p>use only year here</p>
+                                    <p>The value of this attribute can be evaluated by the DraCor
+                                        API. Use it to indicate the earliest possible date the event
+                                        took place. The value can be a year only.</p>
                                 </remarks>
                             </attDef>
+
+
                             <attDef ident="notAfter" mode="change" usage="opt">
-                                <desc>supplies the value of the date</desc>
-                                <datatype>
-                                    <dataRef key="gYear"/>
-                                </datatype>
                                 <remarks>
-                                    <p>use only year here</p>
+                                    <p>The value of this attribute can be evaluated by the DraCor
+                                        API. Use it to indicate the latest possible date the event
+                                        took place. The value can be a year only.</p>
                                 </remarks>
                             </attDef>
-                            <attDef ident="type" mode="change" usage="req">
-                                <valList type="closed" mode="replace">
+
+
+                            <attDef ident="type" mode="change" usage="rec">
+                                <valList type="semi" mode="replace">
                                     <valItem ident="print">
                                         <desc>Date of impressum</desc>
                                     </valItem>
@@ -3354,14 +3352,17 @@
                                         <desc>Date of debut performance</desc>
                                     </valItem>
                                     <valItem ident="written">
-                                        <!-- don't really understand this, IB -->
                                         <desc>Date of writing</desc>
                                     </valItem>
                                 </valList>
                                 <remarks>
-                                    <p>classifies date, select from the following values</p>
+                                    <p>The above mentioned values are supported by the DraCor API to
+                                        encode the dates a play was written, first printed and
+                                        performed for the first time. Other values are allowed but
+                                        not evaluated by the API.</p>
                                 </remarks>
                             </attDef>
+
                         </attList>
                         <exemplum>
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
