@@ -2158,30 +2158,7 @@
 
                     <!-- global changes to the class system introduced by tei-drama -->
 
-                    <!-- removed "linking" adaptions for for DraCor: -->
-
-                    <!-- <classSpec predeclare="true" module="linking" xml:id="CLLINK"
-                type="atts" ident="att.global.linking" mode="change">
-                <desc xml:lang="en" versionDate="2014-01-12">defines the
-                    attributes used for aggregating partial elements into a
-                    single virtual element.</desc>
-                <attList>
-                    <attDef ident="corresp" usage="opt" mode="delete"/>
-                    <attDef ident="synch" usage="opt" mode="delete"/>
-                    <attDef ident="sameAs" usage="opt" mode="delete"/>
-                    <attDef ident="copyOf" usage="opt" mode="delete"/>
-                    <attDef ident="next" usage="opt" mode="change">
-                        <valDesc mode="change">a URI which should point to an element of
-                            the same type, typically within the same document</valDesc>
-                    </attDef>
-                    <attDef ident="prev" usage="opt" mode="change">
-                        <valDesc mode="change">a URI which should point to an element of
-                            the same type, typically within the same document</valDesc>
-                    </attDef>
-                    <attDef ident="exclude" usage="opt" mode="delete"/>
-                    <attDef ident="select" usage="opt" mode="delete"/>
-                </attList>     
-            </classSpec> -->
+                    <!-- tei drama introduced some global changes here -->
 
 
                     <classSpec module="tei" xml:id="GLOBAL" type="atts" ident="att.global"
@@ -2191,17 +2168,21 @@
                             the TEI encoding scheme.</desc>
                         <classes>
                             <!-- removed linking as introduced in tei-drama for DraCor globally here -->
-                            <!-- this included and changed prev, next as defined in the uncommented parts above -->
+                            <!-- this included and changed prev, next as originally defined in tei drama. I think it made some attributes globally available, e.g. prev, next. 
+                                We don't have that at the moment. Therefore I di not remove the following memberOf statement -->
                             <!-- <memberOf key="att.global.linking"/> -->
                             <memberOf key="att.global.analytic"/>
                         </classes>
-                        <attList>
+                        <!-- IB: There was an issue not to make these global changes, see issue #69: 
+                                https://github.com/dracor-org/dracor-schema/issues/69 -->
+                        <!-- if we like it this way, we can remove the uncommented parts altogether -->
+                        <!-- <attList> -->   
                             <!-- globally removes xml:space and xml:base -->
-                            <attDef ident="xml:space" usage="opt" mode="delete"/>
+                            <!-- <attDef ident="xml:space" usage="opt" mode="delete"/> -->
                             <!-- xml:base is needed for the idno in the corpus.xml -->
-                            <attDef ident="xml:base" usage="opt" mode="delete"/>
+                            <!-- <attDef ident="xml:base" usage="opt" mode="delete"/> -->
                             <!-- There is a problem with @ana, which I don't seem to have att the moment -->
-                        </attList>
+                        <!-- </attList> -->
                     </classSpec>
 
                     <!-- delete "att.datable.custom" and "att.datable.iso" attributes (on module core) -->
