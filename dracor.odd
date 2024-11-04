@@ -89,7 +89,7 @@
                         2023</ref>). The documentation of the DraCor API can be accessed at <ref
                         target="https://dracor.org/doc/api">https://dracor.org/doc/api</ref>. For
                     additional information on the API and a documetation of the attributes returned
-                    in the JSON responses see section <ref target="#div_dracor-api">API</ref>.</p>
+                    in the JSON responses see section <ref target="#section_dracor-api">API</ref>.</p>
                 <p>This customization restricts the use of TEI Guidelines to allow a smooth
                     integration into the DraCor system. It is originally based on the <ref
                         target="https://tei-c.org/release/xml/tei/custom/odd/tei_drama.odd">TEI ODD
