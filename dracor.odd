@@ -2518,16 +2518,27 @@
                     <elementSpec ident="biblScope" module="core" mode="change">
                         <attList>
                             <attDef ident="type" mode="replace" usage="rec">
-                                <valList type="closed">
+                                <datatype>
+                                    <dataRef key="teidata.enumerated"/>
+                                </datatype>
+                                <valList type="semi">
                                     <valItem ident="volume">
-                                        <desc>Volume containing a play</desc>
+                                        <desc>volume containing a play</desc>
                                     </valItem>
                                     <valItem ident="page">
-                                        <desc>page range</desc>
+                                        <desc>page range of a play in the print publication</desc>
                                     </valItem>
                                 </valList>
+                                <remarks>
+                                    <p>The values above are evaluated by the DraCor-API. The TEI
+                                        Guidelines suggest additional values, see also the
+                                        documentation of the attribute in the attribute class <ref
+                                            target="#TEI.att.citing">att.citing</ref>. </p>
+                                </remarks>
+                                <!-- maybe could highlight from and to as well -->
                             </attDef>
                         </attList>
+                        <!-- TODO: Examples are missing -->
                     </elementSpec>
 
                     <!-- body -->
@@ -3320,8 +3331,8 @@
                             <attDef ident="when" mode="change" usage="opt">
                                 <remarks>
                                     <p>The value of this attribute can be evaluated by the DraCor
-                                        API. Use it to indicate date the event
-                                        took place. The value can be a year only.</p>
+                                        API. Use it to indicate date the event took place. The value
+                                        can be a year only.</p>
                                 </remarks>
                             </attDef>
 
