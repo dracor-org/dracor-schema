@@ -3418,7 +3418,8 @@
                                 <valList type="semi" mode="replace">
                                     <valItem ident="print">
                                         <gloss>Date printed</gloss>
-                                        <desc>Date of the print publication as stated in the impressum</desc>
+                                        <desc>Date of the print publication as stated in the
+                                            impressum</desc>
                                     </valItem>
                                     <valItem ident="premiere">
                                         <gloss>Date premiered</gloss>
@@ -3844,7 +3845,8 @@
                             </attDef>
                             <attDef ident="type" mode="change" usage="req">
                                 <desc>Classifies the identifier</desc>
-                                <valList type="open" mode="replace">
+                                <!-- this should be switched to be switched to "semi" -->
+                                <valList type="semi" mode="replace">
                                     <!--<valItem ident="dracor">
                                         <desc>DraCor-Identifier</desc>
                                     </valItem>-->
@@ -3970,24 +3972,48 @@
                     <elementSpec ident="l" module="core" mode="change">
                         <attList>
                             <attDef ident="rend" mode="change" usage="opt">
-                                <valList type="closed" mode="replace">
-                                    <valItem ident="indent"/>
+                                <valList type="semi" mode="replace">
+                                    <valItem ident="indent">
+                                        <gloss>Indented</gloss>
+                                        <desc>Indicates whether or not a verse line is
+                                            indented</desc>
+                                    </valItem>
                                 </valList>
                             </attDef>
+
                             <attDef ident="part" mode="change" usage="opt">
-                                <valList>
+                                <!-- it might also be possible to leave this at "closed" because in att.fragmentable there is a closed value list
+                                not sure how the API will handle this encoding but it is used in GerDraCor and RusDraCor -->
+                                <valList type="semi" mode="replace">
                                     <valItem ident="F">
-                                        <desc/>
+                                        <gloss>Final</gloss>
+                                        <desc>Final part of an interrupted or fragmented verse
+                                            line</desc>
+
                                     </valItem>
                                     <valItem ident="I">
-                                        <desc/>
+                                        <gloss>Initial</gloss>
+                                        <desc>Initial part of an interrupted or fragmented verse
+                                            line</desc>
                                     </valItem>
                                     <valItem ident="M">
-                                        <desc/>
+                                        <gloss>Medial</gloss>
+                                        <desc>Middle part of an interrupted or fragmented verse
+                                            line</desc>
                                     </valItem>
                                 </valList>
+                                <remarks>
+                                    <p>Consecutive verse lines that carry this attribute should be
+                                        considered as a single unit. On the use of <att>part</att>
+                                        in dramatic texts see also <ref
+                                            target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COVE"
+                                            >TEI Guidelines</ref>. See also this <ref target="https://github.com/dracor-org/dracor-schema/issues/75">issue</ref> on GitHub. </p>
+                                </remarks>
+                                <!-- TODO: this needs really to be tested how it affects the counting of verse lines -->
                             </attDef>
+
                         </attList>
+
                         <exemplum source="https://dracor.org/id/ger000083">
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
                                 <sp who="#chor_2-23">
