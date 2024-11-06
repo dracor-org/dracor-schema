@@ -4007,7 +4007,9 @@
                                         considered as a single unit. On the use of <att>part</att>
                                         in dramatic texts see also <ref
                                             target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COVE"
-                                            >TEI Guidelines</ref>. See also this <ref target="https://github.com/dracor-org/dracor-schema/issues/75">issue</ref> on GitHub. </p>
+                                            >TEI Guidelines</ref>. See also this <ref
+                                            target="https://github.com/dracor-org/dracor-schema/issues/75"
+                                            >issue</ref> on GitHub. </p>
                                 </remarks>
                                 <!-- TODO: this needs really to be tested how it affects the counting of verse lines -->
                             </attDef>
@@ -4310,7 +4312,7 @@
                                     Kreuzelschreiber</ref>.</ab>
                         </exemplum>
                         <remarks>
-                            <p>//Explain why <gi>listPerson</gi> in addition to <gi>castList</gi>.
+                            <p>TODO: Need to explain why <gi>listPerson</gi> in addition to <gi>castList</gi>.
                                 Use the same drama as example; probably an example, where speaker is
                                 not in castList</p>
                         </remarks>
@@ -4322,12 +4324,25 @@
                         <attList>
 
                             <attDef ident="type" mode="change" usage="opt">
-                                <valList mode="replace" type="closed">
-                                    <valItem ident="personal"/>
+                                <valList mode="replace" type="semi">
+                                    <valItem ident="personal">
+                                        <gloss>personal relations</gloss>
+                                        <desc>List of social and family relations amongst
+                                            characters. See <ref
+                                                target="#section-character-relations">Character
+                                                Relations</ref></desc>
+                                    </valItem>
                                 </valList>
+                                <remarks>
+                                    <p>There are currently two types of <gi>listRelation</gi>
+                                        evaluated by the DraCor API. The list that contains the
+                                        social relation needs to have an expcit type value. The
+                                        other <gi>listRelation</gi> that is used to connect a play
+                                        to an external reference ressource (Wikidata) does not have
+                                        an type (see <ref target="#section-play-wikidata">Wikidata
+                                            QID of a Play</ref>).</p>
+                                </remarks>
                             </attDef>
-                            <attDef ident="subtype" mode="delete"/>
-                            <attDef ident="sortKey" mode="delete"/>
                         </attList>
                         <exemplum>
                             <egXML xmlns="http://www.tei-c.org/ns/Examples">
