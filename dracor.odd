@@ -753,16 +753,46 @@
                                 </egXML>
                             </p>
                             <p>The content of the element <gi>term</gi> in the section
-                                    <gi>keywords</gi> is considered the human-readable lable for the
+                                    <gi>keywords</gi> is considered the human-readable label for the
                                 classification contained in <gi>classCode</gi>. The value should be
                                 the QID of the respective concept on Wikidata. The following values
-                                are suppored by the API: <!-- TODO: add codes according to the implementation -->
+                                are supported by the API (See also <ref
+                                    target="https://github.com/dracor-org/dracor-api/blob/9df15f727a210b9ff80bf32aaf3523926b3e8c8e/modules/config.xqm#L77-L83"
+                                    >Source Code</ref>): 
                                 <list>
-                                    <item>
-                                        <label>Q80930</label><gloss>Tragedy</gloss>
+
+                                    <item><label><ref target="http://www.wikidata.org/entity/Q40831"
+                                                >Q40831</ref></label>: <gloss>Comedy</gloss>
                                     </item>
+
+
+                                    <item><label><ref target="http://www.wikidata.org/entity/Q80930"
+                                                >Q80930</ref></label>: <gloss>Tragedy</gloss></item>
+
+                                    <item><label><ref
+                                                target="http://www.wikidata.org/entity/Q131084"
+                                                >Q131084</ref></label>:
+                                        <gloss>Libretto</gloss></item>
+
+                                    <item><label><ref
+                                                target="http://www.wikidata.org/entity/Q192881"
+                                                >Q192881</ref></label>:
+                                        <gloss>Tragicomedy</gloss></item>
+
+                                    <item><label><ref
+                                                target="http://www.wikidata.org/entity/Q1050848"
+                                                >Q1050848</ref></label>: <gloss>Satyr
+                                        play</gloss></item>
+
+
                                 </list>
                             </p>
+                            <p>Genre information should only be supplied if there are some
+                                indicatiors that a certain genre is applicable, e.g. a genre term in
+                                the subtitle or some other text on the title page in the source. See
+                                also the discussion in this <ref
+                                    target="https://github.com/dracor-org/dracor-schema/issues/74"
+                                    >issue</ref> on GitHub.</p>
                         </div>
                         <!-- Genre -->
 
