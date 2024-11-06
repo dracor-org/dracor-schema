@@ -758,8 +758,7 @@
                                 the QID of the respective concept on Wikidata. The following values
                                 are supported by the API (See also <ref
                                     target="https://github.com/dracor-org/dracor-api/blob/9df15f727a210b9ff80bf32aaf3523926b3e8c8e/modules/config.xqm#L77-L83"
-                                    >Source Code</ref>): 
-                                <list>
+                                    >Source Code</ref>): <list>
 
                                     <item><label><ref target="http://www.wikidata.org/entity/Q40831"
                                                 >Q40831</ref></label>: <gloss>Comedy</gloss>
@@ -2242,7 +2241,7 @@
                             <attDef ident="subtype" mode="delete"/>
                         </attList>
                     </classSpec>
-                    
+
                     <!-- remove @rendition and @style from att.global.rendition to leave only @rend -->
                     <classSpec type="atts" ident="att.global.rendition" mode="change">
                         <attList>
@@ -2670,13 +2669,19 @@
                                 - tst000011 - CORRECT encoding
                                 - tst000012 - WRONG encoding
                             -->
-                            <!-- <attDef ident="rend" mode="add">
-                                 <valList mode="replace" type="semi">
+                            <attDef ident="rend" mode="change">
+                                <valList mode="add" type="semi">
                                     <valItem ident="braced">
                                         <desc>braced</desc>
                                     </valItem>
-                                </valList> 
-                            </attDef> -->
+                                </valList>
+                                <remarks>
+                                    <p>Use the value <val>braced</val> to indicate that a group of
+                                        characters is marked as belonging to a group by means of a
+                                        bracket. This rendering is supported by the DraCor front-end.</p>
+                                </remarks>
+                            </attDef>
+                            <!-- IB: Don't know if we already agreed on this encoding. But sounds good to me -->
                             <attDef ident="corresp" mode="change">
                                 <datatype>
                                     <dataRef key="teidata.pointer"/>
