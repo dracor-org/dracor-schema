@@ -2485,9 +2485,11 @@
                             <attDef ident="type" mode="change" usage="opt">
                                 <valList type="open" mode="replace">
                                     <valItem ident="digitalSource">
-                                        <desc>Digital Source</desc>
+                                        <gloss>Digital Source</gloss>
+                                        <desc>Digitized version of the print publication</desc>
                                     </valItem>
                                     <valItem ident="originalSource">
+                                        <gloss>Original Source</gloss>
                                         <desc>Bibliographic citation of the original print
                                             publication the digital text is derived from</desc>
                                     </valItem>
@@ -2562,10 +2564,12 @@
                                 </datatype>
                                 <valList type="semi">
                                     <valItem ident="volume">
-                                        <desc>volume containing a play</desc>
+                                        <gloss>Volume</gloss>
+                                        <desc>Volume containing a play</desc>
                                     </valItem>
                                     <valItem ident="page">
-                                        <desc>page range of a play in the print publication</desc>
+                                        <gloss>Page</gloss>
+                                        <desc>Page range of a play in the print publication</desc>
                                     </valItem>
                                 </valList>
                                 <remarks>
@@ -2672,17 +2676,16 @@
                             <attDef ident="rend" mode="change">
                                 <valList mode="add" type="semi">
                                     <valItem ident="braced">
-                                        <desc>braced</desc>
+                                        <gloss>marked with a bracket</gloss>
+                                        <desc>Indicates that a group of characters is visually
+                                            marked as belonging to a group by means of a bracket.
+                                            This rendering is supported by the DraCor
+                                            front-end.</desc>
                                     </valItem>
                                 </valList>
-                                <remarks>
-                                    <p>Use the value <val>braced</val> to indicate that a group of
-                                        characters is marked as belonging to a group by means of a
-                                        bracket. This rendering is supported by the DraCor
-                                        front-end.</p>
-                                </remarks>
                             </attDef>
                             <!-- IB: Don't know if we already agreed on this encoding. But sounds good to me -->
+                            <!-- see issue https://github.com/dracor-org/dracor-schema/issues/34 -->
                             <attDef ident="corresp" mode="change">
                                 <datatype>
                                     <dataRef key="teidata.pointer"/>
@@ -2749,6 +2752,8 @@
                     <!-- castItem -->
                     <elementSpec ident="castItem" module="drama" mode="change">
                         <attList>
+                            <!-- IB: Don't know if we already agreed on this encoding. But sounds good to me -->
+                            <!-- see issue https://github.com/dracor-org/dracor-schema/issues/34 -->
                             <attDef ident="corresp" mode="change">
                                 <datatype>
                                     <dataRef key="teidata.pointer"/>
@@ -2977,12 +2982,13 @@
                             <attDef ident="scheme" mode="change" usage="req">
                                 <valList type="semi" mode="add">
                                     <valItem ident="http://www.wikidata.org/entity/">
-                                        <desc>Wikidata</desc>
+                                        <gloss>Wikidata</gloss>
+                                        <desc>Base-URI of an entity on Wikidata.</desc>
                                     </valItem>
                                 </valList>
                                 <remarks>
                                     <p>Specify the scheme/taxonomy the classification code is coming
-                                        from. Only wikidata is supported by the DraCor API.</p>
+                                        from.</p>
                                 </remarks>
                             </attDef>
                         </attList>
@@ -3137,11 +3143,14 @@
                         -->
 
                                     <valItem ident="act">
-                                        <desc>Act, also "Aufzug", "Auftritt"</desc>
+                                        <gloss>Act</gloss>
+                                        <desc>Top-level structural division of a play, also
+                                            "Aufzug", "Auftritt" in German</desc>
                                     </valItem>
 
                                     <valItem ident="scene">
-                                        <desc>Scene</desc>
+                                        <gloss>Scene</gloss>
+                                        <desc>Lower level structural division of a play</desc>
                                     </valItem>
 
                                 </valList>
@@ -3408,12 +3417,15 @@
                             <attDef ident="type" mode="change" usage="rec">
                                 <valList type="semi" mode="replace">
                                     <valItem ident="print">
-                                        <desc>Date of impressum</desc>
+                                        <gloss>Date printed</gloss>
+                                        <desc>Date of the print publication as stated in the impressum</desc>
                                     </valItem>
                                     <valItem ident="premiere">
+                                        <gloss>Date premiered</gloss>
                                         <desc>Date of debut performance</desc>
                                     </valItem>
                                     <valItem ident="written">
+                                        <gloss>Date written</gloss>
                                         <desc>Date of writing</desc>
                                     </valItem>
                                 </valList>
@@ -3539,9 +3551,11 @@
                     <elementSpec ident="forename" module="namesdates" mode="change">
                         <attList>
                             <attDef ident="type" mode="change">
-                                <valList mode="replace" type="closed">
+                                <valList mode="replace" type="semi">
                                     <valItem ident="patronym">
-                                        <desc>Patronym</desc>
+                                        <gloss>Patronym</gloss>
+                                        <desc>Father-derived middle name. Used for example in in
+                                            RusDraCor.</desc>
                                     </valItem>
                                 </valList>
                             </attDef>
@@ -3850,6 +3864,7 @@
                                         <desc>URI</desc>
                                     </valItem>
                                     <valItem ident="repo">
+                                        <gloss>Repository URL</gloss>
                                         <desc>URL of the (GitHub) Repository of a Corpus</desc>
                                     </valItem>
                                 </valList>
