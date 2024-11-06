@@ -2678,7 +2678,8 @@
                                 <remarks>
                                     <p>Use the value <val>braced</val> to indicate that a group of
                                         characters is marked as belonging to a group by means of a
-                                        bracket. This rendering is supported by the DraCor front-end.</p>
+                                        bracket. This rendering is supported by the DraCor
+                                        front-end.</p>
                                 </remarks>
                             </attDef>
                             <!-- IB: Don't know if we already agreed on this encoding. But sounds good to me -->
@@ -2972,12 +2973,17 @@
                             <textNode/>
                         </content>
                         <attList>
-                            <attDef ident="scheme" mode="replace" usage="req">
-                                <valList type="closed" mode="replace">
+                            <!-- I set the usage of @scheme to required but leave the options open  -->
+                            <attDef ident="scheme" mode="change" usage="req">
+                                <valList type="semi" mode="add">
                                     <valItem ident="http://www.wikidata.org/entity/">
                                         <desc>Wikidata</desc>
                                     </valItem>
                                 </valList>
+                                <remarks>
+                                    <p>Specify the scheme/taxonomy the classification code is coming
+                                        from. Only wikidata is supported by the DraCor API.</p>
+                                </remarks>
                             </attDef>
                         </attList>
                         <exemplum source="https://dracor.org/id/ger000442">
