@@ -2202,6 +2202,8 @@
                                 We don't have that at the moment. Therefore I di not remove the following memberOf statement -->
                             <!-- <memberOf key="att.global.linking"/> -->
                             <memberOf key="att.global.analytic"/>
+                            <!-- IB: add @rend globally -->
+                            <memberOf key="att.global.rendition"/>
                         </classes>
                         <!-- IB: There was an issue not to make these global changes, see issue #69: 
                                 https://github.com/dracor-org/dracor-schema/issues/69 -->
@@ -2238,6 +2240,14 @@
                     <classSpec type="atts" ident="att.typed" mode="change">
                         <attList>
                             <attDef ident="subtype" mode="delete"/>
+                        </attList>
+                    </classSpec>
+                    
+                    <!-- remove @rendition and @style from att.global.rendition to leave only @rend -->
+                    <classSpec type="atts" ident="att.global.rendition" mode="change">
+                        <attList>
+                            <attDef ident="rendition" mode="delete"/>
+                            <attDef ident="style" mode="delete"/>
                         </attList>
                     </classSpec>
 
@@ -2660,13 +2670,13 @@
                                 - tst000011 - CORRECT encoding
                                 - tst000012 - WRONG encoding
                             -->
-                            <attDef ident="rend" mode="add">
-                                <valList mode="replace" type="closed">
+                            <!-- <attDef ident="rend" mode="add">
+                                 <valList mode="replace" type="semi">
                                     <valItem ident="braced">
                                         <desc>braced</desc>
                                     </valItem>
-                                </valList>
-                            </attDef>
+                                </valList> 
+                            </attDef> -->
                             <attDef ident="corresp" mode="change">
                                 <datatype>
                                     <dataRef key="teidata.pointer"/>
