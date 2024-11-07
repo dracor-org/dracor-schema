@@ -4875,34 +4875,52 @@
                     <!-- relation -->
                     <elementSpec ident="relation" module="namesdates" mode="change">
                         <attList>
-
                             <attDef ident="name" mode="change">
-                                <valList mode="replace" type="closed">
+                                <valList mode="replace" type="semi">
                                     <valItem ident="parent_of">
-                                        <desc>Parent</desc>
+                                        <gloss>is parent of</gloss>
+                                        <desc>A character whose ID is included in the
+                                                <att>active</att> attribute is the parent of the
+                                            character whose ID is listed in the <att>passive</att>
+                                            attribute.</desc>
                                     </valItem>
                                     <valItem ident="lover_of">
-                                        <desc>Lover of</desc>
+                                        <gloss>is lover of</gloss>
+                                        <desc>A character whose ID is included in the
+                                                <att>active</att> attribute is the lover of the
+                                            character whose ID is listed in the <att>passive</att>
+                                            attribute.</desc>
                                     </valItem>
                                     <valItem ident="related_with">
+                                        <gloss>is related with</gloss>
                                         <desc>Other family relations (e.g. uncles)</desc>
                                     </valItem>
                                     <valItem ident="associated_with">
+                                        <gloss>is associated with</gloss>
                                         <desc>For clearly associated characters (e.g.,
                                             butlers)</desc>
                                     </valItem>
                                     <valItem ident="siblings">
-                                        <desc>Characters that have at least one parent in
-                                            common</desc>
+                                        <gloss>are siblings</gloss>
+                                        <desc>Characters whose IDs are included in <att>mutual</att>
+                                            have at least one parent in common</desc>
                                     </valItem>
                                     <valItem ident="spouses">
-                                        <desc>Characters in marriage (or engaged)</desc>
+                                        <gloss>are spouses</gloss>
+                                        <desc>Characters whose IDs are included in <att>mutual</att>
+                                            are married (or engaged)</desc>
                                     </valItem>
                                     <valItem ident="friends">
-                                        <desc>Characters marked as being friends</desc>
+                                        <gloss>are friends</gloss>
+                                        <desc>Characters whose IDs are included in <att>mutual</att>
+                                            are marked as being friends</desc>
                                     </valItem>
                                     <valItem ident="wikidata">
-                                        <desc>Wikidata</desc>
+                                        <gloss>corresponds to Wikidata entity</gloss>
+                                        <desc>The entity whose URI is listed in the
+                                                <att>active</att> attribute corresponds to the
+                                            entity on Wikidata whose URI is listed in the
+                                                <att>passive</att> attribute.</desc>
                                         <remarks>
                                             <ab>Used in the relation to link the play to the
                                                 wikidata entity</ab>
@@ -5183,8 +5201,10 @@
                                     </valItem>
                                 </valList>
                                 <remarks>
-                                    <p>The DraCor API supports the values <val>main</val> and <val>sub</val> to classify the title of a play (see also section on <ref target="#section-title">Encoding the title of a
-                                            Play</ref>).</p>
+                                    <p>The DraCor API supports the values <val>main</val> and
+                                            <val>sub</val> to classify the title of a play (see also
+                                        section on <ref target="#section-title">Encoding the title
+                                            of a Play</ref>).</p>
                                 </remarks>
                             </attDef>
                         </attList>
