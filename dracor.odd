@@ -4732,7 +4732,7 @@
                                 </valList>
                                 <remarks>
                                     <p>Only the values <val>FEMALE</val>, <val>MALE</val>,
-                                        <val>UNKNOWN</val> are supported by the DraCor-API. See
+                                            <val>UNKNOWN</val> are supported by the DraCor-API. See
                                         also this <ref
                                             target="https://github.com/dracor-org/dracor-schema/issues/46"
                                             >issue</ref> on GitHub.</p>
@@ -5173,18 +5173,19 @@
 
                     <elementSpec ident="title" module="core" mode="change">
                         <attList>
-
-                            <!-- xml:lang -->
-
-                            <attDef ident="type" mode="replace">
-                                <valList mode="replace" type="closed">
+                            <attDef ident="type" mode="change">
+                                <valList mode="replace" type="semi">
                                     <valItem ident="main">
-                                        <desc>Main Title</desc>
+                                        <gloss>Main Title</gloss>
                                     </valItem>
                                     <valItem ident="sub">
-                                        <desc>Subtitle</desc>
+                                        <gloss>Subtitle</gloss>
                                     </valItem>
                                 </valList>
+                                <remarks>
+                                    <p>The DraCor API supports the values <val>main</val> and <val>sub</val> to classify the title of a play (see also section on <ref target="#section-title">Encoding the title of a
+                                            Play</ref>).</p>
+                                </remarks>
                             </attDef>
                         </attList>
                         <exemplum source="https://dracor.org/id/ger000010">
@@ -5220,11 +5221,14 @@
                     <!-- titlePart -->
                     <elementSpec ident="titlePart" module="textstructure" mode="change">
                         <attList>
-
                             <attDef ident="type" mode="change">
-                                <valList type="closed">
-                                    <valItem ident="main"/>
-                                    <valItem ident="sub"/>
+                                <valList type="semi" mode="replace">
+                                    <valItem ident="main">
+                                        <gloss>Main title</gloss>
+                                    </valItem>
+                                    <valItem ident="sub">
+                                        <gloss>Subtitle</gloss>
+                                    </valItem>
                                 </valList>
                             </attDef>
                         </attList>
