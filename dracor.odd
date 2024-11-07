@@ -4312,9 +4312,9 @@
                                     Kreuzelschreiber</ref>.</ab>
                         </exemplum>
                         <remarks>
-                            <p>TODO: Need to explain why <gi>listPerson</gi> in addition to <gi>castList</gi>.
-                                Use the same drama as example; probably an example, where speaker is
-                                not in castList</p>
+                            <p>TODO: Need to explain why <gi>listPerson</gi> in addition to
+                                    <gi>castList</gi>. Use the same drama as example; probably an
+                                example, where speaker is not in castList</p>
                         </remarks>
                     </elementSpec>
 
@@ -4374,10 +4374,11 @@
                     <elementSpec ident="name" module="core" mode="change">
                         <attList>
 
-                            <attDef ident="type" mode="replace" usage="opt">
-                                <valList type="closed">
+                            <attDef ident="type" mode="change" usage="opt">
+                                <valList type="semi" mode="replace">
                                     <valItem ident="variant">
-                                        <desc>Variant of a name</desc>
+                                        <gloss>variant name</gloss>
+                                        <desc>Alternative name</desc>
                                     </valItem>
                                 </valList>
                             </attDef>
@@ -4581,21 +4582,38 @@
 
                     <elementSpec ident="persName" module="namesdates" mode="change">
                         <attList>
-                            <attDef ident="type" mode="replace" usage="opt">
-                                <valList type="closed">
+                            <attDef ident="type" mode="change" usage="opt">
+                                <valList type="semi" mode="replace">
                                     <valItem ident="variant">
-                                        <desc>Variant of a name</desc>
+                                        <gloss>Name variant</gloss>
+                                        <desc>Alternative to the name of a person</desc>
                                     </valItem>
                                     <valItem ident="pen">
-                                        <desc>Pen name</desc>
+                                        <gloss>Pen Name</gloss>
+                                        <desc>Pseudonym used by writers or authors</desc>
                                     </valItem>
                                     <valItem ident="nobility">
-                                        <desc>Noble name</desc>
+                                        <gloss>Noble Name</gloss>
+                                        <desc>TBD: Better definition or even other term: - Regnal
+                                            Name: This refers to the official name adopted by
+                                            royalty or other high-ranking individuals, often with an
+                                            ordinal (like "Catherine the Great" or "Louis XIV") to
+                                            denote their position in a lineage. OR: Dynastic Name:
+                                            This refers more to a family or house name, like
+                                            "Habsburg" or "Windsor," often indicating the royal
+                                            house or lineage.</desc>
                                     </valItem>
                                     <valItem ident="pseudo">
-                                        <desc>Pseudonym</desc>
+                                        <gloss>Pseudonym</gloss>
+                                        <desc>Fictitious name used by a person, often an author or
+                                            artist, to conceal their identity.</desc>
                                     </valItem>
                                 </valList>
+                                <remarks>
+                                    <p>See also this <ref
+                                            target="https://github.com/dracor-org/dracor-schema/issues/76"
+                                            >issue</ref> on GitHub.</p>
+                                </remarks>
                             </attDef>
                         </attList>
                         <exemplum>
