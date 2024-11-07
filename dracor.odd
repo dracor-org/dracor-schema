@@ -5078,11 +5078,10 @@
                     <elementSpec ident="surname" module="namesdates" mode="change">
                         <attList>
                             <attDef ident="sort" mode="change" usage="opt">
-                                <valList mode="replace" type="closed">
-                                    <valItem ident="1">
-                                        <desc>sort on this</desc>
-                                    </valItem>
-                                </valList>
+                                <remarks>
+                                    <p>Set value of this <val>1</val> to indicate on which
+                                            <gi>surname</gi> to sort.</p>
+                                </remarks>
                             </attDef>
                         </attList>
                     </elementSpec>
