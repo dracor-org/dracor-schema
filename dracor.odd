@@ -2163,7 +2163,8 @@
             <div xml:id="schema">
                 <head>Schema</head>
                 <schemaSpec ident="dracor" docLang="en" prefix="tei_" xml:lang="en"
-                    start="TEI teiCorpus">
+                    start="TEI teiCorpus" source="tei:4.4.0">
+                    <desc>DraCor Schema</desc>
 
                     <!-- modules included in the tei_drama ODD:
                 header, core, tei, textstructure, linking, drama
