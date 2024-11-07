@@ -2162,7 +2162,7 @@
 
             <div xml:id="schema">
                 <head>Schema</head>
-                <schemaSpec ident="dracor-api" docLang="en" prefix="tei_" xml:lang="en"
+                <schemaSpec ident="dracor" docLang="en" prefix="tei_" xml:lang="en"
                     start="TEI teiCorpus">
 
                     <!-- modules included in the tei_drama ODD:
