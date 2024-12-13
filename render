@@ -1,0 +1,18 @@
+#!/bin/sh
+
+BIN=./Stylesheets/bin
+
+if [ ! -d $BIN ]; then
+  git submodule init
+  git submodule update
+fi
+
+# Generate full ODD
+$BIN/teitoodd --odd dracor.odd dracor.odd.xml
+
+# Transform to RNG
+$BIN/teitorng --odd dracor.odd.xml dracor.rng
+# Transform to Schematron
+$BIN/teitoschematron --odd dracor.odd.xml dracor.sch
+# Transform to HTML
+$BIN/teitohtml --odd dracor.odd.xml dracor.html
