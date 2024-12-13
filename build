@@ -7,12 +7,14 @@ if [ ! -d $BIN ]; then
   git submodule update
 fi
 
+mkdir -p dist
+
 # Generate full ODD
-$BIN/teitoodd --odd dracor.odd dracor.odd.xml
+$BIN/teitoodd --odd dracor.odd dist/dracor.odd.xml
 
 # Transform to RNG
-$BIN/teitorng --odd dracor.odd.xml dracor.rng
+$BIN/teitorng --odd dist/dracor.odd.xml dist/dracor.rng
 # Transform to Schematron
-$BIN/teitoschematron --odd dracor.odd.xml dracor.sch
+$BIN/teitoschematron --odd dist/dracor.odd.xml dist/dracor.sch
 # Transform to HTML
-$BIN/teitohtml --odd dracor.odd.xml dracor.html
+$BIN/teitohtml --odd dist/dracor.odd.xml dist/dracor.html
