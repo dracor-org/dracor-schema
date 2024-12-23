@@ -1,0 +1,24 @@
+#!/bin/sh
+
+BIN=./Stylesheets/bin
+
+if [ ! -d $BIN ]; then
+  git submodule init
+  git submodule update
+fi
+
+mkdir -p dist
+
+# Generate full ODD
+$BIN/teitoodd --odd dracor.odd dist/dracor.odd.tmp
+
+# Transform to RNG
+$BIN/teitorng --odd dist/dracor.odd.tmp dist/dracor.rng
+# Transform to Schematron
+$BIN/teitoschematron --odd dist/dracor.odd.tmp dist/dracor.sch
+# Transform to HTML
+$BIN/teitohtml --odd dist/dracor.odd.tmp dist/dracor.html.tmp
+java -jar Stylesheets/lib/saxon10he.jar \
+  -xsl:html.xsl \
+  -s:dist/dracor.html.tmp \
+  > dist/dracor.html

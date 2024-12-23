@@ -1,0 +1,46 @@
+name: Generate release assets
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  build_assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          submodules: true
+
+      - run: ./build
+
+      - name: Upload RNG
+        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./dist/dracor.rng
+          asset_name: dracor-schema-${{ github.event.release.tag_name }}.rng
+          asset_content_type: application/xml
+
+      - name: Upload Schematron
+        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./dist/dracor.sch
+          asset_name: dracor-schema-${{ github.event.release.tag_name }}.sch
+          asset_content_type: application/xml
+
+      - name: Upload HTML
+        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./dist/dracor.html
+          asset_name: dracor-schema-${{ github.event.release.tag_name }}.html
+          asset_content_type: text/html
