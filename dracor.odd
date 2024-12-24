@@ -57,7 +57,7 @@
         CLS D7.1 'Report on Programmable Corpora'
       </change>
       <change who="#ib" when="2022-06-10">
-        add standOff, restructrue sourceDesc; explicitly include elements in
+        add standOff, restructure sourceDesc; explicitly include elements in
         schemaSpec
       </change>
       <change who="#ib" when="2019-12-10">
@@ -115,7 +115,7 @@
           <ref target="#boerner_trilcke_2023">Börner and Trilcke 2023</ref>).
           The documentation of the DraCor API can be accessed at
           <ref target="https://dracor.org/doc/api">https://dracor.org/doc/api</ref>.
-          For additional information on the API and a documetation of the
+          For additional information on the API and a documentation of the
           attributes returned in the JSON responses see section
           <ref target="#section-dracor-api">API</ref>.
         </p>
@@ -242,7 +242,7 @@
             <ref target="https://www.oxygenxml.com/xml_editor/register.html">here</ref>.
             A good free-source alternative is Notepad++ (which now supports a
             <ref target="https://github.com/dracor-org/ezdrama/blob/main/Npp_ezdrama-UDL.xml">user-defined
-            Ezdrama language</ref>!).
+            EzDrama language</ref>!).
           </p>
           <p rend="hint">
             If you’re using Oxygen Editor, you can download and try the
@@ -290,8 +290,8 @@
               The basic metadata on the digital file are included in the
               <gi>fileDesc</gi>. It contains a title statement
               (<gi>titleStmt</gi>), a publication statement
-              (<gi>publicationStmt</gi>) and and a description of the digital
-              and original sources (<gi>sourceDesc</gi>).
+              (<gi>publicationStmt</gi>) and a description of the digital and
+              original sources (<gi>sourceDesc</gi>).
             </p>
             <p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -334,7 +334,7 @@
             <div xml:id="section-author-information">
               <head>Author(s)</head>
               <p>
-                An author of a play is encoded unsing the element
+                An author of a play is encoded using the element
                 <gi>author</gi> in <gi>titleStmt</gi>. If there are multiple
                 authors of a play add and element <gi>author</gi> for each of
                 them.
@@ -372,7 +372,7 @@
                   </egXML>
                 </p>
                 <p>
-                  Other special elements for marking up ame constituents are
+                  Other special elements for marking up name constituents are
                   available in the TEI Guidelines but bear in mind that not
                   everything that is available is actually supported by the
                   DraCor API.
@@ -383,7 +383,7 @@
                 </p>
                 <p>
                   It is possible to include multiple names for an author, e.g. a
-                  pen name or a (english) transliteration of an author's name in
+                  pen name or a (English) transliteration of an author's name in
                   a corpus with non-latin script.
                 </p>
                 <p>
@@ -393,9 +393,10 @@
                 </p>
                 <!-- TODO: add examples to <persName>! -->
                 <p>
-                  For additional examles on encodig names see the documentation
-                  of the element <gi>persName</gi>. There are also some GitHub
-                  issues in which the encoding of names was discussed, e.g.
+                  For additional examples on encoding names see the
+                  documentation of the element <gi>persName</gi>. There are also
+                  some GitHub issues in which the encoding of names was
+                  discussed, e.g.
                   <ref target="https://github.com/dracor-org/dracor-api/issues/119">Refactor
                   author information</ref>. If you encounter issues with how
                   names are displayed on DraCor or have questions regarding edge
@@ -406,13 +407,13 @@
               <!-- /author name -->
 
               <div xml:id="section-author-external-id">
-                <head>IDs in External Reference Ressources</head>
+                <head>IDs in External Reference Resources</head>
                 <p>
-                  Authors should be linked to external reference ressources,
-                  e.g. <ref target="https://www.wikidata.org">Wikidata</ref>.
-                  This for example allows to fetch additional data about a
-                  person not explicitly included in the TEI file and display it
-                  on the front-end: If a Wikidata Identifier (QID) is provided
+                  Authors should be linked to external reference resources, e.g.
+                  <ref target="https://www.wikidata.org">Wikidata</ref>. This
+                  for example allows to fetch additional data about a person not
+                  explicitly included in the TEI file and display it on the
+                  front-end: If a Wikidata Identifier (QID) is provided
                   information about the date and place of birth and death of an
                   author and a picture will be displayed.
                 </p>
@@ -429,8 +430,9 @@
                 <p>
                   The URI of the author in the example above can be constructed
                   by prepending the base-URI of Wikidata
-                  <val>http://www.wikidata.org/entity/</val> to the QID resuting
-                  in <ref target="http://www.wikidata.org/entity/Q692">http://www.wikidata.org/entity/Q692</ref>.
+                  <val>http://www.wikidata.org/entity/</val> to the QID
+                  resulting in
+                  <ref target="http://www.wikidata.org/entity/Q692">http://www.wikidata.org/entity/Q692</ref>.
                 </p>
                 <p>
                   There are other types of eternal identifiers available. Please
@@ -438,7 +440,7 @@
                   supported type values and additional examples.
                 </p>
               </div>
-              <!-- /external ids for autors -->
+              <!-- /external ids for authors -->
 
               <!-- Editors -->
               <div xml:id="section-contributor-roles">
@@ -494,7 +496,7 @@
               manual transcription of a printed source involved. Instead we use
               already available digital files that are digitizations of a
               certain printed edition. This fact is expressed with two nested
-              elements <gi>bibl</gi> that are classified by their attributs
+              elements <gi>bibl</gi> that are classified by their attributes
               <att>type</att>: the original print publication
               (<val>originalSource</val>) is described inside the bibliographic
               record of the digital surogate (<val>digitalSource</val>).
@@ -518,8 +520,8 @@
                 include the name of the source, e.g. the
                 <q>Project Gutenberg</q> and an identifier of the document
                 within the source collection as <gi>idno</gi>. The identifier
-                can be a URL from which the document can be retieved. In the
-                best case there is some persistend identifier that unambigously
+                can be a URL from which the document can be retrieved. In the
+                best case there is some persistent identifier that unambiguously
                 identifies the digital document used as the source for the
                 DraCor file.
               </p>
@@ -698,7 +700,7 @@
                   <att>xml:id</att>. As a general rule use letters of the latin
                   alphabet and numbers for these IDs; don't use any special
                   characters apart from dash "-" and underscore "_". If your
-                  play is written in a non-latin script use a tranliteration of
+                  play is written in a non-latin script use a transliteration of
                   the character name as the identifier.
                 </p>
                 <p>
@@ -766,7 +768,7 @@
                   characters at the end inside the <gi>listPerson</gi>.
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
                     <listPerson>
-                      <person xml:id="charater1">
+                      <person xml:id="character1">
                         <persName>First Character</persName>
                       </person>
                       <!-- ... -->
@@ -781,7 +783,7 @@
                   </egXML>
                 </p>
                 <p>
-                  Social relations among characters are encoded unsing elements
+                  Social relations among characters are encoded using elements
                   <gi>relation</gi> in a <gi>listRelation</gi> with the value
                   <val>personal</val> of the attribute <att>type</att>.
                 </p>
@@ -947,7 +949,7 @@
               </p>
               <p>
                 Genre information should only be supplied if there are some
-                indicatiors that a certain genre is applicable, e.g. a genre
+                indicators that a certain genre is applicable, e.g. a genre
                 term in the subtitle or some other text on the title page in the
                 source. See also the discussion in this
                 <ref target="https://github.com/dracor-org/dracor-schema/issues/74">issue</ref>
@@ -1203,7 +1205,7 @@
             Only a small subset of the elements available in the TEI Drama
             Customization are actually used in DraCor corpora. The elements
             included in the following list are relevant. In the documentation
-            below (section Schema) you can find additial information on the
+            below (section Schema) you can find additional information on the
             elements and examples of their use in DraCor files. If you are using
             additional elements that are valid in the TEI Drama Customization
             bear in mind that there can be unexpected results when using the API
@@ -1214,7 +1216,7 @@
             the DraCor system please open an
             <ref target="https://github.com/dracor-org/dracor-schema/issues">issue</ref>
             in the <ref target="https://github.com/dracor-org/dracor-schema">dracor-schema
-            repository</ref> on GitHub and describe your usecase.
+            repository</ref> on GitHub and describe your use case.
           </p>
           <list xml:id="dracor-tei-elements">
             <item>
@@ -1465,7 +1467,7 @@
             </item>
           </list>
         </div>
-        <!-- /List with Elemets used in DraCor files -->
+        <!-- /List with Elements used in DraCor files -->
       </div>
       <!-- End of How to -->
 
@@ -1490,7 +1492,7 @@
           tend to be incomplete. Speaker labels (encoded as <gi>speaker</gi>)
           contained in the proper text are also often misleading, because they
           are often not stable enough to serve as an identifier. Therefore, the
-          plays encoded for the DraCor plattform have an additional section in
+          plays encoded for the DraCor platform have an additional section in
           their metadata in the <gi>teiHeader</gi> that lists all characters as
           <gi>person</gi> or <gi>personGrp</gi> elements in a
           <gi>listPerson</gi> and assigns them a unique identifier (attribute
@@ -1569,7 +1571,7 @@
           <p>
             The following sections list the <soCalled>features</soCalled>. The
             tables in the annex provide an overview how these features are
-            dispersed over the response objects of the various endopoints.
+            dispersed over the response objects of the various endpoints.
           </p>
           <div xml:id="section-corpus-features">
             <head>Corpus features</head>
@@ -1614,7 +1616,7 @@
                 "TatDraCor".
               </p>
               <p>
-                In the TEI source data the corpus acronym can be explicity set
+                In the TEI source data the corpus acronym can be explicitly set
                 by including an element <gi>title</gi>; with the value
                 <val>acronym</val> of the attribute <att>type</att> in in the
                 metadata file of a corpus ("corpus.xml").
@@ -1727,7 +1729,7 @@
                 Feature <idno type="feature-no">C13</idno>
                 <idno>corpus_num_of_tei_text_elements</idno>:
                 Number of <gi>text</gi> elements in a corpus. The value is the
-                number of <gi>text</gi> elmenents in all TEI files in a
+                number of <gi>text</gi> elements in all TEI files in a
                 collection representing a corpus in the underlying eXist-DB
                 database.
               </p>
@@ -1809,7 +1811,7 @@
                 corpus. The number of tokens for each TEI file is pre-calculated
                 upon ingest into the eXist database by tokenizing the contents
                 of the elements tei:sp with the built-in xPath function
-                'teokenize()'. The regular expression '\W+' is used as
+                'tokenize()'. The regular expression '\W+' is used as
                 separator. The values of all documents in a corpus collection
                 are summed up.
               </p>
@@ -1841,7 +1843,7 @@
               </p>
             </div>
             <!-- this is a semantically richer version. The @rend is carried over to the HTML rendering -->
-            <!-- TODO: decide if the API features should be upconverted to this -->
+            <!-- TODO: decide if the API features should be converted to this -->
             <div xml:id="play_id">
               <head>Play ID</head>
               <p rend="feature_name">
@@ -1996,8 +1998,8 @@
                 the contents of the elements <gi>persName</gi> or <gi>name</gi>
                 from the element <gi>author</gi> in the <gi>titleStmt</gi> and
                 applies some processing logic: If the constituents are marked up
-                with the special elements <gi>surname</gi> and <gi>forname</gi>,
-                they are arranged in the order "surname, forname". The optional
+                with the special elements <gi>surname</gi> and <gi>forename</gi>,
+                they are arranged in the order "surname, forename". The optional
                 attribute <att>sort</att> on the element <gi>surname</gi> is
                 evaluated as well to distinguish the order of <gi>surname</gi>
                 elements. If no additional markup is present, the contents of
@@ -2084,7 +2086,7 @@
               </p>
             </div>
             <div xml:id="play_author_ref_external_id">
-              <head>Play Autor ID in External Reference Ressource</head>
+              <head>Play Author ID in External Reference Resource</head>
               <p>
                 Feature <idno type="feature-no">P19</idno>
                 <idno type="feature-id">play_author_ref_external_id</idno>:
@@ -2095,7 +2097,7 @@
               </p>
             </div>
             <div xml:id="play_author_ref_type">
-              <head>Play Author Type of ID in External Reference Ressource</head>
+              <head>Play Author Type of ID in External Reference Resource</head>
               <p>
                 Feature <idno type="feature-no">P20</idno>
                 <idno type="feature-id">play_author_ref_type</idno>: Type of
@@ -2123,7 +2125,7 @@
                 The function performs a lookup using a Wikidata identifier
                 provided in the element <gi>classCode</gi> in
                 <gi>textClass</gi>. The normalized values can be <val>Comedy</val>,
-                <val>Tagedy</val>,<val>Tragicomedy</val>,<val>Satyr play</val>.
+                <val>Tragedy</val>,<val>Tragicomedy</val>,<val>Satyr play</val>.
               </p>
             </div>
             <div xml:id="play_is_libretto">
@@ -2185,7 +2187,7 @@
               <p>
                 Feature <idno type="feature-no">P27</idno>
                 <idno type="feature-id">play_year_normalized</idno>:
-                Of all avaliable years (written, printed, premiered) a
+                Of all available years (written, printed, premiered) a
                 so-called 'normalized year' is selected; It is either the
                 earlier on of printing or premiered or, if a work was published
                 or performed much later (more than 10 years) after its creation,
@@ -2275,7 +2277,7 @@
                 In the TEI file the element <gi>biblScope</gi> holds a page
                 range encoded in the attribute <att>from</att> and
                 <att>to</att>. The value is calculated by taking the value of
-                <att>to</att> and substracting the value of <att>from</att> and
+                <att>to</att> and subtracting the value of <att>from</att> and
                 adding 1.
               </p>
             </div>
@@ -2791,7 +2793,7 @@
           <!-- Elements like add, del, ... and the like are very unlikely to be
                used, I leave the elements in but kick the attribute classes out
                to have less attributes to worry about-->
-          <!-- delete the atttributes used in manuscript, e.g. @hand -->
+          <!-- delete the attributes used in manuscript, e.g. @hand -->
           <classSpec type="atts" ident="att.written" mode="delete"/>
           <classSpec type="atts" ident="att.transcriptional" mode="delete"/>
           <classSpec type="atts" ident="att.editLike" mode="delete"/>
@@ -2821,7 +2823,7 @@
             <desc>Introduces a custom gender attribute</desc>
             <attList>
               <attDef ident="gender" mode="add">
-                <desc>Custom agender attribute</desc>
+                <desc>Custom gender attribute</desc>
                 <datatype>
                   <dataRef key="teidata.sex"/>
                 </datatype>
@@ -2861,7 +2863,7 @@
                documentation instead. If an element is used but in a more
                restricted way than the TEI Drama Customization allows it we will
                add a constraint with a schematron rule that displays warnings to
-               alert an ecoder that he or she is using an element in a way that
+               alert an encoder that he or she is using an element in a way that
                it might not be processed by the API in the expected way. An
                encoder may still ignore the warning.-->
 
@@ -3536,7 +3538,7 @@
           <elementSpec ident="change" module="header" mode="change">
             <attList>
               <attDef ident="when" mode="change">
-              <!-- we could use @when-iso, because we enforce iso-comlient anyway -->
+              <!-- we could use @when-iso, because we enforce iso-compliant anyway -->
                 <desc>
                   When was the change made. Should be an iso-conformant
                   date-time
@@ -3719,8 +3721,8 @@
             </exemplum>
             <remarks>
               <p>
-                Classifiaction of the genre of the play is done by re-using
-                Wikidata entites.
+                Classification of the genre of the play is done by re-using
+                Wikidata entities.
               </p>
             </remarks>
           </elementSpec>
@@ -3872,7 +3874,7 @@
                   <p>
                     Although global usage of values of this attribute is not
                     restricted, the API evaluates the values <val>act</val> and
-                    <val>scene</val> on the <gi>div</gi> elments in the text
+                    <val>scene</val> on the <gi>div</gi> elements in the text
                     proper. If applicable these attribute values should be used
                     to classify the segments.
                   </p>
@@ -4057,7 +4059,7 @@
             </exemplum>
             <remarks>
               <p>
-                Used inconsitently throughout the corpora. Needs to be revised!
+                Used inconsistently throughout the corpora. Needs to be revised!
               </p>
             </remarks>
           </elementSpec>
@@ -4610,7 +4612,7 @@
               scheme="schematron" mode="add" corresp="#corpus_name">
               <desc>
                 In the corpus.xml (root element <gi>teiCorpus</gi>) the
-                identifier <gi>indo</gi> containing the corpus name (see Feature
+                identifier <gi>idno</gi> containing the corpus name (see Feature
                 <ref target="#corpus_name">corpus_name</ref>) SHOULD have an
                 <att>xml:base</att> attribute with the value
                 <val>https://dracor.org/</val>.
@@ -4637,7 +4639,7 @@
                 <remarks>
                   <p>
                     In DraCor this is only used on the element <gi>idno</gi>
-                    that contians the
+                    that contains the
                     <ref target="#corpus_name">corpus name</ref> in the
                     corpus.xml.
                   </p>
@@ -4995,7 +4997,7 @@
                 <ref target="https://dracor.org/id/ger000010">Grillparzer: Des
                 Meeres und der Liebe Wellen</ref> is in the public domain and
                 thus licensed under a CC0 licence, as is the encoding by DraCor.
-                The digital source is also contained in Textgrid and was
+                The digital source is also contained in TextGrid and was
                 licensed under a CC BY 3.0 licence.
               </ab>
             </exemplum>
@@ -5009,7 +5011,7 @@
               <ab>
                 The digital source of the play
                 <ref target="https://dracor.org/id/ger000082">Goethe: Torquato
-                Tasso</ref> distributed by Textgrid is licensed under a CC-BY
+                Tasso</ref> distributed by TextGrid is licensed under a CC-BY
                 3.0 licence.
               </ab>
             </exemplum>
@@ -5151,9 +5153,9 @@
                   <p>
                     There are currently two types of <gi>listRelation</gi>
                     evaluated by the DraCor API. The list that contains the
-                    social relation needs to have an expcit type value. The
+                    social relation needs to have an explicit type value. The
                     other <gi>listRelation</gi> that is used to connect a play
-                    to an external reference ressource (Wikidata) does not have
+                    to an external reference resource (Wikidata) does not have
                     an type (see <ref target="#section-play-wikidata">Wikidata
                     QID of a Play</ref>).
                   </p>
@@ -6416,7 +6418,7 @@
                 see="https://dracor.org/doc/odd#section-play-wikidata">
                 <sch:let name="expected_play_uri"
                   value="concat('https://dracor.org/entity/',./ancestor::tei:TEI/@xml:id/string())"/>
-                  <!-- expects a correct Wikidata URI pattern in @passiv
+                  <!-- expects a correct Wikidata URI pattern in @passive
                      Test with:
                       - WRONG: tst0000001: Here the URI is https://.../wiki/
                       - CORRECT: tst000002: Here the correct URI is used in @passive
