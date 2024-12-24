@@ -4628,7 +4628,7 @@
               </constraint>
             </constraintSpec>
             <attList>
-              <attDef ident="xml:base" mode="add" usage="opt">
+              <attDef ident="xml:base" mode="change" usage="opt">
                 <desc>
                   provides a base URI reference with which applications can
                   resolve relative URI references into absolute URI references.
