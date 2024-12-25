@@ -30,14 +30,14 @@ TEI Stylesheets.
     </div>
   </xsl:template>
 
-  <!-- catch-all template for non-nracor mode -->
+  <!-- catch-all template for non-dracor mode -->
   <xsl:template match="*|@*" mode="non-dracor">
     <xsl:copy>
       <xsl:apply-templates select="@*|*|comment()|node()" mode="non-dracor"/>
     </xsl:copy>
   </xsl:template>
 
-  <!-- insert version -->
+  <!-- insert version into title page -->
   <xsl:template match="h:div[@class = 'titlePage']">
     <xsl:copy>
       <xsl:apply-templates select="@*|*"/>
@@ -47,6 +47,19 @@ TEI Stylesheets.
             <xsl:value-of select="$version"/>
           </small>
         </div>
+      </xsl:if>
+    </xsl:copy>
+  </xsl:template>
+
+  <!-- insert version into footer -->
+  <xsl:template match="h:div[contains(@class,'stdfooter')]/h:address">
+    <xsl:copy>
+      <xsl:apply-templates select="@*|*|node()"/>
+      <xsl:if test="$version">
+        <span class="dracor-schema-version">
+          <xsl:text>Version: </xsl:text>
+          <xsl:value-of select="$version"/>
+        </span>
       </xsl:if>
     </xsl:copy>
   </xsl:template>
