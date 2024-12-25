@@ -13,6 +13,8 @@ TEI Stylesheets.
 
   <xsl:output method="xml" encoding="utf-8" omit-xml-declaration="yes" indent="no"/>
 
+  <xsl:param name="version"/>
+
   <xsl:variable name="ids" select="//h:ul[@id='dracor-tei-elements']/h:li/h:a/@href/substring-after(., '#')"/>
 
   <xsl:template match="@*|*|processing-instruction()|comment()|node()">
@@ -32,6 +34,20 @@ TEI Stylesheets.
   <xsl:template match="*|@*" mode="non-dracor">
     <xsl:copy>
       <xsl:apply-templates select="@*|*|comment()|node()" mode="non-dracor"/>
+    </xsl:copy>
+  </xsl:template>
+
+  <!-- insert version -->
+  <xsl:template match="h:div[@class = 'titlePage']">
+    <xsl:copy>
+      <xsl:apply-templates select="@*|*"/>
+      <xsl:if test="$version">
+        <div class="dracor-schema-version">
+          <small>
+            <xsl:value-of select="$version"/>
+          </small>
+        </div>
+      </xsl:if>
     </xsl:copy>
   </xsl:template>
 

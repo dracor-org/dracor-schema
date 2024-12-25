@@ -7,6 +7,8 @@ if [ ! -d $BIN ]; then
   git submodule update
 fi
 
+version=$(git describe --tags --dirty --always | sed s/^v// | sed s/-g/-/)
+
 mkdir -p dist
 
 # Generate full ODD
@@ -21,4 +23,5 @@ $BIN/teitohtml --odd dist/dracor.odd.tmp dist/dracor.html.tmp
 java -jar Stylesheets/lib/saxon10he.jar \
   -xsl:html.xsl \
   -s:dist/dracor.html.tmp \
+  version=$version \
   > dist/dracor.html
