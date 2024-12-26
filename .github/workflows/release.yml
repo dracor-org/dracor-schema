@@ -63,16 +63,16 @@ jobs:
 
       - name: Deploy to staging and dev
         run: |
-          scp ./dist/dracor.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/html/odd.html
-          scp ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/html/schema.rng
-          scp ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/html/dracor.sch
-          scp ./dist/dracor.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dev.dracor.org:/var/www/html/odd.html
-          scp ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dev.dracor.org:/var/www/html/schema.rng
-          scp ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dev.dracor.org:/var/www/html/dracor.sch
+          scp -o StrictHostKeyChecking=no ./dist/dracor.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/html/odd.html
+          scp -o StrictHostKeyChecking=no ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/html/schema.rng
+          scp -o StrictHostKeyChecking=no ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/html/dracor.sch
+          scp -o StrictHostKeyChecking=no ./dist/dracor.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dev.dracor.org:/var/www/html/odd.html
+          scp -o StrictHostKeyChecking=no ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dev.dracor.org:/var/www/html/schema.rng
+          scp -o StrictHostKeyChecking=no ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dev.dracor.org:/var/www/html/dracor.sch
 
       - name: Deploy to production
         if: ${{ ! github.event.release.prerelease }}
         run: |
-          scp ./dist/dracor.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dracor.org:/var/www/html/odd.html
-          scp ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dracor.org:/var/www/html/schema.rng
-          scp ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dracor.org:/var/www/html/dracor.sch
+          scp -o StrictHostKeyChecking=no ./dist/dracor.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dracor.org:/var/www/html/odd.html
+          scp -o StrictHostKeyChecking=no ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dracor.org:/var/www/html/schema.rng
+          scp -o StrictHostKeyChecking=no ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dracor.org:/var/www/html/dracor.sch
