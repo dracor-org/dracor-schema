@@ -44,3 +44,23 @@ jobs:
           asset_path: ./dist/dracor.html
           asset_name: dracor-schema-${{ github.event.release.tag_name }}.html
           asset_content_type: text/html
+
+      - uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387 # v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.deploy-key }}
+
+      - name: Deploy to staging and dev
+        run: |
+          scp ./dist/dracor.html ${{ secrets.deploy-user }}@staging.dracor.org:/var/www/html/odd.html
+          scp ./dist/dracor.rng ${{ secrets.deploy-user }}@staging.dracor.org:/var/www/html/schema.rng
+          scp ./dist/dracor.sch ${{ secrets.deploy-user }}@staging.dracor.org:/var/www/html/dracor.sch
+          scp ./dist/dracor.html ${{ secrets.deploy-user }}@dev.dracor.org:/var/www/html/odd.html
+          scp ./dist/dracor.rng ${{ secrets.deploy-user }}@dev.dracor.org:/var/www/html/schema.rng
+          scp ./dist/dracor.sch ${{ secrets.deploy-user }}@dev.dracor.org:/var/www/html/dracor.sch
+
+      - name: Deploy to production
+        if: ${{ ! github.event.release.prerelease }}
+        run: |
+          scp ./dist/dracor.html ${{ secrets.deploy-user }}@dracor.org:/var/www/html/odd.html
+          scp ./dist/dracor.rng ${{ secrets.deploy-user }}@dracor.org:/var/www/html/schema.rng
+          scp ./dist/dracor.sch ${{ secrets.deploy-user }}@dracor.org:/var/www/html/dracor.sch
