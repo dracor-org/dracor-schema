@@ -728,7 +728,7 @@
               <div xml:id="section-character-gender">
                 <head>Character Gender</head>
                 <p>
-                  Gender could be marked as <val>FEMALE</val>,<val>MALE</val>
+                  Gender could be marked as <val>FEMALE</val>, <val>MALE</val>
                   or <val>UNKNOWN</val> in the attribute <att>sex</att>.
                 </p>
                 <list>
@@ -745,7 +745,7 @@
                     <p>
                       The same applies to groups (“soldiers”, “weavers”). If no
                       specific gender hints are provided, mark them as
-                      <val>UNKNOWN</val>(“nobles”, ”citizens”, “servants”).
+                      <val>UNKNOWN</val> (“nobles”, ”citizens”, “servants”).
                     </p>
                   </item>
                   <item>
@@ -1504,7 +1504,7 @@
           While each distinct speaker represents a <soCalled>node</soCalled> in
           a network, a relation (<soCalled>edge</soCalled>) is established if
           the speeches <gi>sp</gi> of two or more speakers appear in the same
-          segment <gi>div</gi>(normally a “scene” classified by the attribute
+          segment <gi>div</gi> (normally a “scene” classified by the attribute
           <att>type</att>).
         </p>
         <p>
@@ -2491,8 +2491,8 @@
             <div xml:id="play_network_num_connected_components">
               <head>Play Number of Connected Components of the Network</head>
               <p>
-                Feature <idno type="feature-no">P62</idno><idno type="feature-id"
-                                >play_network_num_connected_components</idno>:
+                Feature <idno type="feature-no">P62</idno>
+                <idno type="feature-id">play_network_num_connected_components</idno>:
                 <!-- TODO here is something missing! -->
               </p>
             </div>
@@ -4298,8 +4298,12 @@
                   </publicationStmt>
                   <sourceDesc>
                     <bibl type="digitalSource">
-                      <name>TextGrid Repository</name><!-- ... --><bibl type="originalSource">
-                        <title>Goethes Werke. <!-- ... -->
+                      <name>TextGrid Repository</name>
+                      <!-- ... -->
+                      <bibl type="originalSource">
+                        <title>
+                          Goethes Werke.
+                          <!-- ... -->
                         </title>
                       </bibl>
                     </bibl>
