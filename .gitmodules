@@ -1,0 +1,3 @@
+[submodule "Stylesheets"]
+	path = Stylesheets
+	url = https://github.com/TEIC/Stylesheets
