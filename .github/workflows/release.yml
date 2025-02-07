@@ -56,6 +56,23 @@ jobs:
           asset_name: dracor-guidelines-${{ github.event.release.tag_name }}.html
           asset_content_type: text/html
 
+      - uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387 # v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.DRACOR_ORG_DEPLOY_KEY }}
+
+      - name: Deploy schemas to staging and dev
+        run: |
+          scp -o StrictHostKeyChecking=no ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/html/schema.rng
+          scp -o StrictHostKeyChecking=no ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/html/dracor.sch
+          scp -o StrictHostKeyChecking=no ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dev.dracor.org:/var/www/html/schema.rng
+          scp -o StrictHostKeyChecking=no ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dev.dracor.org:/var/www/html/dracor.sch
+
+      - name: Deploy schemas to production
+        if: ${{ ! github.event.release.prerelease }}
+        run: |
+          scp -o StrictHostKeyChecking=no ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dracor.org:/var/www/html/schema.rng
+          scp -o StrictHostKeyChecking=no ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dracor.org:/var/www/html/dracor.sch
+
       - name: Upload static files as artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
