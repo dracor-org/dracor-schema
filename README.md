@@ -19,4 +19,6 @@ found in the `dist` directory.
 
 ## See also
 
-The DraCor ODD is now published at https://dracor.org/doc/odd.
+The latest release of the DraCor TEI Customization and Encoding Guidelines is
+published at https://dracor-org.github.io/dracor-schema/. It is also available
+on the DraCor website at https://dracor.org/doc/odd.
