@@ -24,4 +24,4 @@ java -jar Stylesheets/lib/saxon10he.jar \
   -xsl:html.xsl \
   -s:dist/dracor.html.tmp \
   version=$version \
-  > dist/dracor.html
+  > dist/index.html
