@@ -4,7 +4,7 @@ This file tests the schematron rule to check for the correct encoding of the the
 Wikidata ID.
 
 This file has the correct encoding of the Wikidata URI in the @passive attribute
-in the <standOff><listRealtion>.
+in the <standOff><listRelation>.
 
 For testing purposes we use the QID of Shakespeare's "Hamlet" here which is
 obviously not the right QID for this "play".

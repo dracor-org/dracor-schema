@@ -2,8 +2,8 @@
 <!--
 No structure
 
-This file should be valid against TEI all, but is not valid agains the DraCor
-Schema because we expect elements <div> to have a @type attribute. The warnings
+This file should be valid against TEI all, but is not valid against the DraCor
+schema because we expect <div> elements to have a @type attribute. The warnings
 will indicate that there are no <sp> elements. Network data can not be
 extracted.
 -->

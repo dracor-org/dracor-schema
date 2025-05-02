@@ -3,7 +3,7 @@
 Missing structure: there are no @type attributes on the structural divisions
 
 Should throw critical errors from the RelaxNG because the attribute @type is
-required
+required.
 -->
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000006" xml:lang="eng">
   <teiHeader>

@@ -2,7 +2,7 @@
 <!--
 Curly Brackets to indicate a castGroup
 
-WRONG encoding, should be @rend with the value 'braced'; here it is "bracket"
+WRONG encoding, should be @rend with the value "braced"; here it is "bracket"
 -->
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000011" xml:lang="eng">
   <teiHeader>
