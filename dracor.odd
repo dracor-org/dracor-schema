@@ -5142,31 +5142,6 @@
 
           <!-- listRelation -->
           <elementSpec ident="listRelation" module="namesdates" mode="change">
-            <attList>
-              <attDef ident="type" mode="change" usage="opt">
-                <valList mode="replace" type="semi">
-                  <valItem ident="personal">
-                    <gloss>personal relations</gloss>
-                    <desc>
-                      List of social and family relations amongst characters.
-                      See <ref target="#section-character-relations">Character
-                      Relations</ref>
-                    </desc>
-                  </valItem>
-                </valList>
-                <remarks>
-                  <p>
-                    There are currently two types of <gi>listRelation</gi>
-                    evaluated by the DraCor API. The list that contains the
-                    social relation needs to have an explicit type value. The
-                    other <gi>listRelation</gi> that is used to connect a play
-                    to an external reference resource (Wikidata) does not have
-                    an type (see <ref target="#section-play-wikidata">Wikidata
-                    QID of a Play</ref>).
-                  </p>
-                </remarks>
-              </attDef>
-            </attList>
             <exemplum>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <listRelation>
@@ -5177,6 +5152,17 @@
               </egXML>
               <ab>Connect a DraCor play to Wikidata (Work).</ab>
             </exemplum>
+            <remarks>
+              <p>
+                There are currently two types of <gi>listRelation</gi> evaluated
+                by the DraCor API. One is the list of
+                <ref target="#section-character-relations">relations between
+                characters</ref>. The other is the <gi>listRelation</gi> in
+                <gi>standOff</gi> used to link a play to Wikidata (see
+                <ref target="#section-play-wikidata">Wikidata QID of a
+                Play</ref>).
+              </p>
+            </remarks>
           </elementSpec>
 
           <!-- ##### -->
