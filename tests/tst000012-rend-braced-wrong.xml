@@ -72,7 +72,7 @@ WRONG encoding, should be @rend with the value "braced"; here it is "bracket"
           <head>Dramatis Personae</head>
           <castItem>Ham</castItem>
           <castItem>Egg</castItem>
-<!-- WRONG encoding of a mark that indicates that these characters are a group -->
+          <!-- WRONG encoding of a mark that indicates that these characters are a group -->
           <castGroup rend="bracket">
             <castItem>Sausage</castItem>
             <castItem>Bacon</castItem>

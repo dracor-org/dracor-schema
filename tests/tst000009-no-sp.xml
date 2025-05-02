@@ -82,28 +82,28 @@ network can not be extracted. There should be a warning.
     <body>
       <div type="act">
         <p>
-<!-- here is no structure: missing <sp> elements -->
-                    Act 1.
+          <!-- here is no structure: missing <sp> elements -->
+          Act 1.
 
-                    Scene 1.
-                    Ham and Egg.
-                    HAM.
-                    Lovely Spam!
-                    EGG.
-                    Wonderful Spam!
+          Scene 1.
+          Ham and Egg.
+          HAM.
+          Lovely Spam!
+          EGG.
+          Wonderful Spam!
 
-                    Scene 2.
-                    Enter Vikings.
-                    HAM.
-                    Egg! Sausage, and Bacon!
+          Scene 2.
+          Enter Vikings.
+          HAM.
+          Egg! Sausage, and Bacon!
 
-                    VIKINGS (singing).
-                    Spam, Spam, Spam,
-                    Spam, Spam, Spam,
-                    Spam and Spam!
+          VIKINGS (singing).
+          Spam, Spam, Spam,
+          Spam, Spam, Spam,
+          Spam and Spam!
 
-                    The End.
-                </p>
+          The End.
+        </p>
       </div>
     </body>
   </text>

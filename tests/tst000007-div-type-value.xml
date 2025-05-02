@@ -79,7 +79,7 @@ Structural problems: invalid value of @type on a structural division
       </div>
     </front>
     <body>
-<!-- This is an invalid @type value -->
+      <!-- This is an invalid @type value -->
       <div type="whatever">
         <head>Act 1.</head>
         <div type="scene">

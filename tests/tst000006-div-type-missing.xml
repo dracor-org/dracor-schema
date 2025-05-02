@@ -82,10 +82,10 @@ required.
       </div>
     </front>
     <body>
-<!-- here is no @type on the div  -->
+      <!-- here is no @type on the div  -->
       <div>
         <head>Act 1.</head>
-<!-- here is no @type on the div  -->
+        <!-- here is no @type on the div  -->
         <div>
           <head>Scene 1.</head>
           <stage>Ham and Egg.</stage>
@@ -98,7 +98,7 @@ required.
             <p>Wonderful Spam!</p>
           </sp>
         </div>
-<!-- here is no @type on the div  -->
+        <!-- here is no @type on the div  -->
         <div>
           <head>Scene 2.</head>
           <stage>Enter Vikings.</stage>

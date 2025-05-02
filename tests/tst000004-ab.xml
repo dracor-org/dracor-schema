@@ -81,7 +81,7 @@ at other places than in <license>.
       </div>
     </front>
     <body>
-<!-- There should be a warning -->
+      <!-- There should be a warning -->
       <ab>Some anonymous block</ab>
       <div type="act">
         <head>Act 1.</head>
