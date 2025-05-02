@@ -1550,7 +1550,7 @@
           “corpus” and theater “play”, thus following the assumption already
           mentioned above that corpora are the central epistemic objects of
           Computational Literary Studies
-          (cf.<ref target="#gavin_2023">Gavin 2023: 4</ref>).
+          (cf. <ref target="#gavin_2023">Gavin 2023: 4</ref>).
         </p>
         <p>
           The machine-readable documentation of the DraCor-API in the OpenAPI
@@ -1661,7 +1661,7 @@
                 Feature <idno type="feature-no">C7</idno>
                 <idno type="feature-id">corpus_licence</idno>:
                 Licence information of a corpus. The value is a string
-                identifying the licence, e.g.<val>CC0</val>. The information is
+                identifying the licence, e.g. <val>CC0</val>. The information is
                 extracted from the corpus metadata in "corpus.xml". It is the
                 text content of the element <gi>licence</gi>.
               </p>
@@ -1904,7 +1904,7 @@
                 Feature <idno type="feature-no">P3</idno>
                 <idno type="feature-id">play_name</idno>: Identifier "playname".
                 Normally a combination of the name of the author and the title
-                of the play, e.g.<val>lessing-emilia-galotti</val>.
+                of the play, e.g. <val>lessing-emilia-galotti</val>.
               </p>
               <p>
                 It MUST be unique across a single corpus. This identifier is
@@ -1921,7 +1921,7 @@
                 Feature <idno type="feature-no">P4</idno>
                 <idno type="feature-id">play_wikidata_id</idno>:
                 Wikidata ID of the play. The value is the "Q-Number" of the item
-                on Wikidata, e.g.<val>Q466333</val>.
+                on Wikidata, e.g. <val>Q466333</val>.
               </p>
               <p>
                 In the TEI source document the information is contained in the
@@ -4328,7 +4328,7 @@
                     <foreign xml:lang="fre">Mais, mon Dieu, qu'elle
                     confidence!</foreign> <stage>(laut:)</stage> Nun es kann
                     nicht lange <foreign xml:lang="fre">Mystère</foreign>
-                    bleiben.<foreign xml:lang="fre">Voilà une lettre.</foreign>
+                    bleiben. <foreign xml:lang="fre">Voilà une lettre.</foreign>
                     Der Doktor hat ihn abgegeben.
                   </p>
                 </sp>
@@ -5203,7 +5203,7 @@
             <exemplum source="https://dracor.org/id/ger000304">
               <p>
                 Use <gi>name</gi> if encoding a group of characters with
-                <gi>personGrp</gi>.<att>type</att> can be used, if more variants
+                <gi>personGrp</gi>. <att>type</att> can be used, if more variants
                 are present:
               </p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -5451,7 +5451,7 @@
             <exemplum>
               <p>
                 Use <gi>name</gi> if encoding a group of characters with
-                <gi>personGrp</gi>.<att>type</att> can be used, if more variants
+                <gi>personGrp</gi>. <att>type</att> can be used, if more variants
                 are present:
               </p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
