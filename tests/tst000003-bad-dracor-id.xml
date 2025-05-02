@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 This file tests the schematron rule to check for the correct encoding of the the
-Wikidata ID.
+DraCor ID.
 
 This file has an error in the encoding of the Self-URI in the attribute @active
 in the <standOff><listRelation>.
 
-Here the value is "https://dracor.org/entity/ERROR" while it SHOULD be
+Here the value is "https://dracor.org/entity/no-such-id" while it SHOULD be
 "https://dracor.org/entity/tst000003".
 
 There should be a Warning displayed.
@@ -70,7 +70,11 @@ There should be a Warning displayed.
     </listEvent>
     <listRelation>
       <!-- We expect a warning here -->
-      <relation name="wikidata" active="https://dracor.org/entity/ERROR" passive="http://www.wikidata.org/entity/Q41567"/>
+      <relation
+        name="wikidata"
+        active="https://dracor.org/entity/no-such-id"
+        passive="http://www.wikidata.org/entity/Q41567"
+      />
     </listRelation>
   </standOff>
   <text>
