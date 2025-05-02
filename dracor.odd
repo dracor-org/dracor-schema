@@ -6424,7 +6424,7 @@
                   value="concat('https://dracor.org/entity/',./ancestor::tei:TEI/@xml:id/string())"/>
                   <!-- expects a correct Wikidata URI pattern in @passive
                      Test with:
-                      - WRONG: tst0000001: Here the URI is https://.../wiki/
+                      - WRONG: tst000001: Here the URI is https://.../wiki/
                       - CORRECT: tst000002: Here the correct URI is used in @passive
                   -->
                 <sch:assert test="starts-with(./@passive/string(),'http://www.wikidata.org/entity/')">
