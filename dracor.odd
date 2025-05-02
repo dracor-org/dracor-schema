@@ -5741,6 +5741,22 @@
           <!-- revisionDesc -->
           <!-- roleDesc -->
           <!-- role -->
+          <elementSpec ident="role" module="drama" mode="change">
+            <remarks>
+              <p>
+                In DraCor do not link <att>who</att> attributes to <gi>role</gi>
+                elements but to <gi>person</gi> or <gi>personGrp</gi> elements
+                in the <gi>particDesc</gi>. See
+                <ref target="#section-characters">Characters</ref>.
+              </p>
+            </remarks>
+            <exemplum>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <role>Marinelli</role>
+                <roleDesc>Kammerherr des Prinzen</roleDesc>
+              </egXML>
+            </exemplum>
+          </elementSpec>
 
           <!-- ##### -->
           <!--   S   -->
