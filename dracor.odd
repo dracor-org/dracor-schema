@@ -762,33 +762,32 @@
 
               <!-- character relations -->
               <div xml:id="section-character-relations">
-                <head>Social Relations of Characters</head>
+                <head>Relations between Characters</head>
                 <p>
-                  Optionally, you can encode the social relationship between the
-                  characters at the end inside the <gi>listPerson</gi>.
+                  DraCor supports the encoding of relationships between
+                  characters using the <gi>listPerson</gi> element inside the
+                  <gi>particDesc</gi>.
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                    <listPerson>
-                      <person xml:id="character1">
-                        <persName>First Character</persName>
-                      </person>
-                      <!-- ... -->
-                      <personGrp xml:id="group99">
-                        <name>A Group of Characters</name>
-                      </personGrp>
-                      <!-- after the last character item include: -->
-                      <listRelation type="personal">
-                        <!-- Character relations go here -->
-                      </listRelation>
-                    </listPerson>
+                    <particDesc>
+                      <listPerson>
+                        <person xml:id="character1">
+                          <persName>First Character</persName>
+                        </person>
+                        <!-- ... -->
+                        <personGrp xml:id="group99">
+                          <name>A Group of Characters</name>
+                        </personGrp>
+                        <!-- after the last character item include: -->
+                        <listRelation>
+                          <!-- Character relations go here -->
+                        </listRelation>
+                      </listPerson>
+                    </particDesc>
                   </egXML>
                 </p>
                 <p>
-                  Social relations among characters are encoded using elements
-                  <gi>relation</gi> in a <gi>listRelation</gi> with the value
-                  <val>personal</val> of the attribute <att>type</att>.
-                </p>
-                <p>
-                  Below is an example taken from the play
+                  Relations among characters are encoded using <gi>relation</gi>
+                  elements in a <gi>listRelation</gi>. Here is an example from
                   <ref target="https://dracor.org/id/ger000088"><title>Emilia
                   Galotti</title></ref>:
                   <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#ger000088">
@@ -800,7 +799,7 @@
                   </egXML>
                 </p>
                 <p>
-                  It is recommended <!-- required, check with ff?! -->
+                  It is strongly recommended
                   to include only such relations that are ground on textual
                   evidence, e.g. notes on the relation of characters in the
                   dramatis personae included in the text proper as
@@ -843,16 +842,18 @@
                   additional attributes that denote the source
                   (<att>active</att>) and the target (<att>passive</att>) of the
                   relation. The values of these attributes are pointers (hence
-                  starting with '#') to the elements <gi>person</gi> identified
-                  with the corresponding attribute values of <att>xml:id</att>.
+                  starting with '#') which must refer to a <gi>person</gi>
+                  element inside the <gi>particDesc</gi> that has an
+                  <att>xml:id</att> with a corresponding value.
                 </p>
                 <p>
-                  The possible relations identified by the attribute values of
-                  <att>name</att> that are supported by the DraCor system can be
-                  found in the documentation of the <gi>relation</gi> element.
-                  The original method of identifying these relationships in the
-                  German Drama Corpus was developed by
-                  <ref target="wiedmer_2020">Wiedmer et al. (2020)</ref>.
+                  Which relations to encode and how to name them in the
+                  <att>name</att> attribute is up to the corpus maintainers. We
+                  recommend to follow a consistent classification that is
+                  documented in the corpus README. As an example, the German
+                  Drama Corpus adopted the method of identifying character
+                  relationships developed by <ref target="wiedmer_2020">Wiedmer
+                  et al. (2020)</ref>.
                 </p>
               </div>
               <!-- /character relations -->
@@ -2695,9 +2696,9 @@
               <p>
                 Feature <idno type="feature-no"/>
                 <idno type="feature-id">character_relation_type</idno>:
-                Type of social relation: 'parent_of', 'lover_of',
-                'related_with', 'associated_with', 'siblings', 'spouses',
-                'friends'.
+                Type of relation between characters, e.g. 'parent_of',
+                'lover_of', 'related_with', 'associated_with', 'siblings',
+                'spouses', 'friends'.
               </p>
             </div>
             <div xml:id="character_relation_from">
