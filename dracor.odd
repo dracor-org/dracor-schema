@@ -5183,6 +5183,21 @@
             <exemplum>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <listRelation>
+                  <relation name="spouses" mutual="#contessa #conte"/>
+                  <relation name="spouses" mutual="#susanna #figaro"/>
+                  <relation name="parent_of" active="#antonio" passive="#barbarina"/>
+                  <relation name="related_with" active="#antonio" passive="#susanna"/>
+                </listRelation>
+              </egXML>
+              <ab>
+                Character relations in
+                <ref target="https://dracor.org/id/ita000056"><title>Le nozze di
+                Figaro</title></ref>
+              </ab>
+            </exemplum>
+            <exemplum>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <listRelation>
                   <relation active="https://dracor.org/entity/ger000171"
                     passive="http://www.wikidata.org/entity/Q42187688"
                     name="wikidata"/>
