@@ -981,7 +981,45 @@
           <div xml:id="section-play-wikidata">
             <head>Wikidata QID of a Play</head>
             <p>
-              TBD
+              To link a play to its corresponding entry in Wikidata DraCor uses
+              the <gi>listRelation</gi> element inside <gi>standOff</gi>. For
+              this purpose it must have exactly one <gi>relation</gi> child
+              element with the following attributes:
+              <list>
+                <item>
+                  <label><att>name</att></label>:
+                  <gloss>the value must be <val>wikidata</val></gloss>
+                </item>
+                <item>
+                  <label><att>active</att></label>:
+                  <gloss>
+                    The DraCor URI identifying the play. It starts with
+                    "https://dracor.org/entity/" followed by the
+                    <att>xml:id</att> of the play.
+                  </gloss>
+                </item>
+                <item>
+                  <label><att>passive</att></label>:
+                  <gloss>
+                    The Wikidata entity URI, which start with
+                    "http://www.wikidata.org/entity/" followed by the QID.
+                  </gloss>
+                </item>
+              </list>
+            </p>
+            <p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <standOff>
+                  <listRelation>
+                    <relation
+                      name="wikidata"
+                      active="https://dracor.org/entity/ger000171"
+                      passive="http://www.wikidata.org/entity/Q42187688"
+                    />
+                  </listRelation>
+                  <!-- ... -->
+                </standOff>
+              </egXML>
             </p>
           </div>
         </div>
