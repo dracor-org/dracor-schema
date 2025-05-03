@@ -5385,6 +5385,16 @@
                 </person>
               </egXML>
             </exemplum>
+            <constraintSpec ident="person_sex" scheme="schematron" mode="add"  type="encoding-hint">
+              <constraint>
+                <sch:rule context="tei:person[@sex]" role="warning" see="https://dracor.org/doc/odd#section-character-gender">
+                  <sch:assert test="@sex = ('FEMALE', 'MALE', 'UNKNOWN')">
+                    The values for person/@sex supported by the DraCor API are
+                    <val>FEMALE</val>, <val>MALE</val> and <val>UNKNOWN</val>.
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
           </elementSpec>
 
           <!-- personGrp -->
@@ -5419,6 +5429,17 @@
                 </remarks>
               </attDef>
             </attList>
+            <constraintSpec ident="personGrp_sex" scheme="schematron" mode="add"  type="encoding-hint">
+              <constraint>
+                <sch:rule context="tei:personGrp[@sex]" role="warning" see="https://dracor.org/doc/odd#section-character-gender">
+                  <sch:assert test="every $t in tokenize(@sex) satisfies $t = ('FEMALE', 'MALE', 'UNKNOWN')">
+                    The values for personGrp/@sex supported by the DraCor API
+                    are <val>FEMALE</val>, <val>MALE</val> and
+                    <val>UNKNOWN</val>.
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
           </elementSpec>
 
           <!-- profileDesc -->
