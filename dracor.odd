@@ -2751,46 +2751,6 @@
               <attDef ident="style" mode="delete"/>
             </attList>
           </classSpec>
-          <!-- This is just a test how to add a custom DraCor attribute "gender"
-               to person and personGrp -->
-          <!-- Globally define attribute @sex. In the base version of the
-               guidelines this is done on level of the individual element -->
-          <classSpec type="atts" ident="att.dracor.gender">
-            <desc>Introduces a custom gender attribute</desc>
-            <attList>
-              <attDef ident="gender" mode="add">
-                <desc>Custom gender attribute</desc>
-                <datatype>
-                  <dataRef key="teidata.sex"/>
-                </datatype>
-                <!-- I just copied this value list to modify @sex of person and
-                     personGrp -->
-                <valList type="semi" mode="add">
-                  <valItem ident="FEMALE">
-                    <gloss>female</gloss>
-                  </valItem>
-                  <valItem ident="MALE">
-                    <gloss>male</gloss>
-                  </valItem>
-                  <valItem ident="UNKNOWN">
-                    <gloss>unknown</gloss>
-                  </valItem>
-                </valList>
-                <remarks>
-                  <p>
-                    Only the values <val>FEMALE</val>, <val>MALE</val>,
-                    <val>UNKNOWN</val> are supported by the DraCor-API.
-                  </p>
-                </remarks>
-              </attDef>
-            </attList>
-            <remarks>
-              <p>
-                Do not use this. This is just a test on how to learn to
-                introduce a attribute globally
-              </p>
-            </remarks>
-          </classSpec>
 
           <!-- The following list should include all elements that are added
                because the customization is based on TEI drama. Normally we will
@@ -5382,27 +5342,10 @@
           </elementSpec>
 
           <!-- person -->
-          <!--
-          <attribute name="sex">
-              <value>MALE</value>
-              <value>FEMALE</value>
-              <value>UNKNOWN</value>
-          </attribute>
-          -->
           <elementSpec ident="person" module="core" mode="change">
-            <!-- try to define @sex globally and then re-use: doesn't work at
-                 the moment but tested -->
-            <!-- this is just a test for a new dracor specific class introducing
-                 gender -->
-            <!--
-            <classes mode="change">
-              <memberOf key="att.dracor.gender" mode="add"/>
-            </classes>
-            -->
             <attList>
               <attDef ident="xml:id" mode="change" usage="req"/>
               <!-- need to globally define -->
-              <!-- related issue: https://github.com/dracor-org/dracor-schema/issues/46 -->
               <attDef ident="sex" mode="change" usage="rec">
                 <valList type="semi" mode="add">
                   <valItem ident="FEMALE">
@@ -5446,15 +5389,6 @@
 
           <!-- personGrp -->
           <elementSpec ident="personGrp" module="namesdates" mode="change">
-            <!-- globally defining the sex values doesn't work at the moment,
-                 but tested -->
-            <!-- this is a test to add a gender attribute globally for DraCor.
-                 Should ignore this -->
-            <!--
-            <classes mode="change">
-              <memberOf key="att.dracor.gender" mode="add"/>
-            </classes>
-            -->
             <attList>
               <attDef ident="xml:id" mode="change">
                 <datatype>
@@ -5462,7 +5396,6 @@
                 </datatype>
               </attDef>
               <!-- need to globally define -->
-              <!-- related issue: https://github.com/dracor-org/dracor-schema/issues/46 -->
               <attDef ident="sex" mode="change">
                 <valList type="semi" mode="add">
                   <valItem ident="FEMALE">
