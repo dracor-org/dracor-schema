@@ -524,9 +524,8 @@
               </p>
               <p>
                 The information on the licence under which the digital source
-                file is distributed should be included in <gi>availability</gi>
-                (see <!-- TODO --> section on encoding "Licence information"
-                TBD).
+                file is distributed should be included in <gi>availability</gi>.
+                <!-- see https://github.com/dracor-org/dracor-schema/issues/97 -->
               </p>
               <p>
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -1560,7 +1559,7 @@
           basis of the DraCor API Ontology which – at a later stage – will be
           automatically generated from this ODD.
         </p>
-        <!-- TODO: Adapt D71 API part and include here -->
+        <!-- https://github.com/dracor-org/dracor-schema/issues/99 -->
 
         <!-- Features -->
         <div xml:id="section-api-features">
@@ -1839,8 +1838,7 @@
                 is contained in.
               </p>
             </div>
-            <!-- this is a semantically richer version. The @rend is carried over to the HTML rendering -->
-            <!-- TODO: decide if the API features should be converted to this -->
+            <!-- see https://github.com/dracor-org/dracor-schema/issues/98 -->
             <div xml:id="play_id">
               <head>Play ID</head>
               <p rend="feature_name">
@@ -1867,25 +1865,7 @@
                 [<ref type="code" target="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L93-L100">Code</ref>].
               </p>
             </div>
-            <!-- .ttl example in the API-Ontology: -->
-            <!--
-            :play_id
-            a owl:DatatypeProperty, rdf:Property ;
-            rdfs:domain :Play ;
-            rdfs:range  rdfs:Literal;
-            rdfs:label "play id"@en ;
-            rdfs:comment "DraCor ID of the play, e.g. 'ger000171'. In the TEI source file the DraCor ID is contained in the attribute @xml:id on the root element <tei:TEI>."@en ;
-                :extractor_in_api_module "util.xqm" ;
-                :extractor_in_api_function "dutil:get-dracor-id" ;
-                :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L93-L100> ;
-                    :feature_id "P2" ;
-                    :xpath "/tei:TEI/@xml:id/string()" ;
-                    :operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" , "play-metrics" ;
-                    :feature_name "play_id" .
-            -->
-            <!-- Maybe I could even include it here as RDF, but then it
-                 complains that in an ODD the owl:DatatypeProperty is not valid -->
-            <!-- it would have to go into xenoData in a standOff container -->
+            <!-- https://github.com/dracor-org/dracor-schema/issues/101 -->
             <div xml:id="play_uri">
               <head>Play URI</head>
               <p>
@@ -3151,7 +3131,7 @@
                 <!-- maybe could highlight from and to as well -->
               </attDef>
             </attList>
-            <!-- TODO: Examples are missing -->
+            <!-- https://github.com/dracor-org/dracor-schema/issues/100 -->
           </elementSpec>
 
           <!-- body -->
@@ -4573,10 +4553,12 @@
 
           <!-- idno -->
           <elementSpec ident="idno" module="header" mode="change">
-            <!-- TODO: is the xml:base attribute somehow relevant for the
-                 extractor in the xQuery? -->
             <constraintSpec ident="xml_base_required_on_idno_type_URI_in_corpus_xml"
               scheme="schematron" mode="add" corresp="#corpus_name">
+              <!--
+                the xml:base attribute is queried in the dutil:get-corpus
+                function of dracor-api
+              -->
               <desc>
                 In the corpus.xml (root element <gi>teiCorpus</gi>) the
                 identifier <gi>idno</gi> containing the corpus name (see Feature
@@ -4756,6 +4738,7 @@
                      because in att.fragmentable there is a closed value list
                      not sure how the API will handle this encoding but it is
                      used in GerDraCor and RusDraCor -->
+                <!-- also see https://github.com/dracor-org/dracor-api/issues/318 -->
                 <valList type="semi" mode="replace">
                   <valItem ident="F">
                     <gloss>Final</gloss>
@@ -4787,7 +4770,6 @@
                     on GitHub.
                   </p>
                 </remarks>
-                <!-- TODO: this needs really to be tested how it affects the counting of verse lines -->
               </attDef>
             </attList>
             <exemplum source="https://dracor.org/id/ger000083">
