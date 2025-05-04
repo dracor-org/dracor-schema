@@ -2332,7 +2332,6 @@
               <p>
                 Feature <idno type="feature-no">P39</idno>
                 <idno type="feature-id">play_num_of_paragraphs</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_num_of_verse_lines">
@@ -2340,7 +2339,6 @@
               <p>
                 Feature <idno type="feature-no">P40</idno>
                 <idno type="feature-id">play_num_of_verse_lines</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_num_of_word_tokens_in_text_elements">
@@ -2348,7 +2346,6 @@
               <p>
                 Feature <idno type="feature-no">P41</idno>
                 <idno type="feature-id">play_num_of_word_tokens_in_text_elements</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_num_of_word_tokens_in_sp">
@@ -2356,7 +2353,6 @@
               <p>
                 Feature <idno type="feature-no">P42</idno>
                 <idno type="feature-id">play_num_of_word_tokens_in_sp</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_num_of_word_tokens_in_stage">
@@ -2364,7 +2360,6 @@
               <p>
                 Feature <idno type="feature-no">P43</idno>
                 <idno type="feature-id">play_num_of_word_tokens_in_stage</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_num_of_speakers">
@@ -2380,7 +2375,6 @@
               <p>
                 Feature <idno type="feature-no">P46</idno>
                 <idno type="feature-id">play_num_of_speakers_gender_female</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_num_of_speakers_gender_male">
@@ -2388,7 +2382,6 @@
               <p>
                 Feature <idno type="feature-no">P47</idno>
                 <idno type="feature-id">play_num_of_speakers_gender_male</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_num_of_speakers_gender_unknown">
@@ -2396,7 +2389,6 @@
               <p>
                 Feature <idno type="feature-no">P48</idno>
                 <idno type="feature-id">play_num_of_speakers_gender_unknown</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_num_of_person_groups">
@@ -2404,7 +2396,6 @@
               <p>
                 Feature <idno type="feature-no">P49</idno>
                 <idno type="feature-id">play_num_of_person_groups</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_all_in_segment">
@@ -2412,7 +2403,6 @@
               <p>
                 Feature <idno type="feature-no">P50</idno>
                 <idno type="feature-id">play_all_in_segment</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_all_in_index">
@@ -2420,7 +2410,6 @@
               <p>
                 Feature <idno type="feature-no">P51</idno>
                 <idno type="feature-id">play_all_in_index</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_network_data_csv_url">
@@ -2428,7 +2417,6 @@
               <p>
                 Feature <idno type="feature-no">P53</idno>
                 <idno type="feature-id">play_network_data_csv_url</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_network_size">
@@ -2436,7 +2424,6 @@
               <p>
                 Feature <idno type="feature-no">P55</idno>
                 <idno type="feature-id">play_network_size</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_network_num_edges">
@@ -2444,7 +2431,6 @@
               <p>
                 Feature <idno type="feature-no">P56</idno>
                 <idno type="feature-id">play_network_num_edges</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_network_average_degree">
@@ -2483,7 +2469,6 @@
               <p>
                 Feature <idno type="feature-no">P61</idno>
                 <idno type="feature-id">play_network_average_clustering</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_network_num_connected_components">
@@ -2491,7 +2476,6 @@
               <p>
                 Feature <idno type="feature-no">P62</idno>
                 <idno type="feature-id">play_network_num_connected_components</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_network_max_degree">
@@ -2499,7 +2483,6 @@
               <p>
                 Feature <idno type="feature-no">P63</idno>
                 <idno type="feature-id">play_network_max_degree</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_network_max_degree_character_id">
@@ -2524,7 +2507,6 @@
               <p>
                 Feature <idno type="feature-no">S1</idno>
                 <idno type="feature-id">segment_type</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="segment_number">
@@ -2532,7 +2514,6 @@
               <p>
                 Feature <idno type="feature-no">S2</idno>
                 <idno type="feature-id">segment_number</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="segment_title">
@@ -2540,7 +2521,6 @@
               <p>
                 Feature <idno type="feature-no">S3</idno>
                 <idno type="feature-id">segment_title</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="segment_speaking_characters">
@@ -2548,7 +2528,6 @@
               <p>
                 Feature <idno type="feature-no">S4</idno>
                 <idno type="feature-id">segment_speaking_characters</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
           </div>
@@ -2561,7 +2540,6 @@
               <p>
                 Feature <idno type="feature-no">Ch1</idno>
                 <idno type="feature-id">character_id</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_name">
@@ -2569,7 +2547,6 @@
               <p>
                 Feature <idno type="feature-no">Ch2</idno>
                 <idno type="feature-id">character_name</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_is_group">
@@ -2577,7 +2554,6 @@
               <p>
                 Feature <idno type="feature-no">Ch3</idno>
                 <idno type="feature-id">character_is_group</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_gender">
@@ -2585,7 +2561,6 @@
               <p>
                 Feature <idno type="feature-no">Ch4</idno>
                 <idno type="feature-id">character_gender</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_wikidata_id">
@@ -2593,7 +2568,6 @@
               <p>
                 Feature <idno type="feature-no">Ch5</idno>
                 <idno type="feature-id">character_wikidata_id</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_node_betweenness">
@@ -2601,7 +2575,6 @@
               <p>
                 Feature <idno type="feature-no">Ch6</idno>
                 <idno type="feature-id">character_node_betweenness</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_node_degree">
@@ -2609,7 +2582,6 @@
               <p>
                 Feature <idno type="feature-no">Ch7</idno>
                 <idno type="feature-id">character_node_degree</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_node_closeness">
@@ -2617,7 +2589,6 @@
               <p>
                 Feature <idno type="feature-no">Ch8</idno>
                 <idno type="feature-id">character_node_closeness</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_node_eigenvector">
@@ -2625,7 +2596,6 @@
               <p>
                 Feature <idno type="feature-no">Ch9</idno>
                 <idno type="feature-id">character_node_eigenvector</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_node_weighted_degree">
@@ -2633,7 +2603,6 @@
               <p>
                 Feature <idno type="feature-no">Ch10</idno>
                 <idno type="feature-id">character_node_weighted_degree</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_num_of_segments">
@@ -2649,7 +2618,6 @@
               <p>
                 Feature <idno type="feature-no">Ch12</idno>
                 <idno type="feature-id">character_num_of_sp</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_num_of_word_tokens">
@@ -2657,7 +2625,6 @@
               <p>
                 Feature <idno type="feature-no">Ch13</idno>
                 <idno type="feature-id">character_num_of_word_tokens</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_role">
@@ -2673,7 +2640,6 @@
               <p>
                 Feature <idno type="feature-no">Ch15</idno>
                 <idno type="feature-id">character_spoken_text</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
           </div>
