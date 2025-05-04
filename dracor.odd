@@ -6789,7 +6789,7 @@
             Börner, I., &amp; Trilcke, P. (2024) CLS INFRA D7.3 On Versioning
             Living and Programmable Corpora: (Executable) Report and Prototypes
             for Reproducible Research.
-            <ref target="https://doi.org/10.5281/ZENODO.11081934">https://doi.org/10.5281/ZENODO.11081934</ref>.
+            <ref target="https://doi.org/10.5281/ZENODO.11081934">doi:10.5281/ZENODO.11081934</ref>.
           </bibl>
           <bibl xml:id="fischer_et_al_2019">
             Fischer, F., Börner, I., Göbel, M., Hechtl, A., Kittel, C., Milling,
@@ -6814,7 +6814,8 @@
             Wiedmer, N., Pagel J., Reiter, N. (2020). "Romeo, Freund Des
             Mercutio: Semi- Automatische Extraktion von Beziehungen zwischen
             Dramatischen Figuren." DHd2020. Book of Abstracts. Paderborn, p.
-            194–200. https://doi.org/10.5281/zenodo.4621778.
+            194–200.
+            <ref target="https://doi.org/10.5281/zenodo.4621778">doi:10.5281/zenodo.4621778</ref>.
           </bibl>
         </listBibl>
       </div>
