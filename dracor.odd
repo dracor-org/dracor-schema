@@ -4596,24 +4596,13 @@
               </attDef>
               <attDef ident="type" mode="change" usage="req">
                 <desc>Classifies the identifier</desc>
-                <!-- this should be switched to be switched to "semi" -->
                 <valList type="semi" mode="replace">
-                  <!--
-                  <valItem ident="dracor">
-                    <desc>DraCor-Identifier</desc>
-                  </valItem>
-                  -->
                   <valItem ident="URL">
                     <desc>URL</desc>
                   </valItem>
                   <valItem ident="wikidata">
                     <desc>wikidata</desc>
                   </valItem>
-                  <!--
-                  <valItem ident="viaf">
-                    <desc>VIAF</desc>
-                  </valItem>
-                  -->
                   <valItem ident="pnd">
                     <desc>GND</desc>
                   </valItem>
