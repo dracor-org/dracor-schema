@@ -389,7 +389,6 @@
                   that are supported and marked by using the attribute
                   <att>type</att>.
                 </p>
-                <!-- TODO: add examples to <persName>! -->
                 <p>
                   For additional examples on encoding names see the
                   documentation of the element <gi>persName</gi>. There are also
