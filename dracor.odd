@@ -85,9 +85,7 @@
     </front>
     <body>
       <head>TEI Customization for Drama Corpora (dracor.org)</head>
-      <p>
-        WORK IN PROGRESS!
-      </p>
+
       <!-- Encoding Guidelines -->
       <div xml:id="section-intro">
         <head>Introduction</head>
