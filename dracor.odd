@@ -5304,9 +5304,9 @@
                     <desc>Pseudonym used by writers or authors</desc>
                   </valItem>
                   <valItem ident="nobility">
-                    <gloss>Noble Name</gloss>
+                    <gloss>Noble Name <!-- maybe better Regnal Name --></gloss>
+                    <!-- https://github.com/dracor-org/dracor-schema/issues/109 -->
                     <desc>
-                      TBD: Better definition or even other term: - Regnal Name:
                       This refers to the official name adopted by royalty or
                       other high-ranking individuals, often with an ordinal
                       (like "Catherine the Great" or "Louis XIV") to denote
