@@ -1170,23 +1170,10 @@
                 </p>
               </div>
               <!-- /no explicit speaker -->
-              <div>
-                <head>Speaker unknown</head>
-                <!--
-                <p>
-                  In the remote case it is not possible to identify who is
-                  speaking, you can put the lines into a <gi>stage</gi> block.
-                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                      <stage>A Song.
-                          <l>This is a simple-sample song </l>
-                          <l>Written just to fill this cell,</l>
-                          <l>What could possibly go wrong? </l>
-                      </stage>
-                  </egXML>
-                </p>
-                -->
-                <!-- not sure about that, IB -->
-              </div>
+              <!--
+                for unkown speakers see
+                https://github.com/dracor-org/dracor-schema/issues/106
+              -->
             </div>
             <!-- /section_special_cases -->
           </div>
@@ -1467,12 +1454,8 @@
       </div>
       <!-- End of How to -->
 
-      <!-- Section on Network analysis: In the draft of the designated API ODD I
-           added a more detailed section on Network Analysis which I include here
-           It still needs to be consolidated with the information on Network
-           analysis that is included in the introduction above
-      -->
       <div xml:id="section-network-data">
+        <!-- see https://github.com/dracor-org/dracor-schema/issues/105 -->
         <head>Encoding for Network Analysis</head>
         <p>
           The literary texts in the DraCor corpora are enriched with a
@@ -4889,16 +4872,7 @@
 
           <!-- licence -->
           <elementSpec ident="licence" module="header" mode="change">
-            <!-- the dracor-legacy odd was strict on the element included -->
-            <!--
-            <content>
-              <sequence minOccurs="1" maxOccurs="1" preserveOrder="true">
-                <elementRef key="ab" minOccurs="1" maxOccurs="1"/>
-                <elementRef key="ref" minOccurs="1" maxOccurs="1"/>
-              </sequence>
-            </content>
-            -->
-            <!-- TODO: add schematron here to check if the licence info can be retrieved -->
+            <!-- see https://github.com/dracor-org/dracor-schema/issues/103 -->
             <exemplum source="https://dracor.org/id/ger000010">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <publicationStmt>
@@ -5030,7 +5004,6 @@
           </elementSpec>
 
           <!-- listPerson -->
-          <!-- (att.global.source (@source)) att.typed (@type, @subtype) att.declarable (@default) att.sortable (@sortKey) -->
           <elementSpec ident="listPerson" module="namesdates" mode="change">
             <exemplum source="https://dracor.org/id/ger000304">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -5065,11 +5038,7 @@
               </ab>
             </exemplum>
             <remarks>
-              <p>
-                TODO: Need to explain why <gi>listPerson</gi> in addition to
-                <gi>castList</gi>. Use the same drama as example; probably an
-                example, where speaker is not in castList
-              </p>
+              <!-- https://github.com/dracor-org/dracor-schema/issues/104 -->
             </remarks>
           </elementSpec>
 
@@ -5684,7 +5653,7 @@
           <!-- signed -->
           <!-- sourceDesc -->
           <elementSpec ident="sourceDesc" module="header" mode="change">
-            <!-- TODO: This needs to be reworked; link to feature!! -->
+            <!-- https://github.com/dracor-org/dracor-schema/issues/107-->
             <constraintSpec ident="digital_source_in_sourceDesc" scheme="schematron" mode="add">
               <desc>
                 Checks if a digital source is present in the <gi>sourceDesc</gi>
