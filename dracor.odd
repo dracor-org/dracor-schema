@@ -5508,6 +5508,7 @@
 
           <!-- publicationStmt -->
           <elementSpec ident="publicationStmt" module="header" mode="change">
+            <!-- see https://github.com/dracor-org/dracor-schema/issues/108 -->
             <!--
             in corpus.xml, two identifiers are required!
 
@@ -5516,12 +5517,11 @@
             -->
             <constraintSpec ident="identifier_corpus_name_in_corpus_xml"
               scheme="schematron" mode="add" corresp="#corpus_name">
-              <!-- TODO: check in the code if it is MUST or SHOULD (required to work at all) -->
               <desc>
-                Identifier 'corpus name' (see Feature
-                <ref target="#corpus_name">corpus_name</ref>) of the corpus
-                MUST <!-- or: SHOULD --> be included as an element <gi>idno</gi>
-                with the value <val>URI</val> of the attribute <att>type</att>.
+                The identifier 'corpus name' (see Feature
+                <ref target="#corpus_name">corpus_name</ref>) MUST be included
+                in corpus.xml in an <gi>idno</gi> element of the <att>type</att>
+                <val>URI</val>.
               </desc>
               <constraint>
                 <sch:rule context="tei:publicationStmt[ancestor::tei:teiCorpus]" role="critical">
@@ -5535,20 +5535,18 @@
             </constraintSpec>
             <constraintSpec ident="corpus_repository_url_in_corpus_xml"
               scheme="schematron" mode="add" corresp="#corpus_repository">
-              <!-- TODO: check in the code if it is MUST or SHOULD (required to work at all) -->
               <desc>
                 The URL of the corpus repository (see Feature
-                <ref target="#corpus_repository">corpus_repository</ref>) of the
-                corpus SHOULD <!-- or: SHOULD --> be included as an element
-                <gi>idno</gi> with the value <val>repo</val> of the attribute
-                <att>type</att>.
+                <ref target="#corpus_repository">corpus_repository</ref>) needs
+                to be specified in corpus.xml as the content of an <gi>idno</gi>
+                element with of the  <att>type</att> <val>repo</val> in order to
+                be able to load and update the corpus data from the repository.
               </desc>
               <constraint>
                 <sch:rule context="tei:publicationStmt[ancestor::tei:teiCorpus]" role="warning">
                   <sch:assert test="tei:idno[@type eq 'repo']">
-                    The URL of the corpus repository on GitHub SHOULD be
-                    included as an element idno with the value 'repo' of the
-                    attribute 'type'.
+                    Consider specifying the GitHub repository of the corpus
+                    using an idno element of the type 'repo'.
                   </sch:assert>
                 </sch:rule>
               </constraint>
