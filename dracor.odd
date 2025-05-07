@@ -6086,30 +6086,30 @@
           <!-- Feature Checks: Corpus Features  -->
 
           <!-- Corpus Features -->
-          <!-- C1	corpus_name -->
-          <!-- C2	corpus_uri -->
-          <!-- C3	corpus_title -->
-          <!-- C4	corpus_acronym -->
-          <!-- C5	corpus_description -->
-          <!-- C6	corpus_repository -->
-          <!-- C7	corpus_licence -->
-          <!-- C8	corpus_licence_url -->
-          <!-- C9	corpus_num_of_plays -->
-          <!-- C10	corpus_num_of_characters -->
-          <!-- C11	corpus_num_of_characters_male -->
-          <!-- C12	corpus_num_of_characters_female -->
-          <!-- C13	corpus_num_of_tei_text_elements -->
-          <!-- C14	corpus_num_of_sp -->
-          <!-- C15	corpus_num_of_stage -->
-          <!-- C16	corpus_num_of_word_tokens_in_text_elements -->
-          <!-- C17	corpus_num_of_word_tokens_in_sp -->
-          <!-- C18	corpus_num_of_word_tokens_in_stage -->
-          <!-- C19	corpus_metrics_date_updated -->
-          <!-- C20	corpus_play_objects -->
+          <!-- C1  corpus_name -->
+          <!-- C2  corpus_uri -->
+          <!-- C3  corpus_title -->
+          <!-- C4  corpus_acronym -->
+          <!-- C5  corpus_description -->
+          <!-- C6  corpus_repository -->
+          <!-- C7  corpus_licence -->
+          <!-- C8  corpus_licence_url -->
+          <!-- C9  corpus_num_of_plays -->
+          <!-- C10  corpus_num_of_characters -->
+          <!-- C11  corpus_num_of_characters_male -->
+          <!-- C12  corpus_num_of_characters_female -->
+          <!-- C13  corpus_num_of_tei_text_elements -->
+          <!-- C14  corpus_num_of_sp -->
+          <!-- C15  corpus_num_of_stage -->
+          <!-- C16  corpus_num_of_word_tokens_in_text_elements -->
+          <!-- C17  corpus_num_of_word_tokens_in_sp -->
+          <!-- C18  corpus_num_of_word_tokens_in_stage -->
+          <!-- C19  corpus_metrics_date_updated -->
+          <!-- C20  corpus_play_objects -->
 
           <!-- Feature Checks: Play Features -->
-          <!-- P1	play_corpus_name -->
-          <!-- P2	play_id -->
+          <!-- P1  play_corpus_name -->
+          <!-- P2  play_id -->
 
           <constraintSpec ident="play_id" scheme="schematron" type="api_feature_check" corresp="#play_id">
             <desc>
@@ -6128,9 +6128,9 @@
             </constraint>
           </constraintSpec>
 
-          <!-- P3	play_name -->
+          <!-- P3  play_name -->
 
-          <!-- P4	play_wikidata_id -->
+          <!-- P4  play_wikidata_id -->
           <constraintSpec ident="play_wikidata_id" scheme="schematron"
             type="api_feature_check" corresp="#play_wikidata_id">
             <desc>
@@ -6152,7 +6152,7 @@
             </constraint>
           </constraintSpec>
 
-          <!-- P5	play_title -->
+          <!-- P5  play_title -->
           <constraintSpec ident="play_title" scheme="schematron" type="api_feature_check" corresp="#play_title">
             <desc>
               Feature-Check:
@@ -6172,7 +6172,7 @@
             </constraint>
           </constraintSpec>
 
-          <!-- P6	play_subtitle -->
+          <!-- P6  play_subtitle -->
           <constraintSpec ident="play_subtitle" scheme="schematron"
             type="api_feature_check" corresp="#play_subtitle">
             <desc>
@@ -6192,23 +6192,23 @@
             </constraint>
           </constraintSpec>
 
-          <!-- P7	play_title_en -->
-          <!-- P8	play_subtitle_en -->
-          <!-- P9	play_author_name -->
-          <!-- P10	play_author_name_en -->
-          <!-- P11	play_author_fullname -->
-          <!-- P12	play_author_fullname_en -->
-          <!-- P13	play_author_shortname -->
-          <!-- P14	play_author_shortname_en -->
-          <!-- P15	play_first_author_name -->
-          <!-- P16	play_first_author_shortname -->
-          <!-- P17	play_first_author_deprecation_warning -->
-          <!-- P18	play_author_also_known_as -->
-          <!-- P19	play_author_ref_external_id -->
-          <!-- P20	play_author_ref_type -->
-          <!-- P21	play_num_of_co_authors -->
-          <!-- P22	play_genre_normalized -->
-          <!-- P23	play_is_libretto -->
+          <!-- P7  play_title_en -->
+          <!-- P8  play_subtitle_en -->
+          <!-- P9  play_author_name -->
+          <!-- P10  play_author_name_en -->
+          <!-- P11  play_author_fullname -->
+          <!-- P12  play_author_fullname_en -->
+          <!-- P13  play_author_shortname -->
+          <!-- P14  play_author_shortname_en -->
+          <!-- P15  play_first_author_name -->
+          <!-- P16  play_first_author_shortname -->
+          <!-- P17  play_first_author_deprecation_warning -->
+          <!-- P18  play_author_also_known_as -->
+          <!-- P19  play_author_ref_external_id -->
+          <!-- P20  play_author_ref_type -->
+          <!-- P21  play_num_of_co_authors -->
+          <!-- P22  play_genre_normalized -->
+          <!-- P23  play_is_libretto -->
           <!-- <standOff>
               <listEvent>
                 <event type="print" when="1888">
@@ -6223,7 +6223,7 @@
               </listRelation>
             </standOff> -->
 
-          <!-- P24	play_year_written -->
+          <!-- P24  play_year_written -->
           <constraintSpec ident="play_year_written" scheme="schematron"
             type="api_feature_check" corresp="#play_year_written">
             <desc>
@@ -6243,7 +6243,7 @@
             </constraint>
           </constraintSpec>
 
-          <!-- P25	play_year_printed -->
+          <!-- P25  play_year_printed -->
           <constraintSpec ident="play_year_printed" scheme="schematron"
             type="api_feature_check" corresp="#play_year_printed">
             <desc>
@@ -6263,45 +6263,45 @@
             </constraint>
           </constraintSpec>
 
-          <!-- P26	play_year_premiered -->
-          <!-- P27	play_year_normalized -->
-          <!-- P28	play_digital_source_name -->
-          <!-- P29	play_digital_source_url -->
-          <!-- P30	play_original_source_full_citation -->
-          <!-- P31	play_original_source_publisher -->
-          <!-- P32	play_original_source_publication_place -->
-          <!-- P33	play_original_source_publication_year -->
-          <!-- P34	play_original_source_num_of_pages -->
-          <!-- P35	play_num_of_wikipedia_links -->
-          <!-- P36	play_segments -->
-          <!-- P37	play_num_of_segments -->
-          <!-- P38	play_num_of_acts -->
-          <!--P39	play_num_of_paragraphs-->
-          <!--P40	play_num_of_verse_lines-->
-          <!--P41	play_num_of_word_tokens_in_text_elements-->
-          <!--P42	play_num_of_word_tokens_in_sp-->
-          <!--P43	play_num_of_word_tokens_in_stage-->
-          <!--P44	play_characters-->
-          <!--P45	play_num_of_speakers-->
-          <!--P46	play_num_of_speakers_gender_female-->
-          <!--P47	play_num_of_speakers_gender_male-->
-          <!--P48	play_num_of_speakers_gender_unknown-->
-          <!--P49	play_num_of_person_groups-->
-          <!--P50	play_all_in_segment-->
-          <!--P51	play_all_in_index-->
-          <!--P52	play_character_relations-->
-          <!--P53	play_network_data_csv_url-->
-          <!--P54	play_network_nodes-->
-          <!--P55	play_network_size-->
-          <!--P56	play_network_num_edges-->
-          <!--P57	play_network_average_degree-->
-          <!--P58	play_network_density-->
-          <!--P59	play_network_diameter-->
-          <!--P60	play_network_average_path_length-->
-          <!--P61	play_network_average_clustering-->
-          <!--P62	play_network_num_connected_components-->
-          <!--P63	play_network_max_degree-->
-          <!--P64	play_network_max_degree_character_ids-->
+          <!-- P26  play_year_premiered -->
+          <!-- P27  play_year_normalized -->
+          <!-- P28  play_digital_source_name -->
+          <!-- P29  play_digital_source_url -->
+          <!-- P30  play_original_source_full_citation -->
+          <!-- P31  play_original_source_publisher -->
+          <!-- P32  play_original_source_publication_place -->
+          <!-- P33  play_original_source_publication_year -->
+          <!-- P34  play_original_source_num_of_pages -->
+          <!-- P35  play_num_of_wikipedia_links -->
+          <!-- P36  play_segments -->
+          <!-- P37  play_num_of_segments -->
+          <!-- P38  play_num_of_acts -->
+          <!--P39  play_num_of_paragraphs-->
+          <!--P40  play_num_of_verse_lines-->
+          <!--P41  play_num_of_word_tokens_in_text_elements-->
+          <!--P42  play_num_of_word_tokens_in_sp-->
+          <!--P43  play_num_of_word_tokens_in_stage-->
+          <!--P44  play_characters-->
+          <!--P45  play_num_of_speakers-->
+          <!--P46  play_num_of_speakers_gender_female-->
+          <!--P47  play_num_of_speakers_gender_male-->
+          <!--P48  play_num_of_speakers_gender_unknown-->
+          <!--P49  play_num_of_person_groups-->
+          <!--P50  play_all_in_segment-->
+          <!--P51  play_all_in_index-->
+          <!--P52  play_character_relations-->
+          <!--P53  play_network_data_csv_url-->
+          <!--P54  play_network_nodes-->
+          <!--P55  play_network_size-->
+          <!--P56  play_network_num_edges-->
+          <!--P57  play_network_average_degree-->
+          <!--P58  play_network_density-->
+          <!--P59  play_network_diameter-->
+          <!--P60  play_network_average_path_length-->
+          <!--P61  play_network_average_clustering-->
+          <!--P62  play_network_num_connected_components-->
+          <!--P63  play_network_max_degree-->
+          <!--P64  play_network_max_degree_character_ids-->
           <!-- End of Feature-Checks  -->
 
           <!-- Encoding hints -->
