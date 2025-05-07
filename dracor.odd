@@ -662,17 +662,6 @@
                   </personGrp>
                 </egXML>
               </p>
-              <list>
-                <item>
-                  TBD: Order of the characters in order of appearance
-                  <!-- check with ff! -->
-                </item>
-                <item>
-                  TBD: Relation to <gi>castList</gi>; it is not a 1:1
-                  comparison! They are not connected by any means of encoding,
-                  unfortunately.
-                </item>
-              </list>
               <div xml:id="section-character-name">
                 <head>Character Name</head>
                 <p>
