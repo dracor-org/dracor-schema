@@ -864,14 +864,6 @@
                 </p>
               </div>
               <!-- /character realizations -->
-
-              <!-- is there an encoding in the particDesc to support roles? -->
-              <!--
-              <div xml:id="section_character_roles">
-                  <head>Character Roles</head>
-                  <p>TBD</p>
-              </div>
-              -->
             </div>
             <!-- /character -->
 
