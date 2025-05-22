@@ -2747,7 +2747,7 @@
           <moduleRef key="drama"/>
           <!-- The dracor-legacy ODD also included additional elements from the following modules: -->
           <moduleRef key="namesdates"
-            include="event forename genName listEvent listPerson listRelation nameLink person personGrp persName relation surname"/>
+            include="event forename genName listEvent listPerson listRelation nameLink person personGrp persName relation surname orgName"/>
           <moduleRef key="corpus" include="particDesc"/>
           <moduleRef key="figures" include="figure"/>
           <!-- The module analysis was originally included to have the analysis attributes -->
