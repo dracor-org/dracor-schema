@@ -2770,19 +2770,9 @@
               -->
               <!-- <memberOf key="att.global.linking"/> -->
               <memberOf key="att.global.analytic"/>
-              <!-- IB: add @rend globally -->
               <memberOf key="att.global.rendition"/>
+              <memberOf key="att.global.source"/>
             </classes>
-            <!-- IB: There was an issue not to make these global changes,
-                 see issue #69: https://github.com/dracor-org/dracor-schema/issues/69 -->
-            <!-- if we like it this way, we can remove the uncommented parts altogether -->
-            <!-- <attList> -->
-            <!-- globally removes xml:space and xml:base -->
-            <!-- <attDef ident="xml:space" usage="opt" mode="delete"/> -->
-            <!-- xml:base is needed for the idno in the corpus.xml -->
-            <!-- <attDef ident="xml:base" usage="opt" mode="delete"/> -->
-            <!-- There is a problem with @ana, which I don't seem to have att the moment -->
-            <!-- </attList> -->
           </classSpec>
           <!-- delete "att.datable.custom" and "att.datable.iso" attributes (on
                module core) -->
