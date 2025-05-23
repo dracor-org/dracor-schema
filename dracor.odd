@@ -6312,7 +6312,7 @@
                   value="concat('https://dracor.org/entity/',./ancestor::tei:TEI/@xml:id/string())"/>
                   <!-- expects a correct Wikidata URI pattern in @passive
                      Test with:
-                      - WRONG: tst0000001: Here the URI is https://.../wiki/
+                      - WRONG: tst000001: Here the URI is https://.../wiki/
                       - CORRECT: tst000002: Here the correct URI is used in @passive
                   -->
                 <sch:assert test="starts-with(./@passive/string(),'http://www.wikidata.org/entity/')">
@@ -6322,12 +6322,12 @@
                 <!-- expects that the self-uri in @active follows the
                      pattern http://www.wikidata.org/entity/{play_id}
                     Test with:
-                    - WRONG: tst000003: Here the play_uri in @passive is "https://dracor.org/entity/ERROR"
+                    - WRONG: tst000003: Here the play_uri in @passive is "https://dracor.org/entity/no-such-id"
                     - CORRECT: tst000002: Here the correct value is used in @passive
                 -->
                 <sch:assert test="./@active/string() eq $expected_play_uri">
-                  The value of the attribute '@passive' SHOULD follow the
-                  pattern "http://www.wikidata.org/entity/{play_id}.
+                  The value of the attribute '@active' SHOULD follow the
+                  pattern "https://dracor.org/entity/{play_id}.
                   [Expected value:
                   '<xsl:value-of select="$expected_play_uri"/>']"
                 </sch:assert>

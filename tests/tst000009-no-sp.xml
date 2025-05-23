@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is valid against the DraCor schema but it is lacking <sp> elements. A
+network can not be extracted. There should be a warning.
+-->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000008" xml:lang="eng">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Ham</title>
+        <title type="sub">A Tragedy</title>
+        <author>William S</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher xml:id="dracor">DraCor</publisher>
+        <idno type="URL">https://dracor.org</idno>
+        <availability>
+          <licence>
+            <ab>CC0 1.0</ab>
+            <ref target="https://creativecommons.org/publicdomain/zero/1.0/">Licence</ref>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl type="digitalSource">
+          <name>dracor-schema GitHub Repository</name><bibl type="originalSource">
+            <title>Slides of the Hebrew and Yiddish DraCor Working group meeting on 2022-11-14 by Daniil Skorinkin</title>
+          </bibl>
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+    <profileDesc>
+      <particDesc>
+        <listPerson>
+          <person xml:id="ham">
+            <persName>Ham</persName>
+          </person>
+          <person xml:id="egg">
+            <persName>Egg</persName>
+          </person>
+          <person xml:id="sausage">
+            <persName>Sausage</persName>
+          </person>
+          <person xml:id="bacon">
+            <persName>Bacon</persName>
+          </person>
+        </listPerson>
+      </particDesc>
+    </profileDesc>
+    <revisionDesc>
+      <change when="2022-11-07">Describe Change!</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listEvent>
+      <event type="print" when="2023">
+        <desc/>
+      </event>
+      <event type="written" when="2022">
+        <desc/>
+      </event>
+    </listEvent>
+  </standOff>
+  <text>
+    <front>
+      <div type="front">
+        <head>Ham, a tragedy By William S</head>
+      </div>
+      <div type="Dramatis_Personae">
+        <castList>
+          <head>Dramatis Personae</head>
+          <castItem>Ham</castItem>
+          <castItem>Egg</castItem>
+          <castGroup>
+            <castItem>Sausage</castItem>
+            <castItem>Bacon</castItem>
+            <roleDesc>Vikings</roleDesc>
+          </castGroup>
+        </castList>
+      </div>
+    </front>
+    <body>
+      <div type="act">
+        <p>
+          <!-- here is no structure: missing <sp> elements -->
+          Act 1.
+
+          Scene 1.
+          Ham and Egg.
+          HAM.
+          Lovely Spam!
+          EGG.
+          Wonderful Spam!
+
+          Scene 2.
+          Enter Vikings.
+          HAM.
+          Egg! Sausage, and Bacon!
+
+          VIKINGS (singing).
+          Spam, Spam, Spam,
+          Spam, Spam, Spam,
+          Spam and Spam!
+
+          The End.
+        </p>
+      </div>
+    </body>
+  </text>
+</TEI>
