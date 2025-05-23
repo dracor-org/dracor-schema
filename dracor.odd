@@ -85,9 +85,7 @@
     </front>
     <body>
       <head>TEI Customization for Drama Corpora (dracor.org)</head>
-      <p>
-        WORK IN PROGRESS!
-      </p>
+
       <!-- Encoding Guidelines -->
       <div xml:id="section-intro">
         <head>Introduction</head>
@@ -391,7 +389,6 @@
                   that are supported and marked by using the attribute
                   <att>type</att>.
                 </p>
-                <!-- TODO: add examples to <persName>! -->
                 <p>
                   For additional examples on encoding names see the
                   documentation of the element <gi>persName</gi>. There are also
@@ -527,9 +524,8 @@
               </p>
               <p>
                 The information on the licence under which the digital source
-                file is distributed should be included in <gi>availability</gi>
-                (see <!-- TODO --> section on encoding "Licence information"
-                TBD).
+                file is distributed should be included in <gi>availability</gi>.
+                <!-- see https://github.com/dracor-org/dracor-schema/issues/97 -->
               </p>
               <p>
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -666,17 +662,6 @@
                   </personGrp>
                 </egXML>
               </p>
-              <list>
-                <item>
-                  TBD: Order of the characters in order of appearance
-                  <!-- check with ff! -->
-                </item>
-                <item>
-                  TBD: Relation to <gi>castList</gi>; it is not a 1:1
-                  comparison! They are not connected by any means of encoding,
-                  unfortunately.
-                </item>
-              </list>
               <div xml:id="section-character-name">
                 <head>Character Name</head>
                 <p>
@@ -879,14 +864,6 @@
                 </p>
               </div>
               <!-- /character realizations -->
-
-              <!-- is there an encoding in the particDesc to support roles? -->
-              <!--
-              <div xml:id="section_character_roles">
-                  <head>Character Roles</head>
-                  <p>TBD</p>
-              </div>
-              -->
             </div>
             <!-- /character -->
 
@@ -1174,23 +1151,10 @@
                 </p>
               </div>
               <!-- /no explicit speaker -->
-              <div>
-                <head>Speaker unknown</head>
-                <!--
-                <p>
-                  In the remote case it is not possible to identify who is
-                  speaking, you can put the lines into a <gi>stage</gi> block.
-                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                      <stage>A Song.
-                          <l>This is a simple-sample song </l>
-                          <l>Written just to fill this cell,</l>
-                          <l>What could possibly go wrong? </l>
-                      </stage>
-                  </egXML>
-                </p>
-                -->
-                <!-- not sure about that, IB -->
-              </div>
+              <!--
+                for unkown speakers see
+                https://github.com/dracor-org/dracor-schema/issues/106
+              -->
             </div>
             <!-- /section_special_cases -->
           </div>
@@ -1471,12 +1435,8 @@
       </div>
       <!-- End of How to -->
 
-      <!-- Section on Network analysis: In the draft of the designated API ODD I
-           added a more detailed section on Network Analysis which I include here
-           It still needs to be consolidated with the information on Network
-           analysis that is included in the introduction above
-      -->
       <div xml:id="section-network-data">
+        <!-- see https://github.com/dracor-org/dracor-schema/issues/105 -->
         <head>Encoding for Network Analysis</head>
         <p>
           The literary texts in the DraCor corpora are enriched with a
@@ -1563,7 +1523,7 @@
           basis of the DraCor API Ontology which – at a later stage – will be
           automatically generated from this ODD.
         </p>
-        <!-- TODO: Adapt D71 API part and include here -->
+        <!-- https://github.com/dracor-org/dracor-schema/issues/99 -->
 
         <!-- Features -->
         <div xml:id="section-api-features">
@@ -1842,8 +1802,7 @@
                 is contained in.
               </p>
             </div>
-            <!-- this is a semantically richer version. The @rend is carried over to the HTML rendering -->
-            <!-- TODO: decide if the API features should be converted to this -->
+            <!-- see https://github.com/dracor-org/dracor-schema/issues/98 -->
             <div xml:id="play_id">
               <head>Play ID</head>
               <p rend="feature_name">
@@ -1870,25 +1829,7 @@
                 [<ref type="code" target="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L93-L100">Code</ref>].
               </p>
             </div>
-            <!-- .ttl example in the API-Ontology: -->
-            <!--
-            :play_id
-            a owl:DatatypeProperty, rdf:Property ;
-            rdfs:domain :Play ;
-            rdfs:range  rdfs:Literal;
-            rdfs:label "play id"@en ;
-            rdfs:comment "DraCor ID of the play, e.g. 'ger000171'. In the TEI source file the DraCor ID is contained in the attribute @xml:id on the root element <tei:TEI>."@en ;
-                :extractor_in_api_module "util.xqm" ;
-                :extractor_in_api_function "dutil:get-dracor-id" ;
-                :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L93-L100> ;
-                    :feature_id "P2" ;
-                    :xpath "/tei:TEI/@xml:id/string()" ;
-                    :operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" , "play-metrics" ;
-                    :feature_name "play_id" .
-            -->
-            <!-- Maybe I could even include it here as RDF, but then it
-                 complains that in an ODD the owl:DatatypeProperty is not valid -->
-            <!-- it would have to go into xenoData in a standOff container -->
+            <!-- https://github.com/dracor-org/dracor-schema/issues/101 -->
             <div xml:id="play_uri">
               <head>Play URI</head>
               <p>
@@ -2334,7 +2275,6 @@
               <p>
                 Feature <idno type="feature-no">P39</idno>
                 <idno type="feature-id">play_num_of_paragraphs</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_num_of_verse_lines">
@@ -2342,7 +2282,6 @@
               <p>
                 Feature <idno type="feature-no">P40</idno>
                 <idno type="feature-id">play_num_of_verse_lines</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_num_of_word_tokens_in_text_elements">
@@ -2350,7 +2289,6 @@
               <p>
                 Feature <idno type="feature-no">P41</idno>
                 <idno type="feature-id">play_num_of_word_tokens_in_text_elements</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_num_of_word_tokens_in_sp">
@@ -2358,7 +2296,6 @@
               <p>
                 Feature <idno type="feature-no">P42</idno>
                 <idno type="feature-id">play_num_of_word_tokens_in_sp</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_num_of_word_tokens_in_stage">
@@ -2366,7 +2303,6 @@
               <p>
                 Feature <idno type="feature-no">P43</idno>
                 <idno type="feature-id">play_num_of_word_tokens_in_stage</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_num_of_speakers">
@@ -2382,7 +2318,6 @@
               <p>
                 Feature <idno type="feature-no">P46</idno>
                 <idno type="feature-id">play_num_of_speakers_gender_female</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_num_of_speakers_gender_male">
@@ -2390,7 +2325,6 @@
               <p>
                 Feature <idno type="feature-no">P47</idno>
                 <idno type="feature-id">play_num_of_speakers_gender_male</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_num_of_speakers_gender_unknown">
@@ -2398,7 +2332,6 @@
               <p>
                 Feature <idno type="feature-no">P48</idno>
                 <idno type="feature-id">play_num_of_speakers_gender_unknown</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_num_of_person_groups">
@@ -2406,7 +2339,6 @@
               <p>
                 Feature <idno type="feature-no">P49</idno>
                 <idno type="feature-id">play_num_of_person_groups</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_all_in_segment">
@@ -2414,7 +2346,6 @@
               <p>
                 Feature <idno type="feature-no">P50</idno>
                 <idno type="feature-id">play_all_in_segment</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_all_in_index">
@@ -2422,7 +2353,6 @@
               <p>
                 Feature <idno type="feature-no">P51</idno>
                 <idno type="feature-id">play_all_in_index</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_network_data_csv_url">
@@ -2430,7 +2360,6 @@
               <p>
                 Feature <idno type="feature-no">P53</idno>
                 <idno type="feature-id">play_network_data_csv_url</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_network_size">
@@ -2438,7 +2367,6 @@
               <p>
                 Feature <idno type="feature-no">P55</idno>
                 <idno type="feature-id">play_network_size</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_network_num_edges">
@@ -2446,7 +2374,6 @@
               <p>
                 Feature <idno type="feature-no">P56</idno>
                 <idno type="feature-id">play_network_num_edges</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_network_average_degree">
@@ -2485,7 +2412,6 @@
               <p>
                 Feature <idno type="feature-no">P61</idno>
                 <idno type="feature-id">play_network_average_clustering</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_network_num_connected_components">
@@ -2493,7 +2419,6 @@
               <p>
                 Feature <idno type="feature-no">P62</idno>
                 <idno type="feature-id">play_network_num_connected_components</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_network_max_degree">
@@ -2501,7 +2426,6 @@
               <p>
                 Feature <idno type="feature-no">P63</idno>
                 <idno type="feature-id">play_network_max_degree</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="play_network_max_degree_character_id">
@@ -2526,7 +2450,6 @@
               <p>
                 Feature <idno type="feature-no">S1</idno>
                 <idno type="feature-id">segment_type</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="segment_number">
@@ -2534,7 +2457,6 @@
               <p>
                 Feature <idno type="feature-no">S2</idno>
                 <idno type="feature-id">segment_number</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="segment_title">
@@ -2542,7 +2464,6 @@
               <p>
                 Feature <idno type="feature-no">S3</idno>
                 <idno type="feature-id">segment_title</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="segment_speaking_characters">
@@ -2550,7 +2471,6 @@
               <p>
                 Feature <idno type="feature-no">S4</idno>
                 <idno type="feature-id">segment_speaking_characters</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
           </div>
@@ -2563,7 +2483,6 @@
               <p>
                 Feature <idno type="feature-no">Ch1</idno>
                 <idno type="feature-id">character_id</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_name">
@@ -2571,7 +2490,6 @@
               <p>
                 Feature <idno type="feature-no">Ch2</idno>
                 <idno type="feature-id">character_name</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_is_group">
@@ -2579,7 +2497,6 @@
               <p>
                 Feature <idno type="feature-no">Ch3</idno>
                 <idno type="feature-id">character_is_group</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_gender">
@@ -2587,7 +2504,6 @@
               <p>
                 Feature <idno type="feature-no">Ch4</idno>
                 <idno type="feature-id">character_gender</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_wikidata_id">
@@ -2595,7 +2511,6 @@
               <p>
                 Feature <idno type="feature-no">Ch5</idno>
                 <idno type="feature-id">character_wikidata_id</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_node_betweenness">
@@ -2603,7 +2518,6 @@
               <p>
                 Feature <idno type="feature-no">Ch6</idno>
                 <idno type="feature-id">character_node_betweenness</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_node_degree">
@@ -2611,7 +2525,6 @@
               <p>
                 Feature <idno type="feature-no">Ch7</idno>
                 <idno type="feature-id">character_node_degree</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_node_closeness">
@@ -2619,7 +2532,6 @@
               <p>
                 Feature <idno type="feature-no">Ch8</idno>
                 <idno type="feature-id">character_node_closeness</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_node_eigenvector">
@@ -2627,7 +2539,6 @@
               <p>
                 Feature <idno type="feature-no">Ch9</idno>
                 <idno type="feature-id">character_node_eigenvector</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_node_weighted_degree">
@@ -2635,7 +2546,6 @@
               <p>
                 Feature <idno type="feature-no">Ch10</idno>
                 <idno type="feature-id">character_node_weighted_degree</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_num_of_segments">
@@ -2651,7 +2561,6 @@
               <p>
                 Feature <idno type="feature-no">Ch12</idno>
                 <idno type="feature-id">character_num_of_sp</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_num_of_word_tokens">
@@ -2659,7 +2568,6 @@
               <p>
                 Feature <idno type="feature-no">Ch13</idno>
                 <idno type="feature-id">character_num_of_word_tokens</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
             <div xml:id="character_role">
@@ -2675,7 +2583,6 @@
               <p>
                 Feature <idno type="feature-no">Ch15</idno>
                 <idno type="feature-id">character_spoken_text</idno>:
-                <!-- TODO here is something missing! -->
               </p>
             </div>
           </div>
@@ -3178,7 +3085,7 @@
                 <!-- maybe could highlight from and to as well -->
               </attDef>
             </attList>
-            <!-- TODO: Examples are missing -->
+            <!-- https://github.com/dracor-org/dracor-schema/issues/100 -->
           </elementSpec>
 
           <!-- body -->
@@ -4600,10 +4507,12 @@
 
           <!-- idno -->
           <elementSpec ident="idno" module="header" mode="change">
-            <!-- TODO: is the xml:base attribute somehow relevant for the
-                 extractor in the xQuery? -->
             <constraintSpec ident="xml_base_required_on_idno_type_URI_in_corpus_xml"
               scheme="schematron" mode="add" corresp="#corpus_name">
+              <!--
+                the xml:base attribute is queried in the dutil:get-corpus
+                function of dracor-api
+              -->
               <desc>
                 In the corpus.xml (root element <gi>teiCorpus</gi>) the
                 identifier <gi>idno</gi> containing the corpus name (see Feature
@@ -4641,24 +4550,13 @@
               </attDef>
               <attDef ident="type" mode="change" usage="req">
                 <desc>Classifies the identifier</desc>
-                <!-- this should be switched to be switched to "semi" -->
                 <valList type="semi" mode="replace">
-                  <!--
-                  <valItem ident="dracor">
-                    <desc>DraCor-Identifier</desc>
-                  </valItem>
-                  -->
                   <valItem ident="URL">
                     <desc>URL</desc>
                   </valItem>
                   <valItem ident="wikidata">
                     <desc>wikidata</desc>
                   </valItem>
-                  <!--
-                  <valItem ident="viaf">
-                    <desc>VIAF</desc>
-                  </valItem>
-                  -->
                   <valItem ident="pnd">
                     <desc>GND</desc>
                   </valItem>
@@ -4783,6 +4681,7 @@
                      because in att.fragmentable there is a closed value list
                      not sure how the API will handle this encoding but it is
                      used in GerDraCor and RusDraCor -->
+                <!-- also see https://github.com/dracor-org/dracor-api/issues/318 -->
                 <valList type="semi" mode="replace">
                   <valItem ident="F">
                     <gloss>Final</gloss>
@@ -4814,7 +4713,6 @@
                     on GitHub.
                   </p>
                 </remarks>
-                <!-- TODO: this needs really to be tested how it affects the counting of verse lines -->
               </attDef>
             </attList>
             <exemplum source="https://dracor.org/id/ger000083">
@@ -4945,16 +4843,7 @@
 
           <!-- licence -->
           <elementSpec ident="licence" module="header" mode="change">
-            <!-- the dracor-legacy odd was strict on the element included -->
-            <!--
-            <content>
-              <sequence minOccurs="1" maxOccurs="1" preserveOrder="true">
-                <elementRef key="ab" minOccurs="1" maxOccurs="1"/>
-                <elementRef key="ref" minOccurs="1" maxOccurs="1"/>
-              </sequence>
-            </content>
-            -->
-            <!-- TODO: add schematron here to check if the licence info can be retrieved -->
+            <!-- see https://github.com/dracor-org/dracor-schema/issues/103 -->
             <exemplum source="https://dracor.org/id/ger000010">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <publicationStmt>
@@ -5086,7 +4975,6 @@
           </elementSpec>
 
           <!-- listPerson -->
-          <!-- (att.global.source (@source)) att.typed (@type, @subtype) att.declarable (@default) att.sortable (@sortKey) -->
           <elementSpec ident="listPerson" module="namesdates" mode="change">
             <exemplum source="https://dracor.org/id/ger000304">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -5121,11 +5009,7 @@
               </ab>
             </exemplum>
             <remarks>
-              <p>
-                TODO: Need to explain why <gi>listPerson</gi> in addition to
-                <gi>castList</gi>. Use the same drama as example; probably an
-                example, where speaker is not in castList
-              </p>
+              <!-- https://github.com/dracor-org/dracor-schema/issues/104 -->
             </remarks>
           </elementSpec>
 
@@ -5410,9 +5294,9 @@
                     <desc>Pseudonym used by writers or authors</desc>
                   </valItem>
                   <valItem ident="nobility">
-                    <gloss>Noble Name</gloss>
+                    <gloss>Noble Name <!-- maybe better Regnal Name --></gloss>
+                    <!-- https://github.com/dracor-org/dracor-schema/issues/109 -->
                     <desc>
-                      TBD: Better definition or even other term: - Regnal Name:
                       This refers to the official name adopted by royalty or
                       other high-ranking individuals, often with an ordinal
                       (like "Catherine the Great" or "Louis XIV") to denote
@@ -5595,6 +5479,7 @@
 
           <!-- publicationStmt -->
           <elementSpec ident="publicationStmt" module="header" mode="change">
+            <!-- see https://github.com/dracor-org/dracor-schema/issues/108 -->
             <!--
             in corpus.xml, two identifiers are required!
 
@@ -5603,12 +5488,11 @@
             -->
             <constraintSpec ident="identifier_corpus_name_in_corpus_xml"
               scheme="schematron" mode="add" corresp="#corpus_name">
-              <!-- TODO: check in the code if it is MUST or SHOULD (required to work at all) -->
               <desc>
-                Identifier 'corpus name' (see Feature
-                <ref target="#corpus_name">corpus_name</ref>) of the corpus
-                MUST <!-- or: SHOULD --> be included as an element <gi>idno</gi>
-                with the value <val>URI</val> of the attribute <att>type</att>.
+                The identifier 'corpus name' (see Feature
+                <ref target="#corpus_name">corpus_name</ref>) MUST be included
+                in corpus.xml in an <gi>idno</gi> element of the <att>type</att>
+                <val>URI</val>.
               </desc>
               <constraint>
                 <sch:rule context="tei:publicationStmt[ancestor::tei:teiCorpus]" role="critical">
@@ -5622,20 +5506,18 @@
             </constraintSpec>
             <constraintSpec ident="corpus_repository_url_in_corpus_xml"
               scheme="schematron" mode="add" corresp="#corpus_repository">
-              <!-- TODO: check in the code if it is MUST or SHOULD (required to work at all) -->
               <desc>
                 The URL of the corpus repository (see Feature
-                <ref target="#corpus_repository">corpus_repository</ref>) of the
-                corpus SHOULD <!-- or: SHOULD --> be included as an element
-                <gi>idno</gi> with the value <val>repo</val> of the attribute
-                <att>type</att>.
+                <ref target="#corpus_repository">corpus_repository</ref>) needs
+                to be specified in corpus.xml as the content of an <gi>idno</gi>
+                element with of the  <att>type</att> <val>repo</val> in order to
+                be able to load and update the corpus data from the repository.
               </desc>
               <constraint>
                 <sch:rule context="tei:publicationStmt[ancestor::tei:teiCorpus]" role="warning">
                   <sch:assert test="tei:idno[@type eq 'repo']">
-                    The URL of the corpus repository on GitHub SHOULD be
-                    included as an element idno with the value 'repo' of the
-                    attribute 'type'.
+                    Consider specifying the GitHub repository of the corpus
+                    using an idno element of the type 'repo'.
                   </sch:assert>
                 </sch:rule>
               </constraint>
@@ -5740,7 +5622,7 @@
           <!-- signed -->
           <!-- sourceDesc -->
           <elementSpec ident="sourceDesc" module="header" mode="change">
-            <!-- TODO: This needs to be reworked; link to feature!! -->
+            <!-- https://github.com/dracor-org/dracor-schema/issues/107-->
             <constraintSpec ident="digital_source_in_sourceDesc" scheme="schematron" mode="add">
               <desc>
                 Checks if a digital source is present in the <gi>sourceDesc</gi>
@@ -6142,30 +6024,30 @@
           <!-- Feature Checks: Corpus Features  -->
 
           <!-- Corpus Features -->
-          <!-- C1	corpus_name -->
-          <!-- C2	corpus_uri -->
-          <!-- C3	corpus_title -->
-          <!-- C4	corpus_acronym -->
-          <!-- C5	corpus_description -->
-          <!-- C6	corpus_repository -->
-          <!-- C7	corpus_licence -->
-          <!-- C8	corpus_licence_url -->
-          <!-- C9	corpus_num_of_plays -->
-          <!-- C10	corpus_num_of_characters -->
-          <!-- C11	corpus_num_of_characters_male -->
-          <!-- C12	corpus_num_of_characters_female -->
-          <!-- C13	corpus_num_of_tei_text_elements -->
-          <!-- C14	corpus_num_of_sp -->
-          <!-- C15	corpus_num_of_stage -->
-          <!-- C16	corpus_num_of_word_tokens_in_text_elements -->
-          <!-- C17	corpus_num_of_word_tokens_in_sp -->
-          <!-- C18	corpus_num_of_word_tokens_in_stage -->
-          <!-- C19	corpus_metrics_date_updated -->
-          <!-- C20	corpus_play_objects -->
+          <!-- C1  corpus_name -->
+          <!-- C2  corpus_uri -->
+          <!-- C3  corpus_title -->
+          <!-- C4  corpus_acronym -->
+          <!-- C5  corpus_description -->
+          <!-- C6  corpus_repository -->
+          <!-- C7  corpus_licence -->
+          <!-- C8  corpus_licence_url -->
+          <!-- C9  corpus_num_of_plays -->
+          <!-- C10  corpus_num_of_characters -->
+          <!-- C11  corpus_num_of_characters_male -->
+          <!-- C12  corpus_num_of_characters_female -->
+          <!-- C13  corpus_num_of_tei_text_elements -->
+          <!-- C14  corpus_num_of_sp -->
+          <!-- C15  corpus_num_of_stage -->
+          <!-- C16  corpus_num_of_word_tokens_in_text_elements -->
+          <!-- C17  corpus_num_of_word_tokens_in_sp -->
+          <!-- C18  corpus_num_of_word_tokens_in_stage -->
+          <!-- C19  corpus_metrics_date_updated -->
+          <!-- C20  corpus_play_objects -->
 
           <!-- Feature Checks: Play Features -->
-          <!-- P1	play_corpus_name -->
-          <!-- P2	play_id -->
+          <!-- P1  play_corpus_name -->
+          <!-- P2  play_id -->
 
           <constraintSpec ident="play_id" scheme="schematron" type="api_feature_check" corresp="#play_id">
             <desc>
@@ -6184,9 +6066,9 @@
             </constraint>
           </constraintSpec>
 
-          <!-- P3	play_name -->
+          <!-- P3  play_name -->
 
-          <!-- P4	play_wikidata_id -->
+          <!-- P4  play_wikidata_id -->
           <constraintSpec ident="play_wikidata_id" scheme="schematron"
             type="api_feature_check" corresp="#play_wikidata_id">
             <desc>
@@ -6208,7 +6090,7 @@
             </constraint>
           </constraintSpec>
 
-          <!-- P5	play_title -->
+          <!-- P5  play_title -->
           <constraintSpec ident="play_title" scheme="schematron" type="api_feature_check" corresp="#play_title">
             <desc>
               Feature-Check:
@@ -6228,7 +6110,7 @@
             </constraint>
           </constraintSpec>
 
-          <!-- P6	play_subtitle -->
+          <!-- P6  play_subtitle -->
           <constraintSpec ident="play_subtitle" scheme="schematron"
             type="api_feature_check" corresp="#play_subtitle">
             <desc>
@@ -6248,23 +6130,23 @@
             </constraint>
           </constraintSpec>
 
-          <!-- P7	play_title_en -->
-          <!-- P8	play_subtitle_en -->
-          <!-- P9	play_author_name -->
-          <!-- P10	play_author_name_en -->
-          <!-- P11	play_author_fullname -->
-          <!-- P12	play_author_fullname_en -->
-          <!-- P13	play_author_shortname -->
-          <!-- P14	play_author_shortname_en -->
-          <!-- P15	play_first_author_name -->
-          <!-- P16	play_first_author_shortname -->
-          <!-- P17	play_first_author_deprecation_warning -->
-          <!-- P18	play_author_also_known_as -->
-          <!-- P19	play_author_ref_external_id -->
-          <!-- P20	play_author_ref_type -->
-          <!-- P21	play_num_of_co_authors -->
-          <!-- P22	play_genre_normalized -->
-          <!-- P23	play_is_libretto -->
+          <!-- P7  play_title_en -->
+          <!-- P8  play_subtitle_en -->
+          <!-- P9  play_author_name -->
+          <!-- P10  play_author_name_en -->
+          <!-- P11  play_author_fullname -->
+          <!-- P12  play_author_fullname_en -->
+          <!-- P13  play_author_shortname -->
+          <!-- P14  play_author_shortname_en -->
+          <!-- P15  play_first_author_name -->
+          <!-- P16  play_first_author_shortname -->
+          <!-- P17  play_first_author_deprecation_warning -->
+          <!-- P18  play_author_also_known_as -->
+          <!-- P19  play_author_ref_external_id -->
+          <!-- P20  play_author_ref_type -->
+          <!-- P21  play_num_of_co_authors -->
+          <!-- P22  play_genre_normalized -->
+          <!-- P23  play_is_libretto -->
           <!-- <standOff>
               <listEvent>
                 <event type="print" when="1888">
@@ -6279,7 +6161,7 @@
               </listRelation>
             </standOff> -->
 
-          <!-- P24	play_year_written -->
+          <!-- P24  play_year_written -->
           <constraintSpec ident="play_year_written" scheme="schematron"
             type="api_feature_check" corresp="#play_year_written">
             <desc>
@@ -6299,7 +6181,7 @@
             </constraint>
           </constraintSpec>
 
-          <!-- P25	play_year_printed -->
+          <!-- P25  play_year_printed -->
           <constraintSpec ident="play_year_printed" scheme="schematron"
             type="api_feature_check" corresp="#play_year_printed">
             <desc>
@@ -6319,45 +6201,45 @@
             </constraint>
           </constraintSpec>
 
-          <!-- P26	play_year_premiered -->
-          <!-- P27	play_year_normalized -->
-          <!-- P28	play_digital_source_name -->
-          <!-- P29	play_digital_source_url -->
-          <!-- P30	play_original_source_full_citation -->
-          <!-- P31	play_original_source_publisher -->
-          <!-- P32	play_original_source_publication_place -->
-          <!-- P33	play_original_source_publication_year -->
-          <!-- P34	play_original_source_num_of_pages -->
-          <!-- P35	play_num_of_wikipedia_links -->
-          <!-- P36	play_segments -->
-          <!-- P37	play_num_of_segments -->
-          <!-- P38	play_num_of_acts -->
-          <!--P39	play_num_of_paragraphs-->
-          <!--P40	play_num_of_verse_lines-->
-          <!--P41	play_num_of_word_tokens_in_text_elements-->
-          <!--P42	play_num_of_word_tokens_in_sp-->
-          <!--P43	play_num_of_word_tokens_in_stage-->
-          <!--P44	play_characters-->
-          <!--P45	play_num_of_speakers-->
-          <!--P46	play_num_of_speakers_gender_female-->
-          <!--P47	play_num_of_speakers_gender_male-->
-          <!--P48	play_num_of_speakers_gender_unknown-->
-          <!--P49	play_num_of_person_groups-->
-          <!--P50	play_all_in_segment-->
-          <!--P51	play_all_in_index-->
-          <!--P52	play_character_relations-->
-          <!--P53	play_network_data_csv_url-->
-          <!--P54	play_network_nodes-->
-          <!--P55	play_network_size-->
-          <!--P56	play_network_num_edges-->
-          <!--P57	play_network_average_degree-->
-          <!--P58	play_network_density-->
-          <!--P59	play_network_diameter-->
-          <!--P60	play_network_average_path_length-->
-          <!--P61	play_network_average_clustering-->
-          <!--P62	play_network_num_connected_components-->
-          <!--P63	play_network_max_degree-->
-          <!--P64	play_network_max_degree_character_ids-->
+          <!-- P26  play_year_premiered -->
+          <!-- P27  play_year_normalized -->
+          <!-- P28  play_digital_source_name -->
+          <!-- P29  play_digital_source_url -->
+          <!-- P30  play_original_source_full_citation -->
+          <!-- P31  play_original_source_publisher -->
+          <!-- P32  play_original_source_publication_place -->
+          <!-- P33  play_original_source_publication_year -->
+          <!-- P34  play_original_source_num_of_pages -->
+          <!-- P35  play_num_of_wikipedia_links -->
+          <!-- P36  play_segments -->
+          <!-- P37  play_num_of_segments -->
+          <!-- P38  play_num_of_acts -->
+          <!--P39  play_num_of_paragraphs-->
+          <!--P40  play_num_of_verse_lines-->
+          <!--P41  play_num_of_word_tokens_in_text_elements-->
+          <!--P42  play_num_of_word_tokens_in_sp-->
+          <!--P43  play_num_of_word_tokens_in_stage-->
+          <!--P44  play_characters-->
+          <!--P45  play_num_of_speakers-->
+          <!--P46  play_num_of_speakers_gender_female-->
+          <!--P47  play_num_of_speakers_gender_male-->
+          <!--P48  play_num_of_speakers_gender_unknown-->
+          <!--P49  play_num_of_person_groups-->
+          <!--P50  play_all_in_segment-->
+          <!--P51  play_all_in_index-->
+          <!--P52  play_character_relations-->
+          <!--P53  play_network_data_csv_url-->
+          <!--P54  play_network_nodes-->
+          <!--P55  play_network_size-->
+          <!--P56  play_network_num_edges-->
+          <!--P57  play_network_average_degree-->
+          <!--P58  play_network_density-->
+          <!--P59  play_network_diameter-->
+          <!--P60  play_network_average_path_length-->
+          <!--P61  play_network_average_clustering-->
+          <!--P62  play_network_num_connected_components-->
+          <!--P63  play_network_max_degree-->
+          <!--P64  play_network_max_degree_character_ids-->
           <!-- End of Feature-Checks  -->
 
           <!-- Encoding hints -->
