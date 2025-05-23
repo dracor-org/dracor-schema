@@ -747,33 +747,32 @@
 
               <!-- character relations -->
               <div xml:id="section-character-relations">
-                <head>Social Relations of Characters</head>
+                <head>Relations between Characters</head>
                 <p>
-                  Optionally, you can encode the social relationship between the
-                  characters at the end inside the <gi>listPerson</gi>.
+                  DraCor supports the encoding of relationships between
+                  characters using the <gi>listPerson</gi> element inside the
+                  <gi>particDesc</gi>.
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                    <listPerson>
-                      <person xml:id="character1">
-                        <persName>First Character</persName>
-                      </person>
-                      <!-- ... -->
-                      <personGrp xml:id="group99">
-                        <name>A Group of Characters</name>
-                      </personGrp>
-                      <!-- after the last character item include: -->
-                      <listRelation type="personal">
-                        <!-- Character relations go here -->
-                      </listRelation>
-                    </listPerson>
+                    <particDesc>
+                      <listPerson>
+                        <person xml:id="character1">
+                          <persName>First Character</persName>
+                        </person>
+                        <!-- ... -->
+                        <personGrp xml:id="group99">
+                          <name>A Group of Characters</name>
+                        </personGrp>
+                        <!-- after the last character item include: -->
+                        <listRelation>
+                          <!-- Character relations go here -->
+                        </listRelation>
+                      </listPerson>
+                    </particDesc>
                   </egXML>
                 </p>
                 <p>
-                  Social relations among characters are encoded using elements
-                  <gi>relation</gi> in a <gi>listRelation</gi> with the value
-                  <val>personal</val> of the attribute <att>type</att>.
-                </p>
-                <p>
-                  Below is an example taken from the play
+                  Relations among characters are encoded using <gi>relation</gi>
+                  elements in a <gi>listRelation</gi>. Here is an example from
                   <ref target="https://dracor.org/id/ger000088"><title>Emilia
                   Galotti</title></ref>:
                   <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#ger000088">
@@ -785,7 +784,7 @@
                   </egXML>
                 </p>
                 <p>
-                  It is recommended <!-- required, check with ff?! -->
+                  It is strongly recommended
                   to include only such relations that are ground on textual
                   evidence, e.g. notes on the relation of characters in the
                   dramatis personae included in the text proper as
@@ -828,16 +827,18 @@
                   additional attributes that denote the source
                   (<att>active</att>) and the target (<att>passive</att>) of the
                   relation. The values of these attributes are pointers (hence
-                  starting with '#') to the elements <gi>person</gi> identified
-                  with the corresponding attribute values of <att>xml:id</att>.
+                  starting with '#') which must refer to a <gi>person</gi>
+                  element inside the <gi>particDesc</gi> that has an
+                  <att>xml:id</att> with a corresponding value.
                 </p>
                 <p>
-                  The possible relations identified by the attribute values of
-                  <att>name</att> that are supported by the DraCor system can be
-                  found in the documentation of the <gi>relation</gi> element.
-                  The original method of identifying these relationships in the
-                  German Drama Corpus was developed by
-                  <ref target="wiedmer_2020">Wiedmer et al. (2020)</ref>.
+                  Which relations to encode and how to name them in the
+                  <att>name</att> attribute is up to the corpus maintainers. We
+                  recommend to follow a consistent classification that is
+                  documented in the corpus README. As an example, the German
+                  Drama Corpus adopted the method of identifying character
+                  relationships developed by <ref target="wiedmer_2020">Wiedmer
+                  et al. (2020)</ref>.
                 </p>
               </div>
               <!-- /character relations -->
@@ -957,7 +958,45 @@
           <div xml:id="section-play-wikidata">
             <head>Wikidata QID of a Play</head>
             <p>
-              TBD
+              To link a play to its corresponding entry in Wikidata DraCor uses
+              the <gi>listRelation</gi> element inside <gi>standOff</gi>. For
+              this purpose it must have exactly one <gi>relation</gi> child
+              element with the following attributes:
+              <list>
+                <item>
+                  <label><att>name</att></label>:
+                  <gloss>the value must be <val>wikidata</val></gloss>
+                </item>
+                <item>
+                  <label><att>active</att></label>:
+                  <gloss>
+                    The DraCor URI identifying the play. It starts with
+                    "https://dracor.org/entity/" followed by the
+                    <att>xml:id</att> of the play.
+                  </gloss>
+                </item>
+                <item>
+                  <label><att>passive</att></label>:
+                  <gloss>
+                    The Wikidata entity URI, which start with
+                    "http://www.wikidata.org/entity/" followed by the QID.
+                  </gloss>
+                </item>
+              </list>
+            </p>
+            <p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <standOff>
+                  <listRelation>
+                    <relation
+                      name="wikidata"
+                      active="https://dracor.org/entity/ger000171"
+                      passive="http://www.wikidata.org/entity/Q42187688"
+                    />
+                  </listRelation>
+                  <!-- ... -->
+                </standOff>
+              </egXML>
             </p>
           </div>
         </div>
@@ -2602,9 +2641,9 @@
               <p>
                 Feature <idno type="feature-no"/>
                 <idno type="feature-id">character_relation_type</idno>:
-                Type of social relation: 'parent_of', 'lover_of',
-                'related_with', 'associated_with', 'siblings', 'spouses',
-                'friends'.
+                Type of relation between characters, e.g. 'parent_of',
+                'lover_of', 'related_with', 'associated_with', 'siblings',
+                'spouses', 'friends'.
               </p>
             </div>
             <div xml:id="character_relation_from">
@@ -5015,31 +5054,21 @@
 
           <!-- listRelation -->
           <elementSpec ident="listRelation" module="namesdates" mode="change">
-            <attList>
-              <attDef ident="type" mode="change" usage="opt">
-                <valList mode="replace" type="semi">
-                  <valItem ident="personal">
-                    <gloss>personal relations</gloss>
-                    <desc>
-                      List of social and family relations amongst characters.
-                      See <ref target="#section-character-relations">Character
-                      Relations</ref>
-                    </desc>
-                  </valItem>
-                </valList>
-                <remarks>
-                  <p>
-                    There are currently two types of <gi>listRelation</gi>
-                    evaluated by the DraCor API. The list that contains the
-                    social relation needs to have an explicit type value. The
-                    other <gi>listRelation</gi> that is used to connect a play
-                    to an external reference resource (Wikidata) does not have
-                    an type (see <ref target="#section-play-wikidata">Wikidata
-                    QID of a Play</ref>).
-                  </p>
-                </remarks>
-              </attDef>
-            </attList>
+            <exemplum>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <listRelation>
+                  <relation name="spouses" mutual="#contessa #conte"/>
+                  <relation name="spouses" mutual="#susanna #figaro"/>
+                  <relation name="parent_of" active="#antonio" passive="#barbarina"/>
+                  <relation name="related_with" active="#antonio" passive="#susanna"/>
+                </listRelation>
+              </egXML>
+              <ab>
+                Character relations in
+                <ref target="https://dracor.org/id/ita000056"><title>Le nozze di
+                Figaro</title></ref>
+              </ab>
+            </exemplum>
             <exemplum>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <listRelation>
@@ -5050,6 +5079,17 @@
               </egXML>
               <ab>Connect a DraCor play to Wikidata (Work).</ab>
             </exemplum>
+            <remarks>
+              <p>
+                There are currently two types of <gi>listRelation</gi> evaluated
+                by the DraCor API. One is the list of
+                <ref target="#section-character-relations">relations between
+                characters</ref>. The other is the <gi>listRelation</gi> in
+                <gi>standOff</gi> used to link a play to Wikidata (see
+                <ref target="#section-play-wikidata">Wikidata QID of a
+                Play</ref>).
+              </p>
+            </remarks>
           </elementSpec>
 
           <!-- ##### -->
