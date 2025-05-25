@@ -68,18 +68,16 @@ required.
       <div type="front">
         <head>Ham, a tragedy By William S</head>
       </div>
-      <div type="Dramatis_Personae">
-        <castList>
-          <head>Dramatis Personae</head>
-          <castItem>Ham</castItem>
-          <castItem>Egg</castItem>
-          <castGroup>
-            <castItem>Sausage</castItem>
-            <castItem>Bacon</castItem>
-            <roleDesc>Vikings</roleDesc>
-          </castGroup>
-        </castList>
-      </div>
+      <castList>
+        <head>Dramatis Personae</head>
+        <castItem>Ham</castItem>
+        <castItem>Egg</castItem>
+        <castGroup>
+          <castItem>Sausage</castItem>
+          <castItem>Bacon</castItem>
+          <roleDesc>Vikings</roleDesc>
+        </castGroup>
+      </castList>
     </front>
     <body>
       <!-- here is no @type on the div  -->

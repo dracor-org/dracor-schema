@@ -67,19 +67,17 @@ WRONG encoding, should be @rend with the value "braced"; here it is "bracket"
       <div type="front">
         <head>Ham, a tragedy By William S</head>
       </div>
-      <div type="Dramatis_Personae">
-        <castList>
-          <head>Dramatis Personae</head>
-          <castItem>Ham</castItem>
-          <castItem>Egg</castItem>
-          <!-- WRONG encoding of a mark that indicates that these characters are a group -->
-          <castGroup rend="bracket">
-            <castItem>Sausage</castItem>
-            <castItem>Bacon</castItem>
-            <roleDesc>Vikings</roleDesc>
-          </castGroup>
-        </castList>
-      </div>
+      <castList>
+        <head>Dramatis Personae</head>
+        <castItem>Ham</castItem>
+        <castItem>Egg</castItem>
+        <!-- WRONG encoding of a mark that indicates that these characters are a group -->
+        <castGroup rend="bracket">
+          <castItem>Sausage</castItem>
+          <castItem>Bacon</castItem>
+          <roleDesc>Vikings</roleDesc>
+        </castGroup>
+      </castList>
     </front>
     <body>
       <div type="act">

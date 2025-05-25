@@ -78,19 +78,7 @@ and the value should be "Q41567".
       <div type="front">
         <head>Ham, a tragedy By William S</head>
       </div>
-      <div type="Dramatis_Personae">
-        <castList>
-          <head>Dramatis Personae</head>
-          <castItem>Ham</castItem>
-          <castItem>Egg</castItem>
-          <castGroup>
-            <castItem>Sausage</castItem>
-            <castItem>Bacon</castItem>
-            <roleDesc>Vikings</roleDesc>
-          </castGroup>
-        </castList>
-      </div>
-    </front>
+Q    </front>
     <body>
       <div type="act">
         <head>Act 1.</head>

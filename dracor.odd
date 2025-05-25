@@ -3775,25 +3775,13 @@
           <!-- div -->
           <elementSpec ident="div" module="textstructure" mode="change">
             <attList>
+              <!-- https://github.com/dracor-org/dracor-schema/issues/85 -->
               <attDef ident="type" mode="replace" usage="rec">
                 <desc>Classifies the segment</desc>
-                <!-- cmil:
-                This list looks very heterogeneous to me to a point where I
-                would say it doesn't make sense to enforce this as a finite
-                list. Some of the values, like the ones used for Nestroy, only
-                make sense in that context and shouldn't be use anywhere else.
-                Others like "configuration" or "variant" lack a clear
-                definition. And some might be completely redundant (e.g. "front"
-                or "Dramatis_Personae" which on top of that runs against the
-                predominant spelling convention).
-                Except for "act" and "scene" none of the values has any meaning
-                for the API code.
-                -->
                 <datatype>
                   <dataRef key="teidata.text"/>
                 </datatype>
                 <valList type="semi">
-                  <!-- intermission -->
                   <valItem ident="act">
                     <gloss>Act</gloss>
                     <desc>
@@ -3838,16 +3826,6 @@
                         <p>Was in use at some point in time but not anymore</p>
                       </item>
                       <item>
-                        <label>Dramatis_Personae</label>:
-                        <gloss>Dramatis personae</gloss>.
-                        <p>
-                          Element <gi>castList</gi> is sometimes wrapped in a
-                          <gi>div</gi> with this type. The spelling of the value
-                          is problematic though, because it differs from the
-                          spelling of other type values.
-                        </p>
-                      </item>
-                      <item>
                         <label>entracte</label>
                       </item>
                       <item>
@@ -3855,9 +3833,6 @@
                       </item>
                       <item>
                         <label>epilogue</label>
-                      </item>
-                      <item>
-                        <label>front</label>
                       </item>
                       <item>
                         <label>interlude</label>: auch
@@ -3914,9 +3889,9 @@
                       <item>melancholisch</item>
                       <item>sanguinisch</item>
                     </list>
-                    In general it is desired that encoders list and define the
-                    additional values used in the attribute <att>type</att> on
-                    <gi>div</gi> at some other place. [Instructions: TBD]
+                    In general it is recommended that encoders document the
+                    additional values used for <att>type</att> on <gi>div</gi>
+                    in an <gi>encodingDesc</gi> in the corpus.xml.
                   </p>
                 </remarks>
               </attDef>
@@ -4385,15 +4360,13 @@
                     <head>Posse mit Gesang in drei Aufzügen</head>
                     <pb n="244"/>
                   </div>
-                  <div type="Dramatis_Personae">
-                    <castList>
-                      <head>Personen.</head>
-                      <castItem>Titus Feuerfuchs, ein vazierender Barbiergeselle.</castItem>
-                      <castItem>Frau von Cypressenburg, Witwe.</castItem>
-                      <castItem>Emma, ihre Tochter.</castItem>
-                      <!-- ... -->
-                    </castList>
-                  </div>
+                  <castList>
+                    <head>Personen.</head>
+                    <castItem>Titus Feuerfuchs, ein vazierender Barbiergeselle.</castItem>
+                    <castItem>Frau von Cypressenburg, Witwe.</castItem>
+                    <castItem>Emma, ihre Tochter.</castItem>
+                    <!-- ... -->
+                  </castList>
                   <set>
                     <p>
                       Die Handlung spielt auf dem Gute der Frau von

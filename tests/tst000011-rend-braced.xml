@@ -67,19 +67,17 @@ This is the correct encoding using attribute @rend with the value "braced"
       <div type="front">
         <head>Ham, a tragedy By William S</head>
       </div>
-      <div type="Dramatis_Personae">
-        <castList>
-          <head>Dramatis Personae</head>
-          <castItem>Ham</castItem>
-          <castItem>Egg</castItem>
-          <!-- encode a visual mark that these characters are a group -->
-          <castGroup rend="braced">
-            <castItem>Sausage</castItem>
-            <castItem>Bacon</castItem>
-            <roleDesc>Vikings</roleDesc>
-          </castGroup>
-        </castList>
-      </div>
+      <castList>
+        <head>Dramatis Personae</head>
+        <castItem>Ham</castItem>
+        <castItem>Egg</castItem>
+        <!-- encode a visual mark that these characters are a group -->
+        <castGroup rend="braced">
+          <castItem>Sausage</castItem>
+          <castItem>Bacon</castItem>
+          <roleDesc>Vikings</roleDesc>
+        </castGroup>
+      </castList>
     </front>
     <body>
       <div type="act">
