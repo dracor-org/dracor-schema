@@ -4560,7 +4560,7 @@
                   </p>
                 </remarks>
               </attDef>
-              <attDef ident="type" mode="change" usage="req">
+              <attDef ident="type" mode="change" usage="opt">
                 <desc>Classifies the identifier</desc>
                 <valList type="semi" mode="replace">
                   <valItem ident="URL">
