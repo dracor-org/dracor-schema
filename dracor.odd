@@ -635,8 +635,9 @@
                 text proper as elements <gi>person</gi> or <gi>personGrp</gi>.
                 Each element is assigned an unique identifier as the value of
                 the attribute <att>xml:id</att>. Additional information on a
-                character can be recorded in attributes, e.g. the attribute
-                <att>sex</att> is used to encode the gender of a character.
+                character can be recorded in attributes, e.g. the attributes
+                <att>sex</att> and <att>gender</att> allow to encode the sex
+                and/or gender of a character.
               </p>
               <p>
                 Individuals are to be marked with <gi>person</gi>, groups (e.g.
@@ -710,40 +711,61 @@
               </div>
               <!-- /character ID -->
 
-              <div xml:id="section-character-gender">
-                <head>Character Gender</head>
+              <div xml:id="section-character-sex-gender">
+                <head>Sex and Gender of Characters</head>
                 <p>
-                  Gender could be marked as <val>FEMALE</val>, <val>MALE</val>
-                  or <val>UNKNOWN</val> in the attribute <att>sex</att>.
+                  The DraCor schema supports the attribution of both biological
+                  sex and gender roles to the characters of a play using the
+                  <att>sex</att> and <att>gender</att> attributes respectively.
+                </p>
+                <p>
+                  For the <att>sex</att> attribute the DraCor API expects the
+                  values <val>FEMALE</val>, <val>MALE</val> or
+                  <val>UNKNOWN</val>. The encoding of the sex of a character
+                  should be guided by the following rules:
                 </p>
                 <list>
                   <item>
                     <p>
-                      Please mark as gendered only characters which appear
-                      unequivocally as such in text. If they don’t have a proper
-                      name, but are defined by their profession, consider the
-                      play’s context (e.g. “soldier” will be surely
-                      <val>MALE</val> in a Renaissance play).
+                      Please use the <att>sex</att> attribute only for
+                      characters which unequivocally appear as of a certain sex
+                      in the text. If they don’t have a proper name, but are
+                      defined by their profession, consider the play’s context
+                      (e.g. “soldier” will be surely <val>MALE</val> in a
+                      Renaissance play).
                     </p>
                   </item>
                   <item>
                     <p>
-                      The same applies to groups (“soldiers”, “weavers”). If no
-                      specific gender hints are provided, mark them as
+                      The same applies to groups (“soldiers”, “weavers”). If the
+                      sex is uncertain or no hints are provided, mark them as
                       <val>UNKNOWN</val> (“nobles”, ”citizens”, “servants”).
+                      <!-- Technically we could also mark such groups as
+                      sex="FEMALE MALE" -->
                     </p>
                   </item>
                   <item>
                     <p>
                       Abstract entities (“Time”, “Fame”, “Death” etc.) should
-                      be marked as <val>UNKNOWN</val> unless they are clearly
-                      gendered in text.
+                      be marked as <val>UNKNOWN</val>. If they are clearly
+                      gendered in the text you may consider using an appropriate
+                      <att>gender</att> attribute.
                     </p>
                   </item>
                 </list>
-                <!-- /gender rules list -->
+                <p>
+                  For the <att>gender</att> attribute the DraCor API currently
+                  does not expect any particular value. It is up to corpus
+                  maintainers to use a consistent scheme, possibly documented
+                  in an <gi>encodingDesc</gi>.
+                </p>
+                <p>
+                  For more background on sex and gender in the TEI see
+                  <ref target="#beshero-bondar_2024">Beshero-Bondar et al.
+                  (2024)</ref>. For its history in DraCor see the GitHub
+                  <ref target="https://github.com/dracor-org/dracor-schema/issues/46">issue #46</ref>.
+                </p>
               </div>
-              <!-- /gender -->
 
               <!-- character relations -->
               <div xml:id="section-character-relations">
@@ -837,7 +859,7 @@
                   recommend to follow a consistent classification that is
                   documented in the corpus README. As an example, the German
                   Drama Corpus adopted the method of identifying character
-                  relationships developed by <ref target="wiedmer_2020">Wiedmer
+                  relationships developed by <ref target="#wiedmer_2020">Wiedmer
                   et al. (2020)</ref>.
                 </p>
               </div>
@@ -2352,25 +2374,25 @@
                 Number of Speakers of a Play
               </p>
             </div>
-            <div xml:id="play_num_of_speakers_gender_female">
+            <div xml:id="play_num_of_speakers_sex_female">
               <head>Play Number of Speaking Female Characters</head>
               <p>
                 Feature <idno type="feature-no">P46</idno>
-                <idno type="feature-id">play_num_of_speakers_gender_female</idno>:
+                <idno type="feature-id">play_num_of_speakers_sex_female</idno>:
               </p>
             </div>
-            <div xml:id="play_num_of_speakers_gender_male">
+            <div xml:id="play_num_of_speakers_sex_male">
               <head>Play Number of Speaking Male Characters</head>
               <p>
                 Feature <idno type="feature-no">P47</idno>
-                <idno type="feature-id">play_num_of_speakers_gender_male</idno>:
+                <idno type="feature-id">play_num_of_speakers_sex_male</idno>:
               </p>
             </div>
-            <div xml:id="play_num_of_speakers_gender_unknown">
+            <div xml:id="play_num_of_speakers_sex_unknown">
               <head>Play Number of Speaking Characters with Unknown Gender</head>
               <p>
                 Feature <idno type="feature-no">P48</idno>
-                <idno type="feature-id">play_num_of_speakers_gender_unknown</idno>:
+                <idno type="feature-id">play_num_of_speakers_sex_unknown</idno>:
               </p>
             </div>
             <div xml:id="play_num_of_person_groups">
@@ -2538,11 +2560,11 @@
                 <idno type="feature-id">character_is_group</idno>:
               </p>
             </div>
-            <div xml:id="character_gender">
-              <head>Character Gender</head>
+            <div xml:id="character_sex">
+              <head>Character Sex</head>
               <p>
                 Feature <idno type="feature-no">Ch4</idno>
-                <idno type="feature-id">character_gender</idno>:
+                <idno type="feature-id">character_sex</idno>:
               </p>
             </div>
             <div xml:id="character_wikidata_id">
@@ -2678,7 +2700,7 @@
           prefix="tei_"
           xml:lang="en"
           start="TEI teiCorpus"
-          source="tei:4.4.0"
+          source="tei:4.9.0"
         >
           <desc>DraCor Schema</desc>
           <!--
@@ -2750,46 +2772,6 @@
               <attDef ident="rendition" mode="delete"/>
               <attDef ident="style" mode="delete"/>
             </attList>
-          </classSpec>
-          <!-- This is just a test how to add a custom DraCor attribute "gender"
-               to person and personGrp -->
-          <!-- Globally define attribute @sex. In the base version of the
-               guidelines this is done on level of the individual element -->
-          <classSpec type="atts" ident="att.dracor.gender">
-            <desc>Introduces a custom gender attribute</desc>
-            <attList>
-              <attDef ident="gender" mode="add">
-                <desc>Custom gender attribute</desc>
-                <datatype>
-                  <dataRef key="teidata.sex"/>
-                </datatype>
-                <!-- I just copied this value list to modify @sex of person and
-                     personGrp -->
-                <valList type="semi" mode="add">
-                  <valItem ident="FEMALE">
-                    <gloss>female</gloss>
-                  </valItem>
-                  <valItem ident="MALE">
-                    <gloss>male</gloss>
-                  </valItem>
-                  <valItem ident="UNKNOWN">
-                    <gloss>unknown</gloss>
-                  </valItem>
-                </valList>
-                <remarks>
-                  <p>
-                    Only the values <val>FEMALE</val>, <val>MALE</val>,
-                    <val>UNKNOWN</val> are supported by the DraCor-API.
-                  </p>
-                </remarks>
-              </attDef>
-            </attList>
-            <remarks>
-              <p>
-                Do not use this. This is just a test on how to learn to
-                introduce a attribute globally
-              </p>
-            </remarks>
           </classSpec>
 
           <!-- The following list should include all elements that are added
@@ -5382,27 +5364,10 @@
           </elementSpec>
 
           <!-- person -->
-          <!--
-          <attribute name="sex">
-              <value>MALE</value>
-              <value>FEMALE</value>
-              <value>UNKNOWN</value>
-          </attribute>
-          -->
           <elementSpec ident="person" module="core" mode="change">
-            <!-- try to define @sex globally and then re-use: doesn't work at
-                 the moment but tested -->
-            <!-- this is just a test for a new dracor specific class introducing
-                 gender -->
-            <!--
-            <classes mode="change">
-              <memberOf key="att.dracor.gender" mode="add"/>
-            </classes>
-            -->
             <attList>
               <attDef ident="xml:id" mode="change" usage="req"/>
               <!-- need to globally define -->
-              <!-- related issue: https://github.com/dracor-org/dracor-schema/issues/46 -->
               <attDef ident="sex" mode="change" usage="rec">
                 <valList type="semi" mode="add">
                   <valItem ident="FEMALE">
@@ -5442,19 +5407,20 @@
                 </person>
               </egXML>
             </exemplum>
+            <constraintSpec ident="person_sex" scheme="schematron" mode="add"  type="encoding-hint">
+              <constraint>
+                <sch:rule context="tei:person[@sex]" role="warning" see="https://dracor.org/doc/odd#section-character-sex-gender">
+                  <sch:assert test="@sex = ('FEMALE', 'MALE', 'UNKNOWN')">
+                    The values for person/@sex supported by the DraCor API are
+                    <val>FEMALE</val>, <val>MALE</val> and <val>UNKNOWN</val>.
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
           </elementSpec>
 
           <!-- personGrp -->
           <elementSpec ident="personGrp" module="namesdates" mode="change">
-            <!-- globally defining the sex values doesn't work at the moment,
-                 but tested -->
-            <!-- this is a test to add a gender attribute globally for DraCor.
-                 Should ignore this -->
-            <!--
-            <classes mode="change">
-              <memberOf key="att.dracor.gender" mode="add"/>
-            </classes>
-            -->
             <attList>
               <attDef ident="xml:id" mode="change">
                 <datatype>
@@ -5462,7 +5428,6 @@
                 </datatype>
               </attDef>
               <!-- need to globally define -->
-              <!-- related issue: https://github.com/dracor-org/dracor-schema/issues/46 -->
               <attDef ident="sex" mode="change">
                 <valList type="semi" mode="add">
                   <valItem ident="FEMALE">
@@ -5486,6 +5451,17 @@
                 </remarks>
               </attDef>
             </attList>
+            <constraintSpec ident="personGrp_sex" scheme="schematron" mode="add"  type="encoding-hint">
+              <constraint>
+                <sch:rule context="tei:personGrp[@sex]" role="warning" see="https://dracor.org/doc/odd#section-character-sex-gender">
+                  <sch:assert test="every $t in tokenize(@sex) satisfies $t = ('FEMALE', 'MALE', 'UNKNOWN')">
+                    The values for personGrp/@sex supported by the DraCor API
+                    are <val>FEMALE</val>, <val>MALE</val> and
+                    <val>UNKNOWN</val>.
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
           </elementSpec>
 
           <!-- profileDesc -->
@@ -6250,9 +6226,9 @@
           <!--P43  play_num_of_word_tokens_in_stage-->
           <!--P44  play_characters-->
           <!--P45  play_num_of_speakers-->
-          <!--P46  play_num_of_speakers_gender_female-->
-          <!--P47  play_num_of_speakers_gender_male-->
-          <!--P48  play_num_of_speakers_gender_unknown-->
+          <!--P46  play_num_of_speakers_sex_female-->
+          <!--P47  play_num_of_speakers_sex_male-->
+          <!--P48  play_num_of_speakers_sex_unknown-->
           <!--P49  play_num_of_person_groups-->
           <!--P50  play_all_in_segment-->
           <!--P51  play_all_in_index-->
@@ -6631,15 +6607,15 @@
             </row>
             <row>
               <cell>P46</cell>
-              <cell>play_num_of_speakers_gender_female</cell>
+              <cell>play_num_of_speakers_sex_female</cell>
             </row>
             <row>
               <cell>P47</cell>
-              <cell>play_num_of_speakers_gender_male</cell>
+              <cell>play_num_of_speakers_sex_male</cell>
             </row>
             <row>
               <cell>P48</cell>
-              <cell>play_num_of_speakers_gender_unknown</cell>
+              <cell>play_num_of_speakers_sex_unknown</cell>
             </row>
             <row>
               <cell>P49</cell>
@@ -6745,7 +6721,7 @@
             </row>
             <row>
               <cell>Ch4</cell>
-              <cell>character_gender</cell>
+              <cell>character_sex</cell>
             </row>
             <row>
               <cell>Ch5</cell>
@@ -6826,6 +6802,12 @@
       <div xml:id="bibliography">
         <head>Bibliography</head>
         <listBibl>
+          <bibl xml:id="beshero-bondar_2024">
+            Beshero-Bondar, E. E., Viglianti, R., Bermúdez-Sabel, H., &amp;
+            Jenstad, J., (2024) "Revising sex and gender in the TEI Guidelines",
+            Journal of the Text Encoding Initiative [Online], Issue 17 | 2024.
+            <ref target="https://doi.org/10.4000/13utq">doi:10.4000/13utq</ref>
+          </bibl>
           <bibl xml:id="boerner_trilcke_2023">
             Börner, I., &amp; Trilcke, P. (2023). CLS INFRA D7.1 On Programmable
             Corpora.
@@ -6835,7 +6817,7 @@
             Börner, I., &amp; Trilcke, P. (2024) CLS INFRA D7.3 On Versioning
             Living and Programmable Corpora: (Executable) Report and Prototypes
             for Reproducible Research.
-            <ref target="https://doi.org/10.5281/ZENODO.11081934">https://doi.org/10.5281/ZENODO.11081934</ref>.
+            <ref target="https://doi.org/10.5281/ZENODO.11081934">doi:10.5281/ZENODO.11081934</ref>.
           </bibl>
           <bibl xml:id="fischer_et_al_2019">
             Fischer, F., Börner, I., Göbel, M., Hechtl, A., Kittel, C., Milling,
@@ -6860,7 +6842,8 @@
             Wiedmer, N., Pagel J., Reiter, N. (2020). "Romeo, Freund Des
             Mercutio: Semi- Automatische Extraktion von Beziehungen zwischen
             Dramatischen Figuren." DHd2020. Book of Abstracts. Paderborn, p.
-            194–200. https://doi.org/10.5281/zenodo.4621778.
+            194–200.
+            <ref target="https://doi.org/10.5281/zenodo.4621778">doi:10.5281/zenodo.4621778</ref>.
           </bibl>
         </listBibl>
       </div>
