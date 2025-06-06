@@ -1,6 +1,15 @@
-# dracor-schema
+# DraCor Schema
 
-The TEI ODD and schema for dracor.org files.
+This is the [ODD](https://tei-c.org/guidelines/customization/getting-started-with-p5-odds/)
+of the TEI customization for the [DraCor project](https://dracor.org). It is the
+source of the following resources:
+
+- DraCor Encoding Guidelines: https://dracor.org/doc/odd
+- DraCor Relax NG Schema: https://dracor.org/schema.rng
+- DraCor Schematron Rules: https://dracor.org/dracor.sch
+
+The schema files and documentation are also available as
+[release assets](https://github.com/dracor-org/dracor-schema/releases).
 
 ## Getting started
 
@@ -19,6 +28,6 @@ found in the `dist` directory.
 
 ## See also
 
-The latest release of the DraCor TEI Customization and Encoding Guidelines is
-published at https://dracor-org.github.io/dracor-schema/. It is also available
-on the DraCor website at https://dracor.org/doc/odd.
+The bleeding edge version of the DraCor TEI Customization and Encoding
+Guidelines is published at https://dracor-org.github.io/dracor-schema/ and also
+available at https://staging.dracor.org/doc/odd.
