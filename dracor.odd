@@ -2720,15 +2720,7 @@
               <name>tei_drama</name> customization of the TEI encoding scheme.
             </desc>
             <classes>
-              <!-- removed linking as introduced in tei-drama for DraCor globally here -->
-              <!--
-                this included and changed prev, next as originally defined in tei
-                drama. I think it made some attributes globally available, e.g.
-                prev, next.
-                We don't have that at the moment. Therefore I di not remove the
-                following memberOf statement
-              -->
-              <!-- <memberOf key="att.global.linking"/> -->
+              <memberOf key="att.global.linking"/>
               <memberOf key="att.global.analytic"/>
               <memberOf key="att.global.rendition"/>
               <memberOf key="att.global.source"/>
@@ -3209,7 +3201,6 @@
                   </valItem>
                 </valList>
               </attDef>
-              <!-- IB: Don't know if we already agreed on this encoding. But sounds good to me -->
               <!-- see issue https://github.com/dracor-org/dracor-schema/issues/34 -->
               <attDef ident="corresp" mode="change">
                 <datatype>
