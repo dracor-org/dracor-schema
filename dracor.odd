@@ -2703,25 +2703,17 @@
           source="tei:4.9.0"
         >
           <desc>DraCor Schema</desc>
-          <!--
-            modules included in the tei_drama ODD: header, core, tei,
-            textstructure, linking, drama
-          -->
           <moduleRef key="header"/>
           <moduleRef key="core"/>
           <moduleRef key="tei"/>
           <moduleRef key="textstructure" except="div1 div2 div3 div4 div5 div6 div7"/>
           <moduleRef key="linking"/>
           <moduleRef key="drama"/>
-          <!-- The dracor-legacy ODD also included additional elements from the following modules: -->
           <moduleRef key="namesdates"
             include="addName event forename genName listEvent listPerson listRelation nameLink person personGrp persName relation surname orgName region"/>
           <moduleRef key="corpus" include="particDesc"/>
           <moduleRef key="figures" include="figure"/>
-          <!-- The module analysis was originally included to have the analysis attributes -->
           <moduleRef key="analysis"/>
-          <!-- global changes to the class system introduced by tei-drama -->
-          <!-- tei drama introduced some global changes here -->
           <classSpec module="tei" xml:id="GLOBAL" type="atts" ident="att.global" mode="change">
             <desc xml:lang="en" versionDate="2014-01-12">
               provides a set of attributes common to all elements in the
@@ -3201,10 +3193,9 @@
           <!-- castGroup -->
           <elementSpec ident="castGroup" module="drama" mode="change">
             <attList>
-            <!-- rend is probably not available in the TEI Drama Customization. It is added here. -->
             <!-- to test:
-                  - tst000011 - CORRECT encoding
-                  - tst000012 - WRONG encoding
+              - tst000011 - CORRECT encoding
+              - tst000012 - WRONG encoding
             -->
               <attDef ident="rend" mode="change">
                 <valList mode="add" type="semi">
