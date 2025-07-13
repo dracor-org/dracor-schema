@@ -2715,14 +2715,15 @@
           <moduleRef key="figures" include="figure"/>
           <moduleRef key="analysis"/>
           <classSpec module="tei" xml:id="GLOBAL" type="atts" ident="att.global" mode="change">
-            <desc xml:lang="en" versionDate="2014-01-12">
+            <desc xml:lang="en">
               provides a set of attributes common to all elements in the
-              <name>tei_drama</name> customization of the TEI encoding scheme.
+              <name>DraCor</name> customization of the TEI encoding scheme.
             </desc>
             <classes>
               <memberOf key="att.global.linking"/>
               <memberOf key="att.global.analytic"/>
               <memberOf key="att.global.rendition"/>
+              <memberOf key="att.global.responsibility"/>
               <memberOf key="att.global.source"/>
             </classes>
           </classSpec>
