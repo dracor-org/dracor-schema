@@ -31,3 +31,8 @@ found in the `dist` directory.
 The bleeding edge version of the DraCor TEI Customization and Encoding
 Guidelines is published at https://dracor-org.github.io/dracor-schema/ and also
 available at https://staging.dracor.org/doc/odd.
+
+## License
+
+The DraCor Schema is made available under the terms and conditions of the
+[Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
