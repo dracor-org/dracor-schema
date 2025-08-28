@@ -5824,10 +5824,7 @@
                   <classRef key="model.global" minOccurs="0" maxOccurs="unbounded"/>
                 </sequence>
                 <!-- We only allow a single element <body> -->
-                <!-- <alternate> -->
                 <elementRef key="body" minOccurs="1" maxOccurs="1"/>
-                <!-- <elementRef key="group"/> -->
-                <!-- </alternate> -->
                 <classRef key="model.global" minOccurs="0" maxOccurs="unbounded"/>
                 <sequence minOccurs="0">
                   <elementRef key="back"/>
