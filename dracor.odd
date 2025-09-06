@@ -690,16 +690,22 @@
           <div xml:id="section-sources">
             <head>Sources</head>
             <p>
-              The sources of a play are included in the <gi>sourceDesc</gi> in
-              the <gi>fileDesc</gi>. In most cases, files in DraCor are not
-              create from scratch, i.e. there is no scanning and OCR or any
-              manual transcription of a printed source involved. Instead, we use
-              already available digital files that are digitisations of a
-              certain printed edition. This fact is expressed with two nested
-              elements <gi>bibl</gi> that are classified by their attributes
-              <att>type</att>: the original print publication
+              The sources of a play are included in the <gi>sourceDesc</gi>
+              inside the the <gi>fileDesc</gi> element. Files in DraCor are
+              created differently. In some cases, files in DraCor are created
+              from scratch, e.g. via an OCR of a printed source or HTR of a
+              manuscript or a manual transcription of such sources. The
+              bibliographic information on the print or manuscript source is
+              given in a <gi>bibl</gi> element that is classified by the
+              <att>type</att> <val>originalSource</val>. However, in most cases,
+              files in DraCor are not created from scratch, i.e. there is no
+              print or manuscript source involved. Instead, we use already
+              available digital files that are digitisations of a certain
+              printed edition or manuscript. This fact is expressed with two
+              nested elements <gi>bibl</gi> that are classified by their
+              attributes type: the original print publication or manuscript
               (<val>originalSource</val>) is described inside the bibliographic
-              record of the digital surogate (<val>digitalSource</val>).
+              record of the digital surrogate (<val>digitalSource</val>).
             </p>
             <p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -716,14 +722,29 @@
             <div xml:id="section-digital-source">
               <head>Digital Source</head>
               <p>
+                A digital source may be a born-digital (critical) edition or a
+                digital (critical) text edition based on a print or manuscript
+                source, e.g. in
+                <ref target="https://www.let.leidenuniv.nl/Dutch/Ceneton/">CENETON</ref>,
+                <ref target="https://www.projekt-gutenberg.org/">Projekt
+                Gutenberg</ref>, or
+                <ref target="https://textgrid.de">TextGrid</ref>. Please note
+                that digitisations of a print or manuscript published with an
+                identifier and/or under a certain licence consitute a digital
+                source, e.g. digitisations by the
+                <ref target="https://www.digitale-sammlungen.de/de">Munich
+                DigitiZation Center (MDZ)</ref> or those by
+                <ref target="https://books.google.com/">Google Books</ref>.
+              </p>
+              <p>
                 The information on <soCalled>digital source</soCalled> should
                 include the name of the source, e.g. the
                 <q>Project Gutenberg</q> and an identifier of the document
-                within the source collection as <gi>idno</gi>. The identifier
+                within the source collection as<gi>idno</gi>. The identifier
                 can be a URL from which the document can be retrieved. In the
-                best case, there is some persistent identifier that unambiguously
-                identifies the digital document used as the source for the
-                DraCor file.
+                best case, there is some persistent identifier that
+                unambiguously identifies the digital document used as the
+                source for the DraCor file.
               </p>
               <p>
                 The information on the licence under which the digital source
@@ -742,6 +763,27 @@
                 </egXML>
               </p>
               <p>
+                If the digital source is not licenced under a CC licence or
+                similar you can link to, you may add a free text.
+              </p>
+              <p>
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <bibl type="digitalSource">
+                    <name>Census Nederlands Toneel (Ceneton)</name>
+                    <idno type="URL">https://www.let.leidenuniv.nl/Dutch/Ceneton/MacropediusHecastus1552.html</idno>
+                    <availability status="free">
+                      <p>
+                        The editions in the website edited by Antonius Harmsen
+                        (Leiden University) are public domain. See
+                        https://www.let.leidenuniv.nl/Dutch/Canonisations.html
+                      </p>
+                    </availability>
+                  </bibl>
+                </egXML>
+              </p>
+
+
+              <p>
                 For an exemplary analysis of sources of a corpus, see chapter
                 <ref target="https://versioning-living-corpora.clsinfra.io/3-2_gerdracor_corpus_archeology.html#a-living-corpus-growing">An
                 Algorithmic Archaeology of a Living Corpus: GerDraCor as a
@@ -755,9 +797,9 @@
             <div xml:id="section-original-source">
               <head>Original Source</head>
               <p>
-                The original print publication that was the basis of the digital
-                source is included as a bibliographic reference in an element
-                <gi>bibl</gi>.
+                The original print publication or manuscript that was the basis
+                of the digital source is included as a bibliographic reference
+                in an element <gi>bibl</gi>.
               </p>
               <p>
                 It is possible to use designated elements to explicitly mark up
@@ -794,6 +836,11 @@
                     und 1960.]</title>
                   </bibl>
                 </egXML>
+              </p>
+              <p>
+                Note that if you include the suggested designated elements,
+                structured information such as the publisher or year of the
+                original source will be available via the DraCor API.
               </p>
             </div>
           </div>
