@@ -9,7 +9,7 @@ required.
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title type="main">Ham</title>
+        <title>Ham</title>
         <title type="sub">A Tragedy</title>
         <author>William S</author>
       </titleStmt>
