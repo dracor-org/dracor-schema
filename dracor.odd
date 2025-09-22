@@ -5802,7 +5802,7 @@
                 <gi>sourceDesc</gi>
               </desc>
               <constraint>
-                <sch:rule context="tei:sourceDesc">
+                <sch:rule context="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc">
                   <sch:assert test="tei:bibl[@type eq 'digitalSource'] or tei:bibl[@type eq 'originalSource']">
                     There is neither a digital nor an original source.
                   </sch:assert>
@@ -5814,7 +5814,7 @@
                 Checks nesting and cardinality of digital/original sources
               </desc>
               <constraint>
-                <sch:rule context="tei:sourceDesc[tei:bibl]" role="warning" see="https://dracor.org/doc/odd#section-sources">
+                <sch:rule context="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc[tei:bibl]" role="warning" see="https://dracor.org/doc/odd#section-sources">
                   <sch:assert test="not(tei:bibl[@type eq 'originalSource'] and tei:bibl[@type eq 'digitalSource'])">
                     Digital and original source are on the same level. Consider
                     nesting the original source into the digital source.
@@ -5832,7 +5832,7 @@
                 <gi>idno</gi>.
               </desc>
               <constraint>
-                <sch:rule context="tei:sourceDesc/tei:bibl[@type eq 'digitalSource']" role="warning" see="https://dracor.org/doc/odd#section-sources">
+                <sch:rule context="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl[@type eq 'digitalSource']" role="warning" see="https://dracor.org/doc/odd#section-sources">
                   <sch:assert test="tei:ref[@target]">
                     The digital source should use a <gi>ref</gi> element with a
                     <att>target</att> attribute to specify the digital source.
