@@ -737,25 +737,25 @@
                 <ref target="https://books.google.com/">Google Books</ref>.
               </p>
               <p>
-                The information on <soCalled>digital source</soCalled> should
-                include the name of the source, e.g. the
-                <q>Project Gutenberg</q> and an identifier of the document
-                within the source collection as<gi>idno</gi>. The identifier
-                can be a URL from which the document can be retrieved. In the
-                best case, there is some persistent identifier that
-                unambiguously identifies the digital document used as the
-                source for the DraCor file.
+                The information on the <soCalled>digital source</soCalled>
+                should include the title of the source, e.g. the <q>Project
+                Gutenberg</q> and the URL of the document within the source
+                collection. These should be encoded using the <gi>ref</gi>
+                element with a <att>target</att> attribute. The URL should point
+                to the digital document used as the source for the DraCor file.
               </p>
               <p>
                 The information on the licence under which the digital source
-                file is distributed should be included in <gi>availability</gi>.
+                file is distributed should be included in an
+                <gi>availability</gi> element.
                 <!-- see https://github.com/dracor-org/dracor-schema/issues/97 -->
               </p>
               <p>
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <bibl type="digitalSource">
-                    <name>TextGrid Repository</name>
-                    <idno type="URL">http://www.textgridrep.org/textgrid:11f78.0</idno>
+                    <ref target="http://www.textgridrep.org/textgrid:11f78.0">
+                      TextGrid Repository
+                    </ref>
                     <availability>
                       <licence target="http://creativecommons.org/licenses/by/3.0/de/legalcode">CC-BY-3.0</licence>
                     </availability>
@@ -769,8 +769,9 @@
               <p>
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <bibl type="digitalSource">
-                    <name>Census Nederlands Toneel (Ceneton)</name>
-                    <idno type="URL">https://www.let.leidenuniv.nl/Dutch/Ceneton/MacropediusHecastus1552.html</idno>
+                    <ref target="https://www.let.leidenuniv.nl/Dutch/Ceneton/MacropediusHecastus1552.html">
+                      Census Nederlands Toneel (Ceneton)
+                    </ref>
                     <availability status="free">
                       <p>
                         The editions in the website edited by Antonius Harmsen
@@ -3197,8 +3198,9 @@
             <exemplum source="https://dracor.org/id/ger000054">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <bibl type="digitalSource">
-                  <name>TextGrid Repository</name>
-                  <idno type="URL">http://www.textgridrep.org/textgrid:jn65.0</idno>
+                  <ref target="http://www.textgridrep.org/textgrid:jn65.0">
+                    TextGrid Repository
+                  </ref>
                   <availability>
                     <licence target="http://creativecommons.org/licenses/by/3.0/de/legalcode">CC-BY-3.0</licence>
                   </availability>
@@ -3222,8 +3224,9 @@
             <exemplum source="https://dracor.org/id/ger000675">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <bibl type="digitalSource">
-                  <name>Google Books</name>
-                  <idno type="URL">https://books.google.com/books?id=NbpIAQAAMAAJ&amp;printsec=frontcover</idno>
+                  <ref target="https://books.google.com/books?id=NbpIAQAAMAAJ&amp;printsec=frontcover">
+                    Google Books
+                  </ref>
                   <availability status="free">
                     <p>
                       In the public domain.
@@ -4744,8 +4747,9 @@
             <exemplum source="https://dracor.org/id/ger000416">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <bibl type="digitalSource">
-                  <name>TextGrid Repository</name>
-                  <idno type="URL">http://www.textgridrep.org/textgrid:t97f.0</idno>
+                  <ref target="http://www.textgridrep.org/textgrid:t97f.0">
+                    TextGrid Repository
+                  </ref>
                   <!-- ... -->
                 </bibl>
               </egXML>
@@ -4759,8 +4763,9 @@
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <sourceDesc>
                   <bibl type="digitalSource">
-                    <name>Библиотека Максима Мошкова (lib.ru)</name>
-                    <idno type="URL">http://az.lib.ru/p/plawilxshikow_p_a/text_0040.shtml</idno>
+                    <ref target="http://az.lib.ru/p/plawilxshikow_p_a/text_0040.shtml">
+                      Библиотека Максима Мошкова (lib.ru)
+                    </ref>
                     <availability status="free">
                       <p>
                         In the public domain.
@@ -5008,8 +5013,9 @@
                 <!-- ... -->
                 <sourceDesc>
                   <bibl type="digitalSource">
-                    <name>TextGrid Repository</name>
-                    <idno type="URL">http://www.textgridrep.org/textgrid:npsg.0</idno>
+                    <ref target="http://www.textgridrep.org/textgrid:npsg.0">
+                      TextGrid Repository
+                    </ref>
                     <availability>
                       <licence target="http://creativecommons.org/licenses/by/3.0/de/legalcode">CC-BY-3.0</licence>
                     </availability>
@@ -5233,8 +5239,9 @@
             <exemplum source="https://dracor.org/id/ger000526">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <bibl type="digitalSource">
-                  <name>Google Books</name>
-                  <idno type="URL">https://books.google.com/books?id=q1PDO0ko1mcC&amp;pg=PA51</idno>
+                  <ref target="https://books.google.com/books?id=q1PDO0ko1mcC&amp;pg=PA51">
+                    Google Books
+                  </ref>
                   <!-- ... -->
                 </bibl>
               </egXML>
@@ -5814,6 +5821,25 @@
                   </sch:assert>
                   <sch:assert test="count(.//tei:bibl[@type eq 'digitalSource']) &lt; 2 and count(.//tei:bibl[@type eq 'originalSource']) &lt; 2">
                     There is more than one original and/or digital source.
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
+            <constraintSpec ident="digital_source_use_ref" scheme="schematron" mode="add">
+              <desc>
+                Check that a <gi>bibl</gi> of <att>type</att>
+                <val>digitalSource</val> uses <gi>ref</gi> instead of
+                <gi>idno</gi>.
+              </desc>
+              <constraint>
+                <sch:rule context="tei:sourceDesc/tei:bibl[@type eq 'digitalSource']" role="warning" see="https://dracor.org/doc/odd#section-sources">
+                  <sch:assert test="tei:ref[@target]">
+                    The digital source should use a <gi>ref</gi> element with a
+                    <att>target</att> attribute to specify the digital source.
+                  </sch:assert>
+                  <sch:assert test="not(tei:name and tei:idno[@type eq 'URL'])">
+                    The use of <gi>idno</gi> with <att>type</att> <val>URL</val>
+                    to specify the digital source is deprecated.
                   </sch:assert>
                 </sch:rule>
               </constraint>
