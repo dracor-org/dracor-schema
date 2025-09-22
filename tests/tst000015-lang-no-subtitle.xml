@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Special case: a pantomime – there are no speaking characters. The warning about
-the missing speech acts could be ignored?
+Multiple titles with different languages should not trigger a warning about
+missing type="sub".
 -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000010" xml:lang="eng">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000000" xml:lang="eng">
   <teiHeader>
     <fileDesc>
       <titleStmt>
         <title>Ham</title>
-        <title type="sub">A Tragedy</title>
+        <title xml:lang="de">Schinken</title>
         <author>William S</author>
       </titleStmt>
       <publicationStmt>
@@ -78,9 +78,36 @@ the missing speech acts could be ignored?
       </castList>
     </front>
     <body>
-      <div type="scene">
+      <div type="act">
         <head>Act 1.</head>
-        <stage>Ham, Egg, Sausage and Bacon dancing.</stage>
+        <div type="scene">
+          <head>Scene 1.</head>
+          <stage>Ham and Egg.</stage>
+          <sp who="#ham">
+            <speaker>Ham.</speaker>
+            <p>Lovely Spam!</p>
+          </sp>
+          <sp who="#egg">
+            <speaker>Egg.</speaker>
+            <p>Wonderful Spam!</p>
+          </sp>
+        </div>
+        <div type="scene">
+          <head>Scene 2.</head>
+          <stage>Enter Vikings.</stage>
+          <sp who="#ham">
+            <speaker>Ham.</speaker>
+            <p>Egg! Sausage, and Bacon!</p>
+          </sp>
+          <sp who="#sausage #bacon">
+            <speaker>Vikings</speaker>
+            <stage>(singing).</stage>
+            <l>Spam, Spam, Spam,</l>
+            <l>Spam, Spam, Spam,</l>
+            <l>Spam and Spam!</l>
+          </sp>
+          <stage>The End.</stage>
+        </div>
       </div>
     </body>
   </text>

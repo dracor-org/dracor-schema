@@ -4165,7 +4165,7 @@
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <fileDesc>
                   <titleStmt>
-                    <title type="main">Egmont</title>
+                    <title>Egmont</title>
                     <!-- ... -->
                   </titleStmt>
                   <publicationStmt>
@@ -5929,20 +5929,18 @@
 
           <!-- titleStmt -->
           <elementSpec ident="titleStmt" module="header" mode="change">
-            <!-- expect a title type=main feature play_title -->
-            <constraintSpec ident="play_main_title" scheme="schematron" corresp="#play_title">
+            <constraintSpec ident="play_sub_title" scheme="schematron" corresp="#play_title">
               <desc>
-                The title of the play (see Feature
+                The main title of the play (see Feature
                 <ref target="#play_title">play_title</ref>) is retrieved from
-                the first element <gi>title</gi> with the value <val>main</val>
-                of the attribute <att>type</att>.
+                the first element <gi>title</gi>. A subtitle should be marked
+                with the <att>type</att> <val>sub</val>
               </desc>
               <constraint>
-                <sch:rule context="tei:titleStmt" role="warning">
-                  <sch:assert test="tei:title[@type eq 'main']">
-                    For the DraCor API to include the title of the play in the
-                    response an element 'title' with the type-attribute value
-                    'main' SHOULD be included.
+                <sch:rule context="tei:titleStmt[count(tei:title[not(@xml:lang)]) > 1]" role="warning">
+                  <sch:assert test="tei:title[not(@xml:lang) and @type = 'sub']">
+                    When using multiple <gi>title</gi> elements consider marking
+                    subtitles with a <att>type</att> <val>sub</val>.
                   </sch:assert>
                 </sch:rule>
               </constraint>
