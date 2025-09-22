@@ -5573,7 +5573,7 @@
                 <val>URI</val>.
               </desc>
               <constraint>
-                <sch:rule context="tei:publicationStmt[ancestor::tei:teiCorpus]" role="critical">
+                <sch:rule context="tei:teiCorpus/tei:teiHeader/tei:fileDesc/tei:publicationStmt" role="critical">
                   <sch:assert test="tei:idno[@type eq 'URI']">
                     The identifier 'corpus name' of the corpus MUST be included
                     as an element idno with the value 'URI' of the attribute
@@ -5592,7 +5592,7 @@
                 be able to load and update the corpus data from the repository.
               </desc>
               <constraint>
-                <sch:rule context="tei:publicationStmt[ancestor::tei:teiCorpus]" role="warning">
+                <sch:rule context="tei:teiCorpus/tei:teiHeader/tei:fileDesc/tei:publicationStmt" role="warning">
                   <sch:assert test="tei:idno[@type eq 'repo']">
                     Consider specifying the GitHub repository of the corpus
                     using an idno element of the type 'repo'.
