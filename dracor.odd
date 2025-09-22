@@ -5554,7 +5554,7 @@
                   <sch:assert test="tei:idno[@type eq 'URI' and @xml:base='https://dracor.org/']">
                     The corpus.xml must define the corpus name in an
                     <gi>idno</gi> element of <att>type</att> <val>URI</val> and
-                    an <att>xml:base</att> of <val>https://dracor.org/</val>.
+                    an <att>xml:base</att> of <val>"https://dracor.org/"</val>.
                     E.g. <code>&lt;idno type="URI" xml:base="https://dracor.org/"&gt;ger&lt;/idno&gt;</code>.
                   </sch:assert>
                 </sch:rule>
@@ -5572,8 +5572,9 @@
               <constraint>
                 <sch:rule context="tei:teiCorpus/tei:teiHeader/tei:fileDesc/tei:publicationStmt" role="warning">
                   <sch:assert test="tei:idno[@type eq 'repo']">
-                    Consider specifying the GitHub repository of the corpus
-                    using an idno element of the type 'repo'.
+                    The corpus.xml should specify the GitHub repository of the
+                    corpus using an <gi>idno</gi> element of the <att>type</att>
+                    <val>"repo"</val>.
                   </sch:assert>
                 </sch:rule>
               </constraint>
