@@ -4578,29 +4578,6 @@
 
           <!-- idno -->
           <elementSpec ident="idno" module="header" mode="change">
-            <constraintSpec ident="xml_base_required_on_idno_type_URI_in_corpus_xml"
-              scheme="schematron" mode="add" corresp="#corpus_name">
-              <!--
-                the xml:base attribute is queried in the dutil:get-corpus
-                function of dracor-api
-              -->
-              <desc>
-                In the corpus.xml (root element <gi>teiCorpus</gi>) the
-                identifier <gi>idno</gi> containing the corpus name (see Feature
-                <ref target="#corpus_name">corpus_name</ref>) SHOULD have an
-                <att>xml:base</att> attribute with the value
-                <val>https://dracor.org/</val>.
-              </desc>
-              <constraint>
-                <sch:rule context="tei:idno[@type eq 'URI' and parent::tei:publicationStmt and ancestor::tei:teiCorpus]" role="warning">
-                  <sch:assert test="@xml:base/string() eq 'https://dracor.org/'">
-                    The idno element in publicationStmt in the teiCorpus SHOULD
-                    have an xml:base attribute with the value
-                    'https://dracor.org/'.
-                  </sch:assert>
-                </sch:rule>
-              </constraint>
-            </constraintSpec>
             <attList>
               <attDef ident="xml:base" mode="change" usage="opt">
                 <desc>
@@ -5574,10 +5551,11 @@
               </desc>
               <constraint>
                 <sch:rule context="tei:teiCorpus/tei:teiHeader/tei:fileDesc/tei:publicationStmt" role="critical">
-                  <sch:assert test="tei:idno[@type eq 'URI']">
-                    The identifier 'corpus name' of the corpus MUST be included
-                    as an element idno with the value 'URI' of the attribute
-                    'type'.
+                  <sch:assert test="tei:idno[@type eq 'URI' and @xml:base='https://dracor.org/']">
+                    The corpus.xml must define the corpus name in an
+                    <gi>idno</gi> element of <att>type</att> <val>URI</val> and
+                    an <att>xml:base</att> of <val>https://dracor.org/</val>.
+                    E.g. <code>&lt;idno type="URI" xml:base="https://dracor.org/"&gt;ger&lt;/idno&gt;</code>.
                   </sch:assert>
                 </sch:rule>
               </constraint>
