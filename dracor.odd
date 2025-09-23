@@ -205,6 +205,113 @@
         </div>
         <!-- /file formats -->
 
+        <div xml:id="section-filenames-identifiers">
+          <head>Filenames and identifiers</head>
+          <p>
+            Names and identifiers in the DraCor platform, as in other computer
+            systems, play an important role to navigate to and access individual
+            resources. They are used in URLs and in data structures of API
+            responses. For reasons of consistency, interoperability and ease of
+            use we therefore strongly recommend the following general rules when
+            creating filenames or identifiers such as character IDs:
+          </p>
+          <list>
+            <item>
+              <p>
+                use only digits and letters from the
+                <ref target="https://en.wikipedia.org/wiki/ASCII">ASCII</ref>
+                repertoire
+              </p>
+            </item>
+            <item>
+              <p>use only lowercase letters</p>
+            </item>
+            <item>
+              <p>
+                separate words by dashes ("-"), not underscores ("_") or space
+                characters (" ")
+              </p>
+            </item>
+            <item>
+              <p>
+                don't include any punctuation characters (except for the file
+                extension ".xml")
+              </p>
+            </item>
+            <item>
+              <p>
+                consider that brevity can be an advantage for readability when
+                a name or identifier is used in a URL
+              </p>
+            </item>
+          </list>
+
+          <div xml:id="section-tei-filenames">
+            <head>TEI Filenames</head>
+            <p>
+              For naming TEI files, in addition to the above rules, the
+              following recommendations should be followed:
+            </p>
+            <list>
+              <item>
+                <p>
+                  TEI filenames must use the ".xml" extension.
+                </p>
+              </item>
+              <item>
+                <p>
+                  The filename should start with the surname of the author,
+                  followed by the title of the play (e.g.
+                  "lessing-emilia-galotti.xml").
+                </p>
+              </item>
+              <item>
+                <p>
+                  If there are multiple authors with the same surname within the
+                  same corpus, first name initials can be included after the
+                  surname. <!-- TODO: add example -->
+                </p>
+              </item>
+              <item>
+                <p>In single author corpora the author name can be omitted.</p>
+              </item>
+              <item>
+                <p>
+                  Subtitles should not be included unless necessary for
+                  disambiguation.
+                </p>
+              </item>
+            </list>
+          </div>
+
+          <div xml:id="section-identifiers">
+            <head>Identifiers</head>
+            <p>
+              Identifiers are mostly used in <att>xml:id</att> attributes, for
+              example to uniquely <ref target="#section-character-id">identify
+              the characters</ref> in a play.
+            </p>
+            <p>
+              On a technical level, the values of the
+              <att>xml:id</att> attribute need to be a so-called
+              <soCalled><ref target="https://www.w3.org/TR/xml-id/#processing">NCName</ref></soCalled>
+              which, among other restrictions, cannot start with a digit and
+              must not contain space characters. <note place="bottom">For exact
+              details see
+              <ref>https://www.w3.org/TR/REC-xml-names/#NT-NCName</ref>.</note>
+            </p>
+            <p>
+              Although the XML recommendation allows identifiers to consist of
+              characters beyond the ASCII range, for the DraCor platform the
+              stricter <ref target="#section-filenames-identifiers">general
+              rules above</ref> apply.
+              <note place="bottom">Cf. this
+              <ref target="https://github.com/dracor-org/georgdracor/issues/1">GitHub
+              issue</ref> for a practical reason for these rules.</note>
+            </p>
+          </div>
+        </div>
+
         <div xml:id="section-overview">
           <head>Basic Structure</head>
           <p>
@@ -683,30 +790,16 @@
                 <head>Character Identifier</head>
                 <p>
                   Each item must have a unique identifier in the attribute
-                  <att>xml:id</att>. As a general rule use letters of the latin
-                  alphabet and numbers for these IDs; don't use any special
-                  characters apart from dash "-" and underscore "_". If your
-                  play is written in a non-latin script use a transliteration of
-                  the character name as the identifier.
-                </p>
-                <p>
-                  On a more technical level: The values of the attribute
-                  <att>xml:id</att> need to be so-called
-                  <soCalled>Nmtokens</soCalled> which cannot contain space
-                  characters among others (see full spec at
-                  <ref target="https://www.w3.org/TR/REC-xml/#NT-Name">https://www.w3.org/TR/REC-xml/#NT-Name</ref>).
-                  Although they can consist of characters from various scripts,
-                  in the case of DraCor we follow the convention to use only
-                  ASCII characters. The reason being that IDs may be used to
-                  construct URLs and anything beyond the ASCII range would have
-                  to be URI encoded which would make the URLs less readable (cf.
-                  <ref target="https://github.com/dracor-org/georgdracor/issues/1">this
-                  GitHub issue</ref>.)
+                  <att>xml:id</att>. They are expected to follow the
+                  <ref target="#section-identifiers">general rules for
+                  identifiers</ref> in DraCor. If your play is written in a
+                  non-latin script use a transliteration of the character name
+                  as the identifier.
                 </p>
                 <p>
                   For characters defined by numerals (“First Soldier, Second
                   Soldier”), please include the values of the attribute
-                  <att>xml:id</att> as follows:<code>xml:id="soldier_1"</code>.
+                  <att>xml:id</att> as follows: <code>xml:id="soldier_1"</code>.
                 </p>
               </div>
               <!-- /character ID -->
@@ -5223,6 +5316,18 @@
                 Explain, why we need <gi>particDesc</gi> and <gi>castList</gi>
               </p>
             </remarks>
+            <constraintSpec ident="particdesc_person_id" scheme="schematron" mode="add"  type="encoding-hint">
+              <constraint>
+                <sch:rule context="tei:particDesc/tei:listPerson/tei:*[@xml:id]" role="warning" see="https://dracor.org/doc/odd#section-identifiers">
+                  <sch:assert test="matches(@xml:id, '^[a-z]([-a-z0-9]*[a-z0-9])?$')">
+                    The <att>xml:id</att> in <gi>particDesc</gi> should follow
+                    the DraCor rules for identifiers. See section
+                    <ref target="#section-identifiers">"Identifiers"</ref> of
+                    the guidelines.
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
           </elementSpec>
 
           <!-- pb -->
