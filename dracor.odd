@@ -5316,6 +5316,18 @@
                 Explain, why we need <gi>particDesc</gi> and <gi>castList</gi>
               </p>
             </remarks>
+            <constraintSpec ident="particdesc_person_id" scheme="schematron" mode="add"  type="encoding-hint">
+              <constraint>
+                <sch:rule context="tei:particDesc/tei:listPerson/tei:*[@xml:id]" role="warning" see="https://dracor.org/doc/odd#section-identifiers">
+                  <sch:assert test="matches(@xml:id, '^[a-z]([-a-z0-9]*[a-z0-9])?$')">
+                    The <att>xml:id</att> in <gi>particDesc</gi> should follow
+                    the DraCor rules for identifiers. See section
+                    <ref target="#section-identifiers">"Identifiers"</ref> of
+                    the guidelines.
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
           </elementSpec>
 
           <!-- pb -->
