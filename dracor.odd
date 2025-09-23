@@ -702,8 +702,8 @@
               print or manuscript source involved. Instead, we use already
               available digital files that are digitisations of a certain
               printed edition or manuscript. This fact is expressed with two
-              nested elements <gi>bibl</gi> that are classified by their
-              attributes type: the original print publication or manuscript
+              nested <gi>bibl</gi> elements that are classified by their
+              <att>type</att> attribute: the original print publication or manuscript
               (<val>originalSource</val>) is described inside the bibliographic
               record of the digital surrogate (<val>digitalSource</val>).
             </p>
@@ -796,9 +796,12 @@
             <div xml:id="section-original-source">
               <head>Original Source</head>
               <p>
-                The original print publication or manuscript that was the basis
-                of the digital source is included as a bibliographic reference
-                in an element <gi>bibl</gi>.
+                The original print publication or manuscript is included as a
+                bibliographic reference in a <gi>bibl</gi> element with
+                <att>type</att> <val>originalSource</val>. The original source
+                may be the basis of the digital source of the TEI file or the
+                direct source of the TEI file if the TEI file was created from
+                scratch.
               </p>
               <p>
                 It is possible to use designated elements to explicitly mark up
@@ -839,7 +842,8 @@
               <p>
                 Note that if you include the suggested designated elements,
                 structured information such as the publisher or year of the
-                original source will be available via the DraCor API.
+                original source will be available via the DraCor API and can
+                be downloaded via the DraCor Frontend.
               </p>
             </div>
           </div>
