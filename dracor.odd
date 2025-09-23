@@ -2802,6 +2802,7 @@
           <moduleRef key="textstructure" except="div1 div2 div3 div4 div5 div6 div7"/>
           <moduleRef key="linking"/>
           <moduleRef key="drama"/>
+          <moduleRef key="verse"/>
           <moduleRef key="namesdates"
             include="addName event forename genName listEvent listPerson listRelation nameLink person personGrp persName relation surname orgName region"/>
           <moduleRef key="corpus" include="particDesc"/>
