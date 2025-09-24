@@ -691,7 +691,7 @@
             <head>Sources</head>
             <p>
               The sources of a play are included in the <gi>sourceDesc</gi>
-              inside the the <gi>fileDesc</gi> element. Files in DraCor are
+              inside the <gi>fileDesc</gi> element. Files in DraCor are
               created differently. In some cases, files in DraCor are created
               from scratch, e.g. via an OCR of a printed source or HTR of a
               manuscript or a manual transcription of such sources. The
@@ -738,7 +738,7 @@
               </p>
               <p>
                 The information on the <soCalled>digital source</soCalled>
-                should include the title of the source, e.g. the <q>Project
+                should include the name of the source, e.g. the <q>Project
                 Gutenberg</q> and the URL of the document within the source
                 collection. These should be encoded using the <gi>ref</gi>
                 element with a <att>target</att> attribute. The URL should point
