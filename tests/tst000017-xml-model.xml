@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-This file tests the schematron rule to check for the correct encoding of the the
-DraCor ID.
-
-This file has an error in the encoding of the Self-URI in the attribute @active
-in the <standOff><listRelation>.
-
-Here the value is "https://dracor.org/entity/no-such-id" while it SHOULD be
-"https://dracor.org/entity/tst000003".
-
-There should be a Warning displayed.
--->
-<TEI type="dracor" xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000003" xml:lang="eng">
+<?xml-model href="https://dracor.org/schema.rng" schematypens="http://relaxng.org/ns/structure/1.0" type="application/xml" ?>
+<!-- File with xml-model referencing Dracor Schema is valid without TEI/@type  -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000017" xml:lang="eng">
   <teiHeader>
     <fileDesc>
       <titleStmt>
@@ -68,14 +58,6 @@ There should be a Warning displayed.
         <desc/>
       </event>
     </listEvent>
-    <listRelation>
-      <!-- We expect a warning here -->
-      <relation
-        name="wikidata"
-        active="https://dracor.org/entity/no-such-id"
-        passive="http://www.wikidata.org/entity/Q41567"
-      />
-    </listRelation>
   </standOff>
   <text>
     <front>

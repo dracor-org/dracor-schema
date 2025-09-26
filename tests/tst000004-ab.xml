@@ -3,7 +3,7 @@
 This file tests the schematron rule that detects the use of the element <ab>
 at other places than in <license>.
 -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000004" xml:lang="eng">
+<TEI type="dracor" xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000004" xml:lang="eng">
   <teiHeader>
     <fileDesc>
       <titleStmt>

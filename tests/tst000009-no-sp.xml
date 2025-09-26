@@ -3,7 +3,7 @@
 This file is valid against the DraCor schema but it is lacking <sp> elements. A
 network can not be extracted. There should be a warning.
 -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000008" xml:lang="eng">
+<TEI type="dracor" xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000008" xml:lang="eng">
   <teiHeader>
     <fileDesc>
       <titleStmt>

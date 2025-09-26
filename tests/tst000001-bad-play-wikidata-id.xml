@@ -11,7 +11,7 @@ obviously not the right QID for this "play".
 
 There should be a warning.
 -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000001" xml:lang="eng">
+<TEI type="dracor" xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000001" xml:lang="eng">
   <teiHeader>
     <fileDesc>
       <titleStmt>

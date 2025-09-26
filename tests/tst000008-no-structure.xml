@@ -7,7 +7,7 @@ schema because we expect <div> elements to have a @type attribute. The warnings
 will indicate that there are no <sp> elements. Network data can not be
 extracted.
 -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000008" xml:lang="eng">
+<TEI type="dracor" xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000008" xml:lang="eng">
   <teiHeader>
     <fileDesc>
       <titleStmt>
