@@ -1060,9 +1060,7 @@
               editing.
             </p>
           </div>
-          <!-- /section_revisionDesc -->
         </div>
-        <!-- /encoding-header -->
 
         <div xml:id="section-standOff">
           <head>Encoding additional metadata in the <gi>standOff</gi> element</head>
@@ -1115,7 +1113,6 @@
             </p>
           </div>
         </div>
-        <!-- /section_standOff -->
 
         <div xml:id="section-drama-text-proper">
           <head>Encoding the text (<gi>text</gi>)</head>
@@ -1130,7 +1127,7 @@
             <title>The Spanish Wives</title>
             (<ref target="https://dracor.org/id/ep000676">ep000676</ref>).
           </p>
-          <div xml:id="section_paratexts">
+          <div xml:id="section-paratexts">
             <head>Paratexts (<gi>front</gi>)</head>
             <p>
               Paratexts may be encoded with successive layers of complexity.
@@ -1176,16 +1173,14 @@
                 use <castList> instead!! -->
             </p>
           </div>
-          <!-- /paratexts -->
         </div>
-        <!-- /section_drama_text_proper -->
 
         <div xml:id="section-body-elements">
           <head><gi>text</gi></head>
           <p>
             Mark the main elements in the play’s body <gi>body</gi> as follows:
           </p>
-          <div xml:id="section_segments">
+          <div xml:id="section-segments">
             <head>Segments (acts, scenes, etc.)</head>
             <p>
               Use the element <gi>div</gi> to encode segments of a dramatic
@@ -1202,7 +1197,6 @@
               </egXML>
             </p>
           </div>
-          <!-- /section_segments -->
 
           <div xml:id="section-stage-directions">
             <head>Stage Directions (non-diegetic elements)</head>
@@ -1228,7 +1222,6 @@
               </egXML>
             </p>
           </div>
-          <!-- /section_stage_directions -->
 
           <div xml:id="section-speech-acts">
             <head>Speakers and Speech Acts</head>
@@ -1285,7 +1278,7 @@
                 </sp>
               </egXML>
             </p>
-            <div xml:id="section_special_cases">
+            <div xml:id="section-special-cases">
               <head>Special Cases</head>
               <div>
                 <head>No explicit speaker in text</head>
@@ -1310,9 +1303,7 @@
                 https://github.com/dracor-org/dracor-schema/issues/106
               -->
             </div>
-            <!-- /section_special_cases -->
           </div>
-          <!-- /section_speech_acts -->
         </div>
         <!-- /body elements -->
 
@@ -6830,7 +6821,6 @@
           </table>
         </div>
       </div>
-      <!-- /section_feature_tables -->
 
       <div xml:id="section-other-encoding-guides">
         <head>Additional Ressources on Encoding of DraCor files</head>
