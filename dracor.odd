@@ -350,11 +350,34 @@
             EzDrama language</ref>!).
           </p>
           <p rend="hint">
-            If you’re using Oxygen Editor, you can download and try the
-            experimental <ref target="https://github.com/dracor-org/dracor-oxygen-framework">DraCor
+            If you’re using the Oxygen editor, you can install the
+            <ref target="https://github.com/dracor-org/dracor-oxygen-framework?tab=readme-ov-file#usage">DraCor
             Oxygen Framework</ref>. It will help you by checking many kinds of
             inconsistencies in the markup and validating your file against the
             DraCor schema.
+          </p>
+          <p>
+            We recommend to explicitly reference the DraCor schema in an
+            <code>xml-model</code> processing instruction like this:
+            <!-- escaping the processing instruction in the example to avoid
+                 messing up vscode's validation and loosing it in the HTML
+                 rendering -->
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">&lt;?xml-model href="https://dracor.org/schema.rng" schematypens="http://relaxng.org/ns/structure/1.0" type="application/xml" ?&gt;
+              <TEI>
+                <!-- ... -->
+              </TEI>
+            </egXML>
+          </p>
+          <p>
+            If for some reason you prefer not to use a processing instruction a
+            <att>type</att> attribute with the value <val>dracor</val> can be
+            used to associate the document with the DraCor schema in Oxygen
+            (with the DraCor framework installed):
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <TEI type="dracor">
+                <!-- ... -->
+              </TEI>
+            </egXML>
           </p>
         </div>
         <!-- /overview -->
