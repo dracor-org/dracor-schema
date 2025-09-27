@@ -1162,15 +1162,6 @@
             <p>
               Dramatis personae can be encoded using the element
               <gi>castList</gi>.
-              <!--
-                Dramatis personae (the characters’ names, if required with their
-                descriptions) can be rendered as a list with the following
-                syntax (other variants are possible, e.g. substituting <item>
-                with <desc>):
-              -->
-              <!--
-                IB: Won't include this passage from the How-To, don't agree, .
-                use <castList> instead!! -->
             </p>
           </div>
         </div>
