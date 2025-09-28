@@ -2808,8 +2808,7 @@
           <moduleRef key="linking"/>
           <moduleRef key="drama"/>
           <moduleRef key="verse"/>
-          <moduleRef key="namesdates"
-            include="addName event forename genName listEvent listPerson listRelation nameLink person personGrp persName relation surname orgName region"/>
+          <moduleRef key="namesdates"/>
           <moduleRef key="corpus" include="particDesc"/>
           <moduleRef key="figures" include="figure"/>
           <moduleRef key="analysis"/>
