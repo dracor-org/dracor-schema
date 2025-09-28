@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Warning about missing type="sub" with multiple title elements -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000000" xml:lang="eng">
+<TEI type="dracor" xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000000" xml:lang="eng">
   <teiHeader>
     <fileDesc>
       <titleStmt>

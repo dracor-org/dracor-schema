@@ -2,7 +2,7 @@
 <!--
 Structural problems: invalid value of @type on a structural division
 -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000007" xml:lang="eng">
+<TEI type="dracor" xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000007" xml:lang="eng">
   <teiHeader>
     <fileDesc>
       <titleStmt>

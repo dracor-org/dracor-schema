@@ -350,11 +350,34 @@
             EzDrama language</ref>!).
           </p>
           <p rend="hint">
-            If you’re using Oxygen Editor, you can download and try the
-            experimental <ref target="https://github.com/dracor-org/dracor-oxygen-framework">DraCor
+            If you’re using the Oxygen editor, you can install the
+            <ref target="https://github.com/dracor-org/dracor-oxygen-framework?tab=readme-ov-file#usage">DraCor
             Oxygen Framework</ref>. It will help you by checking many kinds of
             inconsistencies in the markup and validating your file against the
             DraCor schema.
+          </p>
+          <p>
+            We recommend to explicitly reference the DraCor schema in an
+            <code>xml-model</code> processing instruction like this:
+            <!-- escaping the processing instruction in the example to avoid
+                 messing up vscode's validation and loosing it in the HTML
+                 rendering -->
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">&lt;?xml-model href="https://dracor.org/schema.rng" schematypens="http://relaxng.org/ns/structure/1.0" type="application/xml" ?&gt;
+              <TEI>
+                <!-- ... -->
+              </TEI>
+            </egXML>
+          </p>
+          <p>
+            If for some reason you prefer not to use a processing instruction a
+            <att>type</att> attribute with the value <val>dracor</val> can be
+            used to associate the document with the DraCor schema in Oxygen
+            (with the DraCor framework installed):
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <TEI type="dracor">
+                <!-- ... -->
+              </TEI>
+            </egXML>
           </p>
         </div>
         <!-- /overview -->
@@ -5825,6 +5848,29 @@
                 <elementRef key="text" minOccurs="1" maxOccurs="1"/>
               </sequence>
             </content>
+            <constraintSpec ident="xml_model_or_type_dracor_on_root_tei_element"
+              scheme="schematron" mode="add">
+              <desc>
+                DraCor TEI documents should either reference the DraCor Schema
+                in an <code>&lt;?xml-model ... ?&gt;</code> processing
+                instruction or add a <att>type</att> <val>dracor</val> to their
+                root element.
+              </desc>
+              <constraint>
+                <sch:rule context="/tei:TEI" role="warning">
+                  <sch:assert test="@type = 'dracor' or /processing-instruction('xml-model')">
+                    The root <sch:name/> element should have a @type="dracor"
+                    attribute if the schema is not reference in an xml-model PI.
+                  </sch:assert>
+                  <sch:assert
+                    test="not(/processing-instruction('xml-model')) or (some $pi in /processing-instruction('xml-model')
+                          satisfies matches($pi, 'href\s*=\s*[&quot;'']https://dracor\.org/schema\.rng[&quot;'']'))">
+                    The DraCor schema should be refrerenced as
+                    "https://dracor.org/schema.rng" when using a xml-model PI.
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
             <constraintSpec ident="valid_dracor_ids_on_root_tei_element"
               scheme="schematron" mode="add" corresp="#play_id">
               <desc>
@@ -5863,7 +5909,7 @@
             </attList>
             <exemplum source="https://dracor.org/id/ger000171">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <TEI xml:id="ger000171" xml:lang="ger">
+                <TEI type="dracor" xml:id="ger000171" xml:lang="ger">
                   <!-- ... -->
                 </TEI>
               </egXML>
