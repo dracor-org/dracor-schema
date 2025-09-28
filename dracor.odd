@@ -1170,37 +1170,48 @@
             <head>Paratexts (<gi>front</gi>)</head>
             <p>
               Paratexts may be encoded with successive layers of complexity.
-              The general rule is to enclose every section in a <gi>div</gi>
-              with an attribute <att>type</att>. Prose text should be enclosed
-              in paragraphs with <gi>p</gi>, lines of verse with <gi>l</gi>.
-              In-text titles of sections may be marked with <gi>head</gi>.
-            </p>
-            <p>
-              Some examples:
-              <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#ep000676">
-                <front>
-                  <div type="title_page">
-                    <p>
-                      THE Spanish Wives. A FARCE, As it was Acted by His
-                      MAJESTY's Servants, AT THE THEATRE in Dorset-Garden.
-                    </p>
-                    <p>
-                      LONDON: Printed for R. Wellington, at the Sign of the Lute
-                      in St. Paul's Church yard, 1696.
-                    </p>
-                  </div>
-                  <div type="prologue">
-                    <head>PROLOGUE, Spoken by Mr. Penkethman, in a Press-master's Habit.</head>
-                    <l>WHat Chear, my Lads? Igad, I'm come to say,</l>
-                    <l>I'll press to Sea all those who Damn this Play:</l>
-                    [...]
-                  </div>
-                </front>
-              </egXML>
+              Dedicated elements like <gi>titlePage</gi>, <gi>prologue</gi>, or
+              <gi>argument</gi> should be used where appropriate. Only when no
+              suitable element is available <gi>div</gi> elements with an
+              attribute <att>type</att> may be used. Prose text should be
+              enclosed in paragraphs with <gi>p</gi>, lines of verse with
+              <gi>l</gi>. In-text titles of sections may be marked with
+              <gi>head</gi>.
             </p>
             <p>
               Dramatis personae can be encoded using the element
               <gi>castList</gi>.
+            </p>
+            <p>
+              For details see the TEI Guidelines sections on
+              <ref target="https://tei-c.org/release/doc/tei-p5-doc/en/html/DR.html#DRFAB">Front
+              and Back Matter</ref> and
+              <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/de/html/DS.html#DSTITL">Title Pages</ref>.
+            </p>
+            <p>
+              Some example from
+              <ref target="https://dracor.org/id/ger000088"><title>Emilia
+              Galotti</title></ref>:
+              <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#ger000088">
+                <front>
+                  <titlePage>
+                    <docAuthor>Gotthold Ephraim Lessing</docAuthor>
+                    <docTitle>
+                      <titlePart type="main">Emilia Galotti</titlePart>
+                      <titlePart type="sub">Ein Trauerspiel in fünf Aufzügen</titlePart>
+                    </docTitle>
+                  </titlePage>
+                  <pb n="128"/>
+                  <castList>
+                    <head>Personen.</head>
+                    <castItem>
+                      <role>Emilia Galotti.</role>
+                    </castItem>
+                    <!-- ... -->
+                  </castList>
+                </front>
+              </egXML>
+
             </p>
           </div>
         </div>
