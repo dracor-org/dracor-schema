@@ -449,12 +449,31 @@
               <head>Title</head>
               <p>
                 The title is encoded using the element <gi>title</gi> in
-                <gi>titleStmt</gi>. It can be further classified using the
-                attribute <att>type</att> as main and subtitle:
+                <gi>titleStmt</gi>. Multiple <gi>title</gi> elements can be used
+                to distinguish main and subtitle. The subtitle should be marked
+                with a <att>type</att> <val>sub</val>:
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <title type="main">Des Meeres und der Liebe Wellen</title>
+                  <title>Des Meeres und der Liebe Wellen</title>
                   <title type="sub">Trauerspiel in fünf Aufzügen</title>
                 </egXML>
+              </p>
+              <p>
+                For plays written in less commonly known scripts you may want to
+                provide alternative titles in English using the
+                <att>xml:lang</att> attribute:
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <title>Ревизор</title>
+                  <title xml:lang="eng">The Government Inspector</title>
+                  <title type="sub">Комедия в пяти действиях</title>
+                  <title type="sub" xml:lang="eng">A Comedy in Five Acts</title>
+                </egXML>
+              </p>
+              <p>
+                If provided, the English titles will be made available by the
+                DraCor API as properties
+                <ref target="#play_title_en">titleEn</ref> and
+                <ref target="#play_subtitle_en">subtitleEn</ref> of a play
+                object.
               </p>
             </div>
             <!-- / title -->
@@ -5920,7 +5939,7 @@
             </attList>
             <exemplum source="https://dracor.org/id/ger000010">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <title type="main">Des Meeres und der Liebe Wellen</title>
+                <title>Des Meeres und der Liebe Wellen</title>
               </egXML>
               <ab>
                 Main title of the play
@@ -5940,8 +5959,8 @@
             </exemplum>
             <exemplum source="https://dracor.org/id/rus000054">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <title type="main">Ревизор</title>
-                <title type="main" xml:lang="eng">The Government Inspector</title>
+                <title>Ревизор</title>
+                <title xml:lang="eng">The Government Inspector</title>
                 <title type="sub">Комедия в пяти действиях</title>
                 <title type="sub" xml:lang="eng">A Comedy in Five Acts</title>
               </egXML>
@@ -6008,7 +6027,7 @@
             <exemplum source="https://dracor.org/id/ger000010">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <titleStmt>
-                  <title type="main">Des Meeres und der Liebe Wellen</title>
+                  <title>Des Meeres und der Liebe Wellen</title>
                   <title type="sub">Trauerspiel in fünf Aufzügen</title>
                   <author>
                     <persName>
@@ -6034,8 +6053,8 @@
             <exemplum source="https://dracor.org/id/rus000054">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <titleStmt>
-                  <title type="main">Ревизор</title>
-                  <title type="main" xml:lang="eng">The Government Inspector</title>
+                  <title>Ревизор</title>
+                  <title xml:lang="eng">The Government Inspector</title>
                   <title type="sub">Комедия в пяти действиях</title>
                   <title type="sub" xml:lang="eng">A Comedy in Five Acts</title>
                   <author>
