@@ -2870,41 +2870,6 @@
           <!-- ##### -->
 
           <!-- ab  -->
-          <elementSpec ident="ab" module="linking" mode="change">
-            <constraintSpec type="encoding-hint" ident="encoding-hint_ab_used_somewhere_else" scheme="schematron">
-              <desc>
-                In DraCor we discourage the use of the element <gi>ab</gi>
-                anywhere else than to mark the human-readable label of the
-                licence in <gi>availability</gi>.
-              </desc>
-              <!-- This constraint can be tested with the file tst000004 -->
-              <constraint>
-                <sch:rule context="tei:ab" role="warning" see="https://dracor.org/doc/odd#TEI.ab">
-                  <sch:assert test="./parent::tei:licence">
-                    In DraCor the element 'ab' should only be used to mark the
-                    label of the licence in the teiHeader.
-                  </sch:assert>
-                </sch:rule>
-              </constraint>
-            </constraintSpec>
-            <exemplum>
-              <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <availability>
-                  <licence>
-                    <ab>CC0 1.0</ab>
-                    <ref target="https://creativecommons.org/publicdomain/zero/1.0/">Licence</ref>
-                  </licence>
-                </availability>
-              </egXML>
-            </exemplum>
-            <remarks>
-              <p>
-                In DraCor the element <gi>ab</gi> is normally used to encode
-                the name of the licence used.
-              </p>
-            </remarks>
-          </elementSpec>
-
           <!-- abbr -->
           <!-- abstract -->
           <!-- actor -->
