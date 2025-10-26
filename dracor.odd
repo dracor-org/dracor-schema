@@ -4848,7 +4848,20 @@
 
           <!-- licence -->
           <elementSpec ident="licence" module="header" mode="change">
-            <!-- see https://github.com/dracor-org/dracor-schema/issues/103 -->
+            <constraintSpec ident="licence_target_url" scheme="schematron">
+              <desc>
+                Licence information should refer to a licence document with the
+                providing the full licence text.
+              </desc>
+              <constraint>
+                <sch:rule context="tei:licence" role="warning">
+                  <sch:assert test="@target">
+                    Consider providing the URL to the full licence text in a
+                    @target attribute.
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
             <exemplum source="https://dracor.org/id/ger000010">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <publicationStmt>
