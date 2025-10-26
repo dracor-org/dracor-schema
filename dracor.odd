@@ -663,10 +663,7 @@
                     <name>TextGrid Repository</name>
                     <idno type="URL">http://www.textgridrep.org/textgrid:11f78.0</idno>
                     <availability>
-                      <licence>
-                        <ab>CC-BY-3.0</ab>
-                        <ref target="http://creativecommons.org/licenses/by/3.0/de/legalcode">Lizenzvertrag</ref>
-                      </licence>
+                      <licence target="http://creativecommons.org/licenses/by/3.0/de/legalcode">CC-BY-3.0</licence>
                     </availability>
                   </bibl>
                 </egXML>
@@ -3035,10 +3032,7 @@
             <exemplum>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <availability>
-                  <licence>
-                    <ab>CC-BY-3.0</ab>
-                    <ref target="http://creativecommons.org/licenses/by/3.0/de/legalcode">Lizenzvertrag</ref>
-                  </licence>
+                  <licence target="http://creativecommons.org/licenses/by/3.0/de/legalcode">CC-BY-3.0</licence>
                 </availability>
               </egXML>
             </exemplum>
@@ -3107,10 +3101,7 @@
                   <name>TextGrid Repository</name>
                   <idno type="URL">http://www.textgridrep.org/textgrid:jn65.0</idno>
                   <availability>
-                    <licence>
-                      <ab>CC-BY-3.0</ab>
-                      <ref target="http://creativecommons.org/licenses/by/3.0/de/legalcode">Lizenzvertrag</ref>
-                    </licence>
+                    <licence target="http://creativecommons.org/licenses/by/3.0/de/legalcode">CC-BY-3.0</licence>
                   </availability>
                   <bibl type="originalSource">
                     <title>Ludwig Anzengruber: Der Meineidbauer. Herausgegeben
@@ -4645,10 +4636,7 @@
                   <publisher xml:id="dracor">DraCor</publisher>
                   <idno type="URL">https://dracor.org</idno>
                   <availability>
-                    <licence>
-                      <ab>CC0 1.0</ab>
-                      <ref target="https://creativecommons.org/publicdomain/zero/1.0/">Licence</ref>
-                    </licence>
+                    <licence target="https://creativecommons.org/publicdomain/zero/1.0">CC0 1.0</licence>
                   </availability>
                 </publicationStmt>
               </egXML>
@@ -4902,10 +4890,7 @@
                   <publisher xml:id="dracor">DraCor</publisher>
                   <idno type="URL">https://dracor.org</idno>
                   <availability>
-                    <licence>
-                      <ab>CC0 1.0</ab>
-                      <ref target="https://creativecommons.org/publicdomain/zero/1.0/">Licence</ref>
-                    </licence>
+                    <licence target="https://creativecommons.org/publicdomain/zero/1.0">CC0 1.0</licence>
                   </availability>
                 </publicationStmt>
                 <!-- ... -->
@@ -4914,10 +4899,7 @@
                     <name>TextGrid Repository</name>
                     <idno type="URL">http://www.textgridrep.org/textgrid:npsg.0</idno>
                     <availability>
-                      <licence>
-                        <ab>CC-BY-3.0</ab>
-                        <ref target="http://creativecommons.org/licenses/by/3.0/de/legalcode">Lizenzvertrag</ref>
-                      </licence>
+                      <licence target="http://creativecommons.org/licenses/by/3.0/de/legalcode">CC-BY-3.0</licence>
                     </availability>
                     <bibl type="originalSource">
                       <title>Franz Grillparzer: Sämtliche Werke. Ausgewählte
@@ -4938,10 +4920,7 @@
             </exemplum>
             <exemplum source="#ger000082">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <licence>
-                  <ab>CC-BY-3.0</ab>
-                  <ref target="http://creativecommons.org/licenses/by/3.0/de/legalcode">Lizenzvertrag</ref>
-                </licence>
+                <licence target="http://creativecommons.org/licenses/by/3.0/de/legalcode">CC-BY-3.0</licence>
               </egXML>
               <ab>
                 The digital source of the play
@@ -4952,10 +4931,7 @@
             </exemplum>
             <exemplum source="https://dracor.org/id/ger000485">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <licence>
-                  <ab>CC BY-NC 3.0</ab>
-                  <ref target="http://creativecommons.org/licenses/by-nc/3.0/de/">Lizenzvertrag</ref>
-                </licence>
+                <licence target="http://creativecommons.org/licenses/by-nc/3.0/de/">CC BY-NC 3.0</licence>
               </egXML>
               <ab>
                 The digital source of the play
@@ -4966,10 +4942,7 @@
             </exemplum>
             <exemplum source="https://dracor.org/id/rus000042">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <licence>
-                  <ab>CC BY-SA 3.0</ab>
-                  <ref target="https://creativecommons.org/licenses/by-sa/3.0/deed.ru">Licence</ref>
-                </licence>
+                <licence target="https://creativecommons.org/licenses/by-sa/3.0/deed.ru">CC BY-SA 3.0</licence>
               </egXML>
               <ab>
                 The digital source of the play
