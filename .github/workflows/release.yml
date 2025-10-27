@@ -78,7 +78,11 @@ jobs:
         with:
           path: dist/
 
+  # There are environment rules that restrict which tags can deploy to the
+  # github-pages environment, see
+  # https://github.com/dracor-org/dracor-schema/settings/environments/5489677481/edit
   deploy:
+    if: ${{ ! github.event.release.prerelease }}
     needs: build
     runs-on: ubuntu-latest
     environment:
