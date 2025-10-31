@@ -5294,6 +5294,14 @@
 
           <!-- pb -->
           <elementSpec ident="pb" module="core" mode="change">
+            <attList>
+              <attDef ident="facs" usage="opt">
+                <desc>Links this page break to a facsimile image.</desc>
+                <datatype>
+                  <dataRef key="anyURI"/>
+                </datatype>
+              </attDef>
+            </attList>
             <exemplum>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <sp who="#anton">
