@@ -7,9 +7,9 @@
         <title>German Drama Corpus</title>
         <!-- Maintenance History: Editor -->
         <editor ref="https://orcid.org/" from="2017" to="2065">Frank Fischer</editor>
-        <editor ref="https://orcid.org/" from="2017" to="2067">Peer Trilcke</editor>       
+        <editor ref="https://orcid.org/" from="2017" to="2067">Peer Trilcke</editor>
         <!-- Encoders/Contributors -->
-		<!-- contributing is anything but encoding-->
+        <!-- contributing is anything but encoding-->
         <respStmt>
           <resp>Contributors</resp>
           <name>name surname</name>
@@ -18,23 +18,19 @@
           <resp>Encoders</resp>
           <name>name surname</name>
         </respStmt>
-		
       </titleStmt>
-
       <publicationStmt>
-  		  <publisher>DraCor</publisher>
-  		  <date>2024</date>
-  		  <idno type="URI">https://dracor.org/ger</idno>
-  		  <idno type="repo">"https://github.com/dracor-org/gerdracor"</idno>
-
-		<!-- Licence -->
+        <publisher>DraCor</publisher>
+        <date>2024</date>
+        <idno type="URI">https://dracor.org/ger</idno>
+        <idno type="repo">"https://github.com/dracor-org/gerdracor"</idno>
+        <!-- Licence -->
         <availability>
           <licence target="https://creativecommons.org/share-your-work/public-domain/cc0/">
             <p>This work is licensed under CC0 1.0 Universal (CC0 1.0) Public Domain Dedication</p>
           </licence>
         </availability>
       </publicationStmt>
-      
       <notesStmt>
         <relatedItem>
           <bibl>
@@ -46,20 +42,17 @@
           </bibl>
         </relatedItem>
         <note type="ehemalige">Damals gab es ein Typ, der ganz gerne Dramen kodiert hatte. Aber jetzt nicht mehr.</note>
-      </notesStmt>    
-      
+      </notesStmt>
       <!-- Source(s) -->
-     
       <sourceDesc>
         <p>Digital editions and transcriptions of German-language theatrical texts from various sources including TextGrid</p>
       </sourceDesc>
-     
     </fileDesc>
-    
+
     <encodingDesc>
       <!-- Project description -->
       <projectDesc>
-		    <p>
+        <p>
           Edited by Frank Fischer and Peer Trilcke. Features more than 700
           German-language plays from the 1500s to the 1940s. For a corpus
           description and full credits please see the
@@ -67,32 +60,31 @@
           GitHub</ref>.
         </p>
       </projectDesc>
-      
-	  <!-- Editorial declaration: corpus strategy -->
-	  <editorialDecl>
-	  	<p> List here criteria for text inclusion and project for future developments</p>
-	  </editorialDecl>
-	  
+
+      <!-- Editorial declaration: corpus strategy -->
+      <editorialDecl>
+        <p>List here criteria for text inclusion and project for future developments</p>
+      </editorialDecl>
+
       <!-- Selection Criteria and Corpus type -->
       <samplingDecl>
         <p>Selection criteria: <term>opportunistic/complete/representative/balanced</term></p>
         <p><note>We included these texts because of this reason.</note></p>
         <p>Corpus type: <term>generic/specific</term></p>
-      </samplingDecl>   
+      </samplingDecl>
     </encodingDesc>
     <profileDesc>
       <!-- Language -->
       <langUsage>
         <language ident="de">German</language>
-      </langUsage>       
+      </langUsage>
     </profileDesc>
-	
+
     <revisionDesc>
       <change when="2025-09-05" type="major"/> <!-- this marks releases -->
-	  <change when="2025-09-05" type="major" status="published"/>
+    <change when="2025-09-05" type="major" status="published"/>
       <change when="2025-02-01" type="major" status="draft"/>
     </revisionDesc>
-  
+
   </teiHeader>
 </teiCorpus>
-
