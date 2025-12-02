@@ -1640,6 +1640,9 @@
               <gi>docTitle</gi>
             </item>
             <item>
+              <gi>dracorCorpus</gi>
+            </item>
+            <item>
               <gi>editor</gi>
             </item>
             <item>
@@ -3053,7 +3056,7 @@
           docLang="en"
           prefix="tei_"
           xml:lang="en"
-          start="TEI teiCorpus"
+          start="TEI teiCorpus dracorCorpus"
           source="tei:4.11.0"
         >
           <desc>DraCor Schema</desc>
@@ -5739,47 +5742,82 @@
 
           <!-- publicationStmt -->
           <elementSpec ident="publicationStmt" module="header" mode="change">
-            <!-- see https://github.com/dracor-org/dracor-schema/issues/108 -->
-            <!--
-            in corpus.xml, two identifiers are required!
-
-            <idno type="URI" xml:base="https://dracor.org/">ger</idno>
-            <idno type="repo">https://github.com/dracor-org/gerdracor</idno>
-            -->
-            <constraintSpec ident="identifier_corpus_name_in_corpus_xml"
+            <constraintSpec ident="corpus_xml_corpus_name"
               scheme="schematron" mode="add" corresp="#corpus_name">
               <desc>
                 The identifier 'corpus name' (see Feature
                 <ref target="#corpus_name">corpus_name</ref>) MUST be included
-                in corpus.xml in an <gi>idno</gi> element of the <att>type</att>
-                <val>URI</val>.
+                in corpus.xml in a simple <gi>idno</gi> without any
+                <att>type</att> inside <gi>publicationStmt</gi>.
               </desc>
               <constraint>
-                <sch:rule context="tei:teiCorpus/tei:teiHeader/tei:fileDesc/tei:publicationStmt" role="critical">
-                  <sch:assert test="tei:idno[@type eq 'URI' and @xml:base='https://dracor.org/']">
+                <!-- DEPRECATED: support for teiCorpus -->
+                <sch:rule
+                  context="/(tei:teiCorpus|tei:dracorCorpus)/tei:teiHeader/tei:fileDesc/tei:publicationStmt"
+                  role="critical"
+                >
+                  <!-- DEPRECATED: support for type="URI" -->
+                  <sch:assert test="tei:idno[not(@type) or (@type eq 'URI' and @xml:base='https://dracor.org/')]">
                     The corpus.xml must define the corpus name in an
-                    &lt;idno&gt; element of @type "URI" and
-                    an @xml:base of ""https://dracor.org/"". E.g.
-                    &lt;idno type="URI" xml:base="https://dracor.org/"&gt;ger&lt;/idno&gt;.
+                    &lt;idno&gt; with no @type attribute, e.g.
+                    &lt;idno&gt;ger&lt;/idno&gt;.
                   </sch:assert>
                 </sch:rule>
               </constraint>
             </constraintSpec>
-            <constraintSpec ident="corpus_repository_url_in_corpus_xml"
+            <constraintSpec ident="corpus_xml_corpus_name_syntax"
+              scheme="schematron" mode="add" corresp="#corpus_name">
+              <constraint>
+                <!-- DEPRECATED: support for teiCorpus and for <idno type="URI"> -->
+                <sch:rule
+                  context="/(tei:teiCorpus|tei:dracorCorpus)/tei:teiHeader/tei:fileDesc/tei:publicationStmt/tei:idno[not(@type) or (@type eq 'URI' and @xml:base='https://dracor.org/')]"
+                  role="critical"
+                  >
+                  <sch:assert test="matches(., '^[a-z]+$')">
+                    The corpus name must consist of lowercase ASCII characters
+                    only.
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
+            <constraintSpec ident="corpus_xml_repository_url"
               scheme="schematron" mode="add" corresp="#corpus_repository">
               <desc>
                 The URL of the corpus repository (see Feature
                 <ref target="#corpus_repository">corpus_repository</ref>) needs
-                to be specified in corpus.xml as the content of an <gi>idno</gi>
-                element with of the  <att>type</att> <val>repo</val> in order to
+                to be specified in corpus.xml in the <att>target</att> of a <gi>ref</gi>
+                element with <att>type</att> <val>repo</val> for the API to
                 be able to load and update the corpus data from the repository.
               </desc>
               <constraint>
-                <sch:rule context="tei:teiCorpus/tei:teiHeader/tei:fileDesc/tei:publicationStmt" role="warning">
-                  <sch:assert test="tei:idno[@type eq 'repo']">
+                <sch:rule
+                  context="/(tei:teiCorpus|tei:dracorCorpus)/tei:teiHeader/tei:fileDesc/tei:publicationStmt"
+                  role="warning"
+                >
+                  <sch:assert test="tei:ref[@type eq 'repo']/@target or tei:idno[@type eq 'repo']">
                     The corpus.xml should specify the GitHub repository of the
-                    corpus using an &lt;idno&gt; element of the @type "repo".
+                    corpus in the @target attribute of a &lt;ref&gt; element of
+                    @type "repo".
                   </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
+            <constraintSpec ident="corpus_xml_deprecation" scheme="schematron" mode="add">
+              <constraint>
+                <sch:rule
+                  context="/(tei:teiCorpus|tei:dracorCorpus)/tei:teiHeader/tei:fileDesc/tei:publicationStmt/tei:idno"
+                  role="warning"
+                  >
+                  <sch:report test="@type eq 'repo'">
+                    The use of &lt;idno&gt; to specify the corpus repository is
+                    deprecated. Use a &lt;ref&gt; element with @type "repo"
+                    instead.
+                  </sch:report>
+                  <sch:report test="@type eq 'URI' and @xml:base='https://dracor.org/'">
+                    The use of an &lt;idno&gt; with @type eq "URI" and @xml:base
+                    to specify the corpus name is deprecated. Use an
+                    &lt;idno&gt; with no attributes instead.
+                  </sch:report>
                 </sch:rule>
               </constraint>
             </constraintSpec>
@@ -6379,6 +6417,29 @@
                 Revizor</ref>. Titles and author names are given both in Russian
                 and English.
               </ab>
+            </exemplum>
+          </elementSpec>
+
+          <elementSpec ident="dracorCorpus" mode="add">
+            <gloss>DraCor Corpus</gloss>
+            <desc>
+              Root element for a DraCor corpus.xml descriptor document.
+              Contains exactly one teiHeader with corpus-level metadata.
+            </desc>
+            <classes>
+              <memberOf key="att.global"/>
+            </classes>
+            <content>
+              <elementRef key="teiHeader" minOccurs="1" maxOccurs="1"/>
+            </content>
+            <exemplum>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <dracorCorpus>
+                  <teiHeader>
+                    <!-- ... -->
+                  </teiHeader>
+                </dracorCorpus>
+              </egXML>
             </exemplum>
           </elementSpec>
 
