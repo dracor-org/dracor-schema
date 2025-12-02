@@ -22,12 +22,14 @@
       <publicationStmt>
         <publisher>DraCor</publisher>
         <date>2024</date>
-        <idno type="URI">https://dracor.org/ger</idno>
-        <idno type="repo">"https://github.com/dracor-org/gerdracor"</idno>
+        <!-- DraCor corpus name -->
+        <idno>ger</idno>
+        <!-- Git repo -->
+        <ref type="repo" target="https://github.com/dracor-org/gerdracor"/>
         <!-- Licence -->
         <availability>
           <licence target="https://creativecommons.org/share-your-work/public-domain/cc0/">
-            <p>This work is licensed under CC0 1.0 Universal (CC0 1.0) Public Domain Dedication</p>
+            CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
           </licence>
         </availability>
       </publicationStmt>
