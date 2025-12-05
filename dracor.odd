@@ -315,13 +315,15 @@
         <div xml:id="section-overview">
           <head>Basic Structure</head>
           <p>
-            The basic structure of a DraCor file requires a <gi>teiHeader</gi>,
-            containing metadata on the play, and a <gi>text</gi> with the actual
-            text. Between header and text there is a <gi>standOff</gi> element
-            with some additional pieces of information. The structure of your
-            final XML file should therefore look like this:
+            The basic structure of a DraCor file requires a <gi>TEI</gi> root
+            element providing the DraCor ID and language of the play, a
+            <gi>teiHeader</gi>, containing metadata on the play, and a
+            <gi>text</gi> with the actual text. Between header and text there is
+            a <gi>standOff</gi> element with some additional pieces of
+            information. The structure of your final XML file should therefore
+            look like this:
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <TEI>
+              <TEI xml:id="..." xml:lang="..">
                 <teiHeader>
                   <!-- contains Metadata -->
                 </teiHeader>
@@ -380,7 +382,49 @@
             </egXML>
           </p>
         </div>
-        <!-- /overview -->
+
+        <div xml:id="section-root-element">
+          <head>Root element</head>
+          <p>
+            The root TEI element, apart from declaring the namespace, must
+            provide the following basic information for the encoded play:
+            <list>
+              <item>
+                <label>DraCor ID (<att>xml:id</att>)</label>:
+                <gloss>
+                  This ID needs to be unique throughout the DraCor ecosystem and
+                  should consist of the corpus name followed by a six-digit
+                  zero-padded number, e.g. <val>ita000056</val>.
+                </gloss>
+              </item>
+              <item>
+                <label>Language (<att>xml:lang</att>)</label>:
+                <gloss>
+                  The language of the play should be specified as the
+                  <ref target="https://tools.ietf.org/html/bcp47">BCP 47</ref>
+                  compliant 'language tag' which is basically the shortest
+                  ISO-639 code, i.e. usually the 2-letter code, or, where none
+                  has been assigned, the appropriate 3-letter one.
+                  <note place="bottom">
+                    Also see the section
+                    <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/de/html/CH.html#CHSH">Language
+                    identification</ref> of the TEI Guidelines.
+                  </note>
+                </gloss>
+              </item>
+            </list>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <TEI xml:id="ger0000001" xml:lang="de">
+                <!-- ... -->
+              </TEI>
+            </egXML>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <TEI xml:id="als000023" xml:lang="gsw">
+                <!-- ... -->
+              </TEI>
+            </egXML>
+          </p>
+        </div>
 
         <div xml:id="section-encoding-header">
           <head>Metadata in the <gi>teiHeader</gi></head>
