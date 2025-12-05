@@ -5740,28 +5740,25 @@
                 constructed by prepending the character ID with a hash '#'.
               </desc>
               <constraint>
-                <!-- this works only for @who attributes that contain a single
-                     character only -->
-                <sch:rule context="tei:sp[@who[not(contains(.,' '))]]" role="warning">
-                  <sch:let name="localID" value="replace(@who/string(),'#','')"/>
-                  <sch:assert test="ancestor::tei:TEI//tei:particDesc//(tei:person|tei:personGrp)[@xml:id eq $localID]"
-                    role="warning">
-                    A speech act SHOULD link to a 'person' or 'personGrp'
-                    element in 'particDesc'. Use a valid character ID and
-                    provide it as a pointer by prepending it with a hash '#'."
+                <sch:rule context="tei:sp[@who]">
+                  <sch:let name="refs" value="tokenize(normalize-space(@who), '\s+')" />
+
+                  <sch:assert test="every $r in $refs satisfies starts-with($r, '#')">
+                    References in @who must start with "#".
                   </sch:assert>
-                </sch:rule>
-                <!-- the following rule can detect the cases where there are
-                     multiple character ids in the who attribute -->
-                <sch:rule context="tei:sp[contains(@who,' ')]">
-                  <sch:let name="allIDs" value="./ancestor::tei:TEI//tei:particDesc//(tei:person|tei:personGrp)/@xml:id/string()"/>
-                  <sch:let name="localIDs" value="tokenize(@who/string(),'\s+')"/>
-                  <sch:assert test="every $i in $localIDs satisfies replace($i,'#','') = $allIDs"
-                    role="warning">
-                    At least one character ID provided as the value of the
-                    attribute who '<sch:value-of select="@who/string()"/>' has
-                    not been declared. A speech act SHOULD link to a 'person' or
-                    'personGrp' element in 'particDesc'.
+
+                  <sch:let name="local-ids"
+                    value="for $r in $refs return replace($r,'#','')" />
+
+                  <sch:let name="valid-ids"
+                    value="ancestor::tei:TEI//tei:particDesc//(tei:person|tei:personGrp)[@xml:id]/@xml:id" />
+
+                  <sch:let name="missing"
+                    value="distinct-values($local-ids[not(. = $valid-ids)])" />
+
+                  <sch:assert test="empty($missing)" role="warning">
+                    One or more @who values do not refer to valid IDs in
+                    particDesc: <sch:value-of select="$missing"/>
                   </sch:assert>
                 </sch:rule>
               </constraint>
