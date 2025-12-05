@@ -405,6 +405,11 @@
                   compliant 'language tag' which is basically the shortest
                   ISO-639 code, i.e. usually the 2-letter code, or, where none
                   has been assigned, the appropriate 3-letter one.
+                  <note place="bottom">
+                    Also see the section
+                    <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/de/html/CH.html#CHSH">Language
+                    identification</ref> of the TEI Guidelines.
+                  </note>
                 </gloss>
               </item>
             </list>
