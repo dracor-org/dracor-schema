@@ -371,7 +371,7 @@
             </egXML>
           </p>
           <p>
-            If, for some reason, you prefer not to use a processing instruction, an
+            If, for some reason, you prefer not to use a processing instruction, a
             <att>type</att> attribute with the value <val>dracor</val> can be
             used to associate the document with the DraCor schema in Oxygen
             (with the DraCor framework installed):
@@ -880,7 +880,7 @@
                   as the identifier.
                 </p>
                 <p>
-                  For characters defined by numerals (“First Soldier, “Second
+                  For characters defined by numerals (“First Soldier, Second
                   Soldier”), please include the values of the attribute
                   <att>xml:id</att> as follows: <code>xml:id="soldier_1"</code>.
                 </p>
@@ -983,8 +983,8 @@
                 </p>
                 <p>
                   It is strongly recommended
-                  to include only such relations that are ground on textual
-                  evidence, e.g. notes on the relation of characters in the
+                  to include only such relations that are based on textual
+                  evidence, e.g. notes on the relation of characters in the list of the
                   dramatis personae included in the text proper as
                   <gi>castList</gi>. In the <gi>castList</gi> of the play used
                   as an example above, the characters “Odoardo” and “Claudia”
@@ -1201,7 +1201,7 @@
           <head>Encoding the text (<gi>text</gi>)</head>
           <p>
             The text of the play is usually composed of some paratextual
-            elements (title page, dedication, preface, dramatis personae, etc.)
+            elements (title page, dedication, preface, list of the dramatis personae, etc.)
             and of the body of the text. Enclose the first with the
             <gi>front</gi> tag and the second with the <gi>body</gi> tag.
           </p>
@@ -1223,7 +1223,7 @@
               <gi>head</gi>.
             </p>
             <p>
-              The list of dramatis personae can be encoded using the element
+              The list of the dramatis personae can be encoded using the element
               <gi>castList</gi>.
             </p>
             <p>
@@ -3337,7 +3337,7 @@
                 </datatype>
                 <remarks>
                   <p>
-                    Used to link a character in the dramatis personae to the
+                    Used to link a character in the list of the dramatis personae to the
                     corresponding <!-- person/group? --> element in the
                     <gi>particDesc</gi>
                   </p>
@@ -3354,7 +3354,7 @@
               </egXML>
               <ab>
                 The characters are grouped and given a role in the 
-                list of “dramatis personae” in the play
+                list of the dramatis personae in the play
                 <ref target="https://dracor.org/id/ger000442">Goethe:
                 Egmont</ref>.
               </ab>
@@ -3424,7 +3424,7 @@
                 </datatype>
                 <remarks>
                   <p>
-                    Used to link a character in the dramatis personae to the
+                    Used to link a character in the list of the dramatis personae to the
                     corresponding <!-- person/group? --> element in the
                     <gi>particDesc</gi>
                   </p>
