@@ -2363,7 +2363,7 @@
                 the year of first printing, and the year of first performance.
                 To easily sort plays chronologically, e.g. for a corpus
                 overview or diagrams, we also calculate a “Normalised Year”.
-                This year is usually the earlier date of the date of first
+                This year is usually the earlier year of the year of first
                 printing and the year of first performance. However, if a work
                 was published or performed much later (more than 10 years)
                 after its creation, the year of its creation is taken as
