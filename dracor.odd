@@ -79,6 +79,16 @@
       <titlePage>
         <titlePart type="main">Drama Corpora | dracor.org</titlePart>
         <titlePart type="sub">TEI Customisation and Documentation</titlePart>
+        <byline>
+          By
+          <docAuthor>Ingo Börner</docAuthor>
+          <docAuthor>Frank Fischer</docAuthor>
+          <docAuthor>Luca Giovannini</docAuthor>
+          <docAuthor>Carsten Milling</docAuthor>
+          <docAuthor>Daniil Skorinkin</docAuthor>
+          <docAuthor>Peer Trilcke</docAuthor>
+        </byline>
+        <byline>With contributions by <docAuthor>Angelika Hechtl</docAuthor></byline>
         <docDate>2025</docDate>
       </titlePage>
       <divGen type="toc"/>
