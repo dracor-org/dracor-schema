@@ -30,5 +30,7 @@ java -jar Stylesheets/lib/saxon10he.jar \
   version=$version \
   > dist/index.html
 
+cp -v dist/index.html dist/odd-$version.html
+
 # clean up sed backups
 rm -f dist/*.bak
