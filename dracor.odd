@@ -1394,7 +1394,7 @@
                   language other than the main language of the play.
                   Examples for this phenomenon may be found in NeoLatDraCor,
                   RomDraCor, UDraCor, or YiDraCor. The passages are encoded
-                  as follows. Add the <gi>xml:lang</gi> attribute to the
+                  as follows. Add the <att>xml:lang</att> attribute to the
                   highest possible element, e.g. a <gi>sp</gi> or <gi>div</gi>
                   element.  
                   If there is no element to add the <gi>xml:lang</gi>
