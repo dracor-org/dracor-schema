@@ -206,7 +206,7 @@
         <!-- /file formats -->
 
         <div xml:id="section-filenames-identifiers">
-          <head>Filenames and identifiers</head>
+          <head>Filenames and Identifiers</head>
           <p>
             Names and identifiers in the DraCor platform, as in other computer
             systems, play an important role in navigating to and accessing individual
@@ -384,7 +384,7 @@
         </div>
 
         <div xml:id="section-root-element">
-          <head>Root element</head>
+          <head>Root Element</head>
           <p>
             The root TEI element, apart from declaring the namespace, must
             provide the following basic information for the encoded play:
@@ -945,7 +945,7 @@
 
               <!-- character relations -->
               <div xml:id="section-character-relations">
-                <head>Relations between Characters</head>
+                <head>Relations Between Characters</head>
                 <p>
                   DraCor supports the encoding of relationships between
                   characters using the <gi>listPerson</gi> element inside the
@@ -1146,7 +1146,7 @@
         </div>
 
         <div xml:id="section-standOff">
-          <head>Encoding additional metadata in the <gi>standOff</gi> element</head>
+          <head>Encoding Additional Metadata in the <gi>standOff</gi> Element</head>
           <p>
             The <gi>standOff</gi> element usually includes dates (first written,
             first printed edition, premiere).
@@ -1198,7 +1198,7 @@
         </div>
 
         <div xml:id="section-drama-text-proper">
-          <head>Encoding the text (<gi>text</gi>)</head>
+          <head>Encoding the Text (<gi>text</gi>)</head>
           <p>
             The text of the play is usually composed of some paratextual
             elements (title page, dedication, preface, list of the dramatis personae, etc.)
@@ -1266,7 +1266,7 @@
             Mark the main elements in the play’s body <gi>body</gi> as follows:
           </p>
           <div xml:id="section-segments">
-            <head>Segments (acts, scenes, etc.)</head>
+            <head>Segments (Acts, Scenes, etc.)</head>
             <p>
               Use the element <gi>div</gi> to encode segments of a dramatic
               text. The type of the segment ("act", "scene") should be given in
@@ -1284,7 +1284,7 @@
           </div>
 
           <div xml:id="section-stage-directions">
-            <head>Stage Directions (non-diegetic elements)</head>
+            <head>Stage Directions (Non-Diegetic Elements)</head>
             <p>
               Use the element <gi>stage</gi> to mark stage directions:
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -1366,7 +1366,7 @@
             <div xml:id="section-special-cases">
               <head>Special Cases</head>
               <div>
-                <head>No explicit speaker in text</head>
+                <head>No Explicit Speaker in Text</head>
                 <p>
                   If the speaker’s name is not explicitly given in-text, while
                   e.g. being wrapped into a stage direction, just create a
@@ -1394,7 +1394,7 @@
 
         <!-- List of Elements used in DraCor files -->
         <div xml:id="section-list-used-elems">
-          <head>Elements used in DraCor files</head>
+          <head>Elements Used in DraCor Files</head>
           <p>
             Only a small subset of the elements available in the TEI Drama
             Customisation is actually used in the DraCor corpora. The elements
@@ -1757,14 +1757,14 @@
 
         <!-- Features -->
         <div xml:id="section-api-features">
-          <head>API features</head>
+          <head>API Features</head>
           <p>
             The following sections list the <soCalled>features</soCalled>. The
             tables in the annex provide an overview of how these features are
             dispersed over the response objects of the various endpoints.
           </p>
           <div xml:id="section-corpus-features">
-            <head>Corpus features</head>
+            <head>Corpus Features</head>
             <div xml:id="corpus_name">
               <head>Corpus Name</head>
               <p>
@@ -2022,9 +2022,9 @@
           <!-- /corpus features -->
 
           <div xml:id="section-play-features">
-            <head>Play features</head>
+            <head>Play Features</head>
             <div xml:id="play_corpus_name">
-              <head>Name of the Corpus a Play is part of</head>
+              <head>Name of the Corpus a Play Is Part Of</head>
               <p>
                 Feature <idno type="feature-no">P1</idno>
                 <idno type="feature-id">play_corpus_name</idno>:
@@ -2686,7 +2686,7 @@
 
           <!-- Segment Features -->
           <div xml:id="section-segment-features">
-            <head>Segment features</head>
+            <head>Segment Features</head>
             <div xml:id="segment_type">
               <head>Segment Type</head>
               <p>
@@ -2719,7 +2719,7 @@
           <!-- /Segment Features -->
 
           <div xml:id="section-character-features">
-            <head>Character features</head>
+            <head>Character Features</head>
             <div xml:id="character_id">
               <head>Character ID</head>
               <p>
@@ -2830,7 +2830,7 @@
           </div>
           <!-- /character features -->
           <div xml:id="section-character-relation-features">
-            <head>Character relation features</head>
+            <head>Character Relation Features</head>
             <div xml:id="character_relation_is_directed">
               <head>Character Relation Is Directed</head>
               <p>
@@ -6911,6 +6911,10 @@
             <ref target="https://github.com/dracor-org/dracor-schema/issues">Issues</ref>
             in the <ref target="https://github.com/dracor-org/dracor-schema">dracor-schema</ref>
             repository
+          </bibl>
+          <bibl>
+            Beine, J. J. (2025). FAQs on Encoding Plays for NeoLatDraCor in TEI. In: NeoLatDraCor Wiki.
+            <ref target="https://github.com/dracor-org/neolatdracor/wiki/FAQs-on-Encoding-Plays-for-NeoLatDraCor-in-TEI</ref>
           </bibl>
           <bibl>
             Fischer, F. (2019). RusDraCor Wiki.
