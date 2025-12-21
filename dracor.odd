@@ -1397,7 +1397,7 @@
                   as follows. Add the <att>xml:lang</att> attribute to the
                   highest possible element, e.g. a <gi>sp</gi> or <gi>div</gi>
                   element.  
-                  If there is no element to add the <gi>xml:lang</gi>
+                  If there is no element to add the <att>xml:lang</att>
                   attribute to, use the <gi>foreign</gi> tag to mark up the 
                   respective word or passage. This case may apply to single
                   words or sentences within a speech, stage direction, or
