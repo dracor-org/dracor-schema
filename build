@@ -11,6 +11,12 @@ version=$(git describe --tags --dirty --always | sed s/^v// | sed s/-g/-/)
 
 mkdir -p dist
 
+# In JDK 24/25, these limits were significantly lowered to 100,000 bytes which
+# would make the ODD transformation fail with JAXP00010003 and JAXP00010004
+# errors
+export JAVA_TOOL_OPTIONS="-Djdk.xml.maxGeneralEntitySizeLimit=0 -Djdk.xml.totalEntitySizeLimit=0"
+
+
 # Generate full ODD
 $BIN/teitoodd --localsource=p5subset.xml --odd dracor.odd dist/dracor.odd.tmp
 
