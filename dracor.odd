@@ -2925,12 +2925,6 @@
           <classSpec type="atts" ident="att.declaring" mode="delete"/>
           <classSpec type="atts" ident="att.declarable" mode="delete"/>
           <classSpec type="atts" ident="att.docStatus" mode="delete"/>
-          <!-- remove attribute @subtype globally -->
-          <classSpec type="atts" ident="att.typed" mode="change">
-            <attList>
-              <attDef ident="subtype" mode="delete"/>
-            </attList>
-          </classSpec>
           <!-- remove @rendition and @style from att.global.rendition to leave
                only @rend -->
           <classSpec type="atts" ident="att.global.rendition" mode="change">
