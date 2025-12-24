@@ -2358,7 +2358,7 @@
               <p>
                 Feature <idno type="feature-no">P27</idno>
                 <idno type="feature-id">play_year_normalized</idno>:
-                We collect three temporal statements for each play, if 
+                We collect three temporal statements for each play, if
                 available: the year(s) of creation (when a play was written),
                 the year of first printing, and the year of first performance.
                 To easily sort plays chronologically, e.g. for a corpus
@@ -2375,7 +2375,7 @@
                 An example: Goethe’s [“Urfaust”](https://dracor.org/id/ger000539)
                 was written between 1772 and 1775, but not printed until 1887
                 and first performed only in 1918. The “Normalised Year” for this
-                play would thus be 1775.                
+                play would thus be 1775.
               </p>
             </div>
             <div xml:id="play_digital_source_name">
@@ -2935,11 +2935,11 @@
           </classSpec>
 
           <!-- The following list should include all elements that are added
-               because the customisation is based on TEI drama. Normally, we 
+               because the customisation is based on TEI drama. Normally, we
                leave elements as they are, but do not display them on the frontend
-               if they are not used in DraCor files. We link to the TEI all
+               if they are not used in DraCor files. We link to the TEI-all
                documentation instead. If an element is used in a more
-               restricted way than the TEI Drama Customisation allows, we 
+               restricted way than the TEI Drama Customisation allows, we
                add a constraint with a schematron rule that displays warnings to
                alert encoders that they are using an element in a way that
                it might not be processed by the API in the expected way. An
@@ -3359,7 +3359,7 @@
                 </castGroup>
               </egXML>
               <ab>
-                The characters are grouped and given a role in the 
+                The characters are grouped and given a role in the
                 list of the dramatis personae in the play
                 <ref target="https://dracor.org/id/ger000442">Goethe:
                 Egmont</ref>.
