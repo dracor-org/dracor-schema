@@ -2934,7 +2934,6 @@
           <!-- other attribute classes removed -->
           <classSpec type="atts" ident="att.declaring" mode="delete"/>
           <classSpec type="atts" ident="att.declarable" mode="delete"/>
-          <classSpec type="atts" ident="att.docStatus" mode="delete"/>
           <!-- remove @rendition and @style from att.global.rendition to leave
                only @rend -->
           <classSpec type="atts" ident="att.global.rendition" mode="change">
