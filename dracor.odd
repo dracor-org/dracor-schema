@@ -5296,7 +5296,7 @@
             <constraintSpec ident="particdesc_person_id" scheme="schematron" mode="add"  type="encoding-hint">
               <constraint>
                 <sch:rule context="tei:particDesc/tei:listPerson/tei:*[@xml:id]" role="warning" see="https://dracor.org/doc/odd#section-identifiers">
-                  <sch:assert test="matches(@xml:id, '^[a-z]([-a-z0-9]*[a-z0-9])?$')">
+                  <sch:assert test="matches(@xml:id, '^[a-z]([-_a-z0-9]*[a-z0-9])?$')">
                     The @xml:id in &lt;particDesc&gt; should follow
                     the DraCor rules for identifiers. See section
                     "Identifiers" of the guidelines.
