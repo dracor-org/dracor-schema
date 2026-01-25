@@ -5,7 +5,7 @@ Incomplete <body>: There is nothing there
 Should throw a critical error from the RelaxNG and also a warning that the
 structure does not allow for the extraction of networks.
 -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000005" xml:lang="eng">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000005" xml:lang="en">
   <teiHeader>
     <fileDesc>
       <titleStmt>

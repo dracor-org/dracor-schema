@@ -3,7 +3,7 @@
 Test case to test schematron rules for @sex attributes on <person> and
 <personGrp> elements.
 -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000000" xml:lang="eng">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000000" xml:lang="en">
   <teiHeader>
     <fileDesc>
       <titleStmt>

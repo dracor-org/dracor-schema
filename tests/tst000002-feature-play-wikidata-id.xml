@@ -12,7 +12,7 @@ obviously not the right QID for this "play".
 There should be an information that the feature "play_wikidata_id" is supported
 and the value should be "Q41567".
 -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000002" xml:lang="eng">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000002" xml:lang="en">
   <teiHeader>
     <fileDesc>
       <titleStmt>

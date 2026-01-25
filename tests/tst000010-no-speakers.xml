@@ -3,7 +3,7 @@
 Special case: a pantomime – there are no speaking characters. The warning about
 the missing speech acts could be ignored?
 -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000010" xml:lang="eng">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000010" xml:lang="en">
   <teiHeader>
     <fileDesc>
       <titleStmt>

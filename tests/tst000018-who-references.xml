@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Test for invalid references in sp/@who -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000000" xml:lang="eng">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000000" xml:lang="en">
   <teiHeader>
     <fileDesc>
       <titleStmt>
@@ -93,7 +93,7 @@
             <speaker>Ham.</speaker>
             <p>Egg! Sausage, and Bacon!</p>
           </sp>
-          <!-- 
+          <!--
             This @who should result in an error (missing '#') and a warning
             about a reference not to be found in particDesc for "nosuchid"
           -->

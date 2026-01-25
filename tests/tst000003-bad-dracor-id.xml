@@ -11,7 +11,7 @@ Here the value is "https://dracor.org/entity/no-such-id" while it SHOULD be
 
 There should be a Warning displayed.
 -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000003" xml:lang="eng">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000003" xml:lang="en">
   <teiHeader>
     <fileDesc>
       <titleStmt>
