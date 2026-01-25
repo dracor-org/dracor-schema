@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-model href="https://dracor.org/schema.rng" schematypens="http://relaxng.org/ns/structure/1.0" type="application/xml" ?>
 <!-- File with xml-model referencing Dracor Schema is valid without TEI/@type  -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000017" xml:lang="eng">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000017" xml:lang="en">
   <teiHeader>
     <fileDesc>
       <titleStmt>

@@ -3,7 +3,7 @@
 Multiple titles with different languages should not trigger a warning about
 missing type="sub".
 -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000000" xml:lang="eng">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000000" xml:lang="en">
   <teiHeader>
     <fileDesc>
       <titleStmt>
