@@ -6091,7 +6091,7 @@
                 with the <att>type</att> <val>sub</val>
               </desc>
               <constraint>
-                <sch:rule context="tei:titleStmt[count(tei:title[not(@xml:lang)]) > 1]" role="warning">
+                <sch:rule context="tei:titleStmt[count(tei:title[not(@xml:lang or @type)]) > 1]" role="warning">
                   <sch:assert test="tei:title[not(@xml:lang) and @type = 'sub']">
                     When using multiple &lt;title&gt; elements consider marking
                     subtitles with a @type "sub".
