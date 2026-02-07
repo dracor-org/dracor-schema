@@ -732,18 +732,12 @@
               of <att>type</att> <val>digitalSource</val> and
               <att>type</att> <val>originalSource</val> for their corpus.
             </p>
-            <p>
-              <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <sourceDesc>
-                  <bibl type="digitalSource">
-                    <!-- .... -->
-                  </bibl>
-                  <bibl type="originalSource">
-                      <!-- ... -->
-                  </bibl>
-                </sourceDesc>
-              </egXML>
-            </p>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <sourceDesc>
+                <bibl type="digitalSource"> <!-- .... --> </bibl>
+                <bibl type="originalSource"> <!-- ... --> </bibl>
+              </sourceDesc>
+            </egXML>
             <div xml:id="section-digital-source">
               <head>Digital Source</head>
               <p>
@@ -777,51 +771,45 @@
                 "Der Einsiedler" (ger000764).
                 <!-- see https://github.com/dracor-org/dracor-schema/issues/97 -->
               </p>
-              <p>
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <bibl type="digitalSource">
-                    <ref target="http://www.textgridrep.org/textgrid:11f78.0">
-                      TextGrid Repository
-                    </ref>
-                    <availability>
-                      <licence target="http://creativecommons.org/licenses/by/3.0/de/legalcode">CC-BY-3.0</licence>
-                    </availability>
-                  </bibl>
-                </egXML>
-              </p>
-              <p>
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <bibl type="digitalSource">
-                    <ref target="http://resolver.sub.uni-goettingen.de/purl?PPN870045725">
-                      Göttingen State and University Library
-                    </ref>
-                    <availability>
-                      <licence target="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</licence>
-                    </availability>
-                  </bibl>
-                </egXML>
-              </p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <bibl type="digitalSource">
+                  <ref target="http://www.textgridrep.org/textgrid:11f78.0">
+                    TextGrid Repository
+                  </ref>
+                  <availability>
+                    <licence target="http://creativecommons.org/licenses/by/3.0/de/legalcode">CC-BY-3.0</licence>
+                  </availability>
+                </bibl>
+              </egXML>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <bibl type="digitalSource">
+                  <ref target="http://resolver.sub.uni-goettingen.de/purl?PPN870045725">
+                    Göttingen State and University Library
+                  </ref>
+                  <availability>
+                    <licence target="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</licence>
+                  </availability>
+                </bibl>
+              </egXML>
               <p>
                 If the digital source is not licenced under a CC licence or
                 similar you can link to, you may add a free text. Below, you
                 may find an example from Macropedius' "Hecastus" (neolat000001).
               </p>
-              <p>
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <bibl type="digitalSource">
-                    <ref target="https://www.let.leidenuniv.nl/Dutch/Ceneton/MacropediusHecastus1552.html">
-                      Census Nederlands Toneel (Ceneton)
-                    </ref>
-                    <availability status="free">
-                      <p>
-                        The editions in the website edited by Antonius Harmsen
-                        (Leiden University) are public domain. See
-                        https://www.let.leidenuniv.nl/Dutch/Canonisations.html
-                      </p>
-                    </availability>
-                  </bibl>
-                </egXML>
-              </p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <bibl type="digitalSource">
+                  <ref target="https://www.let.leidenuniv.nl/Dutch/Ceneton/MacropediusHecastus1552.html">
+                    Census Nederlands Toneel (Ceneton)
+                  </ref>
+                  <availability status="free">
+                    <p>
+                      The editions in the website edited by Antonius Harmsen
+                      (Leiden University) are public domain. See
+                      https://www.let.leidenuniv.nl/Dutch/Canonisations.html
+                    </p>
+                  </availability>
+                </bibl>
+              </egXML>
               <p>
                 For an exemplary analysis of sources of a corpus, see chapter
                 <ref target="https://versioning-living-corpora.clsinfra.io/3-2_gerdracor_corpus_archeology.html#a-living-corpus-growing">An
@@ -831,8 +819,6 @@
                 (<ref target="#boerner_trilcke_2024">Boerner/Trilcke 2024</ref>)
               </p>
             </div>
-            <!-- /digitalSource -->
-
             <div xml:id="section-original-source">
               <head>Original Source</head>
               <p>
@@ -847,22 +833,20 @@
                 It is possible to use designated elements to explicitly mark up
                 the parts of the bibliographic reference, as in the following
                 example:
-                <p>
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <bibl type="originalSource">
-                    <author>Jakob Ayrer</author>: <title level="a">Tragedia
+              </p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <bibl type="originalSource">
+                  <author>Jakob Ayrer</author>: <title level="a">Tragedia
                     Thesei, des zehenten Königs zu Athen, von den vierzehen
                     Tributkindern, mit 41 Personen, hat 8 Actus</title>. In:
-                    <title level="s">Ayrers Dramen</title>. Herausgegeben von
-                    <editor>Adelbert von Keller</editor>.
-                    <biblScope unit="volume">Zweiter</biblScope> Band.
-                    <pubPlace>Stuttgart</pubPlace>: <publisher>Litterarischer
+                  <title level="s">Ayrers Dramen</title>. Herausgegeben von
+                  <editor>Adelbert von Keller</editor>.
+                  <biblScope unit="volume">Zweiter</biblScope> Band.
+                  <pubPlace>Stuttgart</pubPlace>: <publisher>Litterarischer
                     Verein</publisher> <date>1865</date>, S.
-                    <biblScope unit="page" from="1207" to="1303">1207–1303</biblScope>.
-                  </bibl>
-                </egXML>
-                </p>
-              </p>
+                  <biblScope unit="page" from="1207" to="1303">1207–1303</biblScope>.
+                </bibl>
+              </egXML>
               <p>
                 As an alternative, the bibliographic reference can only consist
                 of an element <gi>title</gi> (see also GitHub
@@ -870,17 +854,15 @@
                 on the single element <gi>title</gi> in the unstructured
                 <gi>bibl</gi> element).
               </p>
-              <p>
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <bibl type="originalSource">
-                    <title>Goethes Werke. Hamburger Ausgabe in 14 Bänden.
-                    Textkritisch durchgesehen und mit Anmerkungen versehen von
-                    Erich Trunz, Hamburg: Christian Wegener, 1948 ff.
-                    [Seitenkonkordanz zu einer Mischauflage aus den Jahren 1959
-                    und 1960.]</title>
-                  </bibl>
-                </egXML>
-              </p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <bibl type="originalSource">
+                  <title>Goethes Werke. Hamburger Ausgabe in 14 Bänden.
+                  Textkritisch durchgesehen und mit Anmerkungen versehen von
+                  Erich Trunz, Hamburg: Christian Wegener, 1948 ff.
+                  [Seitenkonkordanz zu einer Mischauflage aus den Jahren 1959
+                  und 1960.]</title>
+                </bibl>
+              </egXML>
               <p>
                 Note that if you include the suggested designated elements,
                 structured information such as the publisher or year of the
@@ -888,7 +870,6 @@
                 be downloaded via the DraCor Frontend.
               </p>
             </div>
-            <!-- /originalSource -->
             <div xml:id="section-source-edge-cases">
               <head>Common Cases and Edge Cases</head>
               <p>
@@ -896,41 +877,39 @@
                 based on a a certain printed edition or manuscript. Then, the
                 <gi>sourceDesc</gi> looks as follows:
               </p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <sourceDesc>
+                  <bibl type="digitalSource">
+                    <ref target="https://resolver.staatsbibliothek-berlin.de/SBB0003354000000000">
+                      Berlin State Library
+                    </ref>
+                    <availability status="free">
+                      <p>In the public domain.</p>
+                    </availability>
+                  </bibl>
+                  <bibl type="originalSource">
+                    <author>G. Conrad</author> [= Georg von Preußen]: <title>Sappho. Drama in einem
+                    Aufzuge</title>. <pubPlace>Berlin</pubPlace>: <publisher>Voß</publisher>
+                    <date>1887</date>. (S. <biblScope unit="page" from="1" to="41">1–41</biblScope>.)
+                  </bibl>
+                </sourceDesc>
+              </egXML>
               <p>
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <sourceDesc>
-                    <bibl type="digitalSource">
-                      <name>Berlin State Library</name>
-                      <idno type="URL">https://resolver.staatsbibliothek-berlin.de/SBB0003354000000000</idno>
-                      <availability status="free">
-                        <p>In the public domain.</p>
-                      </availability>
-                    </bibl>
-                    <bibl type="originalSource">
-                        <author>G. Conrad</author> [= Georg von Preußen]: <title>Sappho. Drama in einem
-                          Aufzuge</title>. <pubPlace>Berlin</pubPlace>: <publisher>Voß</publisher>
-                        <date>1887</date>. (S. <biblScope unit="page" from="1" to="41">1–41</biblScope>.)
-                    </bibl>
-                  </sourceDesc>
-                </egXML>
+                Occasionally, a DraCor TEI file may be directly based on a
+                printed text edition or manuscript without using a digital
+                source. In these cases, the <gi>sourceDesc</gi> only includes
+                a <gi>bibl</gi> element that is classified by the
+                <att>type</att> <val>originalSource</val>.
+                <!-- probably add an example -->
+                Sometimes, a DraCor TEI file may be based on a digital file
+                based on a digital copy of a printed text edition. In this case,
+                you may ommit the intermediary digital copy.
+                However, depending on the strategy of the corpus mantainer, you may
+                document an intermediary source or other additional information
+                via the <gi>notesStmt</gi> or an additional <gi>bibl</gi> element.
+                In any case, such decisions may be documented for transparency,
+                e.g. in the respective corpus Wiki.
               </p>
-                <p>
-                  Occasionally, a DraCor TEI file may be directly based on a
-                  printed text edition or manuscript without using a digital
-                  source. In these cases, the <gi>sourceDesc</gi> only includes
-                  a <gi>bibl</gi> element that is classified by the
-                  <att>type</att> <val>originalSource</val>.
-                  <!-- probably add an example -->
-                  Sometimes, a DraCor TEI file may be based on a digital file
-                  based on a digital copy of a printed text edition. In this case,
-                  you may ommit the intermediary digital copy.
-                  However, depending on the strategy of the corpus mantainer, you may
-                  document an intermediary source or other additional information
-                  via the <gi>notesStmt</gi> or an additional <gi>bibl</gi> element.
-                  In any case, such decisions may be documented for transparency,
-                  e.g. in the respective corpus Wiki.
-                </p>
-              <p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <notesStmt>
                   <note>Erste deutsche Übersetzungen von Caspar Wilhelm von Borck (1741) und Christoph Martin
@@ -946,54 +925,53 @@
                     </availability>
                   </bibl>
                   <bibl type="originalSource">
-                    <author>William Shakespeare</author>: <title level="a">Julius Cäsar</title>. In: <title
-                      level="s">Sämtliche Werke in vier Bänden</title>. Herausgegeben von <editor>Anselm
-                        Schlösser</editor>. Band <biblScope unit="volume">4</biblScope>: Tragödien. <edition>3.
-                          Auflage</edition>. <pubPlace>Berlin</pubPlace> und <pubPlace>Weimar</pubPlace>:
-                    <publisher>Aufbau-Verlag</publisher>
-                    <date>1975</date>, S. <biblScope unit="page" from="179" to="262"
-                      >179–262</biblScope>.
+                    <author>William Shakespeare</author>: <title level="a">Julius Cäsar</title>.
+                    In: <title level="s">Sämtliche Werke in vier Bänden</title>. Herausgegeben von
+                    <editor>Anselm Schlösser</editor>. Band <biblScope unit="volume">4</biblScope>:
+                    Tragödien. <edition>3. Auflage</edition>. <pubPlace>Berlin</pubPlace> und
+                    <pubPlace>Weimar</pubPlace>: <publisher>Aufbau-Verlag</publisher>
+                    <date>1975</date>, S.
+                    <biblScope unit="page" from="179" to="262">179–262</biblScope>.
                   </bibl>
                 </sourceDesc>
               </egXML>
-                </p>
-              <p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <sourceDesc>
                   <bibl type="digitalSource">
-                    <ref target="https://gitlab.huc.knaw.nl/eDITem/translatin-dramas/-/blob/main/datasource/transcriptions/docx/Aler-Innocentia.docx?ref_type=heads">
-                      TransLatin</ref>
+                    <ref target="https://gitlab.huc.knaw.nl/eDITem/translatin-dramas/-/blob/main/datasource/transcriptions/docx/Aler-Innocentia.docx">
+                      TransLatin
+                    </ref>
                     <availability status="free">
                       <p>In the public domain.</p>
                     </availability>
                   </bibl>
                   <bibl type="intermediarySource">
-                    <ref target="https://play.google.com/books/reader?id=CtBEAAAAcAAJ">Google
-                      Books</ref>
+                    <ref target="https://play.google.com/books/reader?id=CtBEAAAAcAAJ">
+                      Google Books
+                    </ref>
                     <availability status="free">
                       <p>In the public domain.</p>
                     </availability>
                   </bibl>
-                  <bibl type="originalSource"><author>Paul Aler</author>: <title>Innocentia victrix
-                        sive Genovefa</title>. <pubPlace>Cologne</pubPlace>: <publisher>Johann
-                          Alstorff</publisher>
-                      <date>1706</date>.
+                  <bibl type="originalSource">
+                    <author>Paul Aler</author>: <title>Innocentia victrix sive Genovefa</title>.
+                    <pubPlace>Cologne</pubPlace>: <publisher>Johann Alstorff</publisher>
+                    <date>1706</date>.
                   </bibl>
                 </sourceDesc>
               </egXML>
-                </p>
-                <p>
-                  If the DraCor TEI file should be based on a born-digital
-                  play edition, an edge case is present. The born-digital source
-                  may be encoded as both
-                  <gi>bibl</gi> <att>type</att> <val>digitalSource</val>
-                  and <gi>bibl</gi> <att>type</att> <val>originalSource</val>
-                  as we would want to process the individual bibligraphical
-                  information within the
-                  <gi>bibl</gi> <att>type</att> <val>originalSource</val>.
-                </p>
+              <p>
+                If the DraCor TEI file should be based on a born-digital
+                play edition, an edge case is present. The born-digital source
+                may be encoded as both
+                <gi>bibl</gi> <att>type</att> <val>digitalSource</val>
+                and <gi>bibl</gi> <att>type</att> <val>originalSource</val>
+                as we would want to process the individual bibligraphical
+                information within the
+                <gi>bibl</gi> <att>type</att> <val>originalSource</val>.
+              </p>
+            </div>
           </div>
-          <!-- /sources -->
 
           <div xml:id="section-analytic-header-data">
             <head>Analytic or Research-driven Data in the <gi>teiHeader</gi></head>
@@ -5984,12 +5962,12 @@
               <constraint>
                 <sch:rule context="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl[@type eq 'digitalSource']" role="warning" see="https://dracor.org/doc/odd#section-sources">
                   <sch:assert test="tei:ref[@target]">
-                    The digital source should use a <gi>ref</gi> element with a
-                    <att>target</att> attribute to specify the digital source.
+                    The digital source should use a &lt;ref&gt; element with a
+                    @target attribute to specify the digital source.
                   </sch:assert>
                   <sch:assert test="not(tei:name and tei:idno[@type eq 'URL'])">
-                    The use of <gi>idno</gi> with <att>type</att> <val>URL</val>
-                    to specify the digital source is deprecated.
+                    The use of &lt;idno&gt; with @type "URL" to specify the digital
+                    source is deprecated. Use a &lt;ref&gt; element instead.
                   </sch:assert>
                 </sch:rule>
               </constraint>
