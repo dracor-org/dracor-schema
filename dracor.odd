@@ -37,7 +37,7 @@
       <publicationStmt>
         <publisher>dracor.org</publisher>
         <availability status="free">
-          <licence>CC BY</licence>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</licence>
         </availability>
       </publicationStmt>
       <sourceDesc>
