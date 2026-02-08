@@ -23,12 +23,12 @@
         </respStmt>
         <respStmt>
           <resp>Encoding Guidelines by</resp>
+          <name xml:id="jjb">Julia Jennifer Beine</name>
           <name corresp="#ib">Ingo Börner</name>
           <name xml:id="ff">Frank Fischer</name>
           <name xml:id="lg">Luca Giovannini</name>
           <name xml:id="ds">Daniil Skorinkin</name>
           <name xml:id="pt">Peer Trilcke</name>
-          <name xml:id="jjb">Julia Jennifer Beine</name>
         </respStmt>
         <respStmt>
           <resp>Contributions by</resp>
@@ -84,13 +84,13 @@
         <titlePart type="sub">TEI Customisation and Documentation</titlePart>
         <byline>
           By
+          <docAuthor>Julia Jennifer Beine</docAuthor>
           <docAuthor>Ingo Börner</docAuthor>
           <docAuthor>Frank Fischer</docAuthor>
           <docAuthor>Luca Giovannini</docAuthor>
           <docAuthor>Carsten Milling</docAuthor>
           <docAuthor>Daniil Skorinkin</docAuthor>
           <docAuthor>Peer Trilcke</docAuthor>
-          <docAuthor>Julia Jennifer Beine</docAuthor>
         </byline>
         <byline>With contributions by <docAuthor>Angelika Hechtl</docAuthor></byline>
         <docDate>2026</docDate>
