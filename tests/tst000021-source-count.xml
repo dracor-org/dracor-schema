@@ -3,6 +3,8 @@
   - multiple digital sources create a warning
   - multiple original sources create a warning
   - missing ref for digital source creates a warning
+  - additional bibl elements should be fine without or with types other than the
+    DraCor one should be fine
 -->
 <TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000000" xml:lang="eng">
   <teiHeader>
@@ -36,6 +38,8 @@
           Slides of the Hebrew and Yiddish DraCor Working group meeting on
           2022-11-14 by Daniil Skorinkin
         </bibl>
+        <bibl>bar baz</bibl>
+        <bibl type="quux">lorem ipsum</bibl>
       </sourceDesc>
     </fileDesc>
     <profileDesc>
