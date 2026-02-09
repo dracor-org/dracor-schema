@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  - the missing ref element in digital source creates a warning 
+  - the missing ref element in digital source creates a warning
   - the use of name and idno elements for digital source creates a deprecation
     warning
+  - the nesting of original source in to digital source creates a warning
 -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000000" xml:lang="eng">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000000" xml:lang="eng">
   <teiHeader>
     <fileDesc>
       <titleStmt>
@@ -16,9 +17,8 @@
         <publisher xml:id="dracor">DraCor</publisher>
         <idno type="URL">https://dracor.org</idno>
         <availability>
-          <licence>
-            <ab>CC0 1.0</ab>
-            <ref target="https://creativecommons.org/publicdomain/zero/1.0/">Licence</ref>
+          <licence target="https://creativecommons.org/publicdomain/zero/1.0/">
+            CC0 1.0
           </licence>
         </availability>
       </publicationStmt>
@@ -27,7 +27,7 @@
           <name>dracor-schema GitHub Repository</name>
           <idno type="URL">https://github.com/dracor-org/dracor-schema</idno>
           <bibl type="originalSource">
-            <title>Slides of the Hebrew and Yiddish DraCor Working group meeting on 2022-11-14 by Daniil Skorinkin</title>
+            Slides of the Hebrew and Yiddish DraCor Working group meeting on 2022-11-14 by Daniil Skorinkin
           </bibl>
         </bibl>
       </sourceDesc>

@@ -5860,9 +5860,12 @@
                 <gi>sourceDesc</gi>
               </desc>
               <constraint>
-                <sch:rule context="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc">
-                  <sch:assert test="tei:bibl[@type eq 'digitalSource'] or tei:bibl[@type eq 'originalSource']">
-                    There is neither a digital nor an original source.
+                <sch:rule context="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc" see="https://dracor.org/doc/odd#section-sources">
+                  <!-- Deprecated: nesting of original in digital source -->
+                  <sch:assert test="tei:bibl[@type eq 'originalSource'] or tei:bibl[@type eq 'digitalSource']/tei:bibl[@type eq 'originalSource']">
+                    A bibliographic reference to the original source is
+                    required. Use a &lt;bibl&gt; element of @type
+                    "originalSource".
                   </sch:assert>
                 </sch:rule>
               </constraint>
@@ -5873,12 +5876,17 @@
               </desc>
               <constraint>
                 <sch:rule context="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc[tei:bibl]" role="warning" see="https://dracor.org/doc/odd#section-sources">
-                  <sch:assert test="not(tei:bibl[@type eq 'originalSource'] and tei:bibl[@type eq 'digitalSource'])">
-                    Digital and original source are on the same level. Consider
-                    nesting the original source into the digital source.
+                  <sch:assert test="not(tei:bibl[@type eq 'digitalSource']/tei:bibl[@type eq 'originalSource'])">
+                    Nesting digital and original source is deprecated. The
+                    &lt;bibl&gt; elements should be siblings.
                   </sch:assert>
-                  <sch:assert test="count(.//tei:bibl[@type eq 'digitalSource']) &lt; 2 and count(.//tei:bibl[@type eq 'originalSource']) &lt; 2">
-                    There is more than one original and/or digital source.
+                  <sch:assert test="count(.//tei:bibl[@type eq 'digitalSource']) &lt; 2">
+                    There is more than one digital source. The DraCor API will
+                    ignore any other than the first one.
+                  </sch:assert>
+                  <sch:assert test="count(.//tei:bibl[@type eq 'originalSource']) &lt; 2">
+                    There is more than one original source. The DraCor API will
+                    ignore any other than the first one.
                   </sch:assert>
                 </sch:rule>
               </constraint>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - missing digital sources should NOT create a warning
+-->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000000" xml:lang="eng">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Ham</title>
+        <title type="sub">A Tragedy</title>
+        <author>William S</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher xml:id="dracor">DraCor</publisher>
+        <idno type="URL">https://dracor.org</idno>
+        <availability>
+          <licence target="https://creativecommons.org/publicdomain/zero/1.0/">
+            CC0 1.0
+          </licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl type="originalSource">
+          Slides of the Hebrew and Yiddish DraCor Working group meeting on
+          2022-11-14 by Daniil Skorinkin
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+    <profileDesc>
+      <particDesc>
+        <listPerson>
+          <person xml:id="ham">
+            <persName>Ham</persName>
+          </person>
+          <person xml:id="egg">
+            <persName>Egg</persName>
+          </person>
+          <person xml:id="sausage">
+            <persName>Sausage</persName>
+          </person>
+          <person xml:id="bacon">
+            <persName>Bacon</persName>
+          </person>
+        </listPerson>
+      </particDesc>
+    </profileDesc>
+    <revisionDesc>
+      <change when="2022-11-07">Describe Change!</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listEvent>
+      <event type="print" when="2023">
+        <desc/>
+      </event>
+      <event type="written" when="2022">
+        <desc/>
+      </event>
+    </listEvent>
+  </standOff>
+  <text>
+    <front>
+      <div type="front">
+        <head>Ham, a tragedy By William S</head>
+      </div>
+      <castList>
+        <head>Dramatis Personae</head>
+        <castItem>Ham</castItem>
+        <castItem>Egg</castItem>
+        <castGroup>
+          <castItem>Sausage</castItem>
+          <castItem>Bacon</castItem>
+          <roleDesc>Vikings</roleDesc>
+        </castGroup>
+      </castList>
+    </front>
+    <body>
+      <div type="act">
+        <head>Act 1.</head>
+        <div type="scene">
+          <head>Scene 1.</head>
+          <stage>Ham and Egg.</stage>
+          <sp who="#ham">
+            <speaker>Ham.</speaker>
+            <p>Lovely Spam!</p>
+          </sp>
+          <sp who="#egg">
+            <speaker>Egg.</speaker>
+            <p>Wonderful Spam!</p>
+          </sp>
+        </div>
+        <div type="scene">
+          <head>Scene 2.</head>
+          <stage>Enter Vikings.</stage>
+          <sp who="#ham">
+            <speaker>Ham.</speaker>
+            <p>Egg! Sausage, and Bacon!</p>
+          </sp>
+          <sp who="#sausage #bacon">
+            <speaker>Vikings</speaker>
+            <stage>(singing).</stage>
+            <l>Spam, Spam, Spam,</l>
+            <l>Spam, Spam, Spam,</l>
+            <l>Spam and Spam!</l>
+          </sp>
+          <stage>The End.</stage>
+        </div>
+      </div>
+    </body>
+  </text>
+</TEI>
