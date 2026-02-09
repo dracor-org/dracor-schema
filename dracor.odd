@@ -696,12 +696,12 @@
             <p>
               The <gi>sourceDesc</gi> inside the <gi>fileDesc</gi>
               element documents the sources used to create the DraCor TEI file.
-              In the DraCor context, we are particularly interested in two kinds of 
+              In the DraCor context, we are particularly interested in two kinds of
               source information. In most cases, our DraCor TEI file is directly
               based on a prior digital file or resource.
               This is what we call the <ref target="#section-digital-source">digital
               source</ref>. In turn, this file is usually based on a printed edition
-              or, in some cases, a manuscript of a play which we refer to as the 
+              or, in some cases, a manuscript of a play which we refer to as the
               <ref target="#section-original-source">original source</ref>.
             </p>
             <p>
@@ -776,7 +776,7 @@
               <p>
                 The digital source information is encoded as a <gi>bibl</gi>
                 element with <att>type</att> <val>digitalSource</val>. It is
-                expected to contain a <gi>ref</gi> with the title of the 
+                expected to contain a <gi>ref</gi> with the title of the
                 resource or the online collection as its content and a
                 <att>target</att> attribute providing a URL. This URL should
                 point to the digital document used as the source for the DraCor
@@ -785,7 +785,7 @@
                 the collection.
               </p>
               <p>
-                Whenever possible, information about the licence under which 
+                Whenever possible, information about the licence under which
                 the digital source is distributed should be included in an
                 <gi>availability</gi> element.
               </p>
@@ -802,7 +802,7 @@
                 </bibl>
               </egXML>
               <p>
-                and <ref target="https://dracor.org/id/ger000764">Pfeffel: Der 
+                and <ref target="https://dracor.org/id/ger000764">Pfeffel: Der
                 Einsiedler</ref>:
               </p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -841,7 +841,7 @@
               </p>
               <p>
                 The digital source information is not considered mandatory by the
-                DraCor schema. However, it should always be provided unless the 
+                DraCor schema. However, it should always be provided unless the
                 DraCor TEI file was directly derived from a print or manuscript
                 source.
               </p>
@@ -859,7 +859,7 @@
                 the DraCor schema.
               </p>
               <p>
-                It is encoded in a <gi>bibl</gi> element with <att>type</att> 
+                It is encoded in a <gi>bibl</gi> element with <att>type</att>
                 <val>originalSource</val>. The normalised text content of this
                 element is exposed in the
                 <ref target="#play_original_source_full_citation">originalSource</ref>
