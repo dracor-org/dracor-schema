@@ -29,9 +29,13 @@ and the value should be "Q41567".
       </publicationStmt>
       <sourceDesc>
         <bibl type="digitalSource">
-          <name>dracor-schema GitHub Repository</name><bibl type="originalSource">
-            <title>Slides of the Hebrew and Yiddish DraCor Working group meeting on 2022-11-14 by Daniil Skorinkin</title>
-          </bibl>
+          <ref target="https://github.com/dracor-org/dracor-schema">
+            dracor-schema GitHub Repository
+          </ref>
+        </bibl>
+        <bibl type="originalSource">
+          Slides of the Hebrew and Yiddish DraCor Working group meeting on
+          2022-11-14 by Daniil Skorinkin
         </bibl>
       </sourceDesc>
     </fileDesc>
@@ -75,7 +79,7 @@ and the value should be "Q41567".
       <div type="front">
         <head>Ham, a tragedy By William S</head>
       </div>
-Q    </front>
+    </front>
     <body>
       <div type="act">
         <head>Act 1.</head>

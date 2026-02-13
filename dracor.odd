@@ -23,6 +23,7 @@
         </respStmt>
         <respStmt>
           <resp>Encoding Guidelines by</resp>
+          <name xml:id="jjb">Julia Jennifer Beine</name>
           <name corresp="#ib">Ingo Börner</name>
           <name xml:id="ff">Frank Fischer</name>
           <name xml:id="lg">Luca Giovannini</name>
@@ -45,6 +46,8 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc>
+      <change who="#jjb" when="2026-02-06">
+        revise sourceDesc</change>
       <change who="#ib" when="2024-10-23">
         incorporate "API features" described in the CLS D7.1 'Report on
         Programmable Corpora'; Schematron rules to check for features</change>
@@ -81,6 +84,7 @@
         <titlePart type="sub">TEI Customisation and Documentation</titlePart>
         <byline>
           By
+          <docAuthor>Julia Jennifer Beine</docAuthor>
           <docAuthor>Ingo Börner</docAuthor>
           <docAuthor>Frank Fischer</docAuthor>
           <docAuthor>Luca Giovannini</docAuthor>
@@ -89,7 +93,7 @@
           <docAuthor>Peer Trilcke</docAuthor>
         </byline>
         <byline>With contributions by <docAuthor>Angelika Hechtl</docAuthor></byline>
-        <docDate>2025</docDate>
+        <docDate>2026</docDate>
       </titlePage>
       <divGen type="toc"/>
     </front>
@@ -690,114 +694,214 @@
           <div xml:id="section-sources">
             <head>Sources</head>
             <p>
-              The sources of a play are included in the <gi>sourceDesc</gi> in
-              the <gi>fileDesc</gi>. In most cases, files in DraCor are not
-              create from scratch, i.e. there is no scanning and OCR or any
-              manual transcription of a printed source involved. Instead, we use
-              already available digital files that are digitisations of a
-              certain printed edition. This fact is expressed with two nested
-              elements <gi>bibl</gi> that are classified by their attributes
-              <att>type</att>: the original print publication
-              (<val>originalSource</val>) is described inside the bibliographic
-              record of the digital surogate (<val>digitalSource</val>).
+              The <gi>sourceDesc</gi> inside the <gi>fileDesc</gi>
+              element documents the sources used to create the DraCor TEI file.
+              In the DraCor context, we are particularly interested in two kinds of
+              source information. In most cases, our DraCor TEI file is directly
+              based on a prior digital file or resource.
+              This is what we call the <ref target="#section-digital-source">digital
+              source</ref>. In turn, this file is usually based on a printed edition
+              or, in some cases, a manuscript of a play which we refer to as the
+              <ref target="#section-original-source">original source</ref>.
             </p>
             <p>
-              <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <sourceDesc>
-                  <bibl type="digitalSource">
-                    <!-- .... -->
-                    <bibl type="originalSource">
-                      <!-- ... -->
-                    </bibl>
-                  </bibl>
-                </sourceDesc>
-              </egXML>
+              The DraCor API uses these two kinds of source data to provide the
+              <ref target="#play_digital_source_name">digitalSource.name</ref> and
+              <ref target="#play_digital_source_url">digitalSource.url</ref>
+              properties as well as the <code>originalSource...</code> group of
+              properties (see
+              <ref target="#play_original_source_full_citation">Play Original Source
+              Full Citation</ref> ff).
             </p>
-            <div xml:id="section-digital-source">
-              <head>Digital Source</head>
-              <p>
-                The information on <soCalled>digital source</soCalled> should
-                include the name of the source, e.g. the
-                <q>Project Gutenberg</q> and an identifier of the document
-                within the source collection as <gi>idno</gi>. The identifier
-                can be a URL from which the document can be retrieved. In the
-                best case, there is some persistent identifier that unambiguously
-                identifies the digital document used as the source for the
-                DraCor file.
-              </p>
-              <p>
-                The information on the licence under which the digital source
-                file is distributed should be included in <gi>availability</gi>.
-                <!-- see https://github.com/dracor-org/dracor-schema/issues/97 -->
-              </p>
-              <p>
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <bibl type="digitalSource">
-                    <name>TextGrid Repository</name>
-                    <idno type="URL">http://www.textgridrep.org/textgrid:11f78.0</idno>
-                    <availability>
-                      <licence target="http://creativecommons.org/licenses/by/3.0/de/legalcode">CC-BY-3.0</licence>
-                    </availability>
-                  </bibl>
-                </egXML>
-              </p>
-              <p>
+            <p>
+              The two source types should be encoded as separate <gi>bibl</gi>
+              elements distinguished by their <att>type</att> attributes:
+            </p>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <sourceDesc>
+                <bibl type="digitalSource"> ... </bibl>
+                <bibl type="originalSource"> ... </bibl>
+              </sourceDesc>
+            </egXML>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <sourceDesc>
+                <bibl type="digitalSource">
+                  <ref target="https://resolver.staatsbibliothek-berlin.de/SBB0003354000000000">
+                    Berlin State Library
+                  </ref>
+                  <availability status="free">
+                    <p>In the public domain.</p>
+                  </availability>
+                </bibl>
+                <bibl type="originalSource">
+                  <author>G. Conrad</author> [= Georg von Preußen]: <title>Sappho. Drama in einem
+                    Aufzuge</title>. <pubPlace>Berlin</pubPlace>: <publisher>Voß</publisher>
+                  <date>1887</date>. (S. <biblScope unit="page" from="1" to="41">1–41</biblScope>.)
+                </bibl>
+              </sourceDesc>
+            </egXML>
+            <p>
+              While this should cover the majority of cases, we are aware that
+              some projects may require a more detailed documentation of their
+              sources. These projects are free to use additional <gi>bibl</gi> or
+              <gi>biblStruct</gi> elements, e.g. for documenting intermediary
+              sources between the <ref target="#section-digital-source">digital
+              source</ref> and the <ref target="#section-original-source">original
+              source</ref>. Corpus maintainers may also consider including more
+              detailed explanations in a <gi>notesStmt</gi> element.
+              <note place="bottom">
                 For an exemplary analysis of sources of a corpus, see chapter
                 <ref target="https://versioning-living-corpora.clsinfra.io/3-2_gerdracor_corpus_archeology.html#a-living-corpus-growing">An
                 Algorithmic Archaeology of a Living Corpus: GerDraCor as a
                 Dynamic Epistemic Object</ref> in the report "On Versioning
                 Living and Programmable Corpora"
                 (<ref target="#boerner_trilcke_2024">Boerner/Trilcke 2024</ref>)
+              </note>
+            </p>
+            <div xml:id="section-digital-source">
+              <head>Digital Source</head>
+              <p>
+                Typical digital sources are individual resources in online text
+                repositories such as <ref target="https://textgrid.de">TextGrid</ref>,
+                <ref target="https://www.projekt-gutenberg.org/">Projekt
+                Gutenberg</ref>, or
+                <ref target="https://www.let.leidenuniv.nl/Dutch/Ceneton/">CENETON</ref>.
+                Another class of digital sources are digitisations of printed
+                texts or manuscripts published with an identifier and/or under a certain
+                licence, e.g. those by
+                <ref target="https://books.google.com/">Google Books</ref> or the
+                <ref target="https://www.digitale-sammlungen.de/">Munich
+                Digitization Center (MDZ)</ref>.
+              </p>
+              <p>
+                The digital source information is encoded as a <gi>bibl</gi>
+                element with <att>type</att> <val>digitalSource</val>. It is
+                expected to contain a <gi>ref</gi> with the title of the
+                resource or the online collection as its content and a
+                <att>target</att> attribute providing a URL. This URL should
+                point to the digital document used as the source for the DraCor
+                file. In case of a multi-part resource, the URL should refer to
+                first page of the individual resource, not just the homepage of
+                the collection.
+              </p>
+              <p>
+                Whenever possible, information about the licence under which
+                the digital source is distributed should be included in an
+                <gi>availability</gi> element.
+              </p>
+              <p>
+                The below examples are from
+                <ref target="https://dracor.org/id/ger000001">Goethe: Iphigenie auf Tauris</ref>:
+              </p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <bibl type="digitalSource">
+                  <ref target="http://www.textgridrep.org/textgrid:11f78.0">TextGrid Repository</ref>
+                  <availability>
+                    <licence target="http://creativecommons.org/licenses/by/3.0/de/legalcode">CC-BY-3.0</licence>
+                  </availability>
+                </bibl>
+              </egXML>
+              <p>
+                and <ref target="https://dracor.org/id/ger000764">Pfeffel: Der
+                Einsiedler</ref>:
+              </p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <bibl type="digitalSource">
+                  <ref target="http://resolver.sub.uni-goettingen.de/purl?PPN870045725">Göttingen State and University Library</ref>
+                  <availability>
+                    <licence target="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</licence>
+                  </availability>
+                </bibl>
+              </egXML>
+              <p>
+                If the digital source is not published under a specific licence
+                you can link to, licensing information may also be provided as
+                free text as in this example from
+                <ref target="https://dracor.org/id/neolat000001">Macropedius:
+                Hecastus</ref>:
+              </p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <bibl type="digitalSource">
+                  <ref target="https://www.let.leidenuniv.nl/Dutch/Ceneton/MacropediusHecastus1552.html">
+                    Census Nederlands Toneel (Ceneton)
+                  </ref>
+                  <availability status="free">
+                    <p>
+                      The editions on the website edited by Antonius Harmsen
+                      (Leiden University) are public domain. See
+                      https://www.let.leidenuniv.nl/Dutch/Canonisations.html
+                    </p>
+                  </availability>
+                </bibl>
+              </egXML>
+              <p>
+                Note that the DraCor API currently recognises only a single
+                digital source. Any additional <gi>bibl</gi> with <att>type</att>
+                <val>digitalSource</val> will be ignored.
+              </p>
+              <p>
+                The digital source information is not considered mandatory by the
+                DraCor schema. However, it should always be provided unless the
+                DraCor TEI file was directly derived from a print or manuscript
+                source.
               </p>
             </div>
-            <!-- /digitalSource -->
-
             <div xml:id="section-original-source">
               <head>Original Source</head>
               <p>
-                The original print publication that was the basis of the digital
-                source is included as a bibliographic reference in an element
-                <gi>bibl</gi>.
+                The <soCalled>original source</soCalled> is the bibliographic
+                reference to the print publication or manuscript that has
+                provided the copy-text for the digital source or, in rarer
+                cases of direct transcription, for the DraCor TEI file itself.
               </p>
               <p>
-                It is possible to use designated elements to explicitly mark up
-                the parts of the bibliographic reference, as in the following
-                example:
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <bibl type="originalSource">
-                    <author>Jakob Ayrer</author>: <title level="a">Tragedia
-                    Thesei, des zehenten Königs zu Athen, von den vierzehen
-                    Tributkindern, mit 41 Personen, hat 8 Actus</title>. In:
-                    <title level="s">Ayrers Dramen</title>. Herausgegeben von
-                    <editor>Adelbert von Keller</editor>.
-                    <biblScope unit="volume">Zweiter</biblScope> Band.
-                    <pubPlace>Stuttgart</pubPlace>: <publisher>Litterarischer
-                    Verein</publisher> <date>1865</date>, S.
-                    <biblScope unit="page" from="1207" to="1303">1207–1303</biblScope>.
-                  </bibl>
-                </egXML>
+                The original source information is considered mandatory by
+                the DraCor schema.
               </p>
               <p>
-                As an alternative, the bibliographic reference can only consist
-                of an element <gi>title</gi> (see also GitHub
-                <ref target="https://github.com/dracor-org/dracor-schema/issues/73">issue</ref>
-                on the single element <gi>title</gi> in the unstructured
-                <gi>bibl</gi> element).
+                It is encoded in a <gi>bibl</gi> element with <att>type</att>
+                <val>originalSource</val>. The normalised text content of this
+                element is exposed in the
+                <ref target="#play_original_source_full_citation">originalSource</ref>
+                property of the DraCor API.
               </p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <bibl type="originalSource">
+                  Goethes Werke. Hamburger Ausgabe in 14 Bänden.
+                  Textkritisch durchgesehen und mit Anmerkungen versehen von
+                  Erich Trunz, Hamburg: Christian Wegener, 1948 ff.
+                  [Seitenkonkordanz zu einer Mischauflage aus den Jahren 1959
+                  und 1960.]
+                </bibl>
+              </egXML>
               <p>
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <bibl type="originalSource">
-                    <title>Goethes Werke. Hamburger Ausgabe in 14 Bänden.
-                    Textkritisch durchgesehen und mit Anmerkungen versehen von
-                    Erich Trunz, Hamburg: Christian Wegener, 1948 ff.
-                    [Seitenkonkordanz zu einer Mischauflage aus den Jahren 1959
-                    und 1960.]</title>
-                  </bibl>
-                </egXML>
+                By explicitly marking up the parts of the bibliographic reference,
+                additional properties can be exposed via the DraCor API:
+              </p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <bibl type="originalSource">
+                  <author>Jakob Ayrer</author>: <title level="a">Tragedia
+                  Thesei, des zehenten Königs zu Athen, von den vierzehen
+                  Tributkindern, mit 41 Personen, hat 8 Actus</title>. In:
+                  <title level="s">Ayrers Dramen</title>. Herausgegeben von
+                  <editor>Adelbert von Keller</editor>.
+                  <biblScope unit="volume">Zweiter</biblScope> Band.
+                  <pubPlace>Stuttgart</pubPlace>: <publisher>Litterarischer
+                  Verein</publisher> <date>1865</date>, S.
+                  <biblScope unit="page" from="1207" to="1303">1207–1303</biblScope>.
+                </bibl>
+              </egXML>
+              <p>
+                The above example would make the following API properties available:
+                <ref target="#play_original_source_num_of_pages">originalSourceNumberOfPages</ref>,
+                <ref target="#play_original_source_publication_place">originalSourcePubPlace</ref>,
+                <ref target="#play_original_source_publisher">originalSourcePublisher</ref>,
+                <ref target="#play_original_source_publication_year">originalSourceYear</ref>.
+                They are also the basis for downloading the metadata via the
+                DraCor Frontend.
               </p>
             </div>
           </div>
-          <!-- /sources -->
 
           <div xml:id="section-analytic-header-data">
             <head>Analytic or Research-driven Data in the <gi>teiHeader</gi></head>
@@ -3152,8 +3256,9 @@
             <exemplum source="https://dracor.org/id/ger000054">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <bibl type="digitalSource">
-                  <name>TextGrid Repository</name>
-                  <idno type="URL">http://www.textgridrep.org/textgrid:jn65.0</idno>
+                  <ref target="http://www.textgridrep.org/textgrid:jn65.0">
+                    TextGrid Repository
+                  </ref>
                   <availability>
                     <licence target="http://creativecommons.org/licenses/by/3.0/de/legalcode">CC-BY-3.0</licence>
                   </availability>
@@ -3177,8 +3282,9 @@
             <exemplum source="https://dracor.org/id/ger000675">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <bibl type="digitalSource">
-                  <name>Google Books</name>
-                  <idno type="URL">https://books.google.com/books?id=NbpIAQAAMAAJ&amp;printsec=frontcover</idno>
+                  <ref target="https://books.google.com/books?id=NbpIAQAAMAAJ&amp;printsec=frontcover">
+                    Google Books
+                  </ref>
                   <availability status="free">
                     <p>
                       In the public domain.
@@ -4699,8 +4805,9 @@
             <exemplum source="https://dracor.org/id/ger000416">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <bibl type="digitalSource">
-                  <name>TextGrid Repository</name>
-                  <idno type="URL">http://www.textgridrep.org/textgrid:t97f.0</idno>
+                  <ref target="http://www.textgridrep.org/textgrid:t97f.0">
+                    TextGrid Repository
+                  </ref>
                   <!-- ... -->
                 </bibl>
               </egXML>
@@ -4714,8 +4821,9 @@
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <sourceDesc>
                   <bibl type="digitalSource">
-                    <name>Библиотека Максима Мошкова (lib.ru)</name>
-                    <idno type="URL">http://az.lib.ru/p/plawilxshikow_p_a/text_0040.shtml</idno>
+                    <ref target="http://az.lib.ru/p/plawilxshikow_p_a/text_0040.shtml">
+                      Библиотека Максима Мошкова (lib.ru)
+                    </ref>
                     <availability status="free">
                       <p>
                         In the public domain.
@@ -4963,8 +5071,9 @@
                 <!-- ... -->
                 <sourceDesc>
                   <bibl type="digitalSource">
-                    <name>TextGrid Repository</name>
-                    <idno type="URL">http://www.textgridrep.org/textgrid:npsg.0</idno>
+                    <ref target="http://www.textgridrep.org/textgrid:npsg.0">
+                      TextGrid Repository
+                    </ref>
                     <availability>
                       <licence target="http://creativecommons.org/licenses/by/3.0/de/legalcode">CC-BY-3.0</licence>
                     </availability>
@@ -5188,8 +5297,9 @@
             <exemplum source="https://dracor.org/id/ger000526">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <bibl type="digitalSource">
-                  <name>Google Books</name>
-                  <idno type="URL">https://books.google.com/books?id=q1PDO0ko1mcC&amp;pg=PA51</idno>
+                  <ref target="https://books.google.com/books?id=q1PDO0ko1mcC&amp;pg=PA51">
+                    Google Books
+                  </ref>
                   <!-- ... -->
                 </bibl>
               </egXML>
@@ -5744,27 +5854,58 @@
           <!-- signed -->
           <!-- sourceDesc -->
           <elementSpec ident="sourceDesc" module="header" mode="change">
-            <!-- https://github.com/dracor-org/dracor-schema/issues/107-->
-            <constraintSpec ident="digital_source_in_sourceDesc" scheme="schematron" mode="add">
+            <constraintSpec ident="digital_original_source_in_sourceDesc" scheme="schematron" mode="add">
               <desc>
-                Checks if a digital source is present in the <gi>sourceDesc</gi>
+                Checks if a digital and/or original source are present in the
+                <gi>sourceDesc</gi>
               </desc>
               <constraint>
-                <sch:rule context="tei:sourceDesc">
-                  <sch:assert test="tei:bibl[@type eq 'digitalSource']">
-                    Digital source is missing
+                <sch:rule context="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc" see="https://dracor.org/doc/odd#section-sources">
+                  <!-- Deprecated: nesting of original in digital source -->
+                  <sch:assert test="tei:bibl[@type eq 'originalSource'] or tei:bibl[@type eq 'digitalSource']/tei:bibl[@type eq 'originalSource']">
+                    A bibliographic reference to the original source is
+                    required. Use a &lt;bibl&gt; element of @type
+                    "originalSource".
                   </sch:assert>
                 </sch:rule>
               </constraint>
             </constraintSpec>
-            <constraintSpec ident="original_source_in_sourceDesc" scheme="schematron" mode="add">
+            <constraintSpec ident="sources_count_and_nesting" scheme="schematron" mode="add">
               <desc>
-                Checks if a original source for a digital source is available
+                Checks nesting and cardinality of digital/original sources
               </desc>
               <constraint>
-                <sch:rule context="tei:sourceDesc/tei:bibl[@type eq 'digitalSource']">
-                  <sch:assert test="tei:bibl[@type eq 'originalSource']">
-                    Original Source for digital source is missing
+                <sch:rule context="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc[tei:bibl]" role="warning" see="https://dracor.org/doc/odd#section-sources">
+                  <sch:assert test="not(tei:bibl[@type eq 'digitalSource']/tei:bibl[@type eq 'originalSource'])">
+                    Nesting digital and original source is deprecated. The
+                    &lt;bibl&gt; elements should be siblings.
+                  </sch:assert>
+                  <sch:assert test="count(.//tei:bibl[@type eq 'digitalSource']) &lt; 2">
+                    There is more than one digital source. The DraCor API will
+                    ignore any other than the first one.
+                  </sch:assert>
+                  <sch:assert test="count(.//tei:bibl[@type eq 'originalSource']) &lt; 2">
+                    There is more than one original source. The DraCor API will
+                    ignore any other than the first one.
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
+            <constraintSpec ident="digital_source_use_ref" scheme="schematron" mode="add">
+              <desc>
+                Check that a <gi>bibl</gi> of <att>type</att>
+                <val>digitalSource</val> uses <gi>ref</gi> instead of
+                <gi>idno</gi>.
+              </desc>
+              <constraint>
+                <sch:rule context="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl[@type eq 'digitalSource']" role="warning" see="https://dracor.org/doc/odd#section-sources">
+                  <sch:assert test="tei:ref[@target]">
+                    The digital source should use a &lt;ref&gt; element with a
+                    @target attribute to specify the digital source.
+                  </sch:assert>
+                  <sch:assert test="not(tei:name and tei:idno[@type eq 'URL'])">
+                    The use of &lt;idno&gt; with @type "URL" to specify the digital
+                    source is deprecated. Use a &lt;ref&gt; element instead.
                   </sch:assert>
                 </sch:rule>
               </constraint>

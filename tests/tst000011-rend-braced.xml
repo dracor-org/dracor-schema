@@ -21,9 +21,13 @@ This is the correct encoding using attribute @rend with the value "braced"
       </publicationStmt>
       <sourceDesc>
         <bibl type="digitalSource">
-          <name>dracor-schema GitHub Repository</name><bibl type="originalSource">
-            <title>Slides of the Hebrew and Yiddish DraCor Working group meeting on 2022-11-14 by Daniil Skorinkin</title>
-          </bibl>
+          <ref target="https://github.com/dracor-org/dracor-schema">
+            dracor-schema GitHub Repository
+          </ref>
+        </bibl>
+        <bibl type="originalSource">
+          Slides of the Hebrew and Yiddish DraCor Working group meeting on
+          2022-11-14 by Daniil Skorinkin
         </bibl>
       </sourceDesc>
     </fileDesc>
