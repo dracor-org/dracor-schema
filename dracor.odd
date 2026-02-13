@@ -1501,6 +1501,30 @@
                 for unknown speakers, see
                 https://github.com/dracor-org/dracor-schema/issues/106
               -->
+              <div>
+                <head>Mix of Languages in Text</head>
+                <p>
+                  A play may feature words, speeches or entire scenes in a
+                  language other than the main language of the play.
+                  Examples for this phenomenon may be found in NeoLatDraCor,
+                  RomDraCor, UDraCor, or YiDraCor. The passages are encoded
+                  as follows. Add the <att>xml:lang</att> attribute to the
+                  highest possible element, e.g. a <gi>sp</gi> or <gi>div</gi>
+                  element.  
+                  If there is no element to add the <att>xml:lang</att>
+                  attribute to, use the <gi>foreign</gi> tag to mark up the 
+                  respective word or passage. This case may apply to single
+                  words or sentences within a speech, stage direction, or
+                  similar. The <gi>foreign</gi> element is used to mark up
+                  words or passages in another language. For words or passages
+                  in a dialect other than the main language of a play, use the
+                  <gi>distinct</gi> element.
+                </p>
+              </div>
+              <!--
+                for mix of languages, see
+                https://github.com/dracor-org/dracor-schema/issues/129
+              -->
             </div>
           </div>
         </div>
