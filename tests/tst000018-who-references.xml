@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Test for invalid references in sp/@who -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000000" xml:lang="en">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000018" xml:lang="en">
   <teiHeader>
     <fileDesc>
       <titleStmt>

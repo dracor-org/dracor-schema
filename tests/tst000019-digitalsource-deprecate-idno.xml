@@ -6,7 +6,7 @@
   - the nesting of original source in to digital source creates a warning
   - the missing availability element in digital source creates a warning
 -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000000" xml:lang="eng">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000019" xml:lang="eng">
   <teiHeader>
     <fileDesc>
       <titleStmt>

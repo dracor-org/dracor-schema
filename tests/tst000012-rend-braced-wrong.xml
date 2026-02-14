@@ -4,7 +4,7 @@ Curly Brackets to indicate a castGroup
 
 WRONG encoding, should be @rend with the value "braced"; here it is "bracket"
 -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000011" xml:lang="en">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000012" xml:lang="en">
   <teiHeader>
     <fileDesc>
       <titleStmt>
