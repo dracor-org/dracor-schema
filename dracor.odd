@@ -5910,6 +5910,21 @@
                 </sch:rule>
               </constraint>
             </constraintSpec>
+            <constraintSpec ident="digital_source_availability" scheme="schematron" mode="add">
+              <desc>
+                Check that a <gi>bibl</gi> of <att>type</att>
+                <val>digitalSource</val> provides <gi>availability</gi>
+                information.
+              </desc>
+              <constraint>
+                <sch:rule context="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl[@type eq 'digitalSource']" role="warning" see="https://dracor.org/doc/odd#section-sources">
+                  <sch:assert test="tei:availability">
+                    The digital source should provide an &lt;availability&gt;
+                    element documenting its licensing and/or copyright status.
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
           </elementSpec>
 
           <!-- sp -->

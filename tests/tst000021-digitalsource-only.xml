@@ -24,6 +24,9 @@
           <ref target="https://github.com/dracor-org/dracor-schema">
             dracor-schema GitHub Repository
           </ref>
+          <availability>
+            <licence target="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</licence>
+          </availability>
         </bibl>
       </sourceDesc>
     </fileDesc>
