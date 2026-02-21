@@ -10,7 +10,7 @@
   exclude-result-prefixes="tei"
   version="3.0">
 
-  <xsl:output method="xml" encoding="UTF-8"/>
+  <xsl:output method="xml" />
 
   <xsl:template match="tei:bibl[@type = 'digitalSource' and tei:bibl[@type='originalSource']]">
     <xsl:copy>
@@ -21,15 +21,15 @@
     <xsl:apply-templates select="tei:bibl[@type='originalSource']"/>
   </xsl:template>
 
-  <xsl:template match="tei:bibl[@type = 'digitalSource']/tei:idno[@type='URL' and preceding-sibling::tei:name]">
+  <xsl:template match="tei:bibl[@type = 'digitalSource']/tei:idno[preceding-sibling::tei:name]">
     <xsl:variable name="url" select="text()"/>
     <ref>
-      <xsl:attribute name="target" select="$url"/>
+      <xsl:attribute name="target" select="normalize-space($url)"/>
       <xsl:value-of select="preceding-sibling::tei:name/text()"/>
     </ref>
   </xsl:template>
 
-  <xsl:template match="tei:bibl[@type = 'digitalSource']/tei:name[following-sibling::tei:idno[@type='URL']]">
+  <xsl:template match="tei:bibl[@type = 'digitalSource']/tei:name[following-sibling::tei:idno]">
   </xsl:template>
 
   <xsl:template match="@*|*|processing-instruction()|comment()|node()">
