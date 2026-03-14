@@ -11,7 +11,7 @@
   version="3.0">
 
   <!-- <xsl:output method="xml" encoding="utf-8" omit-xml-declaration="no" indent="no"/> -->
-  <xsl:output method="xml" encoding="utf-8"/>
+  <xsl:output method="xml" encoding="UTF-8"/>
 
   <xsl:template match="tei:licence[count(tei:ab) eq 1 and count(tei:ref[@target]) eq 1]">
     <xsl:variable name="title" select="normalize-space(tei:ab)"/>

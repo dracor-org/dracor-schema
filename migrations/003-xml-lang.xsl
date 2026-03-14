@@ -11,7 +11,7 @@
   exclude-result-prefixes="tei"
   version="3.0">
 
-  <xsl:output method="xml" encoding="utf-8"/>
+  <xsl:output method="xml" encoding="UTF-8"/>
 
   <!--
     Mapping 3-letter codes found in DraCor corpora to 2-letter or more

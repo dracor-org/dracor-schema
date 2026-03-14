@@ -10,7 +10,7 @@
   exclude-result-prefixes="tei"
   version="3.0">
 
-  <xsl:output method="xml" encoding="utf-8"/>
+  <xsl:output method="xml" encoding="UTF-8"/>
 
   <xsl:template match="tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type = 'main']/@type">
   </xsl:template>
