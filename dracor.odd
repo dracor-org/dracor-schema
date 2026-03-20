@@ -2995,7 +2995,7 @@
           prefix="tei_"
           xml:lang="en"
           start="TEI teiCorpus"
-          source="tei:4.10.2"
+          source="tei:4.11.0"
         >
           <desc>DraCor Schema</desc>
           <moduleRef key="header"/>
