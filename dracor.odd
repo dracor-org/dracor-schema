@@ -2711,6 +2711,13 @@
                 <idno type="feature-id">play_all_in_index</idno>:
               </p>
             </div>
+            <div xml:id="play_character_relations">
+              <head>Play Character Relations</head>
+              <p>
+                Feature <idno type="feature-no">P52</idno>
+                <idno type="feature-id">play_character_relations</idno>:
+              </p>
+            </div>
             <div xml:id="play_network_data_csv_url">
               <head>Play Network Data CSV URL</head>
               <p>
