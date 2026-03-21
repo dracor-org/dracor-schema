@@ -332,20 +332,18 @@
             The basic structure of a DraCor file requires a <gi>TEI</gi> root
             element providing the DraCor ID and language of the play, a
             <gi>teiHeader</gi>, containing metadata on the play, and a
-            <gi>text</gi> with the actual text. Between the header and the text, there is
-            a <gi>standOff</gi> element with some additional pieces of
-            information. The structure of your final XML file should therefore
-            look like this:
+            <gi>text</gi> with the actual text. The structure of the final XML
+            file should therefore look like this:
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <TEI xml:id="..." xml:lang="..">
                 <teiHeader>
-                  <!-- contains Metadata -->
+                  <!-- contains metadata -->
                 </teiHeader>
-                <standOff>
-                  <!-- contains additional infos -->
-                </standOff>
                 <text>
-                  <!-- The ‘actual’ Text: mandatory, if there is no <facsimile> and/or <sourceDoc> -->
+                  <!--
+                    the ‘actual’ text: mandatory, if there is no <facsimile>
+                    and/or <sourceDoc>
+                  -->
                 </text>
               </TEI>
             </egXML>
@@ -1354,8 +1352,8 @@
 
         <div xml:id="section-standOff">
           <head>
-            <emph>DEPRECATED:</emph> Encoding Additional Metadata in the <gi>standOff</gi>
-            Element
+            <emph>DEPRECATED:</emph> Encoding Additional Metadata in the
+            <gi>standOff</gi> Element
           </head>
           <p>
             As of DraCor Schema version 1.4.0, the use of the <gi>standOff</gi>
@@ -2263,11 +2261,11 @@
                 on Wikidata, e.g. <val>Q466333</val>.
               </p>
               <p>
-                In the TEI source document, the information is contained in the
-                <gi>standOff</gi> element as a <gi>relation</gi> element with
-                the value <val>wikidata</val> of the attribute <att>name</att>
-                as the full URI, e.g.
-                <val>http://www.wikidata.org/entity/Q466333</val>.
+                In the TEI source document, the information is encoded in the
+                <gi>sourceDesc</gi> as a <gi>bibl</gi> element of
+                <att>type</att> <val>wikidata</val> containing the ID in an
+                <gi>idno</gi> element. See section
+                <ref target="#section-play-wikidata">Wikidata QID of a Play</ref>.
               </p>
             </div>
             <div xml:id="play_title">
@@ -2514,7 +2512,7 @@
                 <idno type="feature-id">play_date_premiered</idno>:
                 Date the play was premiered. This is only available when the
                 exact date of the premiere in ISO format (YYYY-MM-DD) is
-                specified in element <gi>standOff</gi>.
+                specified in the <gi>sourceDesc</gi> element.
               </p>
               <p>
                 This feature was added later and is not included in the
@@ -3943,8 +3941,6 @@
           <!-- ##### -->
 
           <!-- date -->
-          <!-- removed because not in use anymore, info is contained in standOff as a event -->
-
           <!-- dateline -->
           <elementSpec ident="dateline" module="textstructure" mode="change">
             <exemplum source="https://dracor.org/id/ger000525">
@@ -4003,8 +3999,8 @@
                 </listEvent>
               </egXML>
               <ab>
-                Empty <gi>desc</gi> elements in the <gi>standOff</gi> container
-                of the play
+                Empty <gi>desc</gi> elements in the <gi>sourceDesc</gi>
+                container of the play
                 <ref target="https://dracor.org/id/ger000124">Gellert: Die
                 Betschwester</ref>. The dates of publication and the premiere
                 are extracted from the <att>when</att> of the corresponding
@@ -4040,9 +4036,9 @@
                 </listEvent>
               </egXML>
               <ab>
-                Descriptions of events in the <gi>standOff</gi> container of the
-                play <ref target="https://dracor.org/id/ger000480">Kraus: Die
-                Letzten Tage der Menschheit</ref>.
+                Descriptions of events in the <gi>sourceDesc</gi> container of
+                the play <ref target="https://dracor.org/id/ger000480">Kraus:
+                Die Letzten Tage der Menschheit</ref>.
               </ab>
             </exemplum>
           </elementSpec>
