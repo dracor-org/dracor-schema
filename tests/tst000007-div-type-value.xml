@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 Structural problems: invalid value of @type on a structural division
 -->
@@ -30,6 +30,14 @@ Structural problems: invalid value of @type on a structural division
           Slides of the Hebrew and Yiddish DraCor Working group meeting on
           2022-11-14 by Daniil Skorinkin
         </bibl>
+        <listEvent>
+          <event type="print" when="2023">
+            <desc/>
+          </event>
+          <event type="written" when="2022">
+            <desc/>
+          </event>
+        </listEvent>
       </sourceDesc>
     </fileDesc>
     <profileDesc>
@@ -54,16 +62,6 @@ Structural problems: invalid value of @type on a structural division
       <change when="2022-11-07">Describe Change!</change>
     </revisionDesc>
   </teiHeader>
-  <standOff>
-    <listEvent>
-      <event type="print" when="2023">
-        <desc/>
-      </event>
-      <event type="written" when="2022">
-        <desc/>
-      </event>
-    </listEvent>
-  </standOff>
   <text>
     <front>
       <div type="front">
