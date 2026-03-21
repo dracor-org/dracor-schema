@@ -312,7 +312,7 @@
               which, among other restrictions, cannot start with a digit and
               must not contain space characters. <note place="bottom">For exact
               details see
-              <ref>https://www.w3.org/TR/REC-xml-names/#NT-NCName</ref>.</note>
+              <ref target="https://www.w3.org/TR/REC-xml-names/#NT-NCName">https://www.w3.org/TR/REC-xml-names/#NT-NCName</ref>.</note>
             </p>
             <p>
               Although the XML recommendation allows identifiers to consist of
