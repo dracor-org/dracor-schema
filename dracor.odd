@@ -100,7 +100,6 @@
     <body>
       <head>TEI Customisation for Drama Corpora (dracor.org)</head>
 
-      <!-- Encoding Guidelines -->
       <div xml:id="section-intro">
         <head>Introduction</head>
         <p>
@@ -166,13 +165,111 @@
           Analysis</ref>).
         </p>
       </div>
-      <!-- End  Intro-->
+
+      <div xml:id="section-corpus-structure">
+        <head>Corpus Structure and Metadata</head>
+        <p>
+          To work seamlessly with the DraCor API, a DraCor corpus should be
+          implemented as a public Git repository. This repository, as a bare
+          minimum, should have a <code>corpus.xml</code> at its root describing
+          the corpus and a sub directory <code>tei/</code> holding the actual
+          TEI files of individual plays.
+        </p>
+        <p>
+          As best practice, the repository should also provide a
+          <code>README.md</code> with general information about the repository
+          and a <code>LICENCE</code> file detailing it licensing terms.
+        </p>
+        <p>
+          When creating a new corpus repository on GitHub the
+          <ref target="https://github.com/dracor-org/newdracor">dracor-org/newdracor</ref>
+          template can be used to set up those files initially. By default it
+          comes with a
+          <ref target="https://creativecommons.org/share-your-work/public-domain/cc0/">Creative
+          Commons Zero v1.0 Universal</ref> Corpus maintainers may change this
+          to a licence more appropriate for their project. The template also
+          sets up a validation workflow using the
+          <ref target="https://github.com/dracor-org/dracor-validate-action">DraCor
+          Validate Action</ref>.
+        </p>
+
+        <div xml:id="section-corpus-xml">
+          <head>The <code>corpus.xml</code> File</head>
+          <p>
+            The <code>corpus.xml</code> file stores the metadata of a DraCor
+            corpus including the corpus name or identifier, the title and the
+            URL of the repository.
+          </p>
+          <p>
+            It uses the custom <gi>dracorCorpus</gi> as its root element which
+            contains a standard <gi>teiHeader</gi> element as its only
+            descendant.
+          </p>
+          <p>
+            As an example, here is a slightly simplified version of the
+            GerDraCor <code>corpus.xml</code>:
+          </p>
+          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <dracorCorpus>
+              <teiHeader>
+                <fileDesc>
+                  <titleStmt>
+                    <title>German Drama Corpus</title>
+                    <editor ref="https://orcid.org/0000-0003-2419-6629">Frank Fischer</editor>
+                    <editor ref="https://orcid.org/0000-0002-1421-4320">Peer Trilcke</editor>
+                  </titleStmt>
+                  <publicationStmt>
+                    <publisher>DraCor Project</publisher>
+                    <idno>ger</idno>
+                    <ref type="repo" target="https://github.com/dracor-org/gerdracor"/>
+                    <availability>
+                      <licence target="https://creativecommons.org/share-your-work/public-domain/cc0/">CC0</licence>
+                    </availability>
+                  </publicationStmt>
+                  <sourceDesc>
+                    <p>
+                      The corpus has extracted plays from various sources
+                      including the TextGrid Repository (TGRep), Deutsches
+                      Textarchiv, Project Gutenberg, Projekt Gutenberg-DE,
+                      Wikisource, or Google Books. See the source descriptions
+                      of individual TEI files for Details.
+                    </p>
+                  </sourceDesc>
+                </fileDesc>
+                <encodingDesc>
+                  <projectDesc>
+                    <p>
+                      Edited by Frank Fischer and Peer Trilcke. Features more
+                      than 750 German-language plays from the 1500s to the
+                      1940s.
+                    </p>
+                  </projectDesc>
+                </encodingDesc>
+              </teiHeader>
+            </dracorCorpus>
+          </egXML>
+          <p>
+            The DraCor Schema implements several constraints to ensure that the
+            <code>corpus.xml</code> can be processed properly by the DraCor API.
+            The most important one of these is the constraint on the corpus
+            name. It must be encoded inside the <gi>publicationStmt</gi> as an
+            <gi>idno</gi> element without a <att>type</att> and can consist of
+            lower-case letter from the ASCII range only.
+          </p>
+          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <publicationStmt>
+              <publisher>DraCor Project</publisher>
+              <idno>neolat</idno>
+              <!-- ... -->
+            </publicationStmt>
+          </egXML>
+        </div>
+      </div>
 
       <div xml:id="section-encoding-guidelines">
         <head>Encoding Guidelines</head>
         <p>
           This section describes how to encode a play and make it DraCor-ready.
-          It is still a work in progress.
         </p>
         <div xml:id="section-file-formats">
           <head>File Formats and Copyright Issues</head>
@@ -5754,6 +5851,7 @@
                 <!-- DEPRECATED: support for teiCorpus -->
                 <sch:rule
                   context="/(tei:teiCorpus|tei:dracorCorpus)/tei:teiHeader/tei:fileDesc/tei:publicationStmt"
+                  see="https://dracor.org/doc/odd#section-corpus-xml"
                   role="critical"
                 >
                   <!-- DEPRECATED: support for type="URI" -->
@@ -5771,8 +5869,9 @@
                 <!-- DEPRECATED: support for teiCorpus and for <idno type="URI"> -->
                 <sch:rule
                   context="/(tei:teiCorpus|tei:dracorCorpus)/tei:teiHeader/tei:fileDesc/tei:publicationStmt/tei:idno[not(@type) or (@type eq 'URI' and @xml:base='https://dracor.org/')]"
+                  see="https://dracor.org/doc/odd#section-corpus-xml"
                   role="critical"
-                  >
+                >
                   <sch:assert test="matches(., '^[a-z]+$')">
                     The corpus name must consist of lowercase ASCII characters
                     only.
@@ -5792,6 +5891,7 @@
               <constraint>
                 <sch:rule
                   context="/(tei:teiCorpus|tei:dracorCorpus)/tei:teiHeader/tei:fileDesc/tei:publicationStmt"
+                  see="https://dracor.org/doc/odd#section-corpus-xml"
                   role="warning"
                 >
                   <sch:assert test="tei:ref[@type eq 'repo']/@target or tei:idno[@type eq 'repo']">
@@ -5806,8 +5906,9 @@
               <constraint>
                 <sch:rule
                   context="/(tei:teiCorpus|tei:dracorCorpus)/tei:teiHeader/tei:fileDesc/tei:publicationStmt/tei:idno"
+                  see="https://dracor.org/doc/odd#section-corpus-xml"
                   role="warning"
-                  >
+                >
                   <sch:report test="@type eq 'repo'">
                     The use of &lt;idno&gt; to specify the corpus repository is
                     deprecated. Use a &lt;ref&gt; element with @type "repo"
