@@ -264,6 +264,66 @@
             </publicationStmt>
           </egXML>
         </div>
+        <div xml:id="section-corpus-status">
+          <head>Corpus Status</head>
+          <p>
+            Corpora can be in different states of progression. The overall
+            status of a DraCor corpus can be documented using the
+            <att>status</att> attribute in the <gi>revisionDesc</gi> element of
+            the <code>corpus.xml</code> file.
+          </p>
+          <p>
+            We distinguish three different states:
+            <list>
+              <item>
+                <term>proposed</term>: The corpus is planned or in very early
+                development. The repository may or may not be publicly
+                available.
+              </item>
+              <item>
+                <term>draft</term>: The corpus is currently under development
+                and can be previewed on
+                <ref target="https://staging.dracor.org">staging.dracor.org</ref>.
+                Its Git repository must be publicly available.
+              </item>
+              <item>
+                <term>published</term>: The corpus is considered stable, its Git
+                repository is publicly available and the corpus has been
+                published on <ref target="https://dracor.org">dracor.org</ref>.
+              </item>
+            </list>
+          </p>
+          <p>
+            Documenting the status in <code>corpus.xml</code> allows the
+            corpus to be tracked by the
+            <ref target="https://github.com/dracor-org/dracor-registry">DraCor
+            Registry</ref> and to be listed on the
+            <ref target="https://dracor.org/doc/corpora">DraCor Corpora</ref>
+            list.
+          </p>
+          <p>
+            Here is how the <gi>revisionDesc</gi> of a fully published corpus
+            may look like, with its status changes meticulously recorded in
+            individual <gi>change</gi> elements:
+          </p>
+          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <revisionDesc>
+              <change when="2018-12-12" status="proposed"/>
+              <change when="2020-07-17" status="draft"/>
+              <change when="2024-12-24" status="published"/>
+            </revisionDesc>
+          </egXML>
+          <p>
+            The current status can also be set by the <att>status</att> of
+            the <gi>revisionDesc</gi> itself in which case it overrides any
+            <att>status</att> in <gi>change</gi> elements:
+          </p>
+          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <revisionDesc status="draft">
+              <change when="2025-10-05" status="proposed"/>
+            </revisionDesc>
+          </egXML>
+        </div>
       </div>
 
       <div xml:id="section-encoding-guidelines">
