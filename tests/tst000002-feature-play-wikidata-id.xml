@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 This file tests the schematron rule to check for the correct encoding of the the
-Wikidata ID.
+Wikidata QID.
 
-This file has the correct encoding of the Wikidata URI in the @passive attribute
-in the <standOff><listRelation>.
+This file has the correct encoding of the Wikidata QID in a
+<bibl type="wikidata"> element.
 
 For testing purposes we use the QID of Shakespeare's "Hamlet" here which is
 obviously not the right QID for this "play".
@@ -40,6 +40,15 @@ and the value should be "Q41567".
           Slides of the Hebrew and Yiddish DraCor Working group meeting on
           2022-11-14 by Daniil Skorinkin
         </bibl>
+        <bibl type="wikidata"><idno>Q41567</idno></bibl>
+        <listEvent>
+          <event type="print" when="2023">
+            <desc/>
+          </event>
+          <event type="written" when="2022">
+            <desc/>
+          </event>
+        </listEvent>
       </sourceDesc>
     </fileDesc>
     <profileDesc>
@@ -64,19 +73,6 @@ and the value should be "Q41567".
       <change when="2022-11-07">Describe Change!</change>
     </revisionDesc>
   </teiHeader>
-  <standOff>
-    <listEvent>
-      <event type="print" when="2023">
-        <desc/>
-      </event>
-      <event type="written" when="2022">
-        <desc/>
-      </event>
-    </listEvent>
-    <listRelation>
-      <relation name="wikidata" active="https://dracor.org/entity/tst000002" passive="http://www.wikidata.org/entity/Q41567"/>
-    </listRelation>
-  </standOff>
   <text>
     <front>
       <div type="front">

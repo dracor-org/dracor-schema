@@ -332,20 +332,18 @@
             The basic structure of a DraCor file requires a <gi>TEI</gi> root
             element providing the DraCor ID and language of the play, a
             <gi>teiHeader</gi>, containing metadata on the play, and a
-            <gi>text</gi> with the actual text. Between the header and the text, there is
-            a <gi>standOff</gi> element with some additional pieces of
-            information. The structure of your final XML file should therefore
-            look like this:
+            <gi>text</gi> with the actual text. The structure of the final XML
+            file should therefore look like this:
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <TEI xml:id="..." xml:lang="..">
                 <teiHeader>
-                  <!-- contains Metadata -->
+                  <!-- contains metadata -->
                 </teiHeader>
-                <standOff>
-                  <!-- contains additional infos -->
-                </standOff>
                 <text>
-                  <!-- The ‘actual’ Text: mandatory, if there is no <facsimile> and/or <sourceDoc> -->
+                  <!--
+                    the ‘actual’ text: mandatory, if there is no <facsimile>
+                    and/or <sourceDoc>
+                  -->
                 </text>
               </TEI>
             </egXML>
@@ -903,6 +901,99 @@
             </div>
           </div>
 
+          <div xml:id="section-additional-metadata">
+            <head>Additional Metadata</head>
+            <p>
+              For pragmatic reasons the <gi>sourceDesc</gi> is also used to
+              encode additional metadata.<note place="bottom">Before schema
+              version 1.4.0 the <gi>standOff</gi> element was used to encode
+              additional metadata. See the
+              <ref target="https://github.com/dracor-org/dracor-schema/issues/133">Github
+              issue 133</ref> on why this has changed.</note>
+            </p>
+            <div xml:id="section-play-wikidata">
+              <head>Wikidata QID of a Play</head>
+              <p>
+                For the purpose of linking a play to its corresponding entry in
+                Wikidata, DraCor uses a <gi>bibl</gi> element with
+                <att>type</att> <val>wikidata</val> inside <gi>sourceDesc</gi>
+                to encode the
+                <ref target="https://www.wikidata.org/wiki/Q43649390">Wikidata Q
+                identifier</ref> for the work. The ID must be wrapped in an
+                <gi>idno</gi> element:
+              </p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <sourceDesc>
+                  <!-- ... -->
+                  <bibl type="wikidata"><idno>Q41567</idno></bibl>
+                </sourceDesc>
+              </egXML>
+            </div>
+            <div xml:id="section-play-meta-dates">
+              <head>Dates</head>
+              <p>
+                Last but not least, DraCor uses a <gi>listEvent</gi> inside
+                <gi>sourceDesc</gi> to record various key dates related to the
+                play. The following event types are recognized by the DraCor
+                API:
+              </p>
+              <list>
+                <item>
+                  <label><term>written</term></label>
+                  <gloss>year the play was written</gloss>
+                </item>
+                <item>
+                  <label><term>premiere</term></label>
+                  <gloss>year or exact date the play was first performed</gloss>
+                </item>
+                <item>
+                  <label><term>print</term></label>
+                  <gloss>year the play was first printed</gloss>
+                </item>
+              </list>
+              <p>
+                This example from
+                <ref target="https://dracor.org/id/ger000472">Brawe: Brutus</ref>
+                demonstrates how dates can be specified either as a year, an
+                exact day, or as a range of years:
+              </p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <listEvent>
+                  <event type="print" when="1768">
+                    <desc/>
+                  </event>
+                  <event type="premiere" when="1770-08-20">
+                    <desc/>
+                  </event>
+                  <event type="written" notBefore="1757" notAfter="1758">
+                    <desc/>
+                  </event>
+                </listEvent>
+              </egXML>
+              <p>
+                Note that the TEI schema does not allow <gi>event</gi> elements
+                to be empty which is why in the above example they contain empty
+                <gi>desc</gi> elements. The <gi>desc</gi> element can actually
+                be used to provide more information, as in this example from
+                <ref target="https://dracor.org/id/ger000407">von Arnim: Das
+                Loch</ref>:
+              </p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <listEvent>
+                  <event type="print" when="1813">
+                    <desc/>
+                  </event>
+                  <event type="premiere" when="1811">
+                    <desc/>
+                  </event>
+                  <event type="written" when="1811">
+                    <desc>wahrscheinlich im Winter 1811</desc>
+                  </event>
+                </listEvent>
+              </egXML>
+            </div>
+          </div>
+
           <div xml:id="section-analytic-header-data">
             <head>Analytic or Research-driven Data in the <gi>teiHeader</gi></head>
             <p>
@@ -1260,55 +1351,16 @@
         </div>
 
         <div xml:id="section-standOff">
-          <head>Encoding Additional Metadata in the <gi>standOff</gi> Element</head>
+          <head>
+            <emph>DEPRECATED:</emph> Encoding Additional Metadata in the
+            <gi>standOff</gi> Element
+          </head>
           <p>
-            The <gi>standOff</gi> element usually includes dates (first written,
-            first printed edition, premiere).
+            As of DraCor Schema version 1.4.0, the use of the <gi>standOff</gi>
+            element is deprecated. See section
+            <ref target="#section-additional-metadata">Additional Metadata</ref>
+            instead on how to encode Wikidata ID and key dates.
           </p>
-          <div xml:id="section-play-wikidata">
-            <head>Wikidata QID of a Play</head>
-            <p>
-              To link a play to its corresponding entry in Wikidata, DraCor uses
-              the <gi>listRelation</gi> element inside <gi>standOff</gi>. For
-              this purpose it must have exactly one <gi>relation</gi> child
-              element with the following attributes:
-              <list>
-                <item>
-                  <label><att>name</att></label>:
-                  <gloss>the value must be <val>wikidata</val></gloss>
-                </item>
-                <item>
-                  <label><att>active</att></label>:
-                  <gloss>
-                    The DraCor URI that identifies the play. It starts with
-                    "https://dracor.org/entity/" followed by the
-                    <att>xml:id</att> of the play.
-                  </gloss>
-                </item>
-                <item>
-                  <label><att>passive</att></label>:
-                  <gloss>
-                    The Wikidata entity URI, which starts with
-                    "http://www.wikidata.org/entity/" followed by the QID.
-                  </gloss>
-                </item>
-              </list>
-            </p>
-            <p>
-              <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <standOff>
-                  <listRelation>
-                    <relation
-                      name="wikidata"
-                      active="https://dracor.org/entity/ger000171"
-                      passive="http://www.wikidata.org/entity/Q42187688"
-                    />
-                  </listRelation>
-                  <!-- ... -->
-                </standOff>
-              </egXML>
-            </p>
-          </div>
         </div>
 
         <div xml:id="section-drama-text-proper">
@@ -2209,11 +2261,11 @@
                 on Wikidata, e.g. <val>Q466333</val>.
               </p>
               <p>
-                In the TEI source document, the information is contained in the
-                <gi>standOff</gi> element as a <gi>relation</gi> element with
-                the value <val>wikidata</val> of the attribute <att>name</att>
-                as the full URI, e.g.
-                <val>http://www.wikidata.org/entity/Q466333</val>.
+                In the TEI source document, the information is encoded in the
+                <gi>sourceDesc</gi> as a <gi>bibl</gi> element of
+                <att>type</att> <val>wikidata</val> containing the ID in an
+                <gi>idno</gi> element. See section
+                <ref target="#section-play-wikidata">Wikidata QID of a Play</ref>.
               </p>
             </div>
             <div xml:id="play_title">
@@ -2460,7 +2512,7 @@
                 <idno type="feature-id">play_date_premiered</idno>:
                 Date the play was premiered. This is only available when the
                 exact date of the premiere in ISO format (YYYY-MM-DD) is
-                specified in element <gi>standOff</gi>.
+                specified in the <gi>sourceDesc</gi> element.
               </p>
               <p>
                 This feature was added later and is not included in the
@@ -3889,8 +3941,6 @@
           <!-- ##### -->
 
           <!-- date -->
-          <!-- removed because not in use anymore, info is contained in standOff as a event -->
-
           <!-- dateline -->
           <elementSpec ident="dateline" module="textstructure" mode="change">
             <exemplum source="https://dracor.org/id/ger000525">
@@ -3949,8 +3999,8 @@
                 </listEvent>
               </egXML>
               <ab>
-                Empty <gi>desc</gi> elements in the <gi>standOff</gi> container
-                of the play
+                Empty <gi>desc</gi> elements in the <gi>sourceDesc</gi>
+                container of the play
                 <ref target="https://dracor.org/id/ger000124">Gellert: Die
                 Betschwester</ref>. The dates of publication and the premiere
                 are extracted from the <att>when</att> of the corresponding
@@ -3986,9 +4036,9 @@
                 </listEvent>
               </egXML>
               <ab>
-                Descriptions of events in the <gi>standOff</gi> container of the
-                play <ref target="https://dracor.org/id/ger000480">Kraus: Die
-                Letzten Tage der Menschheit</ref>.
+                Descriptions of events in the <gi>sourceDesc</gi> container of
+                the play <ref target="https://dracor.org/id/ger000480">Kraus:
+                Die Letzten Tage der Menschheit</ref>.
               </ab>
             </exemplum>
           </elementSpec>
@@ -5238,25 +5288,13 @@
                 Figaro</title></ref>
               </ab>
             </exemplum>
-            <exemplum>
-              <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <listRelation>
-                  <relation active="https://dracor.org/entity/ger000171"
-                    passive="http://www.wikidata.org/entity/Q42187688"
-                    name="wikidata"/>
-                </listRelation>
-              </egXML>
-              <ab>Connect a DraCor play to Wikidata (Work).</ab>
-            </exemplum>
             <remarks>
               <p>
-                There are currently two types of <gi>listRelation</gi> evaluated
-                by the DraCor API. One is the list of
-                <ref target="#section-character-relations">relations between
-                characters</ref>. The other is the <gi>listRelation</gi> in
-                <gi>standOff</gi> used to link a play to Wikidata (see
-                <ref target="#section-play-wikidata">Wikidata QID of a
-                Play</ref>).
+                The DraCor API
+                <ref target="#play_character_relations">supports</ref> the
+                <gi>listRelation</gi> element inside a <gi>particDesc</gi> for
+                encoding <ref target="#section-character-relations">relations
+                between characters</ref>.
               </p>
             </remarks>
           </elementSpec>
@@ -5993,9 +6031,32 @@
 
           <!-- standOff -->
           <elementSpec ident="standOff" module="linking" mode="change">
+            <constraintSpec ident="deprecate-standoff-wikidata" scheme="schematron" mode="add">
+              <constraint>
+                <sch:rule context="tei:standOff/tei:listRelation" role="warning" see="https://dracor.org/doc/odd#section-play-wikidata">
+                  <sch:report test="./tei:relation[@name eq 'wikidata']">
+                    The use of standOff/listRelation/relation to encode the
+                    Wikidata ID is deprecated. Use a &lt;bibl type="wikidata"&gt;
+                    inside &lt;sourceDesc&gt; instead.
+                  </sch:report>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
+            <constraintSpec ident="deprecate-standoff-events" scheme="schematron" mode="add">
+              <constraint>
+                <sch:rule context="tei:standOff/tei:listEvent" role="warning" see="https://dracor.org/doc/odd#section-play-meta-dates">
+                  <sch:report test="./tei:event[@type = ('premiere', 'print', 'written')]">
+                    The use of standOff/listEvent to encode the dates meta data
+                    is deprecated. Use a &lt;listEvent&gt; inside
+                    &lt;sourceDesc&gt; instead.
+                  </sch:report>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
             <exemplum>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <standOff>
+                  <!-- DEPRECATED! DON'T DO THIS! -->
                   <listEvent>
                     <event type="print" when="1813">
                       <desc/>
@@ -6015,9 +6076,12 @@
                 </standOff>
               </egXML>
               <ab>
-                Discussion see
-                <ref target="https://github.com/dracor-org/dracor-schema/issues/38">Github
-                Issue.</ref>
+                <emph>This is deprecated!</emph> See section
+                <ref target="#section-additional-metadata">Additional
+                Metadata</ref> on how to encode Wikidata QID and dates instead.
+                For background see
+                <ref target="https://github.com/dracor-org/dracor-schema/issues/133">https://github.com/dracor-org/dracor-schema/issues/133</ref>.
+
               </ab>
             </exemplum>
           </elementSpec>
@@ -6379,12 +6443,11 @@
             </desc>
             <constraint>
               <sch:rule context="/" role="information" see="https://dracor.org/doc/odd#play_wikidata_id">
-                <!-- /TEI/standOff[1]/listRelation[1] -->
                 <sch:let name="play_wikidata"
-                  value="/tei:TEI/tei:standOff/tei:listRelation/tei:relation[@name eq 'wikidata']/@passive/string()"/>
-                <sch:report test="/tei:TEI/tei:standOff/tei:listRelation/tei:relation[@name eq 'wikidata']/@passive[starts-with(.,'http://www.wikidata.org/entity/')]">
+                  value="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl[@type eq 'wikidata']/tei:idno[1]/text()"/>
+                <sch:report test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl[@type eq 'wikidata']/tei:idno[matches(normalize-space(.), '^Q[1-9]\d*$')]">
                   Supported API feature: play_wikidata_id [value:
-                  <sch:value-of select="substring-after($play_wikidata, 'http://www.wikidata.org/entity/')" />]
+                  <sch:value-of select="$play_wikidata" />]
                 </sch:report>
               </sch:rule>
             </constraint>
@@ -6447,20 +6510,6 @@
           <!-- P21  play_num_of_co_authors -->
           <!-- P22  play_genre_normalized -->
           <!-- P23  play_is_libretto -->
-          <!-- <standOff>
-              <listEvent>
-                <event type="print" when="1888">
-                  <desc/>
-                </event>
-                <event type="written" when="1888">
-                  <desc/>
-                </event>
-              </listEvent>
-              <listRelation>
-                <relation name="wikidata" active="https://dracor.org/entity/ger000171" passive="http://www.wikidata.org/entity/Q51370104"/>
-              </listRelation>
-            </standOff> -->
-
           <!-- P24  play_year_written -->
           <constraintSpec ident="play_year_written" scheme="schematron"
             type="api_feature_check" corresp="#play_year_written">
@@ -6472,8 +6521,8 @@
             </desc>
             <constraint>
               <sch:rule context="/" role="information" see="https://dracor.org/doc/odd#play_year_written">
-                <sch:let name="play_year_written" value="/tei:TEI/tei:standOff/tei:listEvent/tei:event[@type eq 'written']/@when/string()"/>
-                <sch:report test="/tei:TEI/tei:standOff/tei:listEvent/tei:event[@type eq 'written']/@when">
+                <sch:let name="play_year_written" value="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listEvent/tei:event[@type eq 'written']/@when/string()"/>
+                <sch:report test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listEvent/tei:event[@type eq 'written']/@when">
                   Supported API feature: play_year_written [value:
                   <sch:value-of select="$play_year_written"/>]
                 </sch:report>
@@ -6492,8 +6541,8 @@
             </desc>
             <constraint>
               <sch:rule context="/" role="information" see="https://dracor.org/doc/odd#play_year_printed">
-                <sch:let name="play_year_printed" value="/tei:TEI/tei:standOff/tei:listEvent/tei:event[@type eq 'print']/@when/string()"/>
-                <sch:report test="/tei:TEI/tei:standOff/tei:listEvent/tei:event[@type eq 'print']/@when">
+                <sch:let name="play_year_printed" value="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listEvent/tei:event[@type eq 'print']/@when/string()"/>
+                <sch:report test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listEvent/tei:event[@type eq 'print']/@when">
                   Supported API feature: play_year_printed [value:
                   <sch:value-of select="$play_year_printed"/>]
                 </sch:report>
@@ -6567,53 +6616,20 @@
           -->
           <constraintSpec ident="encoding-hint_play_wikidata_id" scheme="schematron" type="encoding-hint">
             <desc>
-              Encoding Hint: <name>Wikidata Identifier</name> There are some
-              common errors when connecting a play to the respective entity on
-              Wikidata:
-              <list>
-                <item>
-                  Use the wrong base-URI of the Wikidata entity. MUST be
-                  http://www.wikidata.org/entity/{QID} NOT
-                  https://www.wikidata.org/wiki/{QID}
-                </item>
-                <item>
-                  The value of the attribute <att>passive</att> is NOT the
-                  self-URI of the play following the pattern
-                  "https://dracor.org/entity/{play_id}"
-                </item>
-              </list>
-              See also <ref target="#section-play-wikidata">Wikidata QID of a
+              Encoding Hint: <name>Wikidata Identifier</name>
+              See <ref target="#section-play-wikidata">Wikidata QID of a
               play</ref> for details on how to correctly assign a Wikidata
               Identifier (QID). The equivalent API Feature that relies on the
               correct encoding is
               <ref target="#play_wikidata_id">play_wikidata_id</ref>.
             </desc>
             <constraint>
-              <sch:rule context="tei:TEI/tei:standOff/tei:listRelation/tei:relation[@name eq 'wikidata']"
+              <sch:rule context="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl[@type eq 'wikidata']"
                 role="warning"
                 see="https://dracor.org/doc/odd#section-play-wikidata">
-                <sch:let name="expected_play_uri"
-                  value="concat('https://dracor.org/entity/',./ancestor::tei:TEI/@xml:id/string())"/>
-                  <!-- expects a correct Wikidata URI pattern in @passive
-                     Test with:
-                      - WRONG: tst000001: Here, the URI is https://.../wiki/
-                      - CORRECT: tst000002: Here, the correct URI is used in @passive
-                  -->
-                <sch:assert test="starts-with(./@passive/string(),'http://www.wikidata.org/entity/')">
-                  The value of the attribute '@passive' MUST start with
-                  "http://www.wikidata.org/entity/" to be a valid Wikidata URI.
-                </sch:assert>
-                <!-- expects that the self-uri in @active follows the
-                     pattern http://www.wikidata.org/entity/{play_id}
-                    Test with:
-                    - WRONG: tst000003: Here, the play_uri in @passive is "https://dracor.org/entity/no-such-id"
-                    - CORRECT: tst000002: Here, the correct value is used in @passive
-                -->
-                <sch:assert test="./@active/string() eq $expected_play_uri">
-                  The value of the attribute '@active' SHOULD follow the
-                  pattern "https://dracor.org/entity/{play_id}.
-                  [Expected value:
-                  '<sch:value-of select="$expected_play_uri"/>']"
+                <sch:assert test="./tei:idno[matches(normalize-space(.), '^Q[1-9]\d*$')]">
+                  The Wikidata ID is expected to be wrapped in an &lt;idno&gt;
+                  element and must match the regular expression "Q[1-9]\d*".
                 </sch:assert>
               </sch:rule>
             </constraint>

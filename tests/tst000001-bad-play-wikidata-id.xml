@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 This file tests the schematron rule to produce encoding hints for the Wikidata
 ID.
 
-In this file there is an error in encoding the Wikidata URI in the @passive
-attribute in the <standOff><listRelation>
+In this file there are a warning about the format of the Wikidata ID in
+<sourceDesc><bibl type="wikidata"><idno> and deprecation warnings for the use
+of <standOff> to encode Wikidata ID and dates.
 
 For testing purposes we use the QID of Shakespeare's "Hamlet" here which is
 obviously not the right QID for this "play".
@@ -39,6 +40,8 @@ There should be a warning.
           Slides of the Hebrew and Yiddish DraCor Working group meeting on
           2022-11-14 by Daniil Skorinkin
         </bibl>
+        <!-- Warning: the idno should only contain a QID -->
+        <bibl type="wikidata"><idno>https://www.wikidata.org/wiki/Q41567</idno></bibl>
       </sourceDesc>
     </fileDesc>
     <profileDesc>
@@ -64,6 +67,7 @@ There should be a warning.
     </revisionDesc>
   </teiHeader>
   <standOff>
+    <!-- Warning: standOff/listEvent is deprecated -->
     <listEvent>
       <event type="print" when="2023">
         <desc/>
@@ -73,8 +77,11 @@ There should be a warning.
       </event>
     </listEvent>
     <listRelation>
-      <!-- We expect a warning here -->
-      <relation name="wikidata" active="https://dracor.org/entity/tst000001" passive="https://www.wikidata.org/wiki/Q41567"/>
+      <!-- Warning: standOff/listRelation is deprecated -->
+      <relation
+        name="wikidata"
+        active="https://dracor.org/entity/tst000001"
+        passive="https://www.wikidata.org/wiki/Q41567"/>
     </listRelation>
   </standOff>
   <text>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="https://dracor.org/schema.rng" schematypens="http://relaxng.org/ns/structure/1.0" type="application/xml" ?>
 <!-- File with xml-model referencing Dracor Schema is valid without TEI/@type  -->
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="tst000023" xml:lang="en">
@@ -29,6 +29,14 @@
           Slides of the Hebrew and Yiddish DraCor Working group meeting on
           2022-11-14 by Daniil Skorinkin
         </bibl>
+        <listEvent>
+          <event type="print" when="2023">
+            <desc/>
+          </event>
+          <event type="written" when="2022">
+            <desc/>
+          </event>
+        </listEvent>
       </sourceDesc>
     </fileDesc>
     <profileDesc>
@@ -53,16 +61,6 @@
       <change when="2022-11-07">Describe Change!</change>
     </revisionDesc>
   </teiHeader>
-  <standOff>
-    <listEvent>
-      <event type="print" when="2023">
-        <desc/>
-      </event>
-      <event type="written" when="2022">
-        <desc/>
-      </event>
-    </listEvent>
-  </standOff>
   <text>
     <front>
       <div type="front">

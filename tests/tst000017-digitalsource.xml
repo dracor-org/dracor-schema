@@ -31,6 +31,14 @@
           Slides of the Hebrew and Yiddish DraCor Working group meeting on
           2022-11-14 by Daniil Skorinkin
         </bibl>
+        <listEvent>
+          <event type="print" when="2023">
+            <desc/>
+          </event>
+          <event type="written" when="2022">
+            <desc/>
+          </event>
+        </listEvent>
       </sourceDesc>
     </fileDesc>
     <profileDesc>
@@ -55,16 +63,6 @@
       <change when="2022-11-07">Describe Change!</change>
     </revisionDesc>
   </teiHeader>
-  <standOff>
-    <listEvent>
-      <event type="print" when="2023">
-        <desc/>
-      </event>
-      <event type="written" when="2022">
-        <desc/>
-      </event>
-    </listEvent>
-  </standOff>
   <text>
     <front>
       <div type="front">
