@@ -7,13 +7,27 @@ on:
       - dracor.odd
 
 jobs:
-  build:
+  check-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      odd: ${{ steps.filter.outputs.odd }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
+        id: filter
+        with:
+          filters: |
+            odd:
+              - dracor.odd
+
+  build-and-deploy-preview:
+    needs: check-changes
+    if: needs.check-changes.outputs.odd == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           submodules: true
-
       - run: ./build
       - run: ls -l dist
 
@@ -37,5 +51,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `📄 **Preview available:** ${url}\n\n_Updated on every push to this PR._`
+              body: `**Preview available:** ${url}`
             });
