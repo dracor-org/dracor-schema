@@ -263,6 +263,17 @@
               <!-- ... -->
             </publicationStmt>
           </egXML>
+          <p>
+            The TEI schema requires the <gi>fileDesc</gi> to contain a
+            <gi>sourceDesc</gi> element. For most corpora it may be sufficient
+            to simply refer to the individual TEI files without duplicating
+            information:
+          </p>
+          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <sourceDesc>
+              <p>See source information in individual TEI files.</p>
+            </sourceDesc>
+          </egXML>
         </div>
         <div xml:id="section-corpus-status">
           <head>Corpus Status</head>
