@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  This is the pre-1.4.0 version of the corpus.xml. It should still be supported
+  by DraCor API 1.x. But there should be several deprecation warnings.
+-->
+<teiCorpus xmlns="http://www.tei-c.org/ns/1.0" type="dracor">
+  <!-- Error: Incomplete; missing TEI, standOff, text -->
+  <teiHeader>
+    <fileDesc>
+      <!-- Error: missing sourceDesc -->
+      <titleStmt>
+        <title>Test Drama Corpus</title>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>DraCor</publisher>
+        <!-- Warning: type="URI" is deprecated -->
+        <idno type="URI" xml:base="https://dracor.org/">test</idno>
+        <!-- Warning: <idno type="repo"> is deprecated  -->
+        <idno type="repo">https://github.com/dracor-org/testdracor</idno>
+        <availability status="free">
+          <licence target="https://creativecommons.org/publicdomain/zero/1.0/">
+            Public Domain
+          </licence>
+        </availability>
+      </publicationStmt>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+       <p>
+         This corpus is for testing purposes only. It features a handful of
+         plays in different languages.
+       </p>
+      </projectDesc>
+    </encodingDesc>
+    <revisionDesc status="draft">
+      <change when="2018-12-12" status="proposed"/>
+      <change when="2020-07-17" status="draft"/>
+    </revisionDesc>
+  </teiHeader>
+</teiCorpus>

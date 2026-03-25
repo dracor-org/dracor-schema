@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<teiCorpus xmlns="http://www.tei-c.org/ns/1.0" type="dracor">
+<dracorCorpus xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader>
     <fileDesc>
       <titleStmt>
@@ -7,21 +7,24 @@
       </titleStmt>
       <publicationStmt>
         <publisher>DraCor</publisher>
-        <idno type="URI" xml:base="https://dracor.org/">test</idno>
-        <idno type="repo">https://github.com/dracor-org/testdracor</idno>
+        <idno>test</idno>
+        <ref type="repo" target="https://github.com/dracor-org/testdracor"/>
         <availability status="free">
           <licence target="https://creativecommons.org/publicdomain/zero/1.0/">
             Public Domain
           </licence>
         </availability>
       </publicationStmt>
+      <sourceDesc>
+        <p>Various DraCor corpora</p>
+      </sourceDesc>
     </fileDesc>
     <encodingDesc>
       <projectDesc>
-       <p>
-         This corpus is for testing purposes only. It features a handful of
-         plays in different languages.
-       </p>
+      <p>
+        This corpus is for testing purposes only. It features a handful of
+        plays in different languages.
+      </p>
       </projectDesc>
     </encodingDesc>
     <!--
@@ -33,4 +36,4 @@
       <change when="2020-07-17" status="draft"/>
     </revisionDesc>
   </teiHeader>
-</teiCorpus>
+</dracorCorpus>

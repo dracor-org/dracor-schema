@@ -10,16 +10,26 @@ jobs:
   check-changes:
     runs-on: ubuntu-latest
     outputs:
-      odd: ${{ steps.filter.outputs.odd }}
+      odd: ${{ steps.check.outputs.odd }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
-        id: filter
         with:
-          filters: |
-            odd:
-              - dracor.odd
-
+          fetch-depth: 0
+      - name: Check if dracor.odd changed
+        id: check
+        run: |
+          if [ "${{ github.event.action }}" = "opened" ] || [ "${{ github.event.action }}" = "reopened" ]; then
+            # Check all commits on the branch
+            BASE=${{ github.event.pull_request.base.sha }}
+          else
+            # Check only the newly pushed commits
+            BASE=${{ github.event.before }}
+          fi
+          if git diff --name-only ${BASE}..HEAD | grep -q '^dracor\.odd$'; then
+            echo "odd=true" >> $GITHUB_OUTPUT
+          else
+            echo "odd=false" >> $GITHUB_OUTPUT
+          fi
   build-and-deploy-preview:
     needs: check-changes
     if: needs.check-changes.outputs.odd == 'true'
