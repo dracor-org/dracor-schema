@@ -1,0 +1,27 @@
+name: PR Previews
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - dracor.odd
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          submodules: true
+
+      - run: ./build
+      - run: ls -l dist
+
+      - uses: webfactory/ssh-agent@a6f90b1f127823b31d4d4a8d96047790581349bd # v0.9.1
+        with:
+          ssh-private-key: ${{ secrets.DRACOR_ORG_DEPLOY_KEY }}
+
+      - name: Deploy to staging.dracor.org
+        run: |
+          scp -o StrictHostKeyChecking=no ./dist/odd*.html \
+            ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/html/previews/
