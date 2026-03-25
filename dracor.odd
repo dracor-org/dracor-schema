@@ -1374,7 +1374,7 @@
           <p>
             Most examples (with some adjustments) are taken from Mary Pix’ drama
             <title>The Spanish Wives</title>
-            (<ref target="https://dracor.org/id/ep000676">ep000676</ref>).
+            (<ref target="https://dracor.org/id/eng000530">eng000530</ref>).
           </p>
           <div xml:id="section-paratexts">
             <head>Paratexts (<gi>front</gi>)</head>
@@ -1460,8 +1460,8 @@
             </p>
             <p>
               Stage directions could be nested into speech acts!
-              <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#ep000676">
-                <sp who="#ep000676-camillus">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#eng000530">
+                <sp who="#eng000530-camillus">
                   <speaker>Cam. </speaker>
                   <p>
                     Tell him, I am,-- and long to kiss his Hands.-- I like that
