@@ -5618,7 +5618,17 @@
 
           <!-- particDesc -->
           <elementSpec ident="particDesc" module="corpus" mode="change">
-            <constraintSpec ident="particdesc_person_id" scheme="schematron" mode="add"  type="encoding-hint">
+            <constraintSpec ident="particdesc_person_id" scheme="schematron" mode="add">
+              <constraint>
+                <sch:rule context="tei:particDesc/tei:listPerson/(tei:person|tei:personGrp)" role="error" see="https://dracor.org/doc/odd#section-characters">
+                  <sch:assert test="@xml:id">
+                    Each &lt;person&gt; or &lt;personGrp&gt; element in 
+                    &lt;particDesc&gt; must provide an @xml:id attribute.
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
+            <constraintSpec ident="particdesc_person_id_format" scheme="schematron" mode="add"  type="encoding-hint">
               <constraint>
                 <sch:rule context="tei:particDesc/tei:listPerson/tei:*[@xml:id]" role="warning" see="https://dracor.org/doc/odd#section-identifiers">
                   <sch:assert test="matches(@xml:id, '^[a-z]([-_a-z0-9]*[a-z0-9])?$')">
@@ -5819,7 +5829,6 @@
               </constraint>
             </constraintSpec>
             <attList>
-              <attDef ident="xml:id" mode="change" usage="req"/>
               <!-- need to globally define -->
               <attDef ident="sex" mode="change" usage="rec">
                 <valList type="semi" mode="add">
@@ -5875,11 +5884,6 @@
               </constraint>
             </constraintSpec>
             <attList>
-              <attDef ident="xml:id" mode="change">
-                <datatype>
-                  <dataRef key="ID"/>
-                </datatype>
-              </attDef>
               <!-- need to globally define -->
               <attDef ident="sex" mode="change">
                 <valList type="semi" mode="add">
