@@ -1418,21 +1418,31 @@
                 <head>Characters as Realisations of Concepts</head>
                 <p>
                   If a character in a play is an actualisation of a character
-                  archetype, e.g. a mythological figure or a historical person, it is
-                  possible to provide a link to the entity on Wikidata by
-                  including the full URI in the attribute <att>ana</att>.
+                  archetype, e.g. a mythological figure or a historical person,
+                  it is possible to provide a link to the entity on Wikidata. 
+                  The Wikidata QID is encoded as an <gi>idno</gi> element with
+                  <att>type</att> <val>wikidata</val> inside the <gi>person</gi>
+                  or <gi>personGrp</gi> element.
                 </p>
                 <p>
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                    <person xml:id="medea" sex="FEMALE" ana="http://www.wikidata.org/entity/Q174278">
+                    <person xml:id="medea" sex="FEMALE">
                       <persName>Medea</persName>
+                      <idno type="wikidata">Q174278</idno>
                     </person>
                   </egXML>
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                    <person xml:id="napoleon" sex="MALE" ana="http://www.wikidata.org/entity/Q517">
+                    <person xml:id="napoleon" sex="MALE">
                       <persName>Napoleon</persName>
+                      <idno type="wikidata">Q517</idno>
                     </person>
                   </egXML>
+                </p>
+                <p>
+                  The use of the <att>ana</att> attribute with a full Wikidata
+                  URI (e.g. <val>http://www.wikidata.org/entity/Q174278</val>)
+                  is deprecated. Use the migration stylesheet
+                  <code>007-ana-to-idno.xsl</code> to update existing files.
                 </p>
               </div>
               <!-- /character realizations -->
@@ -3097,6 +3107,13 @@
               <p>
                 Feature <idno type="feature-no">Ch5</idno>
                 <idno type="feature-id">character_wikidata_id</idno>:
+                Wikidata QID of the real-world entity (e.g. a mythological
+                figure or historical person) that a character represents.
+                Encoded as <gi>idno</gi> with <att>type</att>
+                <val>wikidata</val> inside the <gi>person</gi> or
+                <gi>personGrp</gi> element (see
+                <ref target="#section-character-concept-realizations">Characters
+                as Realisations of Concepts</ref>).
               </p>
             </div>
             <div xml:id="character_node_betweenness">
@@ -5833,6 +5850,26 @@
 
           <!-- person -->
           <elementSpec ident="person" module="core" mode="change">
+            <constraintSpec ident="person_ana_wikidata_deprecation" scheme="schematron" mode="add">
+              <desc>
+                Deprecation: use <gi>idno</gi> with <att>type</att>
+                <val>wikidata</val> instead of <att>ana</att> for Wikidata
+                links on <gi>person</gi>.
+              </desc>
+              <constraint>
+                <sch:rule
+                  context="tei:particDesc//tei:person[@ana]"
+                  see="https://dracor.org/doc/odd#section-character-concept-realizations"
+                  role="warning"
+                >
+                  <sch:report test="starts-with(@ana, 'http://www.wikidata.org/entity/')">
+                    Using @ana for Wikidata links on &lt;person&gt; is
+                    deprecated. Use &lt;idno type="wikidata"&gt;Q…&lt;/idno&gt;
+                    instead. Apply migration 007-ana-to-idno.xsl to update.
+                  </sch:report>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
             <constraintSpec ident="person_sex" scheme="schematron" mode="add"  type="encoding-hint">
               <constraint>
                 <sch:rule context="tei:person[@sex]" role="warning" see="https://dracor.org/doc/odd#section-character-sex-gender">
@@ -5888,6 +5925,26 @@
 
           <!-- personGrp -->
           <elementSpec ident="personGrp" module="namesdates" mode="change">
+            <constraintSpec ident="personGrp_ana_wikidata_deprecation" scheme="schematron" mode="add">
+              <desc>
+                Deprecation: use <gi>idno</gi> with <att>type</att>
+                <val>wikidata</val> instead of <att>ana</att> for Wikidata
+                links on <gi>personGrp</gi>.
+              </desc>
+              <constraint>
+                <sch:rule
+                  context="tei:particDesc//tei:personGrp[@ana]"
+                  see="https://dracor.org/doc/odd#section-character-concept-realizations"
+                  role="warning"
+                >
+                  <sch:report test="starts-with(@ana, 'http://www.wikidata.org/entity/')">
+                    Using @ana for Wikidata links on &lt;personGrp&gt; is
+                    deprecated. Use &lt;idno type="wikidata"&gt;Q…&lt;/idno&gt;
+                    instead. Apply migration 007-ana-to-idno.xsl to update.
+                  </sch:report>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
             <constraintSpec ident="personGrp_sex" scheme="schematron" mode="add"  type="encoding-hint">
               <constraint>
                 <sch:rule context="tei:personGrp[@sex]" role="warning" see="https://dracor.org/doc/odd#section-character-sex-gender">
@@ -6869,6 +6926,26 @@
                   The Wikidata ID is expected to be wrapped in an &lt;idno&gt;
                   element and must match the regular expression "Q[1-9]\d*".
                 </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+
+          <!-- Feature Checks: Character Features -->
+          <!-- Ch5  character_wikidata_id -->
+          <constraintSpec ident="character_wikidata_id" scheme="schematron"
+            type="api_feature_check" corresp="#character_wikidata_id">
+            <desc>
+              Feature-Check:
+              <name type="api_feature">
+                <ref target="#character_wikidata_id">Ch5 character_wikidata_id</ref>
+              </name>
+            </desc>
+            <constraint>
+              <sch:rule context="/" role="information" see="https://dracor.org/doc/odd#character_wikidata_id">
+                <sch:report
+                  test="//tei:particDesc//(tei:person|tei:personGrp)/tei:idno[@type eq 'wikidata'][matches(normalize-space(.), '^Q[1-9]\d*$')]">
+                  Supported API feature: character_wikidata_id
+                </sch:report>
               </sch:rule>
             </constraint>
           </constraintSpec>
