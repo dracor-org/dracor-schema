@@ -812,46 +812,71 @@
               </div>
               <!-- /external ids for authors -->
 
-              <!-- Editors -->
+              <!-- Editors / Translators -->
               <div xml:id="section-contributor-roles">
                 <head>Additional Contributors</head>
-                <p>
-                  There can be other roles in which a person contributes to the
-                  creation of a play. In DraCor, we currently do not support
-                  providing explicit information on the role of an individual
-                  creator, but add them as authors in <gi>author</gi>. See the
-                  example of the <ref target="https://dracor.org/gersh">German
-                  Shakespeare Corpus</ref> below:
-                </p>
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <titleStmt>
-                    <title>Hamlet. Prinz von Dänemark</title>
-                    <author>
-                      <persName>
-                        <forename>William</forename>
-                        <surname>Shakespeare</surname>
-                      </persName>
-                      <!-- ... -->
-                    </author>
-                    <author>
-                      <persName>
-                        <forename>August</forename>
-                        <forename>Wilhelm</forename>
-                        <surname>Schlegel</surname>
-                      </persName>
-                      <!-- ... -->
-                    </author>
-                    <respStmt>
-                      <resp>This digital edition was prepared by</resp>
-                      <name ref="https://orcid.org/0000-0003-2419-6629">Frank Fischer</name>
-                    </respStmt>
-                  </titleStmt>
-                </egXML>
-                <p>
-                  This might change in the future. See the GitHub issue on
-                  <ref target="https://github.com/dracor-org/dracor-schema/issues/71">Contributor
-                  roles</ref>.
-                </p>
+                <div xml:id="section-translators">
+                  <head>Translators</head>
+                  <p>
+                    Translators of a play are encoded using the element
+                    <gi>editor</gi> in <gi>titleStmt</gi> with the attribute
+                    <att>role</att> set to <val>translator</val>. As with
+                    authors, the translator’s name is enclosed in
+                    <gi>persName</gi> and can be further structured using
+                    <gi>forename</gi> and <gi>surname</gi>. External
+                    identifiers (e.g. Wikidata, GND) are added as
+                    <gi>idno</gi> children – see
+                    <ref target="#section-author-external-id">IDs in External
+                    Reference Resources</ref>.
+                  </p>
+                  <p>
+                    The following example from the
+                    <ref target="https://dracor.org/id/gersh000014">German
+                    Shakespeare Corpus</ref> shows Shakespeare’s
+                    <title>Hamlet</title> in the translation by August Wilhelm
+                    Schlegel:
+                  </p>
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <titleStmt>
+                      <title>Hamlet. Prinz von Dänemark</title>
+                      <author>
+                        <persName>
+                          <forename>William</forename>
+                          <surname>Shakespeare</surname>
+                        </persName>
+                        <idno type="wikidata">Q692</idno>
+                        <idno type="pnd">118613723</idno>
+                      </author>
+                      <editor role="translator">
+                        <persName>
+                          <forename>August</forename>
+                          <forename>Wilhelm</forename>
+                          <surname>Schlegel</surname>
+                        </persName>
+                        <idno type="wikidata">Q57281</idno>
+                        <idno type="pnd">118607960</idno>
+                      </editor>
+                      <respStmt>
+                        <resp when="2021-10-21">This digital edition was prepared by</resp>
+                        <persName ref="https://orcid.org/0000-0003-2419-6629">Frank Fischer</persName>
+                      </respStmt>
+                    </titleStmt>
+                  </egXML>
+                  <p>
+                    Add one <gi>editor</gi> element per translator if a play
+                    has been translated by more than one person.
+                  </p>
+                </div>
+                <div xml:id="section-other-editor-roles">
+                  <head>Other Editor Roles</head>
+                  <p>
+                    Corpus maintainers are free to encode other editor roles
+                    by choosing an appropriate value for the <att>role</att>
+                    attribute on <gi>editor</gi>. For the time being,
+                    however, only <val>translator</val> will be picked up and
+                    displayed by the DraCor frontend.
+                  </p>
+                </div>
               </div>
             </div>
             <!-- /author information -->
