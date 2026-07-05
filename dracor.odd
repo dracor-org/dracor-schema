@@ -6064,20 +6064,6 @@
                       marked as being friend
                     </desc>
                   </valItem>
-                  <valItem ident="wikidata">
-                    <gloss>corresponds to Wikidata entity</gloss>
-                    <desc>
-                      The entity whose URI is listed in the <att>active</att>
-                      attribute corresponds to the entity on Wikidata whose URI
-                      is listed in the <att>passive</att> attribute.
-                    </desc>
-                    <remarks>
-                      <ab>
-                        Used in the relation to link the play to the wikidata
-                        entity
-                      </ab>
-                    </remarks>
-                  </valItem>
                 </valList>
               </attDef>
             </attList>
