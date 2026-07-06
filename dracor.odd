@@ -5887,7 +5887,7 @@
                   see="https://dracor.org/doc/odd#section-character-concept-realizations"
                   role="warning"
                 >
-                  <sch:report test="starts-with(@ana, 'http://www.wikidata.org/entity/')">
+                  <sch:report test="matches(@ana, 'wikidata\.org/(entity|wiki)/Q\d+$')">
                     Using @ana for Wikidata links on &lt;person&gt; is
                     deprecated. Use &lt;idno type="wikidata"&gt;Q…&lt;/idno&gt;
                     instead. Apply migration 007-ana-to-idno.xsl to update.
@@ -5962,7 +5962,7 @@
                   see="https://dracor.org/doc/odd#section-character-concept-realizations"
                   role="warning"
                 >
-                  <sch:report test="starts-with(@ana, 'http://www.wikidata.org/entity/')">
+                  <sch:report test="matches(@ana, 'wikidata\.org/(entity|wiki)/Q\d+$')">
                     Using @ana for Wikidata links on &lt;personGrp&gt; is
                     deprecated. Use &lt;idno type="wikidata"&gt;Q…&lt;/idno&gt;
                     instead. Apply migration 007-ana-to-idno.xsl to update.

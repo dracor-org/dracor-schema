@@ -14,7 +14,7 @@
   <xsl:output method="xml" />
 
   <xsl:template
-    match="tei:particDesc//(tei:person|tei:personGrp)[@ana[starts-with(., 'http://www.wikidata.org/entity/Q')]]">
+    match="tei:particDesc//(tei:person|tei:personGrp)[@ana[matches(., 'wikidata\.org/(entity|wiki)/Q\d+$')]]">
     <xsl:variable name="last-ws" as="text()?"
       select="text()[last()][normalize-space() = '']"/>
     <xsl:variable name="first-ws" as="text()?"
@@ -32,7 +32,7 @@
       <xsl:text>&#10;</xsl:text>
       <xsl:value-of select="$child-indent"/>
       <idno type="wikidata">
-        <xsl:value-of select="substring-after(@ana, 'entity/')"/>
+        <xsl:value-of select="tokenize(@ana, '/')[last()]"/>
       </idno>
       <xsl:if test="$last-ws">
         <xsl:value-of select="$last-ws"/>
