@@ -1650,6 +1650,81 @@
                 </div>
               </egXML>
             </p>
+            <div xml:id="section-segments-refsdecl">
+              <head>Declaring the Segmentation</head>
+              <p>
+                By default, the DraCor API identifies the scene-level segments
+                of a play – the units used to compute co-occurrence networks
+                and metrics – with a built-in heuristic that looks at
+                <gi>div</gi> elements carrying <att>type</att>
+                <val>scene</val> or a small list of legacy variants. In corpora
+                where <gi>div</gi> is used more broadly, or where scenes are
+                marked by a different combination of <att>type</att> and
+                <att>subtype</att>, the segmentation can be declared
+                explicitly using a <gi>citeStructure</gi> in a <gi>refsDecl</gi>
+                inside <gi>encodingDesc</gi>.<note place="bottom">Support for
+                <gi>refsDecl</gi>/<gi>citeStructure</gi> was introduced in
+                <ref target="https://github.com/dracor-org/dracor-api/releases/tag/1.4.0">DraCor
+                API 1.4.0</ref>; see
+                <ref target="https://github.com/dracor-org/dracor-api/pull/378">PR #378</ref>
+                for the implementation.</note>
+              </p>
+              <p>
+                The API interprets the <gi>citeStructure</gi> whose
+                <att>unit</att> is <val>scene</val>: the XPath expression in
+                <att>match</att> selects the elements to be treated as
+                segments.
+              </p>
+              <p>
+                A minimal declaration selecting all <gi>div</gi> elements
+                explicitly typed as scenes:
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <encodingDesc>
+                    <refsDecl>
+                      <citeStructure
+                        unit="scene"
+                        match="/tei:TEI//tei:body//tei:div[@type='scene']"
+                        use="@n"/>
+                    </refsDecl>
+                  </encodingDesc>
+                </egXML>
+              </p>
+              <p>
+                The declaration can be placed either in an individual play’s
+                <gi>teiHeader</gi> or in the corpus’ <code>corpus.xml</code>,
+                where it applies to every play in the corpus. When both are
+                present, the play-level declaration wins; if neither is given,
+                the built-in heuristic is used.
+              </p>
+              <p>
+                The following example from the
+                <ref target="https://github.com/dracor-org/greekdracor">GreekDraCor</ref>
+                <code>corpus.xml</code> declares that scenes are those
+                <gi>div</gi> elements of <att>type</att>
+                <val>textpart</val> with certain <att>subtype</att> values used
+                by its source project 
+                <ref target="https://github.com/PerseusDL">Perseus Digital Library</ref>:
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <encodingDesc>
+                    <refsDecl>
+                      <citeStructure
+                        unit="scene"
+                        match="/tei:TEI//tei:body//tei:div[@type='textpart' and @subtype =('choral', 'episode', 'Agon', 'Choral', 'Episode', 'Exodus', 'Lyric-Scene', 'Parabasis', 'Parodos', 'Prologue')]"
+                        use="position()"/>
+                    </refsDecl>
+                  </encodingDesc>
+                </egXML>
+              </p>
+              <p>
+                For security reasons, the XPath in <att>match</att> is
+                restricted to plain node-selection constructs; function calls
+                like <code>doc()</code> or <code>util:*</code> are rejected.
+              </p>
+              <p>
+                Note that the <att>use</att> attribute is not yet interpreted
+                by the DraCor API.
+              </p>
+            </div>
           </div>
 
           <div xml:id="section-stage-directions">
