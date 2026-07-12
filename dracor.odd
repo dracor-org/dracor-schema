@@ -5229,6 +5229,41 @@
 
           <!-- l -->
           <elementSpec ident="l" module="core" mode="change">
+            <constraintSpec ident="antilabe_part_sequence" scheme="schematron">
+              <desc>
+                Consecutive verse lines encoded with <att>part</att> represent
+                an antilabe, i.e. a verse line shared between speakers. The
+                values must form a valid sequence: <val>I</val> is followed by
+                <val>M</val> or <val>F</val>; <val>M</val> is preceded by
+                <val>I</val> or <val>M</val> and followed by <val>M</val> or
+                <val>F</val>; <val>F</val> is preceded by <val>I</val> or
+                <val>M</val>.
+              </desc>
+              <constraint>
+                <sch:rule context="tei:l[@part='I']">
+                  <sch:assert test="following::tei:l[1]/@part = ('M', 'F')">
+                    A verse line with part="I" (initial part of an antilabe)
+                    must be followed by a verse line with part="M" or part="F".
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:l[@part='M']">
+                  <sch:assert test="preceding::tei:l[1]/@part = ('I', 'M')">
+                    A verse line with part="M" (medial part of an antilabe)
+                    must be preceded by a verse line with part="I" or part="M".
+                  </sch:assert>
+                  <sch:assert test="following::tei:l[1]/@part = ('M', 'F')">
+                    A verse line with part="M" (medial part of an antilabe)
+                    must be followed by a verse line with part="M" or part="F".
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:l[@part='F']">
+                  <sch:assert test="preceding::tei:l[1]/@part = ('I', 'M')">
+                    A verse line with part="F" (final part of an antilabe)
+                    must be preceded by a verse line with part="I" or part="M".
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
             <attList>
               <attDef ident="rend" mode="change" usage="opt">
                 <valList type="semi" mode="replace">
