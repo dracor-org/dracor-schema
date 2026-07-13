@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Test file for antilabe @part sequence Schematron rules.
+     Contains three malformed antilabe sequences that must be reported. -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000026" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Ham</title>
+        <title type="sub">A Tragedy</title>
+        <author>William S</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher xml:id="dracor">DraCor</publisher>
+        <idno type="URL">https://dracor.org</idno>
+        <availability>
+          <licence target="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl type="digitalSource">
+          <ref target="https://github.com/dracor-org/dracor-schema">
+            dracor-schema GitHub Repository
+          </ref>
+          <availability>
+            <licence target="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</licence>
+          </availability>
+        </bibl>
+        <bibl type="originalSource">
+          Test fixture for antilabe @part sequence checks.
+        </bibl>
+        <listEvent>
+          <event type="print" when="2023">
+            <desc/>
+          </event>
+          <event type="written" when="2022">
+            <desc/>
+          </event>
+        </listEvent>
+      </sourceDesc>
+    </fileDesc>
+    <profileDesc>
+      <particDesc>
+        <listPerson>
+          <person xml:id="ham">
+            <persName>Ham</persName>
+          </person>
+          <person xml:id="egg">
+            <persName>Egg</persName>
+          </person>
+          <person xml:id="sausage">
+            <persName>Sausage</persName>
+          </person>
+          <person xml:id="bacon">
+            <persName>Bacon</persName>
+          </person>
+        </listPerson>
+      </particDesc>
+    </profileDesc>
+    <revisionDesc>
+      <change when="2026-07-11">Test fixture for antilabe part sequence.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="front">
+        <head>Ham, a tragedy By William S</head>
+      </div>
+      <castList>
+        <head>Dramatis Personae</head>
+        <castItem>Ham</castItem>
+        <castItem>Egg</castItem>
+        <castGroup>
+          <castItem>Sausage</castItem>
+          <castItem>Bacon</castItem>
+          <roleDesc>Vikings</roleDesc>
+        </castGroup>
+      </castList>
+    </front>
+    <body>
+      <div type="act">
+        <head>Act 1.</head>
+        <div type="scene">
+          <head>Scene 1: I followed by non-part (invalid).</head>
+          <sp who="#ham">
+            <speaker>Ham.</speaker>
+            <l part="I">Half a line begun,</l>
+          </sp>
+          <sp who="#egg">
+            <speaker>Egg.</speaker>
+            <l>but never finished properly.</l>
+          </sp>
+        </div>
+        <div type="scene">
+          <head>Scene 2: F not preceded by I or M (invalid).</head>
+          <sp who="#ham">
+            <speaker>Ham.</speaker>
+            <l>A normal line.</l>
+          </sp>
+          <sp who="#egg">
+            <speaker>Egg.</speaker>
+            <l part="F">This claims to be a final part.</l>
+          </sp>
+        </div>
+        <div type="scene">
+          <head>Scene 3: M not preceded by I or M (invalid).</head>
+          <sp who="#sausage">
+            <speaker>Sausage.</speaker>
+            <l>A normal line.</l>
+          </sp>
+          <sp who="#bacon">
+            <speaker>Bacon.</speaker>
+            <l part="M">This claims to be a medial part.</l>
+            <l part="F">And a final part follows.</l>
+          </sp>
+        </div>
+        <div type="scene">
+          <head>Scene 4: valid antilabe (must pass).</head>
+          <sp who="#ham">
+            <speaker>Ham.</speaker>
+            <l part="I">Speak, speak,</l>
+          </sp>
+          <sp who="#egg">
+            <speaker>Egg.</speaker>
+            <l part="M">and speak,</l>
+          </sp>
+          <sp who="#sausage">
+            <speaker>Sausage.</speaker>
+            <l part="F">and be still.</l>
+          </sp>
+        </div>
+      </div>
+    </body>
+  </text>
+</TEI>
