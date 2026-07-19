@@ -82,6 +82,15 @@ jobs:
         with:
           path: dist/
 
+      - name: Notify dracor-validate-action
+        if: ${{ ! github.event.release.prerelease }}
+        env:
+          GH_TOKEN: ${{ secrets.VALIDATE_ACTION_DISPATCH_TOKEN }}
+        run: |
+          gh api repos/dracor-org/dracor-validate-action/dispatches \
+            -f event_type=dracor-schema-released \
+            -f 'client_payload[tag]=${{ github.event.release.tag_name }}'
+
   # There are environment rules that restrict which tags can deploy to the
   # github-pages environment, see
   # https://github.com/dracor-org/dracor-schema/settings/environments/5489677481/edit
