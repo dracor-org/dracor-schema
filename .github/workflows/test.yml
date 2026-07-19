@@ -1,0 +1,41 @@
+name: Schematron compile check
+
+on:
+  pull_request:
+    paths:
+      - dracor.odd
+      - tests/**
+      - .github/workflows/test.yml
+  push:
+    branches: [main]
+    paths:
+      - dracor.odd
+      - .github/workflows/test.yml
+  workflow_dispatch:
+
+jobs:
+  compile-schematron:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          submodules: true
+
+      - uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9 # v4.8.0
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - run: ./build
+
+      - name: Download schxslt-cli
+        run: |
+          curl -sSLf -o schxslt-cli.jar \
+            https://codeberg.org/SchXslt/schxslt/releases/download/v1.10.1/schxslt-cli.jar
+
+      - name: Run Schematron against base test file
+        run: |
+          java -jar schxslt-cli.jar \
+            -d tests/tst000000-base.xml \
+            -s dist/dracor.sch \
+            -o /tmp/svrl.xml
