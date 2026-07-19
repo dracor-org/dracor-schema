@@ -5787,7 +5787,7 @@
           <elementSpec ident="particDesc" module="corpus" mode="change">
             <constraintSpec ident="particdesc_person_id" scheme="schematron" mode="add">
               <constraint>
-                <sch:rule context="tei:particDesc/tei:listPerson/(tei:person|tei:personGrp)" role="error" see="https://dracor.org/doc/odd#section-characters">
+                <sch:rule context="tei:particDesc/tei:listPerson/tei:person | tei:particDesc/tei:listPerson/tei:personGrp" role="error" see="https://dracor.org/doc/odd#section-characters">
                   <sch:assert test="@xml:id">
                     Each &lt;person&gt; or &lt;personGrp&gt; element in 
                     &lt;particDesc&gt; must provide an @xml:id attribute.
