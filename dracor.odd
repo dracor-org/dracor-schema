@@ -3354,7 +3354,7 @@
           <moduleRef key="verse"/>
           <moduleRef key="namesdates"/>
           <moduleRef key="corpus" include="particDesc"/>
-          <moduleRef key="figures" include="figure"/>
+          <moduleRef key="figures" include="figure figDesc table row cell"/>
           <moduleRef key="analysis"/>
           <classSpec module="tei" xml:id="GLOBAL" type="atts" ident="att.global" mode="change">
             <desc xml:lang="en">
