@@ -5069,9 +5069,6 @@
             </exemplum>
           </elementSpec>
 
-          <!-- hi -->
-          <!-- use <emph> instead! -->
-
           <!-- ##### -->
           <!--   I   -->
           <!-- ##### -->
@@ -5393,9 +5390,6 @@
 
           <!-- label -->
           <elementSpec ident="label" module="core" mode="change">
-            <content>
-              <textNode/>
-            </content>
             <exemplum source="https://dracor.org/id/ger000549">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <event type="written" notBefore="1647" notAfter="1650">
@@ -5410,8 +5404,8 @@
             </exemplum>
             <remarks>
               <p>
-                In DraCor <gi>label</gi> is used exclusively to attach a non-iso
-                date/date string to an event.
+                In DraCor <gi>label</gi> is typically used to add a non-iso date
+                or date string to an event.
               </p>
             </remarks>
           </elementSpec>
