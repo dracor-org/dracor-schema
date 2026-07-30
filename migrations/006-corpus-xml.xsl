@@ -23,7 +23,7 @@
 </xsl:text>
   </xsl:template>
 
-  <xsl:template match="tei:publicationStmt">
+  <xsl:template match="tei:publicationStmt[/tei:teiCorpus or /tei:dracorCorpus]">
     <xsl:copy copy-namespaces="no">
       <xsl:apply-templates select="@*|*|node()|comment()"/>
     </xsl:copy>
@@ -40,13 +40,13 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="tei:idno[@type='URI' and @xml:base='https://dracor.org/']">
+  <xsl:template match="tei:idno[@type='URI' and @xml:base='https://dracor.org/'][/tei:teiCorpus or /tei:dracorCorpus]">
     <idno>
       <xsl:value-of select="text()"/>
     </idno>
   </xsl:template>
 
-  <xsl:template match="tei:idno[@type='repo']">
+  <xsl:template match="tei:idno[@type='repo'][/tei:teiCorpus or /tei:dracorCorpus]">
     <ref type="repo" target="{text()}"/>
   </xsl:template>
 
