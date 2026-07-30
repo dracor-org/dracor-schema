@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Empty content-bearing elements should trigger warnings.
+     Expected reports from no_empty_content_bearing_elements:
+       - <name/> in originalSource bibl
+       - <idno type="URL"/> in originalSource bibl
+       - <title></title> in originalSource bibl
+       - <note/> in the front matter
+       - <stage/> in the body
+       - <ref/> without @target in front matter
+       - <date/> without any date attribute in profileDesc
+     The empty <licence/> with a @target is accepted by the existing
+     licence_target_url rule.
+     Reference: https://github.com/dracor-org/dracor-schema/issues/131
+-->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000027" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Ham</title>
+        <title type="sub">A Tragedy</title>
+        <author>William S</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher xml:id="dracor">DraCor</publisher>
+        <idno type="URL">https://dracor.org</idno>
+        <availability>
+          <licence target="https://creativecommons.org/publicdomain/zero/1.0/"/>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl type="digitalSource">
+          <ref target="https://github.com/dracor-org/dracor-schema">
+            dracor-schema GitHub Repository
+          </ref>
+          <availability>
+            <licence target="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</licence>
+          </availability>
+        </bibl>
+        <bibl type="originalSource">
+          <name/>
+          <idno type="URL"/>
+          <title></title>
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+    <profileDesc>
+      <particDesc>
+        <listPerson>
+          <person xml:id="ham">
+            <persName>Ham</persName>
+          </person>
+          <person xml:id="egg">
+            <persName>Egg</persName>
+          </person>
+        </listPerson>
+      </particDesc>
+      <creation>
+        <date/>
+      </creation>
+    </profileDesc>
+    <revisionDesc>
+      <change when="2026-07-30">Describe Change!</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="front">
+        <head>Ham, a tragedy By William S</head>
+        <note/>
+        <p>See <ref/> for details.</p>
+      </div>
+      <castList>
+        <head>Dramatis Personae</head>
+        <castItem>Ham</castItem>
+        <castItem>Egg</castItem>
+      </castList>
+    </front>
+    <body>
+      <div type="act">
+        <head>Act 1.</head>
+        <div type="scene">
+          <head>Scene 1.</head>
+          <stage/>
+          <sp who="#ham">
+            <speaker>Ham.</speaker>
+            <p>Lovely Spam!</p>
+          </sp>
+          <sp who="#egg">
+            <speaker>Egg.</speaker>
+            <p>Wonderful Spam!</p>
+          </sp>
+        </div>
+      </div>
+    </body>
+  </text>
+</TEI>

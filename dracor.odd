@@ -6558,6 +6558,53 @@
                 </sch:rule>
               </constraint>
             </constraintSpec>
+            <!--
+              Empty content-bearing elements (e.g. <title/>, <name/>,
+              <idno type="URL"/>) carry no information and should be
+              discouraged.  Structural containers (body, div, sp, castList, …)
+              are excluded because their content models already forbid empty
+              content.  The elements <p> and <l> are intentionally skipped for
+              now to avoid noise from milestone-only lines; they may be added
+              later.  <gi>desc</gi> is also excluded because it is required
+              inside <gi>event</gi> where an empty value is acceptable.
+            -->
+            <constraintSpec ident="no_empty_content_bearing_elements"
+                            scheme="schematron" mode="add" type="encoding-hint">
+              <desc>
+                Content-bearing elements such as <gi>title</gi>,
+                <gi>name</gi> or <gi>idno</gi> should not be left empty.
+              </desc>
+              <constraint>
+                <sch:rule context="tei:title | tei:titlePart | tei:name
+                                 | tei:persName | tei:forename | tei:surname
+                                 | tei:addName | tei:genName | tei:roleName
+                                 | tei:author | tei:editor | tei:docAuthor
+                                 | tei:docTitle | tei:publisher | tei:pubPlace
+                                 | tei:speaker | tei:head | tei:role
+                                 | tei:roleDesc | tei:castItem
+                                 | tei:note | tei:keywords | tei:emph
+                                 | tei:foreign | tei:argument | tei:epigraph
+                                 | tei:dateline | tei:change | tei:edition
+                                 | tei:stage | tei:idno | tei:bibl"
+                          role="warning">
+                  <sch:report test="not(normalize-space(.)) and not(*)">
+                    Element &lt;<sch:name/>&gt; should not be empty.
+                  </sch:report>
+                </sch:rule>
+                <sch:rule context="tei:ref" role="warning">
+                  <sch:report test="not(normalize-space(.)) and not(*) and not(@target)">
+                    Empty &lt;ref&gt; has no @target and no anchor text.
+                  </sch:report>
+                </sch:rule>
+                <sch:rule context="tei:date" role="warning">
+                  <sch:report test="not(normalize-space(.)) and not(*)
+                                    and not(@when|@from|@to|@notBefore|@notAfter)">
+                    Empty &lt;date&gt; should at least carry a date attribute
+                    (@when, @from, @to, @notBefore or @notAfter).
+                  </sch:report>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
             <attList>
               <attDef ident="xml:id" mode="change" usage="req">
                 <datatype>
