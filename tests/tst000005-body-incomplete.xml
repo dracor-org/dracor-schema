@@ -2,8 +2,8 @@
 <!--
 Incomplete <body>: There is nothing there
 
-Should throw a critical error from the RelaxNG and also a warning that the
-structure does not allow for the extraction of networks.
+Should throw a critical error from the RelaxNG. The play_segments API feature
+check will not report a positive result since there are no segments.
 -->
 <TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000005" xml:lang="en">
   <teiHeader>
