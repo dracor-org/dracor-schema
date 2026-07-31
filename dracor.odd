@@ -3342,7 +3342,7 @@
           prefix="tei_"
           xml:lang="en"
           start="TEI teiCorpus dracorCorpus"
-          source="tei:4.11.0"
+          source="tei:4.12.0"
         >
           <desc>DraCor Schema</desc>
           <moduleRef key="header"/>
