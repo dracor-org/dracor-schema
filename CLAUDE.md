@@ -26,13 +26,19 @@ The build script uses TEI XSLT Stylesheets (`Stylesheets/bin/teitoodd`, `teitorn
 
 ## Testing
 
-There is no automated test runner. The `tests/` directory contains 27 XML files for manual validation against the generated schema:
+There is no automated test runner. The `tests/` directory contains XML fixtures for manual validation against the generated schema:
 
 - Files prefixed `tst0…` are play TEI documents; most are designed to be **invalid** and test specific error conditions or Schematron rules.
 - Files prefixed `tst1…` are corpus metadata files.
 - `tst000000-base.xml` is the canonical **valid** base play file.
 
+New fixtures follow the `tstNNNNNN-slug.xml` naming and continue the numeric sequence.
+
 Validate a test file against the generated schema using an XML validator (e.g., `xmllint`, oXygen, or jing) with `dist/dracor.rng` and `dist/dracor.sch`.
+
+**Local Schematron validation**: `xmllint --schematron` and `jing -s` cannot run these rules (XPath 2.0 + `<sch:let>`). Use a Saxon-based ISO Schematron pipeline — compile `dist/dracor.sch` with TEI's `iso_svrl_for_xslt2.xsl` and apply the resulting XSLT to a test file.
+
+**CI**: `.github/workflows/test.yml` compile-checks the generated `dist/dracor.sch` against `tst000000-base.xml` using `schxslt-cli` on every PR touching `dracor.odd` or `tests/`.
 
 ## Migrations
 
@@ -56,7 +62,13 @@ The build pipeline materializes these three separate concerns from the one ODD f
 
 ### TEI P5 / TEI Drama layering
 
-`tei_drama.odd` is a reference copy of the upstream TEI Drama customization. `dracor.odd` extends it with DraCor-specific constraints and narrows TEI's permissive defaults.
+`dracor.odd` extends the upstream TEI Drama customization with DraCor-specific constraints and narrows TEI's permissive defaults.
+
+### Conventions for editing `dracor.odd`
+
+- **`<constraintSpec>` placement**: insert at the top of the enclosing `<elementSpec>`, before `<attList>`/`<exemplum>`.
+- **Default severity is `role="warning"`** — DraCor Schematron rules are soft encoding hints, not hard errors. Use `role="error"` only when a violation truly breaks downstream processing.
+- **Cross-cutting rules** that don't belong to any single element (e.g. root-level PI checks, the empty-element rule) live on the root `TEI` `<elementSpec>`.
 
 ### Deployment
 
@@ -64,3 +76,4 @@ GitHub Actions workflows handle CI/CD:
 
 - `preview.yml` — triggered by PRs touching `dracor.odd`; builds and deploys an HTML preview to `staging.dracor.org/previews/odd-{PR}.html`
 - `release.yml` — triggered on GitHub release; uploads RNG/SCH/HTML as release assets and deploys to staging, dev, and production environments
+- `test.yml` — Schematron compile-check on PRs (see Testing)
