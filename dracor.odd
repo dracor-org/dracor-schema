@@ -3356,6 +3356,10 @@
           <moduleRef key="corpus" include="particDesc"/>
           <moduleRef key="figures" include="figure figDesc table row cell"/>
           <moduleRef key="analysis"/>
+          <!-- members of model.global.edit; <gap> is already available via
+               the core module.  <app> and <witDetail> are intentionally
+               excluded as critical apparatus features not needed by DraCor. -->
+          <moduleRef key="transcr" include="addSpan damageSpan delSpan ellipsis space"/>
           <classSpec module="tei" xml:id="GLOBAL" type="atts" ident="att.global" mode="change">
             <desc xml:lang="en">
               provides a set of attributes common to all elements in the
