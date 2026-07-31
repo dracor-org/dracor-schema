@@ -47,6 +47,7 @@ XSLT stylesheets in `migrations/` update existing DraCor TEI files to the latest
 ### ODD as single source
 
 `dracor.odd` (≈7400 lines of TEI XML) contains:
+
 - Element and attribute specifications (`<elementSpec>`, `<attDef>`)
 - Prose documentation (encoding guidelines)
 - Embedded Schematron rules (`<constraint>` elements) for constraints beyond what Relax NG can express — e.g., enforcing that character `@xml:id` values referenced in speech are declared in the cast list, or that specific API features are present
@@ -57,10 +58,9 @@ The build pipeline materializes these three separate concerns from the one ODD f
 
 `tei_drama.odd` is a reference copy of the upstream TEI Drama customization. `dracor.odd` extends it with DraCor-specific constraints and narrows TEI's permissive defaults.
 
-`p5subset.xml` is a local TEI P5 reference copy used during offline processing.
-
 ### Deployment
 
 GitHub Actions workflows handle CI/CD:
+
 - `preview.yml` — triggered by PRs touching `dracor.odd`; builds and deploys an HTML preview to `staging.dracor.org/previews/odd-{PR}.html`
 - `release.yml` — triggered on GitHub release; uploads RNG/SCH/HTML as release assets and deploys to staging, dev, and production environments
