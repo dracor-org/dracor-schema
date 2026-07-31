@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Valid play using members of model.global.edit newly enabled by the
+     transcr moduleRef: addSpan, damageSpan, delSpan, ellipsis, space.
+     <gap> comes from the core module and is already available.
+-->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="dracor" xml:id="tst000028" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Ham</title>
+        <title type="sub">A Tragedy</title>
+        <author>William S</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher xml:id="dracor">DraCor</publisher>
+        <idno type="URL">https://dracor.org</idno>
+        <availability>
+          <licence target="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl type="digitalSource">
+          <ref target="https://github.com/dracor-org/dracor-schema">
+            dracor-schema GitHub Repository
+          </ref>
+          <availability>
+            <licence target="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</licence>
+          </availability>
+        </bibl>
+        <bibl type="originalSource">
+          Editorial-span demonstration fixture.
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+    <profileDesc>
+      <particDesc>
+        <listPerson>
+          <person xml:id="ham">
+            <persName>Ham</persName>
+          </person>
+          <person xml:id="egg">
+            <persName>Egg</persName>
+          </person>
+        </listPerson>
+      </particDesc>
+    </profileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div type="act">
+        <head>Act 1.</head>
+        <div type="scene">
+          <head>Scene 1.</head>
+          <delSpan spanTo="#end-of-cut"/>
+          <sp who="#ham">
+            <speaker>Ham.</speaker>
+            <p>Lovely <del>Spam</del><add>Ham</add>!</p>
+          </sp>
+          <anchor xml:id="end-of-cut"/>
+          <addSpan spanTo="#end-of-insert"/>
+          <sp who="#egg">
+            <speaker>Egg.</speaker>
+            <p>Wonderful <damageSpan spanTo="#end-of-damage"/>Spam<anchor xml:id="end-of-damage"/>!</p>
+          </sp>
+          <anchor xml:id="end-of-insert"/>
+          <sp who="#ham">
+            <speaker>Ham.</speaker>
+            <p>Egg! <gap reason="illegible" quantity="2" unit="words"/>
+              Sausage, <space quantity="3" unit="chars"/> and Bacon!
+              <ellipsis><desc>trailing dialogue omitted</desc></ellipsis></p>
+          </sp>
+        </div>
+      </div>
+    </body>
+  </text>
+</TEI>
