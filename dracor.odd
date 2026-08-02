@@ -6585,7 +6585,7 @@
                                  | tei:author | tei:editor | tei:docAuthor
                                  | tei:docTitle | tei:publisher | tei:pubPlace
                                  | tei:speaker | tei:head | tei:role
-                                 | tei:roleDesc | tei:castItem
+                                 | tei:roleDesc | tei:castItem | tei:rs
                                  | tei:note | tei:keywords | tei:emph
                                  | tei:foreign | tei:argument | tei:epigraph
                                  | tei:dateline | tei:change | tei:edition
