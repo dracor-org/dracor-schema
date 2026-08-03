@@ -2478,7 +2478,7 @@
                 <val>^[a-z]+[0-9]{6}$</val>.
               </p>
               <p rend="implementation">
-                The value is retrieved by the xQuery function
+                The value is retrieved by the XQuery function
                 <name type="api_function">dutil:get-dracor-id</name> in the
                 module <name type="api_module">util.xqm</name>
                 [<ref type="code" target="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L93-L100">Code</ref>].
