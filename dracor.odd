@@ -2496,7 +2496,7 @@
                 <gi>TEI</gi>.
               </p>
               <p rend="description">
-                The identifier SHOULD match the Regular Expression
+                The identifier should match the Regular Expression
                 <val>^[a-z]+[0-9]{6}$</val>.
               </p>
               <p rend="implementation">
@@ -2525,11 +2525,11 @@
                 of the play, e.g. <val>lessing-emilia-galotti</val>.
               </p>
               <p>
-                It MUST be unique across a single corpus. This identifier is
+                It must be unique across a single corpus. This identifier is
                 normally used as path parameters in requests to the DraCor API.
               </p>
               <p>
-                It is recommended that the file name of a document SHOULD be
+                It is recommended that the file name of a document should be
                 equal to the play name identifier.
               </p>
             </div>
@@ -3710,7 +3710,7 @@
               <constraint>
                 <sch:rule context="tei:body" role="warning">
                   <sch:assert test="tei:div">
-                    A play SHOULD at least have one structural division 'div'
+                    A play should at least have one structural division 'div'
                     for the API to be able to extract a network.
                   </sch:assert>
                 </sch:rule>
@@ -3723,13 +3723,13 @@
             <constraintSpec ident="network_check_basic_play_structure_sp"
                             scheme="schematron" corresp="#section-network-data">
               <desc>
-                The network is extracted based on speech acts which SHOULD be
+                The network is extracted based on speech acts which should be
                 encoded using the element <gi>sp</gi>.
               </desc>
               <constraint>
                 <sch:rule context="tei:body" role="warning">
                   <sch:assert test=".//tei:sp">
-                    A play SHOULD be structured in speech-acts using the element
+                    A play should be structured in speech-acts using the element
                     'sp' for the API to be able to extract a network.
                   </sch:assert>
                 </sch:rule>
@@ -3750,7 +3750,7 @@
               <constraint>
                 <sch:rule context="tei:body[not(.//tei:sp)]" role="warning">
                   <sch:assert test=".//tei:stage" role="warning">
-                    A drama that does not contain a speech-act 'sp', SHOULD at
+                    A drama that does not contain a speech-act 'sp', should at
                     least contain a stage direction 'stage'.
                   </sch:assert>
                 </sch:rule>
@@ -6123,7 +6123,7 @@
               scheme="schematron" mode="add" corresp="#corpus_name">
               <desc>
                 The identifier 'corpus name' (see Feature
-                <ref target="#corpus_name">corpus_name</ref>) MUST be included
+                <ref target="#corpus_name">corpus_name</ref>) must be included
                 in corpus.xml in a simple <gi>idno</gi> without any
                 <att>type</att> inside <gi>publicationStmt</gi>.
               </desc>
@@ -6389,8 +6389,8 @@
                 <sch:rule context="tei:sp" role="warning">
                   <sch:assert test="@who">
                     A speech 'sp' without an attribute '@who' is not used when
-                    extracting the network. SHOULD consider linking the speech
-                    act to a speaking character ('person') in the 'particDesc'.
+                    extracting the network. Consider linking the speech act to a
+                    speaking character ('person') in the 'particDesc'.
                   </sch:assert>
                 </sch:rule>
               </constraint>
@@ -6398,7 +6398,7 @@
             <constraintSpec ident="network_unlinked_sp" scheme="schematron"
               corresp="#section-network-data">
               <desc>
-                Speech acts <gi>sp</gi> SHOULD be linked to characters
+                Speech acts <gi>sp</gi> should be linked to characters
                 (<gi>person</gi> or <gi>personGrp</gi> elements in
                 <gi>particDesc</gi>) by supplying the character’s identifier in
                 the attribute <att>who</att> as a pointer. A pointer is
