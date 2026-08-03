@@ -385,7 +385,6 @@
             (<ref target="#boerner_trilcke_2024">Boerner/Trilcke 2024</ref>).
           </p>
         </div>
-        <!-- /file formats -->
 
         <div xml:id="section-filenames-identifiers">
           <head>Filenames and Identifiers</head>
@@ -668,7 +667,6 @@
               above.
             </p>
 
-            <!-- title -->
             <div xml:id="section-title">
               <head>Title</head>
               <p>
@@ -700,7 +698,6 @@
                 object.
               </p>
             </div>
-            <!-- / title -->
 
             <div xml:id="section-author-information">
               <head>Author(s)</head>
@@ -774,7 +771,6 @@
                   <ref target="https://github.com/dracor-org/dracor-api/issues">GitHub</ref>.
                 </p>
               </div>
-              <!-- /author name -->
 
               <div xml:id="section-author-external-id">
                 <head>IDs in External Reference Resources</head>
@@ -810,9 +806,7 @@
                   supported type values and additional examples.
                 </p>
               </div>
-              <!-- /external ids for authors -->
 
-              <!-- Editors / Translators -->
               <div xml:id="section-contributor-roles">
                 <head>Additional Contributors</head>
                 <div xml:id="section-translators">
@@ -879,7 +873,6 @@
                 </div>
               </div>
             </div>
-            <!-- /author information -->
           </div>
 
           <div xml:id="section-sources">
@@ -1208,7 +1201,6 @@
               </egXML>
             </p>
 
-            <!-- characters -->
             <div xml:id="section-characters">
               <head>Characters</head>
               <p>
@@ -1283,7 +1275,6 @@
                   <att>xml:id</att> as follows: <code>xml:id="soldier_1"</code>.
                 </p>
               </div>
-              <!-- /character ID -->
 
               <div xml:id="section-character-sex-gender">
                 <head>Sex and Gender of Characters</head>
@@ -1341,7 +1332,6 @@
                 </p>
               </div>
 
-              <!-- character relations -->
               <div xml:id="section-character-relations">
                 <head>Relations Between Characters</head>
                 <p>
@@ -1437,7 +1427,6 @@
                   et al. (2020)</ref>.
                 </p>
               </div>
-              <!-- /character relations -->
 
               <div xml:id="section-character-concept-realizations">
                 <head>Characters as Realisations of Concepts</head>
@@ -1470,9 +1459,7 @@
                   <code>007-ana-to-idno.xsl</code> to update existing files.
                 </p>
               </div>
-              <!-- /character realizations -->
             </div>
-            <!-- /character -->
 
             <div xml:id="section-genre">
               <head>Genre</head>
@@ -1543,7 +1530,6 @@
             <!-- Genre -->
           </div>
 
-          <!-- Analytic Data in the teiHeader -->
           <div xml:id="section-revisionDesc">
             <head><gi>revisionDesc</gi></head>
             <p>
@@ -1826,7 +1812,6 @@
                   </egXML>
                 </p>
               </div>
-              <!-- /no explicit speaker -->
               <!--
                 for unknown speakers, see
                 https://github.com/dracor-org/dracor-schema/issues/106
@@ -1834,9 +1819,7 @@
             </div>
           </div>
         </div>
-        <!-- /body elements -->
 
-        <!-- List of Elements used in DraCor files -->
         <div xml:id="section-list-used-elems">
           <head>Elements Used in DraCor Files</head>
           <p>
@@ -2108,9 +2091,7 @@
             </item>
           </list>
         </div>
-        <!-- /List with Elements used in DraCor files -->
       </div>
-      <!-- End of How to -->
 
       <div xml:id="section-network-data">
         <!-- see https://github.com/dracor-org/dracor-schema/issues/105 -->
@@ -2177,7 +2158,6 @@
         </p>
       </div>
 
-      <!-- DraCor API part -->
       <div xml:id="section-dracor-api">
         <head>DraCor API</head>
         <p>
@@ -2202,7 +2182,6 @@
         </p>
         <!-- https://github.com/dracor-org/dracor-schema/issues/99 -->
 
-        <!-- Features -->
         <div xml:id="section-api-features">
           <head>API Features</head>
           <p>
@@ -2466,7 +2445,6 @@
               </p>
             </div>
           </div>
-          <!-- /corpus features -->
 
           <div xml:id="section-play-features">
             <head>Play Features</head>
@@ -3136,9 +3114,7 @@
               </p>
             </div>
           </div>
-          <!-- /play feature -->
 
-          <!-- Segment Features -->
           <div xml:id="section-segment-features">
             <head>Segment Features</head>
             <div xml:id="segment_type">
@@ -3170,7 +3146,6 @@
               </p>
             </div>
           </div>
-          <!-- /Segment Features -->
 
           <div xml:id="section-character-features">
             <head>Character Features</head>
@@ -3289,7 +3264,6 @@
               </p>
             </div>
           </div>
-          <!-- /character features -->
           <div xml:id="section-character-relation-features">
             <head>Character Relation Features</head>
             <div xml:id="character_relation_is_directed">
@@ -3329,11 +3303,8 @@
               </p>
             </div>
           </div>
-          <!-- /character relation features -->
         </div>
-        <!-- /API features -->
       </div>
-      <!-- End of API chapter -->
 
       <div xml:id="schema">
         <head>Schema</head>
@@ -7064,7 +7035,6 @@
           <!--P62  play_network_num_connected_components-->
           <!--P63  play_network_max_degree-->
           <!--P64  play_network_max_degree_character_ids-->
-          <!-- End of Feature-Checks  -->
 
           <!-- Encoding hints -->
           <!-- Here follows constraints that support the editing of DraCor files
@@ -7131,7 +7101,6 @@
           </constraintSpec>
         </schemaSpec>
       </div>
-      <!-- /schema -->
     </body>
 
     <back>
@@ -7656,7 +7625,6 @@
           </bibl>
         </listBibl>
       </div>
-      <!-- /bibliography -->
     </back>
   </text>
 </TEI>
