@@ -2142,8 +2142,13 @@
           allow for checking if networks can be extracted from the TEI files:
           <list xml:id="check-network-extraction">
             <item>
-              The text of the play in <gi>body</gi> is structured into segments
-              (<gi>div</gi>);
+              The text of the play in <gi>body</gi> may be structured into
+              segments (<gi>div</gi>). Segments enable a more meaningful
+              co-presence network based on the interaction of characters
+              within each segment; see feature
+              <ref target="#play_segments">P36 play_segments</ref>. Plays
+              without segmentation in their source are encoded without
+              <gi>div</gi> elements in <gi>body</gi>.
             </item>
             <item>
               The TEI file includes a <gi>particDesc</gi> containing
@@ -2903,6 +2908,29 @@
                 connections based on the property 'schema:about' (?sitelink
                 schema:about wd:' || $id || ' .) and filters the results with
                 the regular expression '[.]wikipedia[.]org'.
+              </p>
+            </div>
+            <div xml:id="play_segments">
+              <head>Play Segments</head>
+              <p>
+                Feature <idno type="feature-no">P36</idno>
+                <idno type="feature-id">play_segments</idno>:
+                Segments of a play.
+              </p>
+              <p>
+                A segment is an element <gi>div</gi> inside <gi>body</gi> that
+                either contains a speech <gi>sp</gi> or consists of stage
+                directions (<gi>stage</gi>) only. Segments are the basis for
+                extracting the co-presence network of a play; see the section
+                <ref target="#section-network-data">Encoding for Network
+                Analysis</ref>.
+              </p>
+              <p>
+                Plays without such subdivisions in their source are encoded
+                without <gi>div</gi> elements in <gi>body</gi>. In this case
+                no segments are available and the co-presence network reduces
+                to a single fully connected component of all speaking
+                characters.
               </p>
             </div>
             <div xml:id="play_num_of_segments">
@@ -3667,26 +3695,6 @@
 
           <!-- body -->
           <elementSpec ident="body" module="textstructure" mode="change">
-            <!-- to be able to extract networks, the DraCor API needs structure in the body element -->
-            <!-- can be tested with:
-                  - tst000005: WRONG - There is nothing in the body at all
-            -->
-            <constraintSpec ident="network_check_basic_play_structure_div"
-                            scheme="schematron" corresp="#section-network-data">
-              <desc>
-                A network can only be extracted from a play if there is some
-                basic structure. The API expects that there is at least a
-                single <gi>div</gi> present.
-              </desc>
-              <constraint>
-                <sch:rule context="tei:body" role="warning">
-                  <sch:assert test="tei:div">
-                    A play should at least have one structural division 'div'
-                    for the API to be able to extract a network.
-                  </sch:assert>
-                </sch:rule>
-              </constraint>
-            </constraintSpec>
             <!-- There should be <sp> elements to be able to extract networks
                  can be tested with:
                   - tst000009: WRONG - There are no <sp> elements
@@ -7007,6 +7015,26 @@
           <!-- P34  play_original_source_num_of_pages -->
           <!-- P35  play_num_of_wikipedia_links -->
           <!-- P36  play_segments -->
+          <constraintSpec ident="play_segments" scheme="schematron"
+            type="api_feature_check" corresp="#play_segments">
+            <desc>
+              Feature-Check:
+              <name type="api_feature">
+                <ref target="#play_segments">P36 play_segments</ref>
+              </name>
+            </desc>
+            <constraint>
+              <sch:rule context="/" role="information" see="https://dracor.org/doc/odd#play_segments">
+                <sch:let name="num_segments"
+                  value="count(//tei:body//tei:div[.//tei:sp or .//tei:stage])"/>
+                <sch:report test="//tei:body//tei:div[.//tei:sp or .//tei:stage]">
+                  Supported API feature: play_segments [count:
+                  <sch:value-of select="$num_segments"/>]
+                </sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+
           <!-- P37  play_num_of_segments -->
           <!-- P38  play_num_of_acts -->
           <!--P39  play_num_of_paragraphs-->
