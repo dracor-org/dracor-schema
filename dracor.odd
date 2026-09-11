@@ -45,6 +45,10 @@
         <p>born digital</p>
       </sourceDesc>
     </fileDesc>
+    <profileDesc>
+      <creation>For writing and revising certain parts of this document, generative AI was used. The AI usage is documented in the respective git commit.
+        For details, see the <ref target="https://github.com/dracor-org/dracor-schema/commits/main/">commit history of this file on GitHub</ref>.</creation>
+    </profileDesc>
     <revisionDesc>
       <change who="#jjb" when="2026-02-06">
         revise sourceDesc</change>
