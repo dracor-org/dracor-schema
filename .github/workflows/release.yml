@@ -56,26 +56,12 @@ jobs:
           asset_name: dracor-guidelines-${{ github.event.release.tag_name }}.html
           asset_content_type: text/html
 
-      - uses: webfactory/ssh-agent@e83874834305fe9a4a2997156cb26c5de65a8555 # v0.10.0
+      - name: Upload dist for the deployments
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          ssh-private-key: ${{ secrets.DRACOR_ORG_DEPLOY_KEY }}
-
-      - name: Deploy schemas to staging and dev
-        run: |
-          scp -o StrictHostKeyChecking=no ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/schema/schema.rng
-          scp -o StrictHostKeyChecking=no ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/schema/dracor.sch
-          scp -o StrictHostKeyChecking=no ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dev.dracor.org:/var/www/schema/schema.rng
-          scp -o StrictHostKeyChecking=no ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dev.dracor.org:/var/www/schema/dracor.sch
-          scp -o StrictHostKeyChecking=no ./dist/index.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/schema/odd-${{ github.event.release.tag_name }}.html
-          scp -o StrictHostKeyChecking=no ./dist/index.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/schema/odd.html
-          scp -o StrictHostKeyChecking=no ./dist/index.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dev.dracor.org:/var/www/schema/odd.html
-
-      - name: Deploy schemas to production
-        if: ${{ ! github.event.release.prerelease }}
-        run: |
-          scp -o StrictHostKeyChecking=no ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dracor.org:/var/www/schema/schema.rng
-          scp -o StrictHostKeyChecking=no ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dracor.org:/var/www/schema/dracor.sch
-          scp -o StrictHostKeyChecking=no ./dist/index.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dracor.org:/var/www/schema/odd.html
+          name: dist
+          path: dist/
+          if-no-files-found: error
 
       - name: Upload static files as artifact
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
@@ -90,6 +76,36 @@ jobs:
           gh api repos/dracor-org/dracor-validate-action/dispatches \
             -f event_type=dracor-schema-released \
             -f 'client_payload[tag]=${{ github.event.release.tag_name }}'
+
+  # Each server has a GitHub environment with its own DEPLOY_KEY. dev needs the
+  # approval of the team core; staging and production accept release tags,
+  # which only org owners can create.
+  deploy-dev:
+    needs: build
+    uses: ./.github/workflows/deployment.yml
+    # environment secrets only reach the reusable workflow this way
+    secrets: inherit
+    with:
+      environment: dev
+      host: dev.dracor.org
+
+  deploy-staging:
+    needs: build
+    uses: ./.github/workflows/deployment.yml
+    secrets: inherit
+    with:
+      environment: staging
+      host: staging.dracor.org
+      versioned-odd: true
+
+  deploy-production:
+    if: ${{ ! github.event.release.prerelease }}
+    needs: build
+    uses: ./.github/workflows/deployment.yml
+    secrets: inherit
+    with:
+      environment: production
+      host: dracor.org
 
   # There are environment rules that restrict which tags can deploy to the
   # github-pages environment, see
