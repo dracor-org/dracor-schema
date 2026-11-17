@@ -62,6 +62,8 @@ jobs:
           name: dist
           path: dist/
           if-no-files-found: error
+          # in case of "Re-run all jobs"
+          overwrite: true
 
       - name: Upload static files as artifact
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
@@ -83,7 +85,9 @@ jobs:
   deploy-dev:
     needs: build
     uses: ./.github/workflows/deployment.yml
-    # environment secrets only reach the reusable workflow this way
+    # Without this, DEPLOY_KEY of the environment arrives empty in the reusable
+    # workflow (tested in dracor-docs). It also passes the other secrets, but
+    # deployment.yml comes from the same commit and only uses DEPLOY_KEY.
     secrets: inherit
     with:
       environment: dev
