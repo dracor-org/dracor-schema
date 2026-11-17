@@ -81,7 +81,8 @@ jobs:
 
   # Each server has a GitHub environment with its own DEPLOY_KEY. dev needs the
   # approval of the team core; staging and production accept release tags,
-  # which only org owners can create.
+  # which only org owners can create. Production waits for staging, but not
+  # for dev, whose approval may come later or never.
   deploy-dev:
     needs: build
     uses: ./.github/workflows/deployment.yml
@@ -104,7 +105,7 @@ jobs:
 
   deploy-production:
     if: ${{ ! github.event.release.prerelease }}
-    needs: build
+    needs: [build, deploy-staging]
     uses: ./.github/workflows/deployment.yml
     secrets: inherit
     with:

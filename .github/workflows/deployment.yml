@@ -27,6 +27,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
+    # A newer release cancels the deployment of an older one to the same
+    # environment, e.g. while it waits for approval, so that the older one
+    # can't overwrite it.
+    concurrency:
+      group: deploy-${{ inputs.environment }}
+      cancel-in-progress: true
     steps:
       # first, so that missing settings fail before anything else
       - name: Set up SSH
