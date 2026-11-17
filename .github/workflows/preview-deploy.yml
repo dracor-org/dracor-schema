@@ -16,9 +16,10 @@ permissions:
   contents: read
 
 # a newer build of the same branch cancels older deployments, including those
-# waiting for approval
+# waiting for approval (with the repository, so that a fork's branch of the
+# same name doesn't cancel them)
 concurrency:
-  group: preview-deploy-${{ github.event.workflow_run.head_branch }}
+  group: preview-deploy-${{ github.event.workflow_run.head_repository.full_name }}-${{ github.event.workflow_run.head_branch }}
   cancel-in-progress: true
 
 jobs:
