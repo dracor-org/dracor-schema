@@ -48,9 +48,9 @@ jobs:
       - name: Deploy to staging.dracor.org
         run: |
           scp -o StrictHostKeyChecking=no ./dist/odd*.html \
-            ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/html/previews/
+            ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/previews/
           scp -o StrictHostKeyChecking=no ./dist/index.html \
-            ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/html/previews/odd-${{ github.event.number }}.html
+            ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/previews/odd-${{ github.event.number }}.html
 
       - name: Comment preview URL on PR
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0

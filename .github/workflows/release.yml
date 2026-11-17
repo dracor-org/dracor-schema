@@ -62,20 +62,20 @@ jobs:
 
       - name: Deploy schemas to staging and dev
         run: |
-          scp -o StrictHostKeyChecking=no ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/html/schema.rng
-          scp -o StrictHostKeyChecking=no ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/html/dracor.sch
-          scp -o StrictHostKeyChecking=no ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dev.dracor.org:/var/www/html/schema.rng
-          scp -o StrictHostKeyChecking=no ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dev.dracor.org:/var/www/html/dracor.sch
-          scp -o StrictHostKeyChecking=no ./dist/index.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/html/odd-${{ github.event.release.tag_name }}.html
-          scp -o StrictHostKeyChecking=no ./dist/index.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/html/odd.html
-          scp -o StrictHostKeyChecking=no ./dist/index.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dev.dracor.org:/var/www/html/odd.html
+          scp -o StrictHostKeyChecking=no ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/schema/schema.rng
+          scp -o StrictHostKeyChecking=no ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/schema/dracor.sch
+          scp -o StrictHostKeyChecking=no ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dev.dracor.org:/var/www/schema/schema.rng
+          scp -o StrictHostKeyChecking=no ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dev.dracor.org:/var/www/schema/dracor.sch
+          scp -o StrictHostKeyChecking=no ./dist/index.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/schema/odd-${{ github.event.release.tag_name }}.html
+          scp -o StrictHostKeyChecking=no ./dist/index.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/schema/odd.html
+          scp -o StrictHostKeyChecking=no ./dist/index.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dev.dracor.org:/var/www/schema/odd.html
 
       - name: Deploy schemas to production
         if: ${{ ! github.event.release.prerelease }}
         run: |
-          scp -o StrictHostKeyChecking=no ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dracor.org:/var/www/html/schema.rng
-          scp -o StrictHostKeyChecking=no ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dracor.org:/var/www/html/dracor.sch
-          scp -o StrictHostKeyChecking=no ./dist/index.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dracor.org:/var/www/html/odd.html
+          scp -o StrictHostKeyChecking=no ./dist/dracor.rng ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dracor.org:/var/www/schema/schema.rng
+          scp -o StrictHostKeyChecking=no ./dist/dracor.sch ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dracor.org:/var/www/schema/dracor.sch
+          scp -o StrictHostKeyChecking=no ./dist/index.html ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@dracor.org:/var/www/schema/odd.html
 
       - name: Upload static files as artifact
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
