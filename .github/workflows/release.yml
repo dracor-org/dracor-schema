@@ -100,7 +100,7 @@ jobs:
     with:
       environment: staging
       host: staging.dracor.org
-      versioned-odd: true
+      versioned-odd: ${{ github.event.release.tag_name }}
 
   deploy-production:
     if: ${{ ! github.event.release.prerelease }}

@@ -14,11 +14,11 @@ on:
       host:
         required: true
         type: string
-      # also deploy the ODD as odd-<tag>.html
+      # if given, also deploy the ODD as odd-<versioned-odd>.html
       versioned-odd:
         required: false
-        type: boolean
-        default: false
+        type: string
+        default: ''
 
 permissions:
   contents: read
@@ -28,6 +28,19 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     steps:
+      # first, so that missing settings fail before anything else
+      - name: Set up SSH
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ vars.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          : "${DEPLOY_KEY:?secret DEPLOY_KEY is not set for this environment}"
+          : "${DEPLOY_KNOWN_HOSTS:?variable DEPLOY_KNOWN_HOSTS is not set for this environment}"
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: dist
@@ -35,27 +48,16 @@ jobs:
 
       - name: Prepare files
         env:
-          TAG: ${{ github.event.release.tag_name }}
-          VERSIONED: ${{ inputs.versioned-odd }}
+          VERSION: ${{ inputs.versioned-odd }}
         run: |
           mkdir out
           cp dist/dracor.rng out/schema.rng
           cp dist/dracor.sch out/dracor.sch
           cp dist/index.html out/odd.html
-          if [ "$VERSIONED" = true ]; then
-            cp dist/index.html "out/odd-$TAG.html"
+          if [ -n "$VERSION" ]; then
+            cp dist/index.html "out/odd-$VERSION.html"
           fi
           ls -l out
-
-      - name: Set up SSH
-        env:
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-          DEPLOY_KNOWN_HOSTS: ${{ vars.DEPLOY_KNOWN_HOSTS }}
-        run: |
-          install -m 700 -d ~/.ssh
-          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
 
       # without --delete: the directory also holds ontology.xml and the ODDs of
       # earlier versions
