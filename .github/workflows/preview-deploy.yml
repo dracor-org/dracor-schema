@@ -1,0 +1,155 @@
+name: Deploy PR Preview
+
+# Deploys the ODD built by preview.yml to https://staging.dracor.org/previews/.
+# GitHub runs this workflow from the default branch, so a pull request can't
+# change it to get at the DEPLOY_KEY of the environment "preview". That key is
+# restricted to rsync into the previews directory (see dracor-org-deployment),
+# and the environment needs the approval of the team core, since the preview
+# is HTML built from the PR and served from staging.dracor.org.
+
+on:
+  workflow_run:
+    workflows: [PR Previews]
+    types: [completed]
+
+permissions:
+  contents: read
+
+# a newer build of the same branch cancels older deployments, including those
+# waiting for approval (with the repository, so that a fork's branch of the
+# same name doesn't cancel them)
+concurrency:
+  group: preview-deploy-${{ github.event.workflow_run.head_repository.full_name }}-${{ github.event.workflow_run.head_branch }}
+  cancel-in-progress: true
+
+jobs:
+  # Find the open PR whose head is the built commit. Builds of commits that are
+  # no longer the head of their PR are skipped without asking for approval.
+  find-pr:
+    # Pull requests from forks are not deployed.
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      pr: ${{ steps.find.outputs.pr }}
+    steps:
+      - id: find
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          PR=$(gh api "repos/$REPO/commits/$HEAD_SHA/pulls" --jq \
+            "[.[] | select(.state == \"open\" and .head.sha == \"$HEAD_SHA\" \
+              and .head.repo.full_name == \"$REPO\") | .number] | first // empty")
+          echo "PR: ${PR:-none (head moved on or PR closed)}"
+          echo "pr=$PR" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: find-pr
+    if: needs.find-pr.outputs.pr != ''
+    runs-on: ubuntu-latest
+    environment: preview
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: write
+    env:
+      PR: ${{ needs.find-pr.outputs.pr }}
+      HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+    steps:
+      # first, so that missing settings fail before anything else
+      - name: Check settings
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ vars.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          : "${DEPLOY_KEY:?secret DEPLOY_KEY is not set for this environment}"
+          : "${DEPLOY_KNOWN_HOSTS:?variable DEPLOY_KNOWN_HOSTS is not set for this environment}"
+
+      # The approval may come after newer pushes to the PR.
+      - name: Check that the build is still the head of the PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          CURRENT=$(gh api "repos/$REPO/pulls/$PR" --jq .head.sha)
+          if [ "$CURRENT" != "$HEAD_SHA" ]; then
+            echo "::error::PR #$PR has moved on to $CURRENT, not deploying $HEAD_SHA"
+            exit 1
+          fi
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: dist
+          path: dist
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      # The artifact comes from the PR's code: take only the ODD, as a regular
+      # file, and name it after the PR found above, so it can't replace other
+      # PRs' previews.
+      - name: Prepare files
+        run: |
+          test -f dist/index.html && test ! -L dist/index.html
+          mkdir out
+          cp dist/index.html "out/odd-$PR.html"
+          ls -l out
+
+      - name: Set up SSH
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ vars.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+
+      - name: Deploy to staging.dracor.org
+        run: |
+          rsync -rlvz \
+            -e 'ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes' \
+            out/ \
+            github@staging.dracor.org:/
+
+      - name: Remove SSH key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
+
+      # one comment per PR, updated by later deployments
+      - name: Comment preview URL on PR
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const pr = Number(process.env.PR);
+            const url = `https://staging.dracor.org/previews/odd-${pr}.html`;
+            const marker = '<!-- dracor-schema-preview -->';
+            const body = `${marker}\n**Preview available:** ${url}\n\nLast deployed: ${process.env.HEAD_SHA}`;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr,
+            });
+            const existing = comments.find(c =>
+              c.user.login === 'github-actions[bot]' && c.body.startsWith(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr,
+                body,
+              });
+            }

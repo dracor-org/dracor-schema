@@ -1,0 +1,81 @@
+name: Deployment
+
+# Deploys the schema, the Schematron and the ODD built by release.yml (the
+# artifact "dist") with rsync over SSH. Each GitHub environment has its own
+# DEPLOY_KEY, which the server restricts to rsync into the schema directory
+# (see dracor-org-deployment), so the destination path is relative to it.
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+      host:
+        required: true
+        type: string
+      # if given, also deploy the ODD as odd-<versioned-odd>.html
+      versioned-odd:
+        required: false
+        type: string
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    # A newer release cancels the deployment of an older one to the same
+    # environment, e.g. while it waits for approval, so that the older one
+    # can't overwrite it.
+    concurrency:
+      group: deploy-${{ inputs.environment }}
+      cancel-in-progress: true
+    steps:
+      # first, so that missing settings fail before anything else
+      - name: Set up SSH
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ vars.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          : "${DEPLOY_KEY:?secret DEPLOY_KEY is not set for this environment}"
+          : "${DEPLOY_KNOWN_HOSTS:?variable DEPLOY_KNOWN_HOSTS is not set for this environment}"
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: dist
+          path: dist
+
+      - name: Prepare files
+        env:
+          VERSION: ${{ inputs.versioned-odd }}
+        run: |
+          mkdir out
+          cp dist/dracor.rng out/schema.rng
+          cp dist/dracor.sch out/dracor.sch
+          cp dist/index.html out/odd.html
+          if [ -n "$VERSION" ]; then
+            cp dist/index.html "out/odd-$VERSION.html"
+          fi
+          ls -l out
+
+      # without --delete: the directory also holds ontology.xml and the ODDs of
+      # earlier versions
+      - name: Deploy to ${{ inputs.host }}
+        env:
+          HOST: ${{ inputs.host }}
+        run: |
+          rsync -rlvz \
+            -e 'ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes' \
+            out/ \
+            "github@$HOST:/"
+
+      - name: Remove SSH key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key

@@ -1,65 +1,40 @@
 name: PR Previews
 
+# Builds the ODD of a pull request. This runs the code of the pull request,
+# including this file, so the deploy key isn't used here: preview-deploy.yml,
+# which GitHub always runs from the default branch, deploys the result.
+
+# The paths filter looks at the whole PR (compared with its merge base), so
+# every push to a PR that changes dracor.odd builds the PR's current state.
 on:
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
       - dracor.odd
 
+permissions:
+  contents: read
+
+# a new push cancels older builds
+concurrency:
+  group: preview-${{ github.event.number }}
+  cancel-in-progress: true
+
 jobs:
-  check-changes:
-    runs-on: ubuntu-latest
-    outputs:
-      odd: ${{ steps.check.outputs.odd }}
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          fetch-depth: 0
-      - name: Check if dracor.odd changed
-        id: check
-        run: |
-          if [ "${{ github.event.action }}" = "opened" ] || [ "${{ github.event.action }}" = "reopened" ]; then
-            # Check all commits on the branch
-            BASE=${{ github.event.pull_request.base.sha }}
-          else
-            # Check only the newly pushed commits
-            BASE=${{ github.event.before }}
-          fi
-          if git diff --name-only ${BASE}..HEAD | grep -q '^dracor\.odd$'; then
-            echo "odd=true" >> $GITHUB_OUTPUT
-          else
-            echo "odd=false" >> $GITHUB_OUTPUT
-          fi
-  build-and-deploy-preview:
-    needs: check-changes
-    if: needs.check-changes.outputs.odd == 'true'
+  build-preview:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           submodules: true
+          persist-credentials: false
       - run: ./build
       - run: ls -l dist
-
-      - uses: webfactory/ssh-agent@e83874834305fe9a4a2997156cb26c5de65a8555 # v0.10.0
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          ssh-private-key: ${{ secrets.DRACOR_ORG_DEPLOY_KEY }}
+          name: dist
+          path: dist/
+          if-no-files-found: error
+          # in case of "Re-run all jobs"
+          overwrite: true
 
-      - name: Deploy to staging.dracor.org
-        run: |
-          scp -o StrictHostKeyChecking=no ./dist/odd*.html \
-            ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/previews/
-          scp -o StrictHostKeyChecking=no ./dist/index.html \
-            ${{ secrets.DRACOR_ORG_DEPLOY_USER }}@staging.dracor.org:/var/www/previews/odd-${{ github.event.number }}.html
-
-      - name: Comment preview URL on PR
-        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
-        with:
-          script: |
-            const url = `https://staging.dracor.org/previews/odd-${{ github.event.number }}.html`;
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `**Preview available:** ${url}`
-            });
