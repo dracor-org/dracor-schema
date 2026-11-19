@@ -29,7 +29,6 @@
     'eng': 'en',
     'fra': 'fr',
     'fre': 'fr',
-    'fro': 'fr',
     'geo': 'ka',
     'ger': 'de',
     'gre': 'grc',
