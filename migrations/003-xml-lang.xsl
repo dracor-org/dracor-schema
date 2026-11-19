@@ -23,7 +23,7 @@
   -->
   <xsl:variable name="codes" select="map {
     'bak': 'ba',
-    'cze': 'cz',
+    'cze': 'cs',
     'dut': 'nl',
     'ell': 'grc',
     'eng': 'en',
@@ -39,7 +39,7 @@
     'ita': 'it',
     'lat': 'la',
     'mis': 'mis',
-    'nob': 'no',
+    'nob': 'nb',
     'pol': 'pl',
     'rom': 'ro',
     'rus': 'ru',
@@ -47,7 +47,7 @@
     'tat': 'tt',
     'tmr': 'tmr',
     'ukr': 'uk',
-    'yid': 'yid'
+    'yid': 'yi'
   }"/>
 
   <xsl:variable name="iso3" select="map:keys($codes)"/>
