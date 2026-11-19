@@ -79,10 +79,11 @@ jobs:
             -f event_type=dracor-schema-released \
             -f 'client_payload[tag]=${{ github.event.release.tag_name }}'
 
-  # Each server has a GitHub environment with its own DEPLOY_KEY. dev needs the
-  # approval of the team core; staging and production accept release tags,
-  # which only org owners can create. Production waits for staging, but not
-  # for dev, whose approval may come later or never.
+  # Each server has a GitHub environment with its own DEPLOY_KEY. dev needs an
+  # approval (see deploy-key.sh in dracor-org-deployment); staging and
+  # production accept release tags, which only org owners can create.
+  # Production waits for staging, but not for dev, whose approval may come
+  # later or never.
   deploy-dev:
     needs: build
     uses: ./.github/workflows/deployment.yml

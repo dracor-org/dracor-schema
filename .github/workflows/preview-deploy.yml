@@ -4,8 +4,9 @@ name: Deploy PR Preview
 # GitHub runs this workflow from the default branch, so a pull request can't
 # change it to get at the DEPLOY_KEY of the environment "preview". That key is
 # restricted to rsync into the previews directory (see dracor-org-deployment),
-# and the environment needs the approval of the team core, since the preview
-# is HTML built from the PR and served from staging.dracor.org.
+# and the environment needs an approval (see deploy-key.sh in
+# dracor-org-deployment), since the preview is HTML built from the PR and
+# served from staging.dracor.org.
 
 on:
   workflow_run:
