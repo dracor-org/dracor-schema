@@ -207,52 +207,51 @@
             URL of the repository.
           </p>
           <p>
-            It uses the custom <gi>dracorCorpus</gi> as its root element which
-            contains a standard <gi>teiHeader</gi> element as its only
-            descendant.
+            It uses a standard <gi>teiHeader</gi> as its root element. Since
+            the TEI documents of the plays always have <gi>TEI</gi> as their
+            root element, a <gi>teiHeader</gi> root unambiguously identifies a
+            <code>corpus.xml</code> file.
           </p>
           <p>
             As an example, here is a slightly simplified version of the
             GerDraCor <code>corpus.xml</code>:
           </p>
           <egXML xmlns="http://www.tei-c.org/ns/Examples">
-            <dracorCorpus>
-              <teiHeader>
-                <fileDesc>
-                  <titleStmt>
-                    <title>German Drama Corpus</title>
-                    <editor ref="https://orcid.org/0000-0003-2419-6629">Frank Fischer</editor>
-                    <editor ref="https://orcid.org/0000-0002-1421-4320">Peer Trilcke</editor>
-                  </titleStmt>
-                  <publicationStmt>
-                    <publisher>DraCor Project</publisher>
-                    <idno>ger</idno>
-                    <ref type="repo" target="https://github.com/dracor-org/gerdracor"/>
-                    <availability>
-                      <licence target="https://creativecommons.org/share-your-work/public-domain/cc0/">CC0</licence>
-                    </availability>
-                  </publicationStmt>
-                  <sourceDesc>
-                    <p>
-                      The corpus has extracted plays from various sources
-                      including the TextGrid Repository (TGRep), Deutsches
-                      Textarchiv, Project Gutenberg, Projekt Gutenberg-DE,
-                      Wikisource, or Google Books. See the source descriptions
-                      of individual TEI files for Details.
-                    </p>
-                  </sourceDesc>
-                </fileDesc>
-                <encodingDesc>
-                  <projectDesc>
-                    <p>
-                      Edited by Frank Fischer and Peer Trilcke. Features more
-                      than 750 German-language plays from the 1500s to the
-                      1940s.
-                    </p>
-                  </projectDesc>
-                </encodingDesc>
-              </teiHeader>
-            </dracorCorpus>
+            <teiHeader>
+              <fileDesc>
+                <titleStmt>
+                  <title>German Drama Corpus</title>
+                  <editor ref="https://orcid.org/0000-0003-2419-6629">Frank Fischer</editor>
+                  <editor ref="https://orcid.org/0000-0002-1421-4320">Peer Trilcke</editor>
+                </titleStmt>
+                <publicationStmt>
+                  <publisher>DraCor Project</publisher>
+                  <idno>ger</idno>
+                  <ref type="repo" target="https://github.com/dracor-org/gerdracor"/>
+                  <availability>
+                    <licence target="https://creativecommons.org/share-your-work/public-domain/cc0/">CC0</licence>
+                  </availability>
+                </publicationStmt>
+                <sourceDesc>
+                  <p>
+                    The corpus has extracted plays from various sources
+                    including the TextGrid Repository (TGRep), Deutsches
+                    Textarchiv, Project Gutenberg, Projekt Gutenberg-DE,
+                    Wikisource, or Google Books. See the source descriptions
+                    of individual TEI files for Details.
+                  </p>
+                </sourceDesc>
+              </fileDesc>
+              <encodingDesc>
+                <projectDesc>
+                  <p>
+                    Edited by Frank Fischer and Peer Trilcke. Features more
+                    than 750 German-language plays from the 1500s to the
+                    1940s.
+                  </p>
+                </projectDesc>
+              </encodingDesc>
+            </teiHeader>
           </egXML>
           <p>
             The DraCor Schema implements several constraints to ensure that the
@@ -280,6 +279,25 @@
               <p>See source information in individual TEI files.</p>
             </sourceDesc>
           </egXML>
+          <p>
+            Furthermore, the <code>corpus.xml</code> should provide the title
+            of the corpus in <gi>titleStmt</gi>, a description of the corpus in
+            the <gi>projectDesc</gi> of the <gi>encodingDesc</gi>, and a
+            <gi>licence</gi> with a <att>target</att> linking to the licence
+            text. Schematron rules issue warnings if any of these are missing.
+          </p>
+          <p>
+            <emph>DEPRECATED:</emph> Before version 1.4.0 of the DraCor Schema,
+            <gi>teiCorpus</gi> was used as the root element of the
+            <code>corpus.xml</code>. From version 1.4.0 to 1.6 a custom
+            <gi>dracorCorpus</gi> element wrapping the <gi>teiHeader</gi> was
+            recommended instead. Both of these root elements are still
+            supported by the DraCor API 1.x but will be removed in version
+            2.0. The migration stylesheet
+            <ref target="https://github.com/dracor-org/dracor-schema/blob/main/migrations/006-corpus-xml.xsl">006-corpus-xml.xsl</ref>
+            converts existing <code>corpus.xml</code> files to use
+            <gi>teiHeader</gi> as root element.
+          </p>
         </div>
         <div xml:id="section-corpus-status">
           <head>Corpus Status</head>
@@ -2249,10 +2267,10 @@
                 metadata file of a corpus ("corpus.xml").
               </p>
               <p>
-                If this element is missing, the value of the element
-                <gi>idno</gi> with with the attribute <att>type</att> value of
-                <val>URI</val> from the "corpus.xml" is extracted and prepended
-                with "DraCor".
+                If this element is missing, the corpus name (the value of the
+                <gi>idno</gi> element without a <att>type</att> attribute in
+                the <gi>publicationStmt</gi> of the "corpus.xml") is extracted,
+                capitalized and followed by "DraCor".
               </p>
             </div>
             <div xml:id="corpus_description">
@@ -2277,9 +2295,10 @@
                 Feature <idno type="feature-no">C6</idno>
                 <idno type="feature-id">corpus_repository</idno>:
                 URL of the (GitHub) repository that contains the TEI source
-                data. The information is extracted from the element
-                <gi>idno</gi> with the value <val>repo</val> of the attribute
-                <att>type</att> in a "corpus.xml" file.
+                data. The information is extracted from the attribute
+                <att>target</att> of the element <gi>ref</gi> with the value
+                <val>repo</val> of the attribute <att>type</att> in a
+                "corpus.xml" file.
               </p>
             </div>
             <div xml:id="corpus_licence">
@@ -3346,7 +3365,7 @@
           docLang="en"
           prefix="tei_"
           xml:lang="en"
-          start="TEI teiCorpus dracorCorpus"
+          start="TEI teiHeader teiCorpus dracorCorpus"
           source="tei:4.12.0"
         >
           <desc>DraCor Schema</desc>
@@ -6113,9 +6132,9 @@
                 <att>type</att> inside <gi>publicationStmt</gi>.
               </desc>
               <constraint>
-                <!-- DEPRECATED: support for teiCorpus -->
+                <!-- teiHeader as root or (DEPRECATED) inside teiCorpus/dracorCorpus -->
                 <sch:rule
-                  context="/(tei:teiCorpus|tei:dracorCorpus)/tei:teiHeader/tei:fileDesc/tei:publicationStmt"
+                  context="tei:teiHeader[not(parent::tei:TEI)]/tei:fileDesc/tei:publicationStmt"
                   see="https://dracor.org/doc/odd#section-corpus-xml"
                   role="critical"
                 >
@@ -6131,9 +6150,9 @@
             <constraintSpec ident="corpus_xml_corpus_name_syntax"
               scheme="schematron" mode="add" corresp="#corpus_name">
               <constraint>
-                <!-- DEPRECATED: support for teiCorpus and for <idno type="URI"> -->
+                <!-- DEPRECATED: support for <idno type="URI"> -->
                 <sch:rule
-                  context="/(tei:teiCorpus|tei:dracorCorpus)/tei:teiHeader/tei:fileDesc/tei:publicationStmt/tei:idno[not(@type) or (@type eq 'URI' and @xml:base='https://dracor.org/')]"
+                  context="tei:teiHeader[not(parent::tei:TEI)]/tei:fileDesc/tei:publicationStmt/tei:idno[not(@type) or (@type eq 'URI' and @xml:base='https://dracor.org/')]"
                   see="https://dracor.org/doc/odd#section-corpus-xml"
                   role="critical"
                 >
@@ -6155,7 +6174,7 @@
               </desc>
               <constraint>
                 <sch:rule
-                  context="/(tei:teiCorpus|tei:dracorCorpus)/tei:teiHeader/tei:fileDesc/tei:publicationStmt"
+                  context="tei:teiHeader[not(parent::tei:TEI)]/tei:fileDesc/tei:publicationStmt"
                   see="https://dracor.org/doc/odd#section-corpus-xml"
                   role="warning"
                 >
@@ -6170,7 +6189,7 @@
             <constraintSpec ident="corpus_xml_deprecation" scheme="schematron" mode="add">
               <constraint>
                 <sch:rule
-                  context="/(tei:teiCorpus|tei:dracorCorpus)/tei:teiHeader/tei:fileDesc/tei:publicationStmt/tei:idno"
+                  context="tei:teiHeader[not(parent::tei:TEI)]/tei:fileDesc/tei:publicationStmt/tei:idno"
                   see="https://dracor.org/doc/odd#section-corpus-xml"
                   role="warning"
                 >
@@ -6630,6 +6649,46 @@
           </elementSpec>
 
           <!-- teiHeader -->
+          <elementSpec ident="teiHeader" module="header" mode="change">
+            <constraintSpec ident="corpus_xml_metadata" scheme="schematron"
+              mode="add"
+              corresp="#corpus_title #corpus_description #corpus_licence">
+              <desc>
+                A <gi>teiHeader</gi> used as the root element of corpus.xml
+                should provide the metadata describing a DraCor corpus: its
+                title (Feature <ref target="#corpus_title">corpus_title</ref>),
+                a description in <gi>projectDesc</gi> (Feature
+                <ref target="#corpus_description">corpus_description</ref>) and
+                a <gi>licence</gi> (Feature
+                <ref target="#corpus_licence">corpus_licence</ref>). The
+                <att>target</att> of the <gi>licence</gi> (Feature
+                <ref target="#corpus_licence_url">corpus_licence_url</ref>) is
+                checked by the general rule on <gi>licence</gi>.
+              </desc>
+              <constraint>
+                <!-- also applies to the DEPRECATED teiCorpus/dracorCorpus roots -->
+                <sch:rule context="tei:teiHeader[not(parent::tei:TEI)]"
+                  see="https://dracor.org/doc/odd#section-corpus-xml"
+                  role="warning"
+                >
+                  <sch:assert test="tei:fileDesc/tei:titleStmt/tei:title[normalize-space()]">
+                    The corpus.xml should specify the title of the corpus in
+                    &lt;titleStmt&gt;, e.g. &lt;title&gt;German Drama
+                    Corpus&lt;/title&gt;.
+                  </sch:assert>
+                  <sch:assert test="tei:encodingDesc/tei:projectDesc[normalize-space()]">
+                    The corpus.xml should describe the corpus in
+                    &lt;projectDesc&gt; inside &lt;encodingDesc&gt;.
+                  </sch:assert>
+                  <sch:assert test="tei:fileDesc/tei:publicationStmt/tei:availability/tei:licence[normalize-space()]">
+                    The corpus.xml should name the licence of the corpus in a
+                    &lt;licence&gt; element inside &lt;availability&gt;.
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
+          </elementSpec>
+
           <!-- term -->
 
           <!-- text -->
@@ -6822,8 +6881,9 @@
           <elementSpec ident="dracorCorpus" mode="add">
             <gloss>DraCor Corpus</gloss>
             <desc>
-              Root element for a DraCor corpus.xml descriptor document.
-              Contains exactly one teiHeader with corpus-level metadata.
+              DEPRECATED root element for a DraCor corpus.xml descriptor
+              document. Contains exactly one teiHeader with corpus-level
+              metadata. Use <gi>teiHeader</gi> as root element instead.
             </desc>
             <classes>
               <memberOf key="att.global"/>
@@ -6831,6 +6891,25 @@
             <content>
               <elementRef key="teiHeader" minOccurs="1" maxOccurs="1"/>
             </content>
+            <constraintSpec ident="corpus_xml_root_deprecation"
+              scheme="schematron" mode="add">
+              <desc>
+                The root elements <gi>dracorCorpus</gi> and <gi>teiCorpus</gi>
+                for corpus.xml are deprecated in favour of <gi>teiHeader</gi>.
+              </desc>
+              <constraint>
+                <sch:rule context="/tei:dracorCorpus | /tei:teiCorpus"
+                  see="https://dracor.org/doc/odd#section-corpus-xml"
+                  role="warning"
+                >
+                  <sch:report test="true()">
+                    The use of &lt;<sch:name/>&gt; as root element of
+                    corpus.xml is deprecated. Use &lt;teiHeader&gt; as root
+                    element instead (see migrations/006-corpus-xml.xsl).
+                  </sch:report>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
             <exemplum>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <dracorCorpus>
@@ -6840,6 +6919,15 @@
                 </dracorCorpus>
               </egXML>
             </exemplum>
+            <remarks>
+              <p>
+                The <gi>dracorCorpus</gi> element was a modification adding a
+                new element to the TEI namespace (see
+                <ref target="https://github.com/dracor-org/dracor-schema/issues/212">issue
+                #212</ref>). It is still supported by the DraCor API 1.x but
+                will be removed in version 2.0.
+              </p>
+            </remarks>
           </elementSpec>
 
           <!-- trailer -->

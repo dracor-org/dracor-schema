@@ -39,3 +39,10 @@ jobs:
             -d tests/tst000000-base.xml \
             -s dist/dracor.sch \
             -o /tmp/svrl.xml
+
+      - name: Run Schematron against corpus test file
+        run: |
+          java -jar schxslt-cli.jar \
+            -d tests/tst100000-corpus.xml \
+            -s dist/dracor.sch \
+            -o /tmp/svrl-corpus.xml
