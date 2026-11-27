@@ -15,7 +15,7 @@ for f in $@; do
   tmp=$f.tmp
   cp -v $f $tmp
   saxon -xsl:$xsl -s:$tmp \
-    | sed -E 's/(--|\?)><(TEI|teiCorpus|!--|\?)/\1>\n<\2/g' \
+    | sed -E 's/(--|\?)><(TEI|teiCorpus|teiHeader|!--|\?)/\1>\n<\2/g' \
     | sed -E 's/<\/(TEI|teiCorpus)>$/<\/\1>\n/' \
     > $f
   rm $tmp

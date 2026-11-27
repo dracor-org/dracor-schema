@@ -1,39 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<dracorCorpus xmlns="http://www.tei-c.org/ns/1.0">
-  <teiHeader>
-    <fileDesc>
-      <titleStmt>
-        <title>Test Drama Corpus</title>
-      </titleStmt>
-      <publicationStmt>
-        <publisher>DraCor</publisher>
-        <idno>test</idno>
-        <ref type="repo" target="https://github.com/dracor-org/testdracor"/>
-        <availability status="free">
-          <licence target="https://creativecommons.org/publicdomain/zero/1.0/">
-            Public Domain
-          </licence>
-        </availability>
-      </publicationStmt>
-      <sourceDesc>
-        <p>Various DraCor corpora</p>
-      </sourceDesc>
-    </fileDesc>
-    <encodingDesc>
-      <projectDesc>
-      <p>
-        This corpus is for testing purposes only. It features a handful of
-        plays in different languages.
-      </p>
-      </projectDesc>
-    </encodingDesc>
-    <!--
-      The revisionDesc determines the status of the corpus in the DraCor
-      registry. See https://github.com/dracor-org/dracor-registry#status.
-    -->
-    <revisionDesc status="draft">
-      <change when="2018-12-12" status="proposed"/>
-      <change when="2020-07-17" status="draft"/>
-    </revisionDesc>
-  </teiHeader>
-</dracorCorpus>
+<teiHeader xmlns="http://www.tei-c.org/ns/1.0">
+  <fileDesc>
+    <titleStmt>
+      <title>Test Drama Corpus</title>
+    </titleStmt>
+    <publicationStmt>
+      <publisher>DraCor</publisher>
+      <idno>test</idno>
+      <ref type="repo" target="https://github.com/dracor-org/testdracor"/>
+      <availability status="free">
+        <licence target="https://creativecommons.org/publicdomain/zero/1.0/">
+          Public Domain
+        </licence>
+      </availability>
+    </publicationStmt>
+    <sourceDesc>
+      <p>Various DraCor corpora</p>
+    </sourceDesc>
+  </fileDesc>
+  <encodingDesc>
+    <projectDesc>
+    <p>
+      This corpus is for testing purposes only. It features a handful of
+      plays in different languages.
+    </p>
+    </projectDesc>
+  </encodingDesc>
+  <!--
+    The revisionDesc determines the status of the corpus in the DraCor
+    registry. See https://github.com/dracor-org/dracor-registry#status.
+  -->
+  <revisionDesc status="draft">
+    <change when="2018-12-12" status="proposed"/>
+    <change when="2020-07-17" status="draft"/>
+  </revisionDesc>
+</teiHeader>

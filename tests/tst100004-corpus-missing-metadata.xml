@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  A corpus.xml with teiHeader root lacking recommended metadata. There should be
+  warnings for the empty title, the missing licence @target and the missing
+  projectDesc.
+-->
+<teiHeader xmlns="http://www.tei-c.org/ns/1.0">
+  <fileDesc>
+    <titleStmt>
+      <!-- Warning: empty title -->
+      <title/>
+    </titleStmt>
+    <publicationStmt>
+      <publisher>DraCor</publisher>
+      <idno>test</idno>
+      <ref type="repo" target="https://github.com/dracor-org/testdracor"/>
+      <availability>
+        <!-- Warning: missing @target -->
+        <licence>CC0</licence>
+      </availability>
+    </publicationStmt>
+    <sourceDesc>
+      <p>See source information in individual TEI files.</p>
+    </sourceDesc>
+  </fileDesc>
+  <!-- Warning: missing encodingDesc/projectDesc -->
+</teiHeader>

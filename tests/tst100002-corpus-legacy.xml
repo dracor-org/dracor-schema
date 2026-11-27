@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   This is the pre-1.4.0 version of the corpus.xml. It should still be supported
-  by DraCor API 1.x. But there should be several deprecation warnings.
+  by DraCor API 1.x. But there should be several deprecation warnings,
+  including one for the teiCorpus root element.
 -->
 <teiCorpus xmlns="http://www.tei-c.org/ns/1.0" type="dracor">
   <!-- Error: Incomplete; missing TEI, standOff, text -->
